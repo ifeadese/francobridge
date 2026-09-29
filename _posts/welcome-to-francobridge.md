@@ -14,7 +14,7 @@ Welcome to the Francobridge blog. Francobridge is about one thing : French for
 
 This is our first post, and its main job is to prove that the publishing pipeline works end to end.
 
-> « Bienvenue chez Francobridge ! »
+> « Bienvenue chez Francobridge ! »
 
 ## How publishing works
 
