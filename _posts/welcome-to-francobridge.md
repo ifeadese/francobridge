@@ -1,6 +1,6 @@
 ---
 title: "Welcome to Francobridge"
-excerpt: "Our first post. This site is a simple markdown blog that we are using to test the end-to-end pipeline: commit to GitHub, build on Vercel, live at francobridge.vercel.app."
+excerpt: "Francobridge helps newcomers learn the French they need for immigration. This first post doubles as a test of our publishing pipeline: commit to GitHub, build on Vercel, live at francobridge.vercel.app."
 coverImage: "/assets/blog/welcome/cover.jpg"
 date: "2026-09-29T12:00:00.000Z"
 author:
@@ -10,7 +10,11 @@ ogImage:
   url: "/assets/blog/welcome/cover.jpg"
 ---
 
-Welcome to the Francobridge blog. This is our first post, and its main job is to prove that the publishing pipeline works end to end.
+Welcome to the Francobridge blog. Francobridge is about one thing : French for immigration. Here we will share guides, lessons and updates for newcomers preparing for life, work and language tests in French.
+
+This is our first post, and its main job is to prove that the publishing pipeline works end to end.
+
+> « Bienvenue chez Francobridge ! »
 
 ## How publishing works
 

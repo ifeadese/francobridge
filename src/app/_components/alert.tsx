@@ -9,9 +9,9 @@ type Props = {
 const Alert = ({ preview }: Props) => {
   return (
     <div
-      className={cn("border-b dark:bg-slate-800", {
-        "bg-neutral-800 border-neutral-800 text-white": preview,
-        "bg-neutral-50 border-neutral-200": !preview,
+      className={cn("border-b", {
+        "bg-navy border-navy text-soft-white": preview,
+        "bg-soft-white border-navy/10 text-charcoal": !preview,
       })}
     >
       <Container>
@@ -21,7 +21,7 @@ const Alert = ({ preview }: Props) => {
               This page is a preview.{" "}
               <a
                 href="/api/exit-preview"
-                className="underline hover:text-teal-300 duration-200 transition-colors"
+                className="underline hover:text-red duration-200 transition-colors"
               >
                 Click here
               </a>{" "}
@@ -32,7 +32,7 @@ const Alert = ({ preview }: Props) => {
               The source code for this blog is{" "}
               <a
                 href={REPO_URL}
-                className="underline hover:text-blue-600 duration-200 transition-colors"
+                className="text-french-blue underline hover:text-red duration-200 transition-colors"
               >
                 available on GitHub
               </a>

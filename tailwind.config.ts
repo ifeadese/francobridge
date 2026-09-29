@@ -1,31 +1,26 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: "class",
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
       colors: {
-        "accent-1": "#FAFAFA",
-        "accent-2": "#EAEAEA",
-        "accent-7": "#333",
-        success: "#0070f3",
-        cyan: "#79FFE1",
+        navy: "#0B3D91",
+        "french-blue": "#002395",
+        red: "#D52B1E",
+        "soft-white": "#F8F6F1",
+        charcoal: "#1F2937",
+        green: "#5E7F66",
+      },
+      fontFamily: {
+        heading: ["var(--font-heading)", "Georgia", "serif"],
+        body: ["var(--font-body)", "system-ui", "sans-serif"],
       },
       spacing: {
         28: "7rem",
       },
       letterSpacing: {
-        tighter: "-.04em",
+        tighter: "-.03em",
       },
       fontSize: {
         "5xl": "2.5rem",
@@ -34,8 +29,8 @@ const config: Config = {
         "8xl": "6.25rem",
       },
       boxShadow: {
-        sm: "0 5px 10px rgba(0, 0, 0, 0.12)",
-        md: "0 8px 30px rgba(0, 0, 0, 0.12)",
+        sm: "0 5px 10px rgba(11, 61, 145, 0.10)",
+        md: "0 8px 30px rgba(11, 61, 145, 0.14)",
       },
     },
   },

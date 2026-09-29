@@ -26,8 +26,8 @@ export function PostPreview({
       <div className="mb-5">
         <CoverImage slug={slug} title={title} src={coverImage} />
       </div>
-      <h3 className="text-3xl mb-3 leading-snug">
-        <Link href={`/posts/${slug}`} className="hover:underline">
+      <h3 className="font-heading font-semibold text-navy text-3xl mb-3 leading-snug">
+        <Link href={`/posts/${slug}`} className="hover:text-french-blue transition-colors duration-200">
           {title}
         </Link>
       </h3>

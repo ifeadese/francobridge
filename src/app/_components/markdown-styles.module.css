@@ -1,5 +1,5 @@
 .markdown {
-  @apply text-lg leading-relaxed;
+  @apply text-lg leading-relaxed font-body;
 }
 
 .markdown p,
@@ -9,10 +9,30 @@
   @apply my-6;
 }
 
+.markdown ul {
+  @apply list-disc pl-6;
+}
+
+.markdown ol {
+  @apply list-decimal pl-6;
+}
+
 .markdown h2 {
-  @apply text-3xl mt-12 mb-4 leading-snug;
+  @apply font-heading font-semibold text-navy text-3xl mt-12 mb-4 leading-snug;
 }
 
 .markdown h3 {
-  @apply text-2xl mt-8 mb-4 leading-snug;
+  @apply font-heading font-semibold text-navy text-2xl mt-8 mb-4 leading-snug;
+}
+
+.markdown a {
+  @apply text-french-blue underline decoration-1 underline-offset-4 hover:text-red transition-colors duration-200;
+}
+
+.markdown blockquote {
+  @apply border-l-4 border-green pl-5 italic text-charcoal/80;
+}
+
+.markdown code {
+  @apply bg-navy/5 rounded px-1.5 py-0.5 text-base;
 }

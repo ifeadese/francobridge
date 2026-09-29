@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --navy: #0b3d91;
+  --french-blue: #002395;
+  --red: #d52b1e;
+  --soft-white: #f8f6f1;
+  --charcoal: #1f2937;
+  --green: #5e7f66;
+}
+
+body {
+  background-color: var(--soft-white);
+  color: var(--charcoal);
+}
+
+::selection {
+  background-color: var(--navy);
+  color: var(--soft-white);
+}
