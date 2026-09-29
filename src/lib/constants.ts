@@ -1,4 +1,7 @@
-export const EXAMPLE_PATH = "blog-starter";
-export const CMS_NAME = "Markdown";
+export const SITE_NAME = "Francobridge";
+export const SITE_DESCRIPTION =
+  "Notes and updates from Francobridge. A simple markdown blog built with Next.js.";
+export const SITE_URL = "https://francobridge.vercel.app";
+export const REPO_URL = "https://github.com/ifeadese/francobridge";
 export const HOME_OG_IMAGE_URL =
-  "https://og-image.vercel.app/Next.js%20Blog%20Starter%20Example.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg";
+  "https://og-image.vercel.app/Francobridge.png?theme=dark&md=1&fontSize=120px";
