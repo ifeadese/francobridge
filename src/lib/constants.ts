@@ -1,6 +1,6 @@
 export const SITE_NAME = "Francobridge";
 export const SITE_TAGLINE = "French for immigration.";
-export const SITE_TAGLINE_FR = "« Le français pour l’immigration »";
+export const SITE_TAGLINE_FR = "« Le français pour l’immigration »";
 export const SITE_DESCRIPTION =
   "French for immigration. Guides, lessons and updates from Francobridge.";
 export const SITE_URL = "https://francobridge.vercel.app";
