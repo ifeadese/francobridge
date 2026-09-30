@@ -105,7 +105,7 @@ export default function Home() {
       <section className="section bg-grey-3 py-20 md:py-28">
         <div className="container-fb">
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-            <h2 className="h2 max-w-[432px]">Want to get started?</h2>
+            <h2 className="h1 max-w-[720px]">Want to get started?</h2>
             <BookButton size="sm" look="secondary" />
           </div>
           <div className="grid gap-6 md:grid-cols-3">

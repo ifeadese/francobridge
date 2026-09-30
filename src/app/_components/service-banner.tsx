@@ -6,6 +6,11 @@ import type { Service } from "@/lib/services";
 import { IMAGES } from "@/lib/constants";
 
 // The tint behind each tone, for the gradient where the photo meets the text.
+// The fade is eased over most of the photo, so it never reads as an edge.
+const FADE = ["ff", "f2", "d9", "b3", "80", "4d", "26", "0d", "00"];
+const fade = (tint: string, to: "top" | "right") =>
+  `linear-gradient(to ${to}, ${FADE.map((a, i) => `${tint}${a} ${Math.round((i / (FADE.length - 1)) * 75)}%`).join(", ")})`;
+
 const TINT: Record<Tone, string> = {
   yellow: "#f9e7b8",
   blue: "#dbe4f3",
@@ -22,16 +27,16 @@ export function ServiceBanner({ service, index, tone, sticky = true }: { service
   const tint = TINT[tone];
   return (
     <div className={cn("flex flex-col md:flex-row", sticky && "md:sticky md:top-[158px]")}>
-      <div className="relative min-h-[520px] w-full overflow-hidden md:order-last md:min-h-[680px] md:w-1/2">
+      <div className="relative min-h-[360px] w-full overflow-hidden md:order-last md:min-h-[560px] md:w-1/2">
         <img src={IMAGES.services[service.slug]} alt="" className="absolute inset-0 h-full w-full object-cover" />
         <div
           className="absolute inset-0 md:hidden"
-          style={{ background: `linear-gradient(to top, ${tint} 0%, ${tint}00 40%)` }}
+          style={{ background: fade(tint, "top") }}
           aria-hidden="true"
         />
         <div
           className="absolute inset-0 hidden md:block"
-          style={{ background: `linear-gradient(to right, ${tint} 0%, ${tint}00 40%)` }}
+          style={{ background: fade(tint, "right") }}
           aria-hidden="true"
         />
       </div>
