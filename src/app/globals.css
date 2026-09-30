@@ -88,10 +88,10 @@ body {
     @apply font-heading italic font-light text-grey-80;
   }
 
-  /* Buttons: pills. Black on white, white on black. Red is never a button
-     in this layout; it lives in the mark and the patterns. */
+  /* Buttons: square-cornered. Black on white, white on black. Red is never a
+     button in this layout; it lives in the mark and the patterns. */
   .button {
-    @apply inline-flex items-center justify-center rounded-full text-center text-[18px] leading-[1.44] transition-colors duration-200;
+    @apply inline-flex items-center justify-center rounded-none text-center text-[18px] leading-[1.44] transition-colors duration-200;
     padding: 22px 36px 24px;
   }
   .button-primary { @apply button bg-black text-white hover:bg-grey-80; }
