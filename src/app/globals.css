@@ -112,7 +112,7 @@ body {
   .line { @apply h-px w-full bg-black; }
   .line-white { @apply h-px w-full bg-white; }
 
-  .block { @apply flex flex-col; padding: 24px 32px; }
+  .panel { @apply flex flex-col; padding: 24px 32px; }
 
   /* Form fields: a bottom rule only. */
   .field {

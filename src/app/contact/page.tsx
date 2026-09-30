@@ -35,7 +35,7 @@ export default function Contact() {
           <h2 className="h2 mb-14 max-w-[432px]">Stay connected with the school</h2>
           <div className="grid gap-6 md:grid-cols-3">
             {WAYS.map(([glyph, title, text, link, href]) => (
-              <a key={title} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="group block bg-grey-3 transition-colors hover:bg-grey-8">
+              <a key={title} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="group panel bg-grey-3 transition-colors hover:bg-grey-8">
                 <ServiceGlyph slug={glyph} className="mb-10 h-10 w-10 text-black" />
                 <div className="mb-8 max-w-[420px]">
                   <h4 className="h4 mb-4">{title}</h4>

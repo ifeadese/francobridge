@@ -17,7 +17,7 @@ export function InfoBlock({
   link?: string;
 }) {
   return (
-    <Link href={href} className="group block bg-grey-3 transition-colors hover:bg-grey-8">
+    <Link href={href} className="group panel bg-grey-3 transition-colors hover:bg-grey-8">
       {glyph && <ServiceGlyph slug={glyph} className="mb-10 h-10 w-10 text-black" />}
       <div className="flex flex-1 flex-col justify-between">
         <div className="mb-8 max-w-[420px]">

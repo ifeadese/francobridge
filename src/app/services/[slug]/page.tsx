@@ -81,7 +81,7 @@ export default async function ServicePage(props: Params) {
           <h2 className="h2 mb-14 max-w-[432px]">What’s included</h2>
           <div className="grid gap-6 md:grid-cols-3">
             {service.includes.map((group) => (
-              <div key={group.title} className="block bg-grey-3 py-8">
+              <div key={group.title} className="panel bg-grey-3 py-8">
                 <h4 className="h4 mb-6">{group.title}</h4>
                 <ul className="flex flex-col">
                   {group.items.map((item) => (
