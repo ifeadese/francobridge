@@ -85,15 +85,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Photographs. */}
-      <section className="section">
-        <div className="container-fb grid gap-6 md:grid-cols-[7fr_5fr] md:grid-rows-2">
-          <img src={IMAGES.aboutGrid[0]} alt="" className="h-[320px] w-full object-cover md:row-span-2 md:h-[560px]" />
-          <img src={IMAGES.aboutGrid[1]} alt="" className="h-[268px] w-full object-cover" />
-          <img src={IMAGES.aboutGrid[2]} alt="" className="h-[268px] w-full object-cover" />
-        </div>
-      </section>
-
       {/* Method: text left, photo right. */}
       <section className="section">
         <div className="container-fb grid gap-12 md:grid-cols-[5fr_6.3fr] md:gap-20">
