@@ -5,7 +5,6 @@ import { InfoBlock } from "@/app/_components/info-block";
 import { Tertiary } from "@/app/_components/tertiary";
 import { CAL, CONSULTATION, IMAGES, PACKAGES, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/constants";
 import { SERVICES } from "@/lib/services";
-import { getAllPosts } from "@/lib/api";
 
 const AUDIENCES = [
   ["immigrants", "Aspiring immigrants", "French-language pathways reward French. We help you meet the level they ask for, with the test score to prove it.", "/services/tcf-tef-preparation"],
@@ -23,7 +22,6 @@ const STEPS = [
 ] as const;
 
 export default function Home() {
-  const posts = getAllPosts().slice(0, 3);
   return (
     <main>
       {/* Hero: text at the bottom left, the photo filling the right half,
@@ -127,35 +125,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* From the blog, when there is something to show. */}
-      {posts.length > 0 && (
-        <section className="section">
-          <div className="container-fb">
-            <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-              <h2 className="h2 max-w-[432px]">Guides, lessons and updates</h2>
-              <Link href="/blog" className="button-secondary button-small">
-                View all
-              </Link>
-            </div>
-            <div className="grid gap-6 md:grid-cols-3">
-              {posts.map((post) => (
-                <Link key={post.slug} href={`/posts/${post.slug}`} className="group flex flex-col gap-4">
-                  <div className="flex items-center justify-between border-b border-black pb-3">
-                    <span className="regular-m">Blog</span>
-                  </div>
-                  <div className="flex gap-6">
-                    <img src={post.coverImage} alt="" className="h-28 w-28 shrink-0 object-cover" />
-                    <div className="flex flex-col gap-3">
-                      <h4 className="h4">{post.title}</h4>
-                      <Tertiary as="span">Read</Tertiary>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
     </main>
   );
 }
