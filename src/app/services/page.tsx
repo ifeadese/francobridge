@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Banner } from "@/app/_components/banner";
 import { BookButton } from "@/app/_components/book-button";
 import { Hero } from "@/app/_components/hero";
 import { ServicesRail } from "@/app/_components/services-rail";
@@ -72,13 +71,6 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container-fb">
-          <Banner tone="blue" way="blue" heading="Start with a one-hour consultation. Leave with your level and a plan.">
-            <BookButton />
-          </Banner>
-        </div>
-      </section>
     </main>
   );
 }
