@@ -1,16 +1,8 @@
 import Link from "next/link";
 import { ServicesRail } from "@/app/_components/services-rail";
 import { BookButton } from "@/app/_components/book-button";
-import { InfoBlock } from "@/app/_components/info-block";
 import { Tertiary } from "@/app/_components/tertiary";
 import { CAL, CONSULTATION, IMAGES, PACKAGES, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/constants";
-
-const AUDIENCES = [
-  ["immigrants", "Aspiring immigrants", "French-language pathways reward French. We help you meet the level they ask for, with the test score to prove it.", "/services/tcf-tef-preparation"],
-  ["newcomers", "Newcomers", "Settle in faster: French for daily life, for your first job here, and for the public service.", "/services/general-french"],
-  ["students", "Students", "Meet the language requirement of a French-language college or university programme, and plan your admission.", "/services/career-pathway-guidance"],
-  ["professionals", "Professionals", "Take French into the meeting room, the interview and the presentation, with the vocabulary of your field.", "/services/professional-french"],
-] as const;
 
 const STEPS = [
   ["Step 01", "Book a consultation", `One hour online with your instructor, $${CONSULTATION.price} ${CONSULTATION.currency}, paid when you book. We assess your French level and talk through what you need it for.`],
@@ -64,18 +56,6 @@ export default function Home() {
               </div>
               <Tertiary as="span">Book now</Tertiary>
             </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Who we help: four grey blocks. */}
-      <section className="section">
-        <div className="container-fb">
-          <h2 className="h2 mb-14 max-w-[432px]">Who we help, and where French takes them</h2>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {AUDIENCES.map(([glyph, title, text, href]) => (
-              <InfoBlock key={title} href={href} glyph={glyph} title={title} text={text} />
-            ))}
           </div>
         </div>
       </section>
