@@ -62,8 +62,10 @@ function Strip({ tiles, ink, sun, className }: { tiles: number; ink: string; sun
   );
 }
 
-export function Pattern({ way = "blue", className = "" }: { way?: keyof typeof INKS; className?: string }) {
+export function Pattern({ way = "blue", className = "", tiles }: { way?: keyof typeof INKS; className?: string; tiles?: number }) {
   const { ink, sun } = INKS[way];
+  // A fixed tile count, for a strip that sits in half a banner.
+  if (tiles) return <Strip tiles={tiles} ink={ink} sun={sun} className={`block ${className}`} />;
   return (
     <div className={className}>
       <Strip tiles={2} ink={ink} sun={sun} className="block sm:hidden" />
