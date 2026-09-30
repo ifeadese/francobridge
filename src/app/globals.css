@@ -125,3 +125,52 @@ body {
     @apply w-full border-0 border-b border-black/40 bg-transparent px-0 pb-3 text-[18px] leading-[1.44] text-black outline-none transition-colors placeholder:text-black/50 focus:border-black;
   }
 }
+
+/* ------------------------------------------------------------
+   Card rail: a horizontal run of cards that scrolls edge to edge. The scroller
+   breaks out to the viewport width; the inline padding pulls the first card
+   back in line with the heading. Controls come from CardRail.tsx.
+   ------------------------------------------------------------ */
+.rail {
+  display: flex;
+  column-gap: 24px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-inline: calc(50% - 50vw);
+  padding-inline: calc(50vw - 50%);
+  scroll-padding-inline: calc(50vw - 50%);
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.rail::-webkit-scrollbar { display: none; }
+.rail > * {
+  flex: 0 0 clamp(280px, 34%, 420px);
+  display: flex;
+}
+.card-rail-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 24px;
+}
+.card-rail-nav[data-scrollable="false"] { visibility: hidden; }
+.card-rail-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1px solid var(--black);
+  color: var(--black);
+  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+.card-rail-btn:hover:not(:disabled) { background-color: var(--black); color: var(--white); }
+.card-rail-btn:disabled { opacity: 0.3; cursor: default; }
+@media (max-width: 767px) {
+  /* Swiping already moves the rail on touch, so the controls are desktop only. */
+  .card-rail-nav { display: none; }
+}

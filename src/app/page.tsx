@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { type Tone } from "@/app/_components/banner";
-import { ServiceBanner } from "@/app/_components/service-banner";
+import { CardRail } from "@/app/_components/card-rail";
+import { ServiceRailCard } from "@/app/_components/service-rail-card";
 import { BookButton } from "@/app/_components/book-button";
 import { InfoBlock } from "@/app/_components/info-block";
 import { Tertiary } from "@/app/_components/tertiary";
@@ -84,7 +85,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services: six banners that stack as the page scrolls, TCF & TEF first. */}
+      {/* Services: a rail of six cards, TCF & TEF first. */}
       <section className="section">
         <div className="container-fb">
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
@@ -93,11 +94,11 @@ export default function Home() {
               All services
             </Link>
           </div>
-          <div className="flex flex-col gap-6 md:gap-16">
+          <CardRail className="rail" label="Programmes and services">
             {SERVICES.map((s, i) => (
-              <ServiceBanner key={s.slug} service={s} index={i} tone={BANNER_TONES[i % BANNER_TONES.length]} />
+              <ServiceRailCard key={s.slug} service={s} index={i} tone={BANNER_TONES[i % BANNER_TONES.length]} />
             ))}
-          </div>
+          </CardRail>
         </div>
       </section>
 
