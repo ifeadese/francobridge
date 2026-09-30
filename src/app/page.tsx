@@ -28,11 +28,9 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-4">
-            <Link href="/about" className="button-primary">
+            <BookButton />
+            <Link href="/about" className="button-secondary">
               About FrancoBridge
-            </Link>
-            <Link href="/contact" className="button-secondary">
-              Contact us
             </Link>
           </div>
         </div>
