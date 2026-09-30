@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { ServicesRail } from "@/app/_components/services-rail";
 import { BookButton } from "@/app/_components/book-button";
-import { Tertiary } from "@/app/_components/tertiary";
-import { CAL, CONSULTATION, IMAGES, PACKAGES, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/constants";
+import { CONSULTATION, PACKAGES, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/constants";
 
 const STEPS = [
   ["Step 01", "Book a consultation", `One hour online with your instructor, $${CONSULTATION.price} ${CONSULTATION.currency}, paid when you book. We assess your French level and talk through what you need it for.`],
@@ -13,10 +12,9 @@ const STEPS = [
 export default function Home() {
   return (
     <main>
-      {/* Hero: text at the bottom left, the photo filling the right half,
-          the next-step card sitting on the photo. */}
-      <section className="flex flex-col pt-[88px] md:min-h-screen md:flex-row">
-        <div className="container-fb flex flex-1 flex-col items-start justify-end gap-10 py-[88px] md:min-w-[560px] md:pr-16 md:!pl-[var(--gutter)]">
+      {/* Hero: the tagline, one line, the French line and two buttons. */}
+      <section className="flex flex-col pt-[88px]">
+        <div className="container-fb flex flex-col items-start justify-end gap-10 py-[88px] md:py-20">
           <h1 className="h1 max-w-[640px]">{SITE_TAGLINE}</h1>
           <div className="max-w-[420px]">
             <p className="regular-l">
@@ -32,28 +30,6 @@ export default function Home() {
             <Link href="/about" className="button-secondary">
               About FrancoBridge
             </Link>
-          </div>
-        </div>
-        <div
-          className="flex min-h-[600px] w-full items-end bg-grey-3 bg-cover bg-[50%_55%] md:w-1/2"
-          style={{ backgroundImage: `url(${IMAGES.heroHome})` }}
-        >
-          <div className="w-full max-w-[420px]">
-            <a
-              href={`https://cal.com/${CAL.consultation}`}
-              target="_blank"
-              rel="noreferrer"
-              data-cal-namespace="consultation"
-              data-cal-link={CAL.consultation}
-              data-cal-config='{"layout":"month_view"}'
-              className="group flex flex-col items-start gap-8 bg-yellow p-8"
-            >
-              <div className="flex flex-col gap-2">
-                <p className="regular-m">{CONSULTATION.label}</p>
-                <h3 className="h3">Book a consultation and find your French level</h3>
-              </div>
-              <Tertiary as="span">Book now</Tertiary>
-            </a>
           </div>
         </div>
       </section>
