@@ -45,7 +45,7 @@ export default function Home() {
           </div>
         </div>
         <div
-          className="flex min-h-[600px] w-full items-end bg-grey-3 bg-cover bg-[50%_35%] md:w-1/2"
+          className="flex min-h-[600px] w-full items-end bg-grey-3 bg-cover bg-[50%_55%] md:w-1/2"
           style={{ backgroundImage: `url(${IMAGES.heroHome})` }}
         >
           <div className="w-full max-w-[420px]">

@@ -2,7 +2,7 @@
 
 Photographs on the site are from Wikimedia Commons, used under their licences. Replace them with the client's own photos when they arrive.
 
-- `hero-home.jpg`: [Woman with curly blonde hair smiling while talking to someone on her laptop.jpg](https://commons.wikimedia.org/wiki/File:Woman_with_curly_blonde_hair_smiling_while_talking_to_someone_on_her_laptop.jpg) by Shixart1985, CC BY 2.0.
+- `hero-learner.jpg`: [Woman with curly blonde hair smiling while talking to someone on her laptop.jpg](https://commons.wikimedia.org/wiki/File:Woman_with_curly_blonde_hair_smiling_while_talking_to_someone_on_her_laptop.jpg) by Shixart1985, CC BY 2.0.
 - `service-tcf-tef.jpg`: [Woman writes in a notebook while sitting on a chair.jpg](https://commons.wikimedia.org/wiki/File:Woman_writes_in_a_notebook_while_sitting_on_a_chair.jpg) by Shixart1985, CC BY 2.0.
 - `service-professional.jpg`: [Business professional engages in note-taking during a meeting at a modern office desk.jpg](https://commons.wikimedia.org/wiki/File:Business_professional_engages_in_note-taking_during_a_meeting_at_a_modern_office_desk.jpg) by Shixart1985, CC BY 2.0.
 - `service-general.jpg`: [Discussing Wikipedia in a Library.jpg](https://commons.wikimedia.org/wiki/File:Discussing_Wikipedia_in_a_Library.jpg) by Kallie Hagel, CC BY-SA 4.0.
@@ -13,3 +13,4 @@ Photographs on the site are from Wikimedia Commons, used under their licences. R
 - `services-hero.jpg`: [Enseignement à l'Ecole polytechnique (38423250634).jpg](https://commons.wikimedia.org/wiki/File:Enseignement_à_l'Ecole_polytechnique_(38423250634).jpg) by Ecole  polytechnique from Paris, CC BY-SA 2.0.
 - `blog-hero.jpg`: [Woman writing on a notebook with a pen.jpg](https://commons.wikimedia.org/wiki/File:Woman_writing_on_a_notebook_with_a_pen.jpg) by Kristin Hardwick, CC0.
 - `about-method.jpg`: [Librarian and Student Discussing Wikipedia.jpg](https://commons.wikimedia.org/wiki/File:Librarian_and_Student_Discussing_Wikipedia.jpg) by Kallie Hagel, CC BY-SA 4.0.
+- `hero-home.jpg`: [Alexandra Bridge, Ottawa (491823) (9450367932).jpg](https://commons.wikimedia.org/wiki/File:Alexandra_Bridge,_Ottawa_(491823)_(9450367932).jpg) by Robert Linsdell from St. Andrews, Canada, CC BY 2.0.
