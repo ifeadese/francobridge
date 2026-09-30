@@ -50,7 +50,7 @@ function Strip({ tiles, ink, sun, className }: { tiles: number; ink: string; sun
       </svg>
       {/* the bottom row's hairlines */}
       <div
-        className="absolute inset-x-0 bottom-0 grid h-1/2 border-t opacity-20"
+        className="absolute inset-x-0 bottom-0 grid h-1/2 border-t opacity-[0.12]"
         style={{ gridTemplateColumns: `repeat(${cells}, minmax(0, 1fr))`, borderColor: ink }}
       >
         {Array.from({ length: cells }, (_, k) => (
