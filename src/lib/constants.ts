@@ -43,23 +43,23 @@ export const NAV = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
-// Placeholder photographs (Lorem Picsum, fixed ids) until the client's own
-// photos arrive. Swap the URLs here; nothing else references them.
-const pic = (id: number, w = 1400, h = 1400) => `https://picsum.photos/id/${id}/${w}/${h}`;
+// Photographs. Wikimedia Commons stock, credited in public/images/CREDITS.md,
+// until the client's own photos arrive. Swap the paths here; nothing else
+// references them.
 export const IMAGES = {
-  heroHome: pic(20, 1400, 1600),
-  heroAbout: pic(180, 1400, 1200),
-  heroServices: pic(42, 1400, 1200),
-  heroContact: pic(305, 1400, 1200),
-  heroBlog: pic(24, 1400, 1200),
-  aboutGrid: [pic(24, 1200, 900), pic(305, 900, 500), pic(60, 900, 500)],
-  method: pic(180, 1200, 1400),
+  heroHome: "/images/hero-home.jpg",
+  heroAbout: "/images/about-method.jpg",
+  heroServices: "/images/services-hero.jpg",
+  heroContact: "/images/contact.jpg",
+  heroBlog: "/images/blog-hero.jpg",
+  aboutGrid: ["/images/service-general.jpg", "/images/contact.jpg", "/images/service-professional.jpg"],
+  method: "/images/about-method.jpg",
   services: {
-    "tcf-tef-preparation": pic(20, 900, 1200),
-    "professional-french": pic(60, 900, 1200),
-    "general-french": pic(24, 900, 1200),
-    "career-pathway-guidance": pic(180, 900, 1200),
-    "immigration-pathways": pic(214, 900, 1200),
-    translation: pic(119, 900, 1200),
+    "tcf-tef-preparation": "/images/service-tcf-tef.jpg",
+    "professional-french": "/images/service-professional.jpg",
+    "general-french": "/images/service-general.jpg",
+    "career-pathway-guidance": "/images/service-career.jpg",
+    "immigration-pathways": "/images/service-immigration.jpg",
+    translation: "/images/service-translation.jpg",
   } as Record<string, string>,
 } as const;

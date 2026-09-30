@@ -13,6 +13,8 @@ export type Service = {
   includes: { title: string; items: string[] }[];
   notes?: string[];
   cta: "consultation" | "lesson";
+  /** The button on the home page card. */
+  ctaLabel: string;
   related: string[];
 };
 
@@ -58,6 +60,7 @@ export const SERVICES: Service[] = [
       "FrancoBridge preparation fees do not include official TCF or TEF examination fees. You register and pay for the examination directly with the test centre.",
     ],
     cta: "consultation",
+    ctaLabel: "Explore exam preparation",
     related: ["general-french", "immigration-pathways"],
   },
   {
@@ -101,6 +104,7 @@ export const SERVICES: Service[] = [
       },
     ],
     cta: "consultation",
+    ctaLabel: "Explore professional French",
     related: ["career-pathway-guidance", "general-french"],
   },
   {
@@ -150,6 +154,7 @@ export const SERVICES: Service[] = [
       "Programmes run online in 20, 40 or 60 hour blocks. The right block and level are decided with you at your consultation, after your French level assessment.",
     ],
     cta: "consultation",
+    ctaLabel: "Explore French A1 to C1",
     related: ["tcf-tef-preparation", "professional-french"],
   },
   {
@@ -189,6 +194,7 @@ export const SERVICES: Service[] = [
     ],
     notes: ["These services are offered only in French."],
     cta: "consultation",
+    ctaLabel: "Explore career guidance",
     related: ["professional-french", "immigration-pathways"],
   },
   {
@@ -219,6 +225,7 @@ export const SERVICES: Service[] = [
       "FrancoBridge provides information and language preparation only. Regulated immigration advice or representation is referred to an appropriately authorized immigration professional.",
     ],
     cta: "consultation",
+    ctaLabel: "Explore immigration guidance",
     related: ["tcf-tef-preparation", "career-pathway-guidance"],
   },
   {
@@ -250,6 +257,7 @@ export const SERVICES: Service[] = [
       },
     ],
     cta: "consultation",
+    ctaLabel: "Request a translation quote",
     related: ["career-pathway-guidance", "professional-french"],
   },
 ];

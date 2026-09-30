@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Banner, type Tone } from "@/app/_components/banner";
+import { type Tone } from "@/app/_components/banner";
+import { ServiceBanner } from "@/app/_components/service-banner";
 import { BookButton } from "@/app/_components/book-button";
 import { InfoBlock } from "@/app/_components/info-block";
 import { Tertiary } from "@/app/_components/tertiary";
@@ -94,11 +95,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col gap-6 md:gap-16">
             {SERVICES.map((s, i) => (
-              <Banner key={s.slug} tone={BANNER_TONES[i % BANNER_TONES.length]} heading={s.headline} large sticky>
-                <Link href={`/services/${s.slug}`} className="button-primary">
-                  {s.short}
-                </Link>
-              </Banner>
+              <ServiceBanner key={s.slug} service={s} index={i} tone={BANNER_TONES[i % BANNER_TONES.length]} />
             ))}
           </div>
         </div>

@@ -58,7 +58,8 @@ export function Footer() {
           </p>
           <p className="regular-s max-w-[640px] text-grey-80">
             Preparation fees do not include official TCF or TEF examination fees. Immigration information only;
-            regulated advice is referred to an authorized professional.
+            regulated advice is referred to an authorized professional. Photographs: Wikimedia Commons
+            contributors, CC licences.
           </p>
         </div>
       </div>
