@@ -23,7 +23,6 @@ export default function Services() {
       <Hero
         title="Six programmes, one first step"
         text="Every programme starts with the same conversation: a one-hour consultation that finds your level and ends with a plan."
-        image={IMAGES.heroServices}
       />
 
       <section className="section">
