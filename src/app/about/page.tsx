@@ -18,12 +18,6 @@ const METHOD = [
   ["Apply", "Take it into your exam, your workplace, your application, your life."],
 ] as const;
 
-const VALUES = [
-  ["Practical communication", "We teach the French you will actually use, for the situation you are heading into."],
-  ["Measurable progress", "You start with a level and you finish with one. Everything in between is tracked."],
-  ["Personalised support", "Private instruction first, with a plan built for your goal and your timeline."],
-] as const;
-
 export default function About() {
   return (
     <main>
@@ -103,21 +97,6 @@ export default function About() {
             </div>
           </div>
           <img src={IMAGES.method} alt="" className="h-[420px] w-full object-cover md:h-[720px]" />
-        </div>
-      </section>
-
-      {/* Values. */}
-      <section className="section">
-        <div className="container-fb grid gap-12 md:grid-cols-[4.1fr_7fr] md:gap-[120px]">
-          <h2 className="h2">Three things we hold to</h2>
-          <div className="grid gap-12">
-            {VALUES.map(([title, text]) => (
-              <div key={title} className="flex flex-col gap-3">
-                <h4 className="h4">{title}</h4>
-                <p className="regular-l max-w-[640px]">{text}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
