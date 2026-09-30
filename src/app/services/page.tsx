@@ -25,12 +25,10 @@ export default function Services() {
         text="Every programme starts with the same conversation: a one-hour consultation that finds your level and ends with a plan."
       />
 
-      <section className="section">
-        <div className="container-fb">
-          <h2 className="h2 mb-14 max-w-[432px]">Programmes and services</h2>
-          <ServicesRail />
-        </div>
-      </section>
+      {/* The rail sits inside the opening, straight under the hero's line. */}
+      <div className="container-fb -mt-6 md:-mt-2">
+        <ServicesRail />
+      </div>
 
       <section className="section">
         <div className="container-fb">
