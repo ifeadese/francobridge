@@ -13,8 +13,9 @@ export type Service = {
   includes: { title: string; items: string[] }[];
   notes?: string[];
   cta: "consultation" | "lesson";
-  /** The home page card: one tight line as its title, and the button. */
+  /** The home page card: one tight line as its title, who it is for, and the button. */
   cardTitle: string;
+  cardFor: string;
   ctaLabel: string;
   related: string[];
 };
@@ -62,6 +63,7 @@ export const SERVICES: Service[] = [
     ],
     cta: "consultation",
     cardTitle: "Pass your TCF or TEF Canada with confidence.",
+    cardFor: "For anyone who needs an official French score for immigration or citizenship, and wants to walk into the exam knowing exactly what to expect.",
     ctaLabel: "Explore exam preparation",
     related: ["general-french", "immigration-pathways"],
   },
@@ -107,6 +109,7 @@ export const SERVICES: Service[] = [
     ],
     cta: "consultation",
     cardTitle: "Speak French with confidence at work.",
+    cardFor: "For professionals with some French already, who need to use it in meetings, emails, interviews and the public service.",
     ctaLabel: "Explore professional French",
     related: ["career-pathway-guidance", "general-french"],
   },
@@ -158,6 +161,7 @@ export const SERVICES: Service[] = [
     ],
     cta: "consultation",
     cardTitle: "Learn French from A1 to C1, online.",
+    cardFor: "For adults starting from zero or picking French back up, who want a structured path and a level they can measure.",
     ctaLabel: "Explore French A1 to C1",
     related: ["tcf-tef-preparation", "professional-french"],
   },
@@ -199,6 +203,7 @@ export const SERVICES: Service[] = [
     notes: ["These services are offered only in French."],
     cta: "consultation",
     cardTitle: "Plan your career and studies, in French.",
+    cardFor: "For newcomers and students who want a French resume, interview practice and a plan for French-language study in Canada.",
     ctaLabel: "Explore career guidance",
     related: ["professional-french", "immigration-pathways"],
   },
@@ -231,6 +236,7 @@ export const SERVICES: Service[] = [
     ],
     cta: "consultation",
     cardTitle: "Understand the French-language immigration pathways.",
+    cardFor: "For aspiring immigrants who want to know which French-language pathways exist, what level each asks for, and how to prepare.",
     ctaLabel: "Explore immigration guidance",
     related: ["tcf-tef-preparation", "career-pathway-guidance"],
   },
@@ -264,6 +270,7 @@ export const SERVICES: Service[] = [
     ],
     cta: "consultation",
     cardTitle: "Translation and proofreading, English and French.",
+    cardFor: "For anyone with an application, letter, certificate or report that has to read perfectly in the other language.",
     ctaLabel: "Request a translation quote",
     related: ["career-pathway-guidance", "professional-french"],
   },

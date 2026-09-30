@@ -6,7 +6,7 @@ import type { Service } from "@/lib/services";
 import { IMAGES } from "@/lib/constants";
 
 // Banner type three: a pastel half with the label, one tight line as the
-// title, and the button, the pattern strip along its foot, beside a photo that fills the
+// title, who it is for, and the button, the pattern strip along its foot, beside a photo that fills the
 // other half. Sticky, so a column of them stacks as the page scrolls.
 export function ServiceBanner({ service, index, tone, sticky = true }: { service: Service; index: number; tone: Tone; sticky?: boolean }) {
   return (
@@ -18,6 +18,7 @@ export function ServiceBanner({ service, index, tone, sticky = true }: { service
               {String(index + 1).padStart(2, "0")} · {service.short}
             </p>
             <h3 className="banner-heading max-w-[560px]">{service.cardTitle}</h3>
+            <p className="regular-l max-w-[480px]">{service.cardFor}</p>
           </div>
           <div className="flex flex-wrap items-center gap-4">
             <Link href={`/services/${service.slug}`} className="button-primary">
