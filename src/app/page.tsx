@@ -84,7 +84,7 @@ export default function Home() {
       <section className="section">
         <div className="container-fb">
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-            <h2 className="h2 max-w-[432px]">Six programmes, one first step</h2>
+            <h2 className="h1 max-w-[720px]">Six programmes, one first step</h2>
             <Link href="/services" className="button-secondary button-small">
               All services
             </Link>
