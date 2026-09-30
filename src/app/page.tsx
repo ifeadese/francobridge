@@ -73,17 +73,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Banner: the exam line from the brief. */}
-      <section className="section-tight">
-        <div className="container-fb">
-          <Banner tone="yellow" way="yellow" heading="Prepare with purpose. Practice with guidance. Approach your TCF or TEF examination with confidence.">
-            <Link href="/services/tcf-tef-preparation" className="button-primary">
-              TCF &amp; TEF preparation
-            </Link>
-          </Banner>
-        </div>
-      </section>
-
       {/* Who we help: four grey blocks. */}
       <section className="section">
         <div className="container-fb">
