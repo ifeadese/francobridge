@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
 
 // The internal-page hero: text at the bottom left, a photo filling the right
-// half, 600px tall on desktop. The home page has its own in page.tsx.
+// half, 600px tall on desktop. Without an image the text block stands alone.
+// The home page has its own in page.tsx.
 export function Hero({
   title,
   text,
@@ -11,7 +12,7 @@ export function Hero({
 }: {
   title: string;
   text?: string;
-  image: string;
+  image?: string;
   imageAlt?: string;
   children?: ReactNode;
 }) {
@@ -22,12 +23,14 @@ export function Hero({
         {text && <p className="regular-l max-w-[420px]">{text}</p>}
         {children && <div className="flex flex-wrap items-center gap-4">{children}</div>}
       </div>
-      <div
-        className="flex min-h-[420px] w-full items-end bg-grey-3 bg-cover bg-[50%_35%] md:min-h-[600px] md:w-1/2"
-        style={{ backgroundImage: `url(${image})` }}
-        role="img"
-        aria-label={imageAlt}
-      />
+      {image && (
+        <div
+          className="flex min-h-[420px] w-full items-end bg-grey-3 bg-cover bg-[50%_35%] md:min-h-[600px] md:w-1/2"
+          style={{ backgroundImage: `url(${image})` }}
+          role="img"
+          aria-label={imageAlt}
+        />
+      )}
     </section>
   );
 }

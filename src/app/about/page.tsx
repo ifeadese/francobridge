@@ -30,7 +30,6 @@ export default function About() {
       <Hero
         title="A bridge, built in Ottawa, for people who need French to get somewhere"
         text="FrancoBridge Consulting Inc. is a French language education, professional development and pathway guidance centre, serving clients in Ottawa and online."
-        image={IMAGES.heroAbout}
       >
         <Link href="/contact" className="button-primary">
           Contact us
