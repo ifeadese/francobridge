@@ -3,20 +3,61 @@
 @tailwind utilities;
 
 :root {
-  --navy: #0b3d91;
-  --french-blue: #002395;
-  --red: #d52b1e;
-  --soft-white: #f8f6f1;
-  --charcoal: #1f2937;
-  --green: #5e7f66;
+  --blue: #0e397f;
+  --blue-deep: #0a2a5e;
+  --red: #db2517;
+  --ivory: #f6f4f2;
+  --ivory-deep: #ece8e1;
+  --ink: #14203a;
+  --slate: #56607a;
+  --line: rgb(14 57 127 / 0.14);
 }
 
 body {
-  background-color: var(--soft-white);
-  color: var(--charcoal);
+  background-color: var(--ivory);
+  color: var(--ink);
 }
 
 ::selection {
-  background-color: var(--navy);
-  color: var(--soft-white);
+  background-color: var(--blue);
+  color: var(--ivory);
+}
+
+@layer components {
+  /* Buttons are pills: the arch's ends. Red is the sun, and it is only ever
+     the one button that opens the door: Book a consultation. */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-body text-[15px] font-semibold leading-none transition-colors duration-200;
+  }
+  .btn-primary {
+    @apply btn bg-red text-ivory hover:bg-red-deep;
+  }
+  .btn-secondary {
+    @apply btn border border-blue text-blue hover:bg-blue hover:text-ivory;
+  }
+  .btn-on-blue {
+    @apply btn border border-ivory/60 text-ivory hover:bg-ivory hover:text-blue;
+  }
+  .btn-lg {
+    @apply px-8 py-4 text-base;
+  }
+
+  /* Small caps label above a heading, in the body face. */
+  .eyebrow {
+    @apply font-body text-xs font-semibold uppercase tracking-[0.12em] text-slate;
+  }
+
+  /* The French line: under a headline, in the heading face, italic, quiet. */
+  .fr-line {
+    @apply font-heading italic text-slate;
+  }
+
+  /* The arch: a semicircle top, from the mark. Images, panels and tiles. */
+  .arch {
+    border-radius: 9999px 9999px 0 0;
+  }
+
+  .prose-fb p + p {
+    @apply mt-4;
+  }
 }

@@ -28,8 +28,8 @@ export function HeroPost({
       </div>
       <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 mb-20 md:mb-28">
         <div>
-          <h3 className="font-heading font-semibold text-navy mb-4 text-4xl lg:text-5xl leading-tight">
-            <Link href={`/posts/${slug}`} className="hover:text-french-blue transition-colors duration-200">
+          <h3 className="font-heading font-semibold text-blue mb-4 text-4xl lg:text-5xl leading-tight">
+            <Link href={`/posts/${slug}`} className="hover:text-blue-deep transition-colors duration-200">
               {title}
             </Link>
           </h3>

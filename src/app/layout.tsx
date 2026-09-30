@@ -1,10 +1,7 @@
 import Footer from "@/app/_components/footer";
-import {
-  HOME_OG_IMAGE_URL,
-  SITE_DESCRIPTION,
-  SITE_NAME,
-  SITE_URL,
-} from "@/lib/constants";
+import Header from "@/app/_components/header";
+import CalProvider from "@/app/_components/cal-provider";
+import { LEGAL_NAME, SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
 import { Figtree, Fraunces } from "next/font/google";
 import cn from "classnames";
@@ -14,6 +11,7 @@ import "./globals.css";
 const fraunces = Fraunces({
   subsets: ["latin"],
   weight: ["400", "600"],
+  style: ["normal", "italic"],
   variable: "--font-heading",
   display: "swap",
 });
@@ -27,10 +25,15 @@ const figtree = Figtree({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: SITE_NAME,
+  title: {
+    default: `${SITE_NAME} · ${SITE_TAGLINE}`,
+    template: `%s · ${SITE_NAME}`,
+  },
   description: SITE_DESCRIPTION,
+  applicationName: LEGAL_NAME,
   openGraph: {
-    images: [HOME_OG_IMAGE_URL],
+    siteName: LEGAL_NAME,
+    type: "website",
   },
 };
 
@@ -42,39 +45,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn(fraunces.variable, figtree.variable)}>
       <head>
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/favicon/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/favicon/site.webmanifest" />
-        <link
-          rel="mask-icon"
-          href="/favicon/safari-pinned-tab.svg"
-          color="#0B3D91"
-        />
-        <link rel="shortcut icon" href="/favicon/favicon.ico" />
-        <meta name="msapplication-TileColor" content="#0B3D91" />
-        <meta
-          name="msapplication-config"
-          content="/favicon/browserconfig.xml"
-        />
-        <meta name="theme-color" content="#0B3D91" />
-        <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+        <meta name="theme-color" content="#0E397F" />
       </head>
-      <body className="font-body bg-soft-white text-charcoal antialiased">
+      <body className="font-body bg-ivory text-ink antialiased">
+        <CalProvider />
+        <Header />
         <div className="min-h-screen">{children}</div>
         <Footer />
       </body>
