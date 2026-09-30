@@ -19,8 +19,8 @@ const TINT: Record<Tone, string> = {
 };
 
 // Banner type three: a pastel half with the label, one tight line as the
-// title, who it is for, and the button, the pattern strip along its foot,
-// beside a photo that fills the other half. The photo fades into the tint
+// title, who it is for, and the button, with the pattern strip behind them
+// along the panel's foot, beside a photo that fills the other half. The photo fades into the tint
 // along the edge they share: its foot on phones, where it sits on top, and
 // its left side on wider screens. Sticky, so a column of them stacks.
 export function ServiceBanner({ service, index, tone, sticky = true }: { service: Service; index: number; tone: Tone; sticky?: boolean }) {
@@ -40,8 +40,12 @@ export function ServiceBanner({ service, index, tone, sticky = true }: { service
           aria-hidden="true"
         />
       </div>
-      <div className={cn("flex w-full flex-col md:w-1/2", TONES[tone])}>
-        <div className="flex flex-1 flex-col justify-between gap-14 px-6 py-12 md:px-12 md:py-14">
+      <div className={cn("relative flex w-full flex-col md:w-1/2", TONES[tone])}>
+        {/* the pattern sits in the background, along the panel's foot */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0" aria-hidden="true">
+          <Pattern way={WAY_FOR_TONE[tone]} tiles={3} />
+        </div>
+        <div className="relative flex flex-1 flex-col justify-between gap-14 px-6 py-12 md:px-12 md:py-14">
           <div className="flex flex-col gap-6">
             <p className="regular-m">
               {String(index + 1).padStart(2, "0")} · {service.short}
@@ -55,7 +59,6 @@ export function ServiceBanner({ service, index, tone, sticky = true }: { service
             </Link>
           </div>
         </div>
-        <Pattern way={WAY_FOR_TONE[tone]} tiles={3} />
       </div>
     </div>
   );
