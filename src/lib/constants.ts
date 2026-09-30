@@ -42,3 +42,24 @@ export const NAV = [
   { href: "/services", label: "Services" },
   { href: "/contact", label: "Contact" },
 ] as const;
+
+// Placeholder photographs (Lorem Picsum, fixed ids) until the client's own
+// photos arrive. Swap the URLs here; nothing else references them.
+const pic = (id: number, w = 1400, h = 1400) => `https://picsum.photos/id/${id}/${w}/${h}`;
+export const IMAGES = {
+  heroHome: pic(20, 1400, 1600),
+  heroAbout: pic(180, 1400, 1200),
+  heroServices: pic(42, 1400, 1200),
+  heroContact: pic(305, 1400, 1200),
+  heroBlog: pic(24, 1400, 1200),
+  aboutGrid: [pic(24, 1200, 900), pic(305, 900, 500), pic(60, 900, 500)],
+  method: pic(180, 1200, 1400),
+  services: {
+    "tcf-tef-preparation": pic(20, 900, 1200),
+    "professional-french": pic(60, 900, 1200),
+    "general-french": pic(24, 900, 1200),
+    "career-pathway-guidance": pic(180, 900, 1200),
+    "immigration-pathways": pic(214, 900, 1200),
+    translation: pic(119, 900, 1200),
+  } as Record<string, string>,
+} as const;

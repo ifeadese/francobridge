@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import Container from "@/app/_components/container";
 import { BookButton } from "@/app/_components/book-button";
 import { CalInline } from "@/app/_components/cal-inline";
-import { PageHero } from "@/app/_components/page-hero";
+import { Hero } from "@/app/_components/hero";
 import { RequestForm } from "@/app/_components/request-form";
-import { CONSULTATION, CONTACT, LOCATION } from "@/lib/constants";
+import { ServiceGlyph } from "@/app/_components/service-glyph";
+import { Tertiary } from "@/app/_components/tertiary";
+import { CAL, CONSULTATION, CONTACT, IMAGES, LOCATION } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -12,81 +13,65 @@ export const metadata: Metadata = {
     "Book a consultation, book a lesson, or request information from FrancoBridge Consulting Inc. in Ottawa and online.",
 };
 
+const WAYS = [
+  ["map", "Find us", `${LOCATION.city}. ${LOCATION.reach}: every consultation and lesson runs online, with in-person options in Ottawa as the school grows.`, "View on map", "https://maps.google.com/?q=Ottawa,+Ontario"],
+  ["mail", "Email us", "Whether you are weighing an exam, a job or a study programme, write a few lines and we will reply with what we would suggest and what it costs.", "Send email", `mailto:${CONTACT.email}`],
+  ["calendar", "Book a lesson", "Private lessons now, semi-private as groups form. One booking link shows the options available.", "Open bookings", `https://cal.com/${CAL.lesson}`],
+] as const;
+
 export default function Contact() {
   return (
     <main>
-      <PageHero
-        eyebrow="Contact"
-        title="Book a time, or ask a question."
-        sub={`The fastest way to start is a consultation: ${CONSULTATION.label}, including your French level assessment. For anything else, write to us.`}
-        fr={"« Réservez un moment, ou posez-nous une question. »"}
+      <Hero
+        title="Book a time, or ask a question"
+        text={`The fastest way to start is a consultation: ${CONSULTATION.label}, including your French level assessment.`}
+        image={IMAGES.heroContact}
       >
-        <BookButton event="lesson" size="lg" />
-        <a href={`mailto:${CONTACT.email}`} className="btn-secondary btn-lg">
-          Email {CONTACT.email}
-        </a>
-      </PageHero>
+        <BookButton />
+      </Hero>
 
-      <section className="py-16 md:py-24">
-        <Container>
-          <div className="grid gap-12 md:grid-cols-12">
-            <div className="md:col-span-4">
-              <p className="eyebrow">Book a consultation</p>
-              <h2 className="mt-3 font-heading text-3xl font-semibold leading-tight tracking-tighter text-blue md:text-4xl">
-                Pick a time that suits you.
-              </h2>
-              <p className="mt-4 text-ink/80">
-                {CONSULTATION.minutes} minutes online. ${CONSULTATION.price} {CONSULTATION.currency}, paid when you
-                book. You will get a video link by email.
-              </p>
-              <dl className="mt-8 divide-y divide-line border-y border-line">
-                <div className="py-4">
-                  <dt className="eyebrow">Where</dt>
-                  <dd className="mt-1 font-semibold">{LOCATION.city}</dd>
-                  <dd className="text-ink/70">{LOCATION.reach}</dd>
+      <section className="section">
+        <div className="container-fb">
+          <h2 className="h2 mb-14 max-w-[432px]">Stay connected with the school</h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            {WAYS.map(([glyph, title, text, link, href]) => (
+              <a key={title} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="group block bg-grey-3 transition-colors hover:bg-grey-8">
+                <ServiceGlyph slug={glyph} className="mb-10 h-10 w-10 text-black" />
+                <div className="mb-8 max-w-[420px]">
+                  <h4 className="h4 mb-4">{title}</h4>
+                  <p className="regular-m">{text}</p>
                 </div>
-                <div className="py-4">
-                  <dt className="eyebrow">Email</dt>
-                  <dd className="mt-1">
-                    <a href={`mailto:${CONTACT.email}`} className="font-semibold text-blue hover:underline">
-                      {CONTACT.email}
-                    </a>
-                  </dd>
-                </div>
-                <div className="py-4">
-                  <dt className="eyebrow">Lessons</dt>
-                  <dd className="mt-1 text-ink/80">Private now, semi-private as groups form.</dd>
-                  <dd className="mt-3">
-                    <BookButton event="lesson" />
-                  </dd>
-                </div>
-              </dl>
-            </div>
-            <div className="md:col-span-8">
-              <CalInline event="consultation" />
-            </div>
+                <Tertiary as="span">{link}</Tertiary>
+              </a>
+            ))}
           </div>
-        </Container>
+        </div>
       </section>
 
-      <section className="border-t border-line bg-ivory-deep py-16 md:py-24">
-        <Container>
-          <div className="grid gap-12 md:grid-cols-12">
-            <div className="md:col-span-5">
-              <p className="eyebrow">Request information</p>
-              <h2 className="mt-3 font-heading text-3xl font-semibold leading-tight tracking-tighter text-blue md:text-4xl">
-                Not sure which programme? Tell us where you are heading.
-              </h2>
-              <p className="mt-4 max-w-prose text-ink/80">
-                An exam date, a job, a study programme, a move. Write a few lines and we will reply with what
-                we would suggest and what it costs.
-              </p>
-            </div>
-            <div className="md:col-span-7">
-              <RequestForm />
-            </div>
+      <section className="section">
+        <div className="container-fb grid gap-12 md:grid-cols-[4.1fr_7fr] md:gap-[120px]">
+          <div className="flex flex-col gap-6">
+            <h2 className="h2">Pick a time that suits you</h2>
+            <p className="regular-l max-w-[420px]">
+              {CONSULTATION.minutes} minutes online. ${CONSULTATION.price} {CONSULTATION.currency}, paid when you book.
+              You will get a video link by email.
+            </p>
           </div>
-        </Container>
+          <CalInline event="consultation" />
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container-fb grid gap-12 md:grid-cols-[4.1fr_7fr] md:gap-[120px]">
+          <div className="flex flex-col gap-6">
+            <h2 className="h2">Reach out to us</h2>
+            <p className="regular-l max-w-[420px]">
+              Not sure which programme? Tell us where you are heading: an exam date, a job, a study programme, a
+              move.
+            </p>
+          </div>
+          <RequestForm />
+        </div>
       </section>
     </main>
   );

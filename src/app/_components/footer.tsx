@@ -1,74 +1,68 @@
 import Link from "next/link";
-import Container from "@/app/_components/container";
 import { Logo } from "@/app/_components/logo";
-import { BookButton } from "@/app/_components/book-button";
 import { CONTACT, LEGAL_NAME, LOCATION, NAV, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/constants";
 import { SERVICES } from "@/lib/services";
 
+// On the light grey, three columns, then the legal line.
 export function Footer() {
   return (
-    <footer className="bg-blue text-ivory">
-      <Container>
-        <div className="grid gap-12 py-20 md:grid-cols-12">
-          <div className="md:col-span-5">
-            <Logo variant="stacked" on="blue" className="w-44" />
-            <p className="mt-8 font-heading text-2xl leading-snug">{SITE_TAGLINE}</p>
-            <p className="fr-line mt-1 text-ivory/70" lang="fr">
+    <footer className="section bg-grey-3 pb-10 pt-16">
+      <div className="container-fb">
+        <div className="mb-20 grid gap-12 md:grid-cols-3">
+          <div className="flex flex-col gap-4">
+            <Logo variant="stacked" on="ivory" className="w-40" />
+            <p className="regular-m mt-4 max-w-[320px]">{SITE_TAGLINE}</p>
+            <p className="fr-line text-[18px]" lang="fr">
               {SITE_TAGLINE_FR}
             </p>
           </div>
-          <div className="md:col-span-3">
-            <p className="eyebrow text-ivory/60">Services</p>
-            <ul className="mt-4 space-y-2">
-              {SERVICES.map((s) => (
-                <li key={s.slug}>
-                  <Link href={`/services/${s.slug}`} className="hover:underline">
+          <div className="grid gap-12 sm:grid-cols-2">
+            <div className="flex flex-col gap-3">
+              <p className="h4 text-[24px]">Services</p>
+              <div className="flex flex-col gap-1">
+                {SERVICES.map((s) => (
+                  <Link key={s.slug} href={`/services/${s.slug}`} className="regular-m py-1 transition-colors hover:text-blue">
                     {s.short}
                   </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="md:col-span-2">
-            <p className="eyebrow text-ivory/60">Site</p>
-            <ul className="mt-4 space-y-2">
-              <li>
-                <Link href="/" className="hover:underline">
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col gap-3">
+              <p className="h4 text-[24px]">School</p>
+              <div className="flex flex-col gap-1">
+                <Link href="/" className="regular-m py-1 transition-colors hover:text-blue">
                   Home
                 </Link>
-              </li>
-              {NAV.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href} className="hover:underline">
+                {NAV.map((item) => (
+                  <Link key={item.href} href={item.href} className="regular-m py-1 transition-colors hover:text-blue">
                     {item.label}
                   </Link>
-                </li>
-              ))}
-              <li>
-                <Link href="/blog" className="hover:underline">
+                ))}
+                <Link href="/blog" className="regular-m py-1 transition-colors hover:text-blue">
                   Blog
                 </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="md:col-span-2">
-            <p className="eyebrow text-ivory/60">Contact</p>
-            <p className="mt-4">{LOCATION.city}</p>
-            <p className="text-ivory/70">{LOCATION.reach}</p>
-            <a href={`mailto:${CONTACT.email}`} className="mt-3 block hover:underline">
-              {CONTACT.email}
-            </a>
-            <div className="mt-6">
-              <BookButton look="on-blue" />
+              </div>
             </div>
           </div>
+          <div className="flex flex-col gap-3">
+            <p className="h4 text-[24px]">Contact</p>
+            <p className="regular-m">{LOCATION.city}</p>
+            <p className="regular-m text-grey-80">{LOCATION.reach}</p>
+            <a href={`mailto:${CONTACT.email}`} className="regular-m underline decoration-black/40 underline-offset-4 hover:decoration-black">
+              {CONTACT.email}
+            </a>
+          </div>
         </div>
-        <p className="border-t border-ivory/15 py-8 text-sm text-ivory/60">
-          &copy; {new Date().getFullYear()} {LEGAL_NAME}. Preparation fees do not include official TCF or TEF
-          examination fees. Immigration information only; regulated advice is referred to an authorized
-          professional.
-        </p>
-      </Container>
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-grey-8 pt-6">
+          <p className="regular-s text-grey-80">
+            &copy; {new Date().getFullYear()} {LEGAL_NAME}. All rights reserved.
+          </p>
+          <p className="regular-s max-w-[640px] text-grey-80">
+            Preparation fees do not include official TCF or TEF examination fees. Immigration information only;
+            regulated advice is referred to an authorized professional.
+          </p>
+        </div>
+      </div>
     </footer>
   );
 }

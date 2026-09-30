@@ -2,62 +2,120 @@
 @tailwind components;
 @tailwind utilities;
 
+/* v2: an editorial school layout. Warm white ground, near-black type and
+   buttons, light serif display type, 64px gutters, 176px between sections,
+   pastel banners with a pattern strip. */
 :root {
+  --white: #fffbf8;
+  --black: #1d1a17;
+  --grey-3: #f8f4f1;
+  --grey-8: #ede9e6;
+  --grey-80: #4a4744;
   --blue: #0e397f;
-  --blue-deep: #0a2a5e;
   --red: #db2517;
-  --ivory: #f6f4f2;
-  --ivory-deep: #ece8e1;
-  --ink: #14203a;
-  --slate: #56607a;
-  --line: rgb(14 57 127 / 0.14);
+  --blue-light: #dbe4f3;
+  --red-light: #fbe0dc;
+  --yellow: #ffdf8b;
+  --yellow-light: #f9e7b8;
+  --green-light: #dfe9dc;
+  --gutter: 64px;
+}
+@media (max-width: 991px) {
+  :root { --gutter: 48px; }
+}
+@media (max-width: 767px) {
+  :root { --gutter: 24px; }
 }
 
+html { scroll-padding-top: 96px; }
+
 body {
-  background-color: var(--ivory);
-  color: var(--ink);
+  background-color: var(--white);
+  color: var(--black);
+  font-size: 16px;
+  line-height: 1.44;
+  letter-spacing: -0.005em;
 }
 
 ::selection {
   background-color: var(--blue);
-  color: var(--ivory);
+  color: var(--white);
 }
 
 @layer components {
-  /* Buttons are pills: the arch's ends. Red is the sun, and it is only ever
-     the one button that opens the door: Book a consultation. */
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-body text-[15px] font-semibold leading-none transition-colors duration-200;
-  }
-  .btn-primary {
-    @apply btn bg-red text-ivory hover:bg-red-deep;
-  }
-  .btn-secondary {
-    @apply btn border border-blue text-blue hover:bg-blue hover:text-ivory;
-  }
-  .btn-on-blue {
-    @apply btn border border-ivory/60 text-ivory hover:bg-ivory hover:text-blue;
-  }
-  .btn-lg {
-    @apply px-8 py-4 text-base;
+  .container-fb {
+    @apply mx-auto w-full max-w-[1920px];
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
   }
 
-  /* Small caps label above a heading, in the body face. */
-  .eyebrow {
-    @apply font-body text-xs font-semibold uppercase tracking-[0.12em] text-slate;
+  /* Type. Crimson Pro light, set at 100% line height and tight tracking. */
+  .h1 {
+    @apply font-heading font-light leading-none text-black;
+    font-size: clamp(46px, 6vw, 86px);
+    letter-spacing: -0.03em;
   }
-
-  /* The French line: under a headline, in the heading face, italic, quiet. */
+  .h2 {
+    @apply font-heading font-light leading-none text-black;
+    font-size: clamp(36px, 3.6vw, 52px);
+    letter-spacing: -0.025em;
+  }
+  .h3 {
+    @apply font-heading font-light leading-none text-black;
+    font-size: clamp(28px, 2.5vw, 35px);
+    letter-spacing: -0.03em;
+  }
+  .h4 {
+    @apply font-heading font-light leading-none text-black;
+    font-size: clamp(24px, 2vw, 30px);
+    letter-spacing: -0.02em;
+  }
+  .large-number {
+    @apply font-heading font-light leading-none text-black;
+    font-size: clamp(72px, 9vw, 130px);
+    letter-spacing: -0.03em;
+  }
+  .regular-l { @apply text-[18px] leading-[1.44]; }
+  .regular-m { @apply text-[16px] leading-[1.44]; }
+  .regular-s { @apply text-[14px] leading-[1.44]; }
   .fr-line {
-    @apply font-heading italic text-slate;
+    @apply font-heading italic font-light text-grey-80;
   }
 
-  /* The arch: a semicircle top, from the mark. Images, panels and tiles. */
-  .arch {
-    border-radius: 9999px 9999px 0 0;
+  /* Buttons: pills. Black on white, white on black. Red is never a button
+     in this layout; it lives in the mark and the patterns. */
+  .button {
+    @apply inline-flex items-center justify-center rounded-full text-center text-[18px] leading-[1.44] transition-colors duration-200;
+    padding: 22px 36px 24px;
+  }
+  .button-primary { @apply button bg-black text-white hover:bg-grey-80; }
+  .button-secondary { @apply button border border-black bg-transparent text-black hover:border-grey-80 hover:bg-grey-80 hover:text-white; }
+  .button-small { padding: 16px 24px; @apply text-[16px]; }
+
+  /* Tertiary: a word and a small ringed arrow. */
+  .tertiary {
+    @apply inline-flex items-center gap-2 text-[16px] leading-[1.44] text-black;
+  }
+  .tertiary-icon {
+    @apply flex h-[26px] w-[26px] items-center justify-center rounded-full border border-black transition-colors duration-200;
+  }
+  .group:hover .tertiary-icon, .tertiary:hover .tertiary-icon {
+    @apply bg-black text-white;
   }
 
-  .prose-fb p + p {
-    @apply mt-4;
+  .section { margin-top: 176px; }
+  @media (max-width: 767px) { .section { margin-top: 144px; } }
+  .section-tight { margin-top: 64px; }
+  @media (max-width: 991px) { .section-tight { margin-top: 48px; } }
+  @media (max-width: 767px) { .section-tight { margin-top: 24px; } }
+
+  .line { @apply h-px w-full bg-black; }
+  .line-white { @apply h-px w-full bg-white; }
+
+  .block { @apply flex flex-col; padding: 24px 32px; }
+
+  /* Form fields: a bottom rule only. */
+  .field {
+    @apply w-full border-0 border-b border-black/40 bg-transparent px-0 pb-3 text-[18px] leading-[1.44] text-black outline-none transition-colors placeholder:text-black/50 focus:border-black;
   }
 }

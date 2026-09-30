@@ -3,14 +3,13 @@
 import Cal from "@calcom/embed-react";
 import { CAL } from "@/lib/constants";
 
-// The booking calendar, embedded on the page (the contact page). The frame
-// keeps its height while cal.com loads, or when the handle is still the
-// placeholder, so the page never collapses.
+// The booking calendar, embedded on the page. The frame keeps its height
+// while cal.com loads, or while the handle is still the placeholder.
 export function CalInline({ event = "consultation" }: { event?: "consultation" | "lesson" }) {
   const link = CAL[event];
   return (
     <div>
-      <div className="min-h-[640px] overflow-hidden rounded-2xl border border-line bg-white">
+      <div className="min-h-[640px] border border-grey-8 bg-white">
         <Cal
           namespace={event}
           calLink={link}
@@ -18,9 +17,9 @@ export function CalInline({ event = "consultation" }: { event?: "consultation" |
           config={{ layout: "month_view", theme: "light" }}
         />
       </div>
-      <p className="mt-3 text-sm text-slate">
+      <p className="regular-s mt-3 text-grey-80">
         If the calendar does not load,{" "}
-        <a href={`https://cal.com/${link}`} target="_blank" rel="noreferrer" className="font-semibold text-blue hover:underline">
+        <a href={`https://cal.com/${link}`} target="_blank" rel="noreferrer" className="underline underline-offset-4">
           open it on cal.com
         </a>
         .

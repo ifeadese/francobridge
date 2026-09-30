@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Container from "@/app/_components/container";
-import { CtaBand } from "@/app/_components/cta-band";
-import { Logo } from "@/app/_components/logo";
-import { PageHero } from "@/app/_components/page-hero";
-import { LOCATION } from "@/lib/constants";
+import Link from "next/link";
+import { Banner } from "@/app/_components/banner";
+import { BookButton } from "@/app/_components/book-button";
+import { Hero } from "@/app/_components/hero";
+import { IMAGES, LOCATION, SITE_TAGLINE_FR } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "About",
@@ -27,114 +27,142 @@ const VALUES = [
 export default function About() {
   return (
     <main>
-      <PageHero
-        eyebrow="About FrancoBridge"
-        title="A bridge, built in Ottawa, for people who need French to get somewhere."
-        sub="FrancoBridge Consulting Inc. is a French language education, professional development and pathway guidance centre. We help aspiring immigrants, newcomers, students and professionals develop the French language skills, confidence and career readiness needed to access educational, professional and Francophone opportunities in Canada and beyond."
-        fr={"« La langue est le pont. L’occasion est de l’autre côté. »"}
-      />
+      <Hero
+        title="A bridge, built in Ottawa, for people who need French to get somewhere"
+        text="FrancoBridge Consulting Inc. is a French language education, professional development and pathway guidance centre, serving clients in Ottawa and online."
+        image={IMAGES.heroAbout}
+      >
+        <Link href="/contact" className="button-primary">
+          Contact us
+        </Link>
+      </Hero>
 
-      <section className="py-16 md:py-24">
-        <Container>
-          <div className="grid gap-12 md:grid-cols-12">
-            <div className="md:col-span-7">
-              <p className="eyebrow">What we do</p>
-              <h2 className="mt-3 font-heading text-3xl font-semibold leading-tight tracking-tighter text-blue md:text-5xl">
-                Structured instruction, real communication, specialised preparation.
-              </h2>
-              <div className="prose-fb mt-6 max-w-prose text-lg text-ink/85">
-                <p>
-                  Our programmes combine structured French language instruction with practical communication,
-                  professional development and specialised preparation for French-language proficiency
-                  examinations.
-                </p>
-                <p>
-                  FrancoBridge offers General French programmes from A1 to C1, private instruction, TCF Canada and
-                  TEF Canada preparation, professional French, French conversation programmes, workplace and
-                  government French preparation, career development services, educational pathway guidance,
-                  translation services, and French immigration pathway information and guidance.
-                </p>
-                <p>
-                  We are particularly focused on helping learners use French as a tool for immigration, education,
-                  employment and career advancement.
-                </p>
-              </div>
+      {/* The motto band. */}
+      <section className="section-tight">
+        <div className="container-fb">
+          <div className="flex flex-col gap-6 bg-blue-light px-6 py-12 md:px-16 md:py-20">
+            <p className="h2 max-w-[880px]" lang="fr">
+              {SITE_TAGLINE_FR}
+            </p>
+            <p className="regular-m text-grey-80">The FrancoBridge motto. Bridging language. Unlocking opportunities.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Discover: heading left, text right. */}
+      <section className="section">
+        <div className="container-fb grid gap-12 md:grid-cols-[4.1fr_7fr] md:gap-[120px]">
+          <h2 className="h2">Discover FrancoBridge</h2>
+          <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-4">
+              <h4 className="h4">What we do</h4>
+              <p className="regular-l max-w-[640px]">
+                We help aspiring immigrants, newcomers, students and professionals develop the French language
+                skills, confidence and career readiness needed to access educational, professional and
+                Francophone opportunities in Canada and beyond.
+              </p>
+              <p className="regular-l max-w-[640px]">
+                Our programmes combine structured French language instruction with practical communication,
+                professional development and specialised preparation for French-language proficiency examinations.
+              </p>
             </div>
-            <div className="md:col-span-5">
-              <div className="arch flex aspect-[4/5] items-end justify-center bg-blue px-10 pb-12">
-                <Logo variant="stacked" on="blue" className="w-full max-w-[220px]" />
-              </div>
-              <p className="mt-4 text-sm text-slate">
-                {LOCATION.city}. {LOCATION.reach}.
+            <div className="flex flex-col gap-4">
+              <h4 className="h4">What we offer</h4>
+              <p className="regular-l max-w-[640px]">
+                General French programmes from A1 to C1, private instruction, TCF Canada and TEF Canada preparation,
+                professional French, French conversation programmes, workplace and government French preparation,
+                career development services, educational pathway guidance, translation services, and French
+                immigration pathway information and guidance.
+              </p>
+            </div>
+            <div className="flex flex-col gap-4">
+              <h4 className="h4">Where</h4>
+              <p className="regular-l max-w-[640px]">
+                {LOCATION.city}. {LOCATION.reach}: every programme runs online, so the bridge reaches beyond the city
+                as the school grows.
               </p>
             </div>
           </div>
-        </Container>
+        </div>
       </section>
 
-      <section className="border-y border-line bg-ivory-deep py-16 md:py-24">
-        <Container>
-          <p className="eyebrow">Methodology</p>
-          <h2 className="mt-3 font-heading text-3xl font-semibold leading-tight tracking-tighter text-blue md:text-5xl">
-            Learn → Practice → Communicate → Apply
-          </h2>
-          <ol className="mt-10 grid gap-6 md:grid-cols-4">
-            {METHOD.map(([step, text], i) => (
-              <li key={step} className="rounded-2xl border border-line bg-white p-6">
-                <p className="font-heading text-3xl font-semibold text-red">0{i + 1}</p>
-                <h3 className="mt-2 font-heading text-2xl font-semibold text-blue">{step}</h3>
-                <p className="mt-2 text-ink/80">{text}</p>
-              </li>
-            ))}
-          </ol>
-        </Container>
+      {/* Photographs. */}
+      <section className="section">
+        <div className="container-fb grid gap-6 md:grid-cols-[7fr_5fr] md:grid-rows-2">
+          <img src={IMAGES.aboutGrid[0]} alt="" className="h-[320px] w-full object-cover md:row-span-2 md:h-[560px]" />
+          <img src={IMAGES.aboutGrid[1]} alt="" className="h-[268px] w-full object-cover" />
+          <img src={IMAGES.aboutGrid[2]} alt="" className="h-[268px] w-full object-cover" />
+        </div>
       </section>
 
-      <section className="py-16 md:py-24">
-        <Container>
-          <div className="grid gap-12 md:grid-cols-12">
-            <div className="md:col-span-5">
-              <p className="eyebrow">How we work</p>
-              <h2 className="mt-3 font-heading text-3xl font-semibold leading-tight tracking-tighter text-blue md:text-5xl">
-                Three things we hold to.
-              </h2>
-            </div>
-            <div className="grid gap-8 md:col-span-7">
-              {VALUES.map(([title, text]) => (
-                <div key={title} className="border-t-2 border-blue pt-4">
-                  <h3 className="font-heading text-2xl font-semibold text-blue">{title}</h3>
-                  <p className="mt-2 max-w-prose text-ink/80">{text}</p>
+      {/* Method: text left, photo right. */}
+      <section className="section">
+        <div className="container-fb grid gap-12 md:grid-cols-[5fr_6.3fr] md:gap-20">
+          <div className="flex flex-col gap-12">
+            <h2 className="h2 max-w-[432px]">Learn, practice, communicate, apply</h2>
+            <div className="flex flex-col gap-10">
+              {METHOD.map(([step, text], i) => (
+                <div key={step} className="flex flex-col gap-3 border-t border-black pt-4">
+                  <div className="flex items-baseline justify-between">
+                    <h3 className="h3">{step}</h3>
+                    <span className="regular-s text-grey-80">0{i + 1}</span>
+                  </div>
+                  <p className="regular-m max-w-[480px]">{text}</p>
                 </div>
               ))}
             </div>
           </div>
-        </Container>
+          <img src={IMAGES.method} alt="" className="h-[420px] w-full object-cover md:h-[720px]" />
+        </div>
       </section>
 
-      <section className="border-t border-line py-16 md:py-24">
-        <Container>
-          <div className="grid gap-12 md:grid-cols-12">
-            <div className="md:col-span-4">
-              <div className="arch aspect-[4/5] bg-ivory-deep" aria-hidden="true" />
-              <p className="mt-3 text-sm text-slate">Photo to come.</p>
-            </div>
-            <div className="md:col-span-8">
-              <p className="eyebrow">Your instructor</p>
-              <h2 className="mt-3 font-heading text-3xl font-semibold leading-tight tracking-tighter text-blue md:text-5xl">
-                Founder and lead instructor
-              </h2>
-              <div className="prose-fb mt-6 max-w-prose text-lg text-ink/85">
-                <p>
-                  Every consultation and, for now, every lesson is with the founder. A short biography, credentials
-                  and a photograph go here once the client confirms them.
-                </p>
+      {/* Values. */}
+      <section className="section">
+        <div className="container-fb grid gap-12 md:grid-cols-[4.1fr_7fr] md:gap-[120px]">
+          <h2 className="h2">Three things we hold to</h2>
+          <div className="grid gap-12">
+            {VALUES.map(([title, text]) => (
+              <div key={title} className="flex flex-col gap-3">
+                <h4 className="h4">{title}</h4>
+                <p className="regular-l max-w-[640px]">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Your instructor. */}
+      <section className="section">
+        <div className="container-fb">
+          <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
+            <h2 className="h2 max-w-[432px]">Your instructor</h2>
+            <BookButton size="sm" look="secondary" />
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="flex flex-col gap-4">
+              <div className="aspect-[3/4] w-full bg-grey-8" aria-hidden="true" />
+              <div className="flex flex-col gap-3">
+                <h4 className="h4 border-b border-black pb-3">Founder and lead instructor</h4>
+                <p className="regular-m text-grey-80">Name, credentials and a photograph to come.</p>
               </div>
             </div>
+            <div className="flex flex-col gap-4 md:col-span-2">
+              <p className="regular-l max-w-[640px]">
+                Every consultation and, for now, every lesson is with the founder. A short biography goes here once
+                the client confirms it: background, qualifications, and the road that led to Ottawa.
+              </p>
+            </div>
           </div>
-        </Container>
+        </div>
       </section>
 
-      <CtaBand />
+      <section className="section">
+        <div className="container-fb">
+          <Banner tone="yellow" way="yellow" heading="Start with a one-hour consultation. Leave with your level and a plan.">
+            <BookButton />
+          </Banner>
+        </div>
+      </section>
     </main>
   );
 }

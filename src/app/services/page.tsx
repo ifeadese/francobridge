@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Container from "@/app/_components/container";
+import Link from "next/link";
+import { Banner } from "@/app/_components/banner";
 import { BookButton } from "@/app/_components/book-button";
-import { CtaBand } from "@/app/_components/cta-band";
-import { PageHero } from "@/app/_components/page-hero";
+import { Hero } from "@/app/_components/hero";
 import { ServiceCard } from "@/app/_components/service-card";
-import { CONSULTATION, PACKAGES } from "@/lib/constants";
+import { CONSULTATION, IMAGES, PACKAGES } from "@/lib/constants";
 import { SERVICES } from "@/lib/services";
 
 export const metadata: Metadata = {
@@ -13,74 +13,79 @@ export const metadata: Metadata = {
     "TCF and TEF Canada preparation, professional French, General French A1 to C1, career and education pathway guidance, French immigration pathway information, and translation.",
 };
 
+const NUMBERS = [
+  ["1 h", "The consultation", `One hour online with your instructor, $${CONSULTATION.price} ${CONSULTATION.currency}, paid when you book. It includes your French level assessment and ends with a recommended programme.`],
+  [`${PACKAGES.join(" · ")}`, "Hours per programme", "Online, in blocks. The block and the level are agreed at your consultation and paid for afterwards, before your first session."],
+  ["A1 → C1", "The scale", "Every programme names the level it is for. Lessons are private now, semi-private as groups form."],
+] as const;
+
 export default function Services() {
-  const [featured, ...rest] = SERVICES;
   return (
     <main>
-      <PageHero
-        eyebrow="Programs and services"
-        title="Six ways across."
-        sub="Every programme starts with the same first step: a one-hour consultation that finds your level and ends with a plan. Lessons are online, private for now, semi-private as groups form."
-        fr={"« Six programmes. Un seul premier pas. »"}
+      <Hero
+        title="Six programmes, one first step"
+        text="Every programme starts with the same conversation: a one-hour consultation that finds your level and ends with a plan."
+        image={IMAGES.heroServices}
       >
-        <BookButton size="lg" />
-        <BookButton event="lesson" size="lg" />
-      </PageHero>
+        <BookButton />
+      </Hero>
 
-      <section className="py-16 md:py-24">
-        <Container>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <ServiceCard service={featured} featured />
-            {rest.map((s) => (
+      <section className="section">
+        <div className="container-fb">
+          <h2 className="h2 mb-14 max-w-[432px]">Programmes and services</h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            {SERVICES.map((s) => (
               <ServiceCard key={s.slug} service={s} />
             ))}
           </div>
-        </Container>
+        </div>
       </section>
 
-      <section className="border-t border-line bg-ivory-deep py-16 md:py-24">
-        <Container>
-          <div className="grid gap-12 md:grid-cols-12">
-            <div className="md:col-span-5">
-              <p className="eyebrow">Booking and fees</p>
-              <h2 className="mt-3 font-heading text-3xl font-semibold leading-tight tracking-tighter text-blue md:text-5xl">
-                Plain numbers.
-              </h2>
-            </div>
-            <dl className="grid gap-6 md:col-span-7">
-              <div className="rounded-2xl border border-line bg-white p-6">
-                <dt className="font-heading text-2xl font-semibold text-blue">Consultation</dt>
-                <dd className="mt-2 text-ink/80">
-                  {CONSULTATION.minutes} minutes, online, ${CONSULTATION.price} {CONSULTATION.currency}. Paid when
-                  you book. Includes your French level assessment and ends with a recommended programme.
-                </dd>
+      <section className="section">
+        <div className="container-fb">
+          <h2 className="h2 mb-14 max-w-[432px]">Plain numbers</h2>
+          <div className="grid gap-12 md:grid-cols-3">
+            {NUMBERS.map(([n, title, text]) => (
+              <div key={title} className="flex flex-col gap-6 border-t border-black pt-6">
+                <p className="regular-m">{title}</p>
+                <p className="large-number">{n}</p>
+                <p className="regular-m max-w-[420px]">{text}</p>
               </div>
-              <div className="rounded-2xl border border-line bg-white p-6">
-                <dt className="font-heading text-2xl font-semibold text-blue">Programmes</dt>
-                <dd className="mt-2 text-ink/80">
-                  Online, in blocks of {PACKAGES.join(", ")} hours. The block and the level are agreed at your
-                  consultation and paid for afterwards, before your first session.
-                </dd>
-              </div>
-              <div className="rounded-2xl border border-line bg-white p-6">
-                <dt className="font-heading text-2xl font-semibold text-blue">Lessons</dt>
-                <dd className="mt-2 text-ink/80">
-                  Private lessons now; semi-private as groups form. One booking link shows the options available.
-                </dd>
-              </div>
-              <div className="rounded-2xl border border-line bg-white p-6">
-                <dt className="font-heading text-2xl font-semibold text-blue">Not included</dt>
-                <dd className="mt-2 text-ink/80">
-                  Official TCF or TEF examination fees, which you pay directly to the test centre. Regulated
-                  immigration advice, which we refer to an authorized professional.
-                </dd>
-              </div>
-            </dl>
+            ))}
           </div>
-        </Container>
+        </div>
       </section>
 
-      <CtaBand />
+      <section className="section">
+        <div className="container-fb grid gap-12 md:grid-cols-[6.4fr_5fr] md:gap-20">
+          <div className="flex flex-col gap-6 bg-grey-3 p-8 md:p-12">
+            <h3 className="h3">Not included</h3>
+            <p className="regular-l max-w-[544px]">
+              Official TCF or TEF examination fees, which you pay directly to the test centre. Regulated immigration
+              advice or representation, which we refer to an appropriately authorized immigration professional.
+              Career and education pathway services are offered in French only.
+            </p>
+            <Link href="/contact" className="button-secondary button-small self-start">
+              Ask a question
+            </Link>
+          </div>
+          <div className="flex flex-col gap-6">
+            <h3 className="h3">Lessons</h3>
+            <p className="regular-l max-w-[480px]">
+              Private lessons now; semi-private as groups form. One booking link shows the options available.
+            </p>
+            <BookButton event="lesson" className="self-start" />
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container-fb">
+          <Banner tone="blue" way="blue" heading="Start with a one-hour consultation. Leave with your level and a plan.">
+            <BookButton />
+          </Banner>
+        </div>
+      </section>
     </main>
   );
 }

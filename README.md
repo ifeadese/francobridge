@@ -25,6 +25,16 @@ types are expected on the cal.com account named in `CAL` in
 `lesson` (private now, semi-private later). Replace the placeholder handle once
 the account exists.
 
+## Design
+
+The layout follows a light, editorial school template: fixed white header with
+a hairline, split hero with the photo filling the right half and a yellow card
+on it, 176px between sections, light serif display type (Crimson Pro 300),
+black pill buttons, grey blocks, photo service tiles, and pastel banners with a
+pattern strip drawn from the mark. Tokens live in `tailwind.config.ts` and
+`src/app/globals.css`. Photos are Lorem Picsum placeholders listed in `IMAGES`
+in `src/lib/constants.ts`.
+
 ## Brand
 
 - `brand/brand-book.html`: one self-contained page. Story, the mark, signatures, don'ts, colour and type, in use.

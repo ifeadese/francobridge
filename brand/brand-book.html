@@ -3,20 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FrancoBridge · Brand book v1.0</title>
+<title>FrancoBridge · Brand book v2.0</title>
 <meta name="description" content="The FrancoBridge identity: story, mark, signatures, don'ts, colour and type, and the identity in use.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500&family=Crimson+Pro:ital,wght@0,300;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   /* v1.0, "ivory first": the site and every document on ivory, blue for type and
      buttons, red for the sun and the one button that opens the door. One visual
      world on purpose; the page does not follow the viewer's theme. */
   :root {
     --blue: #0e397f; --blue-deep: #0a2a5e; --red: #db2517; --red-deep: #b81e12;
-    --ivory: #f6f4f2; --ivory-deep: #ece8e1; --ink: #14203a; --slate: #56607a;
-    --line: rgb(14 57 127 / 0.14); --line-ivory: rgb(246 244 242 / 0.18);
-    --serif: "Fraunces", Georgia, serif;
+    --ivory: #fffbf8; --ivory-deep: #f8f4f1; --ink: #1d1a17; --slate: #4a4744;
+    --line: #ede9e6; --line-ivory: rgb(255 251 248 / 0.18);
+    --blue-light: #dbe4f3; --red-light: #fbe0dc; --yellow: #ffdf8b; --yellow-light: #f9e7b8; --green-light: #dfe9dc;
+    --serif: "Crimson Pro", Georgia, serif;
     --sans: "Figtree", system-ui, sans-serif;
     --gutter: clamp(20px, 5vw, 64px);
   }
@@ -24,15 +25,15 @@
   html { color-scheme: light; }
   body { margin: 0; background: var(--ivory); color: var(--ink); font: 400 17px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
   a { color: inherit; }
-  h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em; color: var(--blue); margin: 0; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 300; letter-spacing: -0.03em; color: var(--ink); margin: 0; line-height: 1; }
   h1 { font-size: clamp(40px, 7vw, 72px); line-height: 1.02; }
   h2 { font-size: clamp(32px, 4.5vw, 48px); line-height: 1.08; }
   h3 { font-size: 24px; line-height: 1.2; }
   p { margin: 0; max-width: 65ch; }
   p + p { margin-top: 1em; }
   .eyebrow { font: 600 12px/1 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); }
-  .fr { font-family: var(--serif); font-style: italic; color: var(--slate); }
-  .num { font-family: var(--serif); font-weight: 600; color: var(--red); }
+  .fr { font-family: var(--serif); font-style: italic; font-weight: 300; color: var(--slate); }
+  .num { font-family: var(--serif); font-weight: 300; color: var(--ink); }
   .book { max-width: 1240px; margin: 0 auto; padding: 0 var(--gutter); }
   section { padding: 96px 0; border-top: 1px solid var(--line); }
   section.blue { background: var(--blue); color: var(--ivory); border-top: 0; }
@@ -47,35 +48,37 @@
   .g4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
   .split { display: grid; gap: 48px; grid-template-columns: 5fr 7fr; }
   @media (max-width: 800px) { .split { grid-template-columns: 1fr; } }
-  .card { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 24px; }
+  .card { background: var(--ivory-deep); padding: 24px 32px; }
   .card h3 { margin-top: 8px; }
   .card p { margin-top: 10px; color: rgb(20 32 58 / 0.8); }
   .arch { border-radius: 9999px 9999px 0 0; }
+  .strip { height: 60px; background: repeating-linear-gradient(90deg, var(--blue) 0 40px, var(--blue-light) 40px 80px, var(--red) 80px 100px, var(--ivory) 100px 140px); }
   .tile { display: flex; align-items: center; justify-content: center; padding: 40px; border-radius: 20px; min-height: 240px; }
   .tile.on-blue { background: var(--blue); }
   .tile.on-ivory { background: var(--ivory); border: 1px solid var(--line); }
+  .tile.on-white { background: #fff; border: 1px solid var(--line); }
   .tile.on-white { background: #fff; border: 1px solid var(--line); }
   .tile svg { width: 100%; height: auto; max-height: 200px; }
   .tile[data-logo] svg { max-width: 420px; }
   .cap { margin-top: 10px; font-size: 14px; color: var(--slate); }
   .cap b { color: var(--ink); font-weight: 600; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px; padding: 12px 24px; font: 600 15px/1 var(--sans); text-decoration: none; }
-  .btn-primary { background: var(--red); color: var(--ivory); }
-  .btn-secondary { border: 1px solid var(--blue); color: var(--blue); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px; padding: 16px 24px; font: 400 16px/1.44 var(--sans); text-decoration: none; }
+  .btn-primary { background: var(--ink); color: var(--ivory); }
+  .btn-secondary { border: 1px solid var(--ink); color: var(--ink); }
   .btn-on-blue { border: 1px solid rgb(246 244 242 / 0.6); color: var(--ivory); }
   table { width: 100%; border-collapse: collapse; font-size: 15px; }
   th, td { text-align: left; padding: 12px 12px 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
   th { font: 600 12px/1 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); }
-  .swatch { border-radius: 20px; overflow: hidden; border: 1px solid var(--line); }
+  .swatch { overflow: hidden; border: 1px solid var(--line); }
   .swatch .chip { height: 120px; }
   .swatch .meta { padding: 16px; background: #fff; font-size: 14px; }
-  .swatch .meta b { display: block; font: 600 20px/1.2 var(--serif); color: var(--blue); letter-spacing: -0.02em; }
+  .swatch .meta b { display: block; font: 300 24px/1.1 var(--serif); color: var(--ink); letter-spacing: -0.02em; }
   .swatch .meta code { font-family: ui-monospace, Menlo, monospace; font-size: 13px; color: var(--ink); }
   .swatch .meta span { display: block; color: var(--slate); margin-top: 4px; }
   .toc { display: grid; gap: 0; }
   .toc a { display: grid; grid-template-columns: 56px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); text-decoration: none; }
   .toc a:first-child { border-top: 1px solid var(--line); }
-  .toc a b { font: 600 20px/1.2 var(--serif); color: var(--blue); }
+  .toc a b { font: 300 24px/1.1 var(--serif); color: var(--ink); }
   .toc a span { color: var(--slate); font-size: 15px; }
   .deliv { display: grid; gap: 0; }
   .deliv div { display: grid; grid-template-columns: 1fr auto; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
@@ -85,18 +88,20 @@
   .status { font: 600 11px/1 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 10px; border-radius: 9999px; border: 1px solid var(--line); color: var(--slate); white-space: nowrap; align-self: start; }
   .status.done { background: var(--blue); color: var(--ivory); border-color: var(--blue); }
   .dont { position: relative; overflow: hidden; }
-  .dont::after { content: "Don’t"; position: absolute; top: 12px; left: 12px; font: 600 11px/1 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; background: var(--red); color: var(--ivory); padding: 6px 10px; border-radius: 9999px; }
+  .dont::after { content: "Don’t"; position: absolute; top: 12px; left: 12px; font: 600 11px/1 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; background: var(--ink); color: var(--ivory); padding: 6px 10px; border-radius: 9999px; }
   .type-row { display: grid; grid-template-columns: 220px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
   @media (max-width: 700px) { .type-row { grid-template-columns: 1fr; gap: 8px; } }
   .type-row .spec { font-size: 13px; color: var(--slate); }
   .type-row .spec b { display: block; color: var(--ink); font-weight: 600; font-size: 14px; }
-  .screen { border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: var(--ivory); }
+  .screen { border: 1px solid var(--line); overflow: hidden; background: var(--ivory); }
   .screen .bar { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--line); background: rgb(246 244 242 / 0.9); }
   .screen .bar nav { display: flex; gap: 20px; align-items: center; font: 600 13px/1 var(--sans); }
   .screen .bar svg { height: 28px; width: auto; }
   .screen .hero { display: grid; grid-template-columns: 7fr 5fr; gap: 32px; padding: 40px 20px; align-items: center; }
   .screen .hero h3 { font-size: clamp(24px, 3vw, 36px); line-height: 1.05; }
-  .screen .hero .panel { background: var(--blue); aspect-ratio: 4/5; display: flex; align-items: flex-end; justify-content: center; padding: 0 24px 28px; }
+  .screen .hero .panel { background: var(--ivory-deep); aspect-ratio: 4/5; display: flex; align-items: flex-end; justify-content: flex-start; padding: 0; position: relative; }
+  .screen .hero .panel .yellow { background: var(--yellow); padding: 20px; max-width: 260px; font-size: 13px; }
+  .screen .hero .panel .yellow b { display: block; font: 300 20px/1.05 var(--serif); margin-top: 6px; }
   .screen .hero .panel svg { width: 100%; max-width: 180px; height: auto; }
   @media (max-width: 700px) { .screen .hero { grid-template-columns: 1fr; } }
   .rule { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
@@ -106,6 +111,8 @@
   footer code { font-family: ui-monospace, Menlo, monospace; }
   .cover { padding: 96px 0 72px; border-top: 0; }
   .cover .mark { max-width: 320px; margin-bottom: 40px; }
+  .pastel { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+  .pastel div { height: 72px; display: flex; align-items: flex-end; padding: 10px; font-size: 13px; }
   .clear { position: relative; display: inline-block; padding: 50px; border: 1px dashed rgb(14 57 127 / 0.4); }
   .clear svg { width: 292px; height: auto; display: block; }
   .clear i { position: absolute; font: 600 11px/1 var(--sans); letter-spacing: 0.1em; color: var(--slate); font-style: normal; }
@@ -128,7 +135,7 @@
   <p class="eyebrow">FrancoBridge Consulting Inc. — Brand book</p>
   <h1 style="margin-top:12px">Bridging language. Unlocking opportunities.</h1>
   <p class="fr" style="font-size:22px;margin-top:8px" lang="fr">«&#8239;Un pont vers la langue. Des portes qui s’ouvrent.&#8239;»</p>
-  <p style="margin-top:24px;color:var(--slate)">v1.0 · 29 Sep 2026 · Placeholder logo, first pass. Everything here is meant to be iterated on.</p>
+  <p style="margin-top:24px;color:var(--slate)">v2.0 · 30 Sep 2026 · Placeholder logo. The site now follows an editorial school layout: warm white, near-black type, light serif display, pastel banners with a pattern strip.</p>
 </section>
 
 <!-- 00 Overview -->
@@ -136,7 +143,7 @@
   <div class="head">
     <p class="eyebrow">Overview</p>
     <h2>What’s in this book, and what exists.</h2>
-    <p>Six sections, in the order you’d reach for them: the words, the mark, the four habits that make a page ours, what not to do, the palette and type, and the identity in use on the site and on documents.</p>
+    <p>Six sections, in the order you’d reach for them: the words, the mark, the four habits that make a page ours, what not to do, the palette and type, and the identity in use on the site and on documents. v2 reworks sections 03, 05 and 06 for the new site layout.</p>
   </div>
   <div class="split">
     <div>
@@ -146,8 +153,8 @@
         <a href="#mark"><span class="num">02</span><div><b>The mark</b><br><span>The bridge and the sun, in three lockups, clear space, minimum size.</span></div></a>
         <a href="#signatures"><span class="num">03</span><div><b>Signatures</b><br><span>The arch, the sun, two lines, plain numbers.</span></div></a>
         <a href="#dont"><span class="num">04</span><div><b>Don’t</b><br><span>Six ways the mark gets broken.</span></div></a>
-        <a href="#colour"><span class="num">05</span><div><b>Colour and type</b><br><span>Ivory, blue, one red. Fraunces and Figtree.</span></div></a>
-        <a href="#in-use"><span class="num">06</span><div><b>In use</b><br><span>Ivory first, on screen and in hand, and red for one button.</span></div></a>
+        <a href="#colour"><span class="num">05</span><div><b>Colour and type</b><br><span>Warm white, near-black, pastel tints of the brand. Crimson Pro and Figtree.</span></div></a>
+        <a href="#in-use"><span class="num">06</span><div><b>In use</b><br><span>The editorial school layout: white ground, black buttons, pastel banners, pattern strips.</span></div></a>
       </div>
     </div>
     <div>
@@ -287,19 +294,19 @@
       <span class="num" style="font-size:28px">01</span>
       <h3>The arch</h3>
       <div class="arch" style="background:var(--blue);height:140px;margin-top:16px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:20px"><span style="font:600 28px var(--serif);color:var(--ivory)">B1</span></div>
-      <p>The semicircle from the mark is the one shape we cut with. Photographs, panels and the level tiles get an arch top and a flat base; buttons are pills, the arch’s two ends. Never a rounded rectangle where an arch would do, and never an arch on a card of text.</p>
+      <p>The semicircle from the mark is the one shape we draw with. Buttons are pills, the arch’s two ends; the pattern strips under the banners are built from arches, quarter-circles and the sun; the ringed arrow on a tertiary link is the arch closed. Photographs and blocks are square-cornered, so the arch stays special.</p>
     </div>
     <div class="card">
       <span class="num" style="font-size:28px">02</span>
       <h3>The sun</h3>
-      <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center"><span class="btn btn-primary">Book a consultation</span><span class="btn btn-secondary">Book a lesson</span><span class="btn btn-secondary">Explore our programs</span></div>
-      <p>The sun under the arch is the opportunity. On a page, the red is the one button that opens it: <b>Book a consultation</b>. Every other button is blue. Step numbers and the bullet in a list may take the red as a mark; text and backgrounds never do.</p>
+      <div class="strip" style="margin-top:16px"></div>
+      <p>The sun under the arch is the opportunity. On a page the red is a mark, never a surface and never text: it sits in the logo, in the pattern strips under every banner, and as the rule beside a note that matters (exam fees not included). Buttons are black. Nothing else is red.</p>
     </div>
     <div class="card">
       <span class="num" style="font-size:28px">03</span>
       <h3>Two lines</h3>
-      <div style="margin-top:16px"><div style="font:600 30px/1.05 var(--serif);letter-spacing:-0.03em;color:var(--blue)">Prepare with purpose.</div><div class="fr" style="font-size:19px;margin-top:6px" lang="fr">«&#8239;Préparez-vous avec méthode.&#8239;»</div></div>
-      <p>Every headline that matters carries its French under it, in Fraunces italic, quiet. English is the door; French is the room. The French is set properly: guillemets with narrow no-break spaces, accents on capitals, and never a machine translation left unchecked.</p>
+      <div style="margin-top:16px"><div style="font:300 34px/1 var(--serif);letter-spacing:-0.03em;color:var(--ink)">Prepare with purpose.</div><div class="fr" style="font-size:19px;margin-top:6px" lang="fr">«&#8239;Préparez-vous avec méthode.&#8239;»</div></div>
+      <p>Every headline that matters carries its French under it, in Crimson Pro italic, quiet; on the about page and on each service page the French line becomes a whole pastel band. English is the door; French is the room. The French is set properly: guillemets with narrow no-break spaces, accents on capitals, and never a machine translation left unchecked.</p>
     </div>
     <div class="card">
       <span class="num" style="font-size:28px">04</span>
@@ -363,39 +370,46 @@
 <section id="colour">
   <div class="head">
     <p class="eyebrow">05 · Colour</p>
-    <h2>Ivory, blue, one red.</h2>
-    <p>No pure white and no black. <b>Ivory</b> is the ground everywhere, on screen and in hand. <b>Blue</b> is the type, the buttons, and the panel behind the mark. <b>Red</b> is the sun and the one button. <b>Ink</b> is what body text is set in, a blue-black, and <b>Slate</b> is the quiet type: eyebrows, captions, the French line. The green of the earlier blog theme is retired.</p>
+    <h2>Warm white, near-black, and the brand in tints.</h2>
+    <p>The ground is a warm <b>white</b>, never pure. Type and buttons are <b>black</b>, a warm near-black. A <b>light grey</b> makes the blocks, the footer and the quiet bands; a hairline grey draws the rules. The brand <b>blue</b> and <b>red</b> stay in the mark, the patterns and small accents, and each lends a pastel <b>tint</b> for the banners, with a yellow borrowed for the card on the hero photo.</p>
   </div>
   <div class="grid g3">
-    <div class="swatch"><div class="chip" style="background:#0e397f"></div><div class="meta"><b>Blue</b><code>#0E397F · 14 57 127</code><span>CMYK 100 80 10 15 · Pantone 7687 C (nearest)</span><span>Headings, buttons, panels. 10.4:1 on ivory.</span></div></div>
-    <div class="swatch"><div class="chip" style="background:#db2517"></div><div class="meta"><b>Red</b><code>#DB2517 · 219 37 23</code><span>CMYK 0 85 90 10 · Pantone 485 C (nearest)</span><span>The sun. One button per page. 4.6:1 on ivory, so never body text.</span></div></div>
-    <div class="swatch"><div class="chip" style="background:#f6f4f2"></div><div class="meta"><b>Ivory</b><code>#F6F4F2 · 246 244 242</code><span>CMYK 0 1 2 4 · uncoated white stock; Pantone 663 C (nearest)</span><span>The ground. Type on blue.</span></div></div>
-    <div class="swatch"><div class="chip" style="background:#14203a"></div><div class="meta"><b>Ink</b><code>#14203A · 20 32 58</code><span>CMYK 65 45 0 77 · Pantone 289 C (nearest)</span><span>Body text on ivory, 15.6:1.</span></div></div>
-    <div class="swatch"><div class="chip" style="background:#56607a"></div><div class="meta"><b>Slate</b><code>#56607A · 86 96 122</code><span>CMYK 30 20 0 52 · Pantone 7545 C (nearest)</span><span>Quiet type on ivory, 5.6:1.</span></div></div>
-    <div class="swatch"><div class="chip" style="background:#ece8e1"></div><div class="meta"><b>Ivory, deep</b><code>#ECE8E1 · 236 232 225</code><span>CMYK 0 2 5 7 · Pantone Warm Gray 1 C (nearest)</span><span>An alternate section, a placeholder for a photo.</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#fffbf8;border-bottom:1px solid var(--line)"></div><div class="meta"><b>White</b><code>#FFFBF8 · 255 251 248</code><span>CMYK 0 2 3 0 · uncoated white stock</span><span>The ground. Type on black.</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#1d1a17"></div><div class="meta"><b>Black</b><code>#1D1A17 · 29 26 23</code><span>CMYK 0 10 21 89 · Pantone Black 7 C (nearest)</span><span>Type, buttons, rules. 16.7:1 on white.</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#f8f4f1"></div><div class="meta"><b>Grey 3</b><code>#F8F4F1 · 248 244 241</code><span>CMYK 0 2 3 3 · Pantone Warm Gray 1 C at 20%</span><span>Blocks, the footer, the quiet band.</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#ede9e6"></div><div class="meta"><b>Grey 8</b><code>#EDE9E6 · 237 233 230</code><span>CMYK 0 2 3 7 · Pantone Warm Gray 1 C (nearest)</span><span>Hairlines, the nav rule, hover on a block.</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#4a4744"></div><div class="meta"><b>Grey 80</b><code>#4A4744 · 74 71 68</code><span>CMYK 0 4 8 71 · Pantone Warm Gray 11 C (nearest)</span><span>Quiet type and button hover. 8.5:1 on white.</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#0e397f"></div><div class="meta"><b>Blue</b><code>#0E397F · 14 57 127</code><span>CMYK 100 80 10 15 · Pantone 7687 C (nearest)</span><span>The mark, the patterns, link hover.</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#db2517"></div><div class="meta"><b>Red</b><code>#DB2517 · 219 37 23</code><span>CMYK 0 85 90 10 · Pantone 485 C (nearest)</span><span>The sun. A mark, never a surface, never text.</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#dbe4f3"></div><div class="meta"><b>Blue, light</b><code>#DBE4F3 · 219 228 243</code><span>A banner tint. Pantone 2707 C (nearest)</span><span>The consultation banner, the motto band.</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#fbe0dc"></div><div class="meta"><b>Red, light</b><code>#FBE0DC · 251 224 220</code><span>A banner tint. Pantone 705 C (nearest)</span><span>The workplace banner.</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#ffdf8b"></div><div class="meta"><b>Yellow</b><code>#FFDF8B · 255 223 139</code><span>Pantone 1205 C (nearest)</span><span>The card on the hero photo, and nothing else.</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#f9e7b8"></div><div class="meta"><b>Yellow, light</b><code>#F9E7B8 · 249 231 184</code><span>A banner tint. Pantone 7401 C (nearest)</span><span>The exam banner.</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#dfe9dc"></div><div class="meta"><b>Green, light</b><code>#DFE9DC · 223 233 220</code><span>A banner tint. Pantone 621 C (nearest)</span><span>A fourth banner, when three are used.</span></div></div>
   </div>
-  <p style="margin-top:20px;font-size:14px;color:var(--slate)">Pantone values are the nearest coated matches, chosen by eye. Confirm against a physical swatch before anything is printed. <b>Blue, deep</b> #0A2A5E and <b>Red, deep</b> #B81E12 exist only as hover states. Lines are blue at 14%.</p>
+  <p style="margin-top:20px;font-size:14px;color:var(--slate)">Pantone values are the nearest coated matches, chosen by eye. Confirm against a physical swatch before anything is printed. The ivory of v1 (#F6F4F2) stays inside the logo exports only. Black at 40% underlines a form field until it is focused.</p>
 
   <div class="head" style="margin-top:96px">
     <p class="eyebrow">05 · Type</p>
-    <h2>Fraunces speaks. Figtree explains.</h2>
-    <p>Two families. Fraunces, a soft serif with real contrast, for everything that carries the voice: headlines, the French line, big numbers, and the name in the mark. Figtree, plain and friendly, for everything people read at length, and for labels and buttons. No third face on the site; the mark’s descriptor is outlined and never typed.</p>
+    <h2>Crimson Pro speaks. Figtree explains.</h2>
+    <p>Two families. Crimson Pro, light, set at 100% line height with tight tracking, for everything that carries the voice: headlines, the French line, large numbers. It is never bold. Figtree, plain and friendly, for everything people read at length, and for labels and buttons. The name in the mark stays in outlined Fraunces; nothing else on the site uses it.</p>
   </div>
-  <div class="type-row"><div class="spec"><b>Display</b>Fraunces 600 · 56–72 / 1.02 / −0.03em</div><div style="font:600 clamp(36px,5vw,64px)/1.02 var(--serif);letter-spacing:-0.03em;color:var(--blue)">Bridging language. Unlocking opportunities.</div></div>
-  <div class="type-row"><div class="spec"><b>Heading</b>Fraunces 600 · 32–48 / 1.08 / −0.03em</div><div style="font:600 clamp(28px,3.5vw,44px)/1.08 var(--serif);letter-spacing:-0.03em;color:var(--blue)">Three steps, and the first one is a conversation.</div></div>
-  <div class="type-row"><div class="spec"><b>French line</b>Fraunces 400 italic · 18–24 / 1.3 · slate</div><div class="fr" style="font-size:22px" lang="fr">«&#8239;Trois étapes, et la première est une conversation.&#8239;»</div></div>
-  <div class="type-row"><div class="spec"><b>Body</b>Figtree 400 · 17–18 / 1.55 · ≤ 65 characters</div><div style="font-size:18px;max-width:65ch">One hour online with your instructor. We find your French level, talk through your goals and leave you with a plan and a programme that fits.</div></div>
-  <div class="type-row"><div class="spec"><b>Label</b>Figtree 600 · 12 / caps / +0.12em · slate</div><div class="eyebrow">Programs and services</div></div>
-  <div class="type-row"><div class="spec"><b>Number</b>Fraunces 600 · 36–48 · red</div><div class="num" style="font-size:44px;line-height:1">01 &nbsp; 02 &nbsp; 03</div></div>
-  <div class="type-row"><div class="spec"><b>Button</b>Figtree 600 · 15 · pill</div><div style="display:flex;gap:12px;flex-wrap:wrap"><span class="btn btn-primary">Book a consultation</span><span class="btn btn-secondary">Explore our programs</span></div></div>
+  <div class="type-row"><div class="spec"><b>Display</b>Crimson Pro 300 · 86 / 100% / −0.03em (78 on tablet, 46 on phone)</div><div style="font:300 clamp(40px,5.5vw,86px)/1 var(--serif);letter-spacing:-0.03em;color:var(--ink)">Bridging language. Unlocking opportunities.</div></div>
+  <div class="type-row"><div class="spec"><b>Heading</b>Crimson Pro 300 · 52 / 100% / −0.025em</div><div style="font:300 clamp(32px,3.6vw,52px)/1 var(--serif);letter-spacing:-0.025em;color:var(--ink)">Six programmes, one first step</div></div>
+  <div class="type-row"><div class="spec"><b>Card heading</b>Crimson Pro 300 · 30 / 100% / −0.02em</div><div style="font:300 30px/1 var(--serif);letter-spacing:-0.02em;color:var(--ink)">TCF &amp; TEF Canada Preparation</div></div>
+  <div class="type-row"><div class="spec"><b>French line</b>Crimson Pro 300 italic · 20 · grey 80</div><div class="fr" style="font-size:22px" lang="fr">«&#8239;Trois étapes, et la première est une conversation.&#8239;»</div></div>
+  <div class="type-row"><div class="spec"><b>Large number</b>Crimson Pro 300 · 130 / 100% / −0.03em</div><div style="font:300 clamp(64px,8vw,130px)/1 var(--serif);letter-spacing:-0.03em;color:var(--ink)">20 · 40 · 60</div></div>
+  <div class="type-row"><div class="spec"><b>Body</b>Figtree 400 · 16–18 / 144% · ≤ 65 characters</div><div style="font-size:18px;max-width:65ch">One hour online with your instructor. We find your French level, talk through your goals and leave you with a plan and a programme that fits.</div></div>
+  <div class="type-row"><div class="spec"><b>Button</b>Figtree 400 · 18 · pill · 22/36/24 (small: 16 · 16/24)</div><div style="display:flex;gap:12px;flex-wrap:wrap"><span class="btn btn-primary">Book a consultation</span><span class="btn btn-secondary">All services</span></div></div>
+  <div class="type-row"><div class="spec"><b>Tertiary</b>Figtree 400 · 16 · a ringed arrow, 26 px</div><div style="display:inline-flex;align-items:center;gap:8px">Learn more <span style="display:inline-flex;width:26px;height:26px;border:1px solid var(--ink);border-radius:50%;align-items:center;justify-content:center;font-size:12px">→</span></div></div>
 </section>
 
 <!-- 06 In use -->
 <section id="in-use">
   <div class="head">
     <p class="eyebrow">06 · In use</p>
-    <h2>Ivory first, and red for one button.</h2>
-    <p>The site, documents, social and print all live on ivory. Blue closes a page and carries the mark; red opens the door. Never a red page, never a black anything.</p>
+    <h2>An editorial school layout.</h2>
+    <p>The site follows a light, editorial school layout: a fixed white header with a hairline, 64 px gutters, 176 px between sections, type set light and large, and pastel banners closed with a strip of pattern. Documents follow the same rules on paper.</p>
   </div>
   <h3>The site</h3>
   <div class="screen" style="margin-top:16px">
@@ -408,31 +422,27 @@
 </svg></span><nav><span>About</span><span>Services</span><span>Contact</span><span class="btn btn-primary" style="padding:10px 16px;font-size:13px">Book a consultation</span></nav></div>
     <div class="hero">
       <div>
-        <p class="eyebrow">French language education · Ottawa, Ontario, Canada</p>
-        <h3 style="margin-top:10px">Bridging language. Unlocking opportunities.</h3>
-        <p class="fr" style="font-size:16px;margin-top:6px" lang="fr">«&#8239;Un pont vers la langue. Des portes qui s’ouvrent.&#8239;»</p>
-        <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap"><span class="btn btn-primary" style="padding:10px 16px;font-size:13px">Book a consultation</span><span class="btn btn-secondary" style="padding:10px 16px;font-size:13px">Explore our programs</span></div>
-        <p style="margin-top:12px;font-size:12px;font-weight:600;color:var(--slate)">1 hour · $100 CAD · online · includes your French level assessment</p>
+        <h3 style="font-size:clamp(28px,3.4vw,44px)">Bridging language. Unlocking opportunities.</h3>
+        <p style="font-size:14px;margin-top:14px;max-width:380px">French language education, TCF and TEF Canada preparation, professional French and pathway guidance. In Ottawa and online.</p>
+        <p class="fr" style="font-size:15px;margin-top:6px" lang="fr">«&#8239;Un pont vers la langue. Des portes qui s’ouvrent.&#8239;»</p>
+        <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap"><span class="btn btn-primary" style="padding:10px 16px;font-size:13px">About FrancoBridge</span><span class="btn btn-secondary" style="padding:10px 16px;font-size:13px">Contact us</span></div>
       </div>
-      <div class="panel arch"><span data-logo="mark-on-blue"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 292 132" role="img" aria-label="FrancoBridge">
-<path fill="#F6F4F2" d="M0 0H292V24H278V132H246V130A100 100 0 0 0 46 130V132H14V24H0Z"/>
-<path fill="#0E397F" d="M46 130A100 100 0 0 1 246 130H222A76 76 0 0 0 70 130Z"/>
-<path fill="#DB2517" d="M70 130A76 76 0 0 1 222 130Z"/>
-</svg></span></div>
+      <div class="panel"><div class="yellow">1 hour · $100 CAD · online<b>Book a consultation and find your French level</b></div></div>
     </div>
   </div>
   <div class="grid g2" style="margin-top:32px">
     <ul class="rule">
-      <li><b>Ground:</b> ivory. A deeper ivory for an alternate section. No gradients, no photos behind text.</li>
-      <li><b>First screen:</b> the tagline top left in Fraunces with its French line under it, the one red button and one blue one, the price and the hour in a label beneath. On the right, the mark in an arch-topped blue panel.</li>
-      <li><b>Header:</b> the horizontal lockup on ivory at the left, three links and the red button at the right. Sticky, with a hairline.</li>
-      <li><b>Services:</b> six tiles; TCF &amp; TEF is the large one, first. Each tile is a white card with an arch-topped blue panel holding a line glyph, then the name, one line, and the level and format in plain numbers.</li>
+      <li><b>Ground:</b> warm white. Light grey for a block or a quiet band. No gradients behind text; the only fade is the one at the foot of a service photo.</li>
+      <li><b>First screen:</b> the tagline at the bottom left in light Crimson Pro, one paragraph and the French line, two buttons. The photo fills the right half to the edge, and the yellow card with the consultation sits on it, bottom left.</li>
+      <li><b>Header:</b> fixed, white, a hairline. The horizontal lockup at the left; About, Services, Contact and the small black button at the right.</li>
+      <li><b>Banners:</b> a pastel block, a big light heading, one black button, then 244 px of pattern in the brand colours. Yellow for the exam line, blue for the consultation, red for the workplace.</li>
     </ul>
     <ul class="rule">
-      <li><b>Buttons:</b> pills. Red for Book a consultation only; blue outline for everything else; ivory outline on blue.</li>
-      <li><b>Booking:</b> cal.com. Two event types, <i>consultation</i> (60 min, $100, paid on booking) and <i>lesson</i> (private now, semi-private as groups form). A popup from any button; the calendar inline on the contact page.</li>
-      <li><b>Closing a page:</b> the call to action on blue, with the mark at the right, then the footer on blue with the stacked lockup.</li>
-      <li><b>Motion:</b> none yet. When it comes, things arrive and settle, never bounce.</li>
+      <li><b>Blocks:</b> light grey, 24/32 padding, an icon, a card heading, a paragraph, a tertiary link. Four across for who we help; three for what a programme includes.</li>
+      <li><b>Services:</b> tall photo blocks, 600 px, a dark fade at the foot, the name, a white rule and one line. TCF &amp; TEF first.</li>
+      <li><b>Buttons:</b> black pills, white on black; the outline pill for the second action. Red is never a button.</li>
+      <li><b>Booking:</b> cal.com. Every button opens the popup; the calendar sits inline on the contact page beside its heading.</li>
+      <li><b>Closing a page:</b> a banner with the consultation, then the footer on light grey: the stacked mark, three columns, the legal line.</li>
     </ul>
   </div>
 
@@ -441,18 +451,18 @@
     <div class="card">
       <p class="eyebrow">To come</p>
       <h3>Invoice, proposal, certificate, business card</h3>
-      <p>Ivory stock, blue type, the stacked mark top left at no less than 30 mm wide, the French line under any title. Level, hours and price in a table. The certificate carries the mark alone, large, above the learner’s name in Fraunces, and the level they reached in red: the one red thing on the page.</p>
+      <p>Warm white stock, black type, the stacked mark top left at no less than 30 mm wide, the French line under any title. Level, hours and price in a ruled table. A pattern strip along the foot of a cover. The certificate carries the mark alone, large, above the learner’s name in light Crimson Pro.</p>
     </div>
     <div class="card">
       <p class="eyebrow">Done</p>
       <h3>Social avatar and Open Graph image</h3>
-      <p><code>public/brand/francobridge-social-avatar.png</code>, the mark on a blue square at 1024 px. <code>public/brand/francobridge-og.png</code>, the stacked lockup on blue at 1200 × 630, also wired in as the site’s default share image. Photographs, when they come: people mid-sentence, natural light, and an arch cut.</p>
+      <p><code>public/brand/francobridge-social-avatar.png</code>, the mark on a blue square at 1024 px. <code>public/brand/francobridge-og.png</code>, the stacked lockup on blue at 1200 × 630, wired in as the site’s default share image. Photographs on the site are placeholders until the client’s arrive: people mid-sentence, natural light, square-cornered.</p>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>FrancoBridge · Brand book v1.0 · 29 Sep 2026 · Placeholder logo after the client’s draft.</p>
+  <p>FrancoBridge · Brand book v2.0 · 30 Sep 2026 · Placeholder logo after the client’s draft; layout after an editorial school template.</p>
   <p style="margin-top:6px">Source of truth: <code>brand/tools/build-logo.py</code> → <code>src/lib/logo-paths.ts</code> → <code>src/app/_components/logo.tsx</code> · exports in <code>public/brand/</code> · regenerate with <code>node brand/tools/export-logo.mjs</code></p>
 </footer>
 

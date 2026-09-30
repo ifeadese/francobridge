@@ -1,132 +1,129 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Container from "@/app/_components/container";
+import { Banner } from "@/app/_components/banner";
 import { BookButton } from "@/app/_components/book-button";
-import { CtaBand } from "@/app/_components/cta-band";
-import { Levels } from "@/app/_components/levels";
-import { PageHero } from "@/app/_components/page-hero";
+import { Hero } from "@/app/_components/hero";
 import { ServiceCard } from "@/app/_components/service-card";
-import { ServiceGlyph } from "@/app/_components/service-glyph";
-import { CONSULTATION } from "@/lib/constants";
+import { CONSULTATION, IMAGES } from "@/lib/constants";
 import { getService, SERVICES } from "@/lib/services";
 
 type Params = { params: Promise<{ slug: string }> };
+
+const TONES = ["yellow", "blue", "red", "green"] as const;
 
 export default async function ServicePage(props: Params) {
   const { slug } = await props.params;
   const service = getService(slug);
   if (!service) return notFound();
   const related = service.related.map(getService).filter((s) => s !== undefined);
+  const tone = TONES[SERVICES.findIndex((s) => s.slug === slug) % TONES.length];
 
   return (
     <main>
-      <PageHero eyebrow={service.name} title={service.headline} sub={service.sub} fr={service.fr}>
-        <BookButton size="lg" />
-        <BookButton event="lesson" size="lg" />
-      </PageHero>
+      <Hero title={service.headline} text={service.sub} image={IMAGES.services[service.slug]}>
+        <BookButton />
+        <BookButton event="lesson" />
+      </Hero>
 
-      <section className="py-16 md:py-24">
-        <Container>
-          <div className="grid gap-12 md:grid-cols-12">
-            <div className="md:col-span-7">
-              <div className="prose-fb max-w-prose text-lg text-ink/85">
-                {service.intro.map((p) => (
-                  <p key={p}>{p}</p>
-                ))}
-              </div>
-              {service.notes && (
-                <div className="mt-8 max-w-prose border-l-4 border-red bg-white p-5">
-                  {service.notes.map((n) => (
-                    <p key={n} className="font-semibold text-ink">
-                      {n}
-                    </p>
-                  ))}
-                </div>
-              )}
-            </div>
-            <aside className="md:col-span-5">
-              <div className="arch flex h-48 items-end justify-center bg-blue pb-8 text-ivory">
-                <ServiceGlyph slug={service.slug} className="h-20 w-20" />
-              </div>
-              <dl className="divide-y divide-line border-b border-line">
-                <div className="grid grid-cols-3 gap-4 py-4">
-                  <dt className="eyebrow">Level</dt>
-                  <dd className="col-span-2 font-semibold text-ink">{service.level}</dd>
-                </div>
-                <div className="grid grid-cols-3 gap-4 py-4">
-                  <dt className="eyebrow">Format</dt>
-                  <dd className="col-span-2 font-semibold text-ink">{service.format}</dd>
-                </div>
-                <div className="grid grid-cols-3 gap-4 py-4">
-                  <dt className="eyebrow">First step</dt>
-                  <dd className="col-span-2 font-semibold text-ink">
-                    Consultation, {CONSULTATION.label}. Includes your level assessment.
-                  </dd>
-                </div>
-              </dl>
-            </aside>
+      {/* The French line, as the motto band. */}
+      <section className="section-tight">
+        <div className="container-fb">
+          <div className="flex flex-col gap-4 bg-grey-3 px-6 py-10 md:px-16 md:py-14">
+            <p className="h3 max-w-[880px]" lang="fr">
+              {service.fr}
+            </p>
+            <p className="regular-m text-grey-80">{service.name}</p>
           </div>
-        </Container>
+        </div>
       </section>
 
-      <section className="border-y border-line bg-ivory-deep py-16 md:py-24">
-        <Container>
-          <p className="eyebrow">What’s included</p>
-          <h2 className="mt-3 font-heading text-3xl font-semibold leading-tight tracking-tighter text-blue md:text-5xl">
-            Everything under this arch.
-          </h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+      {/* About the programme: heading left, text right. */}
+      <section className="section">
+        <div className="container-fb grid gap-12 md:grid-cols-[4.1fr_7fr] md:gap-[120px]">
+          <div className="flex flex-col gap-10">
+            <h2 className="h2">About this programme</h2>
+            <dl className="flex flex-col">
+              {[
+                ["Level", service.level],
+                ["Format", service.format],
+                ["First step", `Consultation, ${CONSULTATION.label}`],
+              ].map(([k, v]) => (
+                <div key={k} className="flex items-baseline justify-between gap-6 border-b border-black py-3">
+                  <dt className="regular-m text-grey-80">{k}</dt>
+                  <dd className="regular-m text-right">{v}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+          <div className="flex flex-col gap-6">
+            {service.intro.map((p) => (
+              <p key={p} className="regular-l max-w-[640px]">
+                {p}
+              </p>
+            ))}
+            {service.notes && (
+              <div className="mt-4 flex max-w-[640px] flex-col gap-3 border-l-2 border-red pl-6">
+                {service.notes.map((n) => (
+                  <p key={n} className="regular-m">
+                    {n}
+                  </p>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* What's included: grey blocks. */}
+      <section className="section">
+        <div className="container-fb">
+          <h2 className="h2 mb-14 max-w-[432px]">What’s included</h2>
+          <div className="grid gap-6 md:grid-cols-3">
             {service.includes.map((group) => (
-              <div key={group.title} className="rounded-2xl border border-line bg-white p-6">
-                <h3 className="font-heading text-2xl font-semibold text-blue">{group.title}</h3>
-                <ul className="mt-4 space-y-2">
+              <div key={group.title} className="block bg-grey-3 py-8">
+                <h4 className="h4 mb-6">{group.title}</h4>
+                <ul className="flex flex-col">
                   {group.items.map((item) => (
-                    <li key={item} className="flex gap-3 text-ink/85">
-                      <span className="mt-[9px] h-2 w-2 shrink-0 rounded-full bg-red" aria-hidden="true" />
-                      <span>{item}</span>
+                    <li key={item} className="regular-m border-t border-black/15 py-3">
+                      {item}
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
           </div>
-        </Container>
+        </div>
       </section>
 
-      {service.slug === "general-french" && (
-        <section className="py-16 md:py-24">
-          <Container>
-            <p className="eyebrow">The scale</p>
-            <h2 className="mt-3 font-heading text-3xl font-semibold leading-tight tracking-tighter text-blue md:text-5xl">
-              Five levels, one method.
-            </h2>
-            <div className="mt-10">
-              <Levels />
-            </div>
-          </Container>
-        </section>
-      )}
+      <section className="section">
+        <div className="container-fb">
+          <Banner tone={tone} way={tone === "red" ? "red" : tone === "yellow" ? "yellow" : "blue"} heading="Start with a one-hour consultation. Leave with your level and a plan.">
+            <BookButton />
+            <Link href="/contact" className="button-secondary">
+              Ask a question
+            </Link>
+          </Banner>
+        </div>
+      </section>
 
       {related.length > 0 && (
-        <section className="py-16 md:py-24">
-          <Container>
-            <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-              <h2 className="font-heading text-3xl font-semibold tracking-tighter text-blue">Often paired with</h2>
-              <Link href="/services" className="font-semibold text-blue hover:underline">
-                All services →
+        <section className="section">
+          <div className="container-fb">
+            <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
+              <h2 className="h2 max-w-[432px]">Often paired with</h2>
+              <Link href="/services" className="button-secondary button-small">
+                All services
               </Link>
             </div>
             <div className="grid gap-6 md:grid-cols-2">
               {related.map((s) => (
-                <ServiceCard key={s.slug} service={s} />
+                <ServiceCard key={s.slug} service={s} tall={false} />
               ))}
             </div>
-          </Container>
+          </div>
         </section>
       )}
-
-      <CtaBand />
     </main>
   );
 }
@@ -135,10 +132,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
   const { slug } = await props.params;
   const service = getService(slug);
   if (!service) return {};
-  return {
-    title: service.name,
-    description: service.sub,
-  };
+  return { title: service.name, description: service.sub };
 }
 
 export function generateStaticParams() {

@@ -3,14 +3,14 @@ import Header from "@/app/_components/header";
 import CalProvider from "@/app/_components/cal-provider";
 import { LEGAL_NAME, SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
-import { Figtree, Fraunces } from "next/font/google";
+import { Crimson_Pro, Figtree } from "next/font/google";
 import cn from "classnames";
 
 import "./globals.css";
 
-const fraunces = Fraunces({
+const crimson = Crimson_Pro({
   subsets: ["latin"],
-  weight: ["400", "600"],
+  weight: ["300", "500"],
   style: ["normal", "italic"],
   variable: "--font-heading",
   display: "swap",
@@ -18,7 +18,7 @@ const fraunces = Fraunces({
 
 const figtree = Figtree({
   subsets: ["latin"],
-  weight: ["400", "600"],
+  weight: ["400", "500"],
   variable: "--font-body",
   display: "swap",
 });
@@ -43,14 +43,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(fraunces.variable, figtree.variable)}>
+    <html lang="en" className={cn(crimson.variable, figtree.variable)}>
       <head>
-        <meta name="theme-color" content="#0E397F" />
+        <meta name="theme-color" content="#fffbf8" />
       </head>
-      <body className="font-body bg-ivory text-ink antialiased">
+      <body className="font-body bg-white text-black antialiased">
         <CalProvider />
         <Header />
-        <div className="min-h-screen">{children}</div>
+        {children}
         <Footer />
       </body>
     </html>

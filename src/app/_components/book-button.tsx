@@ -3,11 +3,9 @@ import cn from "classnames";
 import { CAL } from "@/lib/constants";
 
 type Props = {
-  /** Which cal.com event to open. */
   event?: "consultation" | "lesson";
-  /** "primary" is the red pill and is reserved for Book a consultation. */
-  look?: "primary" | "secondary" | "on-blue";
-  size?: "md" | "lg";
+  look?: "primary" | "secondary";
+  size?: "md" | "sm";
   className?: string;
   children?: ReactNode;
 };
@@ -32,13 +30,7 @@ export function BookButton({
       data-cal-namespace={event}
       data-cal-link={link}
       data-cal-config='{"layout":"month_view"}'
-      className={cn(
-        look === "primary" && "btn-primary",
-        look === "secondary" && "btn-secondary",
-        look === "on-blue" && "btn-on-blue",
-        size === "lg" && "btn-lg",
-        className,
-      )}
+      className={cn(look === "primary" ? "button-primary" : "button-secondary", size === "sm" && "button-small", className)}
     >
       {label}
     </a>

@@ -1,12 +1,32 @@
 .markdown {
-  @apply text-lg leading-relaxed font-body;
+  @apply text-[18px] leading-[1.55];
 }
 
 .markdown p,
 .markdown ul,
 .markdown ol,
 .markdown blockquote {
-  @apply my-6;
+  @apply my-6 max-w-[640px];
+}
+
+.markdown h2 {
+  @apply font-heading font-light text-black text-[35px] leading-none tracking-tight mt-14 mb-5;
+}
+
+.markdown h3 {
+  @apply font-heading font-light text-black text-[30px] leading-none tracking-tight mt-10 mb-4;
+}
+
+.markdown a {
+  @apply underline decoration-black/40 underline-offset-4 hover:decoration-black transition-colors duration-200;
+}
+
+.markdown blockquote {
+  @apply border-l border-black pl-6 font-heading italic text-[24px] text-grey-80;
+}
+
+.markdown code {
+  @apply bg-grey-3 px-1.5 py-0.5 text-base;
 }
 
 .markdown ul {
@@ -17,22 +37,6 @@
   @apply list-decimal pl-6;
 }
 
-.markdown h2 {
-  @apply font-heading font-semibold text-blue text-3xl mt-12 mb-4 leading-snug;
-}
-
-.markdown h3 {
-  @apply font-heading font-semibold text-blue text-2xl mt-8 mb-4 leading-snug;
-}
-
-.markdown a {
-  @apply text-blue-deep underline decoration-1 underline-offset-4 hover:text-red transition-colors duration-200;
-}
-
-.markdown blockquote {
-  @apply border-l-4 border-blue pl-5 italic text-ink/80;
-}
-
-.markdown code {
-  @apply bg-blue/5 rounded px-1.5 py-0.5 text-base;
+.markdown li {
+  @apply my-1;
 }
