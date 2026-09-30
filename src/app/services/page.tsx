@@ -3,9 +3,8 @@ import Link from "next/link";
 import { Banner } from "@/app/_components/banner";
 import { BookButton } from "@/app/_components/book-button";
 import { Hero } from "@/app/_components/hero";
-import { ServiceCard } from "@/app/_components/service-card";
+import { ServicesRail } from "@/app/_components/services-rail";
 import { CONSULTATION, IMAGES, PACKAGES } from "@/lib/constants";
-import { SERVICES } from "@/lib/services";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -31,11 +30,7 @@ export default function Services() {
       <section className="section">
         <div className="container-fb">
           <h2 className="h2 mb-14 max-w-[432px]">Programmes and services</h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            {SERVICES.map((s) => (
-              <ServiceCard key={s.slug} service={s} />
-            ))}
-          </div>
+          <ServicesRail />
         </div>
       </section>
 

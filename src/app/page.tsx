@@ -1,12 +1,9 @@
 import Link from "next/link";
-import { type Tone } from "@/app/_components/banner";
-import { CardRail } from "@/app/_components/card-rail";
-import { ServiceRailCard } from "@/app/_components/service-rail-card";
+import { ServicesRail } from "@/app/_components/services-rail";
 import { BookButton } from "@/app/_components/book-button";
 import { InfoBlock } from "@/app/_components/info-block";
 import { Tertiary } from "@/app/_components/tertiary";
 import { CAL, CONSULTATION, IMAGES, PACKAGES, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/constants";
-import { SERVICES } from "@/lib/services";
 
 const AUDIENCES = [
   ["immigrants", "Aspiring immigrants", "French-language pathways reward French. We help you meet the level they ask for, with the test score to prove it.", "/services/tcf-tef-preparation"],
@@ -14,8 +11,6 @@ const AUDIENCES = [
   ["students", "Students", "Meet the language requirement of a French-language college or university programme, and plan your admission.", "/services/career-pathway-guidance"],
   ["professionals", "Professionals", "Take French into the meeting room, the interview and the presentation, with the vocabulary of your field.", "/services/professional-french"],
 ] as const;
-
-const BANNER_TONES: Tone[] = ["yellow", "blue", "red", "green", "blue", "yellow"];
 
 const STEPS = [
   ["Step 01", "Book a consultation", `One hour online with your instructor, $${CONSULTATION.price} ${CONSULTATION.currency}, paid when you book. We assess your French level and talk through what you need it for.`],
@@ -94,11 +89,7 @@ export default function Home() {
               All services
             </Link>
           </div>
-          <CardRail className="rail" label="Programmes and services">
-            {SERVICES.map((s, i) => (
-              <ServiceRailCard key={s.slug} service={s} index={i} tone={BANNER_TONES[i % BANNER_TONES.length]} />
-            ))}
-          </CardRail>
+          <ServicesRail />
         </div>
       </section>
 
