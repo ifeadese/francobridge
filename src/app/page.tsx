@@ -20,8 +20,8 @@ export default function Home() {
           <h1 className="h1 max-w-[640px]">{SITE_TAGLINE}</h1>
           <div className="max-w-[420px]">
             <p className="regular-l">
-              French language education, TCF and TEF Canada preparation, professional French and pathway guidance
-              for immigrants, newcomers, students and professionals. In Ottawa and online.
+              FrancoBridge Consulting Inc. is a French language education, professional development and pathway
+              guidance centre, serving clients in Ottawa and online.
             </p>
             <p className="fr-line mt-3 text-[20px]" lang="fr">
               {SITE_TAGLINE_FR}
