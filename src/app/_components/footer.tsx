@@ -47,7 +47,6 @@ export function Footer() {
           <div className="flex flex-col gap-3">
             <p className="h4 text-[24px]">Contact</p>
             <p className="regular-m">{LOCATION.city}</p>
-            <p className="regular-m text-grey-80">{LOCATION.reach}</p>
             <a href={`mailto:${CONTACT.email}`} className="regular-m underline decoration-black/40 underline-offset-4 hover:decoration-black">
               {CONTACT.email}
             </a>
