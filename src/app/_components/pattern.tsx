@@ -3,9 +3,9 @@
 //
 // The strip always holds a whole number of tiles and scales with its
 // container, so every cell ends flush with the banner's edges. The bottom
-// cells are framed by hairlines drawn in CSS, not in the scaled SVG, so each
-// line is exactly 1px on every side at any width: the grid carries the top
-// and left lines, each cell its right and bottom.
+// cells carry hairlines on their top and right sides only, drawn in CSS, not
+// in the scaled SVG, so each line is exactly 1px at any width. No line on the
+// left or along the bottom, where the strip meets the banner's edge.
 const INKS = {
   blue: { ink: "#0E397F", sun: "#DB2517" },
   red: { ink: "#DB2517", sun: "#0E397F" },
@@ -49,11 +49,11 @@ function Strip({ tiles, ink, sun, className }: { tiles: number; ink: string; sun
       </svg>
       {/* the bottom row's hairlines */}
       <div
-        className="absolute inset-x-0 bottom-0 grid h-1/2 border-l border-t opacity-20"
+        className="absolute inset-x-0 bottom-0 grid h-1/2 border-t opacity-20"
         style={{ gridTemplateColumns: `repeat(${cells}, minmax(0, 1fr))`, borderColor: ink }}
       >
         {Array.from({ length: cells }, (_, k) => (
-          <div key={k} className="border-b border-r" style={{ borderColor: ink }} />
+          <div key={k} className="border-r" style={{ borderColor: ink }} />
         ))}
       </div>
     </div>
