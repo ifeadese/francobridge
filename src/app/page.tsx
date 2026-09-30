@@ -127,20 +127,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Two banners: the consultation and the workplace. */}
-      <section className="section">
-        <div className="container-fb flex flex-col gap-6">
-          <Banner tone="blue" way="blue" heading="Start with a one-hour consultation. Leave with your level and a plan.">
-            <BookButton />
-          </Banner>
-          <Banner tone="red" way="red" heading="French for the workplace: meetings, interviews, the public service.">
-            <Link href="/services/professional-french" className="button-primary">
-              Professional French
-            </Link>
-          </Banner>
-        </div>
-      </section>
-
       {/* From the blog, when there is something to show. */}
       {posts.length > 0 && (
         <section className="section">
