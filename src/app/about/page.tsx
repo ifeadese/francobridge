@@ -4,7 +4,7 @@ import { Banner } from "@/app/_components/banner";
 import { BookButton } from "@/app/_components/book-button";
 import { Hero } from "@/app/_components/hero";
 import { WhoWeHelp } from "@/app/_components/who-we-help";
-import { IMAGES, LOCATION, SITE_TAGLINE_FR } from "@/lib/constants";
+import { IMAGES, LOCATION } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "About",
@@ -30,18 +30,6 @@ export default function About() {
           Contact us
         </Link>
       </Hero>
-
-      {/* The motto band. */}
-      <section className="section-tight">
-        <div className="container-fb">
-          <div className="flex flex-col gap-6 bg-blue-light px-6 py-12 md:px-16 md:py-20">
-            <p className="h2 max-w-[880px]" lang="fr">
-              {SITE_TAGLINE_FR}
-            </p>
-            <p className="regular-m text-grey-80">The FrancoBridge motto. Bridging language. Unlocking opportunities.</p>
-          </div>
-        </div>
-      </section>
 
       {/* Discover: heading left, text right. */}
       <section className="section">
