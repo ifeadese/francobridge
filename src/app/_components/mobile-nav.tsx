@@ -34,7 +34,6 @@ export function MobileNav() {
             ))}
           </nav>
           <div className="flex flex-col items-start gap-4">
-            <BookButton />
             <BookButton event="lesson" />
           </div>
         </div>
