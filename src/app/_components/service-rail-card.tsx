@@ -17,13 +17,13 @@ export function ServiceRailCard({ service, index, tone }: { service: Service; in
       <div className="pointer-events-none absolute inset-x-0 bottom-0" aria-hidden="true">
         <Pattern way={WAY_FOR_TONE[tone]} tiles={2} />
       </div>
-      <div className="relative flex flex-1 flex-col justify-between gap-8 p-6 md:p-8">
+      <div className="relative flex flex-1 flex-col justify-between gap-10 p-6 md:p-10">
         <div className="flex flex-col gap-4">
           <p className="regular-s">
             {String(index + 1).padStart(2, "0")} · {service.short}
           </p>
-          <h3 className="h4">{service.cardTitle}</h3>
-          <p className="regular-m">{service.cardFor}</p>
+          <h3 className="h3">{service.cardTitle}</h3>
+          <p className="regular-l">{service.cardFor}</p>
         </div>
         <Tertiary as="span">Learn more</Tertiary>
       </div>
