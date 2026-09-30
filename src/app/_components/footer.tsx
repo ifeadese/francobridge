@@ -3,18 +3,23 @@ import { Logo } from "@/app/_components/logo";
 import { CONTACT, LEGAL_NAME, LOCATION, NAV, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/constants";
 import { SERVICES } from "@/lib/services";
 
-// On the light grey, three columns, then the legal line.
+// On the light grey: the mark, tagline and contact at the left, the links at
+// the right, then the legal line.
 export function Footer() {
   return (
     <footer className="bg-grey-3 pb-10 pt-16">
       <div className="container-fb">
-        <div className="mb-20 grid gap-12 md:grid-cols-3">
+        <div className="mb-20 grid gap-12 md:grid-cols-2">
           <div className="flex flex-col gap-4">
             <Logo variant="stacked" on="ivory" className="w-40" />
             <p className="regular-m mt-4 max-w-[320px]">{SITE_TAGLINE}</p>
             <p className="fr-line text-[18px]" lang="fr">
               {SITE_TAGLINE_FR}
             </p>
+            <p className="regular-m mt-4">{LOCATION.city}</p>
+            <a href={`mailto:${CONTACT.email}`} className="regular-m self-start underline decoration-black/40 underline-offset-4 hover:decoration-black">
+              {CONTACT.email}
+            </a>
           </div>
           <div className="grid gap-12 sm:grid-cols-2">
             <div className="flex flex-col gap-3">
@@ -43,13 +48,6 @@ export function Footer() {
                 </Link>
               </div>
             </div>
-          </div>
-          <div className="flex flex-col gap-3">
-            <p className="h4 text-[24px]">Contact</p>
-            <p className="regular-m">{LOCATION.city}</p>
-            <a href={`mailto:${CONTACT.email}`} className="regular-m underline decoration-black/40 underline-offset-4 hover:decoration-black">
-              {CONTACT.email}
-            </a>
           </div>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-grey-8 pt-6">
