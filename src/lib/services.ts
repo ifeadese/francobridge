@@ -13,7 +13,8 @@ export type Service = {
   includes: { title: string; items: string[] }[];
   notes?: string[];
   cta: "consultation" | "lesson";
-  /** The button on the home page card. */
+  /** The home page card: one tight line as its title, and the button. */
+  cardTitle: string;
   ctaLabel: string;
   related: string[];
 };
@@ -60,6 +61,7 @@ export const SERVICES: Service[] = [
       "FrancoBridge preparation fees do not include official TCF or TEF examination fees. You register and pay for the examination directly with the test centre.",
     ],
     cta: "consultation",
+    cardTitle: "Pass your TCF or TEF Canada with confidence.",
     ctaLabel: "Explore exam preparation",
     related: ["general-french", "immigration-pathways"],
   },
@@ -104,6 +106,7 @@ export const SERVICES: Service[] = [
       },
     ],
     cta: "consultation",
+    cardTitle: "Speak French with confidence at work.",
     ctaLabel: "Explore professional French",
     related: ["career-pathway-guidance", "general-french"],
   },
@@ -154,6 +157,7 @@ export const SERVICES: Service[] = [
       "Programmes run online in 20, 40 or 60 hour blocks. The right block and level are decided with you at your consultation, after your French level assessment.",
     ],
     cta: "consultation",
+    cardTitle: "Learn French from A1 to C1, online.",
     ctaLabel: "Explore French A1 to C1",
     related: ["tcf-tef-preparation", "professional-french"],
   },
@@ -194,6 +198,7 @@ export const SERVICES: Service[] = [
     ],
     notes: ["These services are offered only in French."],
     cta: "consultation",
+    cardTitle: "Plan your career and studies, in French.",
     ctaLabel: "Explore career guidance",
     related: ["professional-french", "immigration-pathways"],
   },
@@ -225,6 +230,7 @@ export const SERVICES: Service[] = [
       "FrancoBridge provides information and language preparation only. Regulated immigration advice or representation is referred to an appropriately authorized immigration professional.",
     ],
     cta: "consultation",
+    cardTitle: "Understand the French-language immigration pathways.",
     ctaLabel: "Explore immigration guidance",
     related: ["tcf-tef-preparation", "career-pathway-guidance"],
   },
@@ -257,6 +263,7 @@ export const SERVICES: Service[] = [
       },
     ],
     cta: "consultation",
+    cardTitle: "Translation and proofreading, English and French.",
     ctaLabel: "Request a translation quote",
     related: ["career-pathway-guidance", "professional-french"],
   },

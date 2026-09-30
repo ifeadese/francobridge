@@ -5,8 +5,8 @@ import { Pattern } from "@/app/_components/pattern";
 import type { Service } from "@/lib/services";
 import { IMAGES } from "@/lib/constants";
 
-// Banner type three: a pastel half with the label, title, one paragraph and
-// the button, the pattern strip along its foot, beside a photo that fills the
+// Banner type three: a pastel half with the label, one tight line as the
+// title, and the button, the pattern strip along its foot, beside a photo that fills the
 // other half. Sticky, so a column of them stacks as the page scrolls.
 export function ServiceBanner({ service, index, tone, sticky = true }: { service: Service; index: number; tone: Tone; sticky?: boolean }) {
   return (
@@ -17,8 +17,7 @@ export function ServiceBanner({ service, index, tone, sticky = true }: { service
             <p className="regular-m">
               {String(index + 1).padStart(2, "0")} · {service.short}
             </p>
-            <h3 className="banner-heading max-w-[560px]">{service.name}</h3>
-            <p className="regular-l max-w-[480px]">{service.sub}</p>
+            <h3 className="banner-heading max-w-[560px]">{service.cardTitle}</h3>
           </div>
           <div className="flex flex-wrap items-center gap-4">
             <Link href={`/services/${service.slug}`} className="button-primary">
