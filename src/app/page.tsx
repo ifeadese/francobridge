@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { Banner } from "@/app/_components/banner";
+import { Banner, type Tone } from "@/app/_components/banner";
 import { BookButton } from "@/app/_components/book-button";
 import { InfoBlock } from "@/app/_components/info-block";
-import { ServiceCard } from "@/app/_components/service-card";
 import { Tertiary } from "@/app/_components/tertiary";
 import { CAL, CONSULTATION, IMAGES, PACKAGES, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/constants";
 import { SERVICES } from "@/lib/services";
@@ -14,6 +13,8 @@ const AUDIENCES = [
   ["students", "Students", "Meet the language requirement of a French-language college or university programme, and plan your admission.", "/services/career-pathway-guidance"],
   ["professionals", "Professionals", "Take French into the meeting room, the interview and the presentation, with the vocabulary of your field.", "/services/professional-french"],
 ] as const;
+
+const BANNER_TONES: Tone[] = ["yellow", "blue", "red", "green", "blue", "yellow"];
 
 const STEPS = [
   ["Step 01", "Book a consultation", `One hour online with your instructor, $${CONSULTATION.price} ${CONSULTATION.currency}, paid when you book. We assess your French level and talk through what you need it for.`],
@@ -95,7 +96,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services: photo blocks, TCF & TEF first. */}
+      {/* Services: six banners that stack as the page scrolls, TCF & TEF first. */}
       <section className="section">
         <div className="container-fb">
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
@@ -104,9 +105,13 @@ export default function Home() {
               All services
             </Link>
           </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {SERVICES.map((s) => (
-              <ServiceCard key={s.slug} service={s} />
+          <div className="flex flex-col gap-6 md:gap-16">
+            {SERVICES.map((s, i) => (
+              <Banner key={s.slug} tone={BANNER_TONES[i % BANNER_TONES.length]} heading={s.headline} large sticky>
+                <Link href={`/services/${s.slug}`} className="button-primary">
+                  {s.short}
+                </Link>
+              </Banner>
             ))}
           </div>
         </div>

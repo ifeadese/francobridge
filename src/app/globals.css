@@ -70,6 +70,12 @@ body {
     font-size: clamp(24px, 2vw, 30px);
     letter-spacing: -0.02em;
   }
+  .banner-heading {
+    @apply font-heading font-light text-black;
+    font-size: clamp(43px, 4.9vw, 70px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+  }
   .large-number {
     @apply font-heading font-light leading-none text-black;
     font-size: clamp(72px, 9vw, 130px);
