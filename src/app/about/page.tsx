@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function About() {
   return (
     <main>
-      <Hero title="A bridge, built in Ottawa, for people who need French to get somewhere" compact />
+      <Hero title="A bridge for people who need French to get somewhere" compact />
 
       {/* What we do, what we offer, where. */}
       <section className="mt-0">
