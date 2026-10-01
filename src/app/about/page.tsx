@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { BookButton } from "@/app/_components/book-button";
 import { Hero } from "@/app/_components/hero";
+import { Logo } from "@/app/_components/logo";
 import { WhoWeHelp } from "@/app/_components/who-we-help";
 import { LOCATION } from "@/lib/constants";
 
@@ -39,25 +39,32 @@ export default function About() {
 
       <WhoWeHelp className="mt-14 md:mt-20" />
 
-      {/* Your instructor. */}
-      <section className="mt-14 md:mt-20">
-        <div className="container-fb">
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-6">
-            <h2 className="h2 max-w-[432px]">Your instructor</h2>
-            <BookButton size="sm" look="secondary" />
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            <div className="flex flex-col gap-4">
-              <div className="aspect-[3/4] w-full bg-grey-8" aria-hidden="true" />
-              <div className="flex flex-col gap-3">
-                <h4 className="h4 border-b border-black pb-3">Founder and lead instructor</h4>
-                <p className="regular-m text-grey-80">Name, credentials and a photograph to come.</p>
-              </div>
+      {/* Meet the instructor: the layout from the stratejik9000 about page. A
+          portrait panel at the left, the introduction at the right; on phones
+          the introduction comes first and the portrait follows it. */}
+      <section className="mt-14 md:mt-20" aria-label="Meet the instructor">
+        <div className="container-fb grid gap-10 md:grid-cols-[minmax(0,20rem)_1fr] md:gap-14">
+          <div className="order-last md:order-none">
+            {/* Placeholder until a real portrait is supplied: never a stock photo of someone else. */}
+            <div
+              role="img"
+              aria-label="Portrait of the founder, to follow"
+              className="relative flex aspect-[4/5] flex-col items-center justify-center gap-5 overflow-hidden bg-blue text-white"
+            >
+              <Logo variant="mark" on="blue" className="w-40" />
+              <span className="regular-s uppercase tracking-[0.14em] text-white/70">Portrait to follow</span>
             </div>
-            <div className="flex flex-col gap-4 md:col-span-2">
-              <p className="regular-l max-w-[640px]">
-                Every consultation and, for now, every lesson is with the founder. A short biography goes here once
-                the client confirms it: background, qualifications, and the road that led to Ottawa.
+          </div>
+          <div>
+            <p className="regular-s uppercase tracking-[0.14em] text-grey-80">Meet the instructor</p>
+            <div className="mt-4 flex max-w-2xl flex-col gap-5 text-[18px] leading-[1.5] md:text-[20px]">
+              <p>
+                I’m [NAME], the founder and lead instructor of FrancoBridge. Every consultation and, for now, every
+                lesson is with me.
+              </p>
+              <p>
+                [A short biography goes here once confirmed: background, qualifications, and the road that led to
+                Ottawa.]
               </p>
             </div>
           </div>
