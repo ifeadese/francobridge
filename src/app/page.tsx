@@ -48,7 +48,7 @@ export default function Home() {
       </section>
 
       {/* How it works: on the light grey. */}
-      <section className="py-10 md:py-14">
+      <section className="pt-10 md:pt-14">
         <div className="container-fb">
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
             <h2 className="h1 max-w-[880px]">Want to get started?</h2>

@@ -30,6 +30,11 @@
 
 html { scroll-padding-top: 96px; }
 
+/* Every page ends with the same breathing room before the footer, so no
+   section has to carry its own. */
+main { padding-bottom: 56px; }
+@media (min-width: 768px) { main { padding-bottom: 80px; } }
+
 body {
   background-color: var(--white);
   color: var(--black);

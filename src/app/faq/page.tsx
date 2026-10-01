@@ -17,7 +17,7 @@ export default function Faq() {
     <main>
       <Hero title="Questions, answered in plain numbers" compact />
 
-      <section className="mt-0 pb-16 md:pb-24">
+      <section className="mt-0">
         <div className="container-fb">
           <div className="max-w-[880px] border-t border-black">
             {FAQS.map((item) => (

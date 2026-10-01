@@ -17,7 +17,7 @@ export default function Contact() {
         text="An exam date, a job, a study programme, a move. Write a few lines and we will reply with what we would suggest and what it costs."
         compact
       />
-      <section className="mt-0 pb-16 md:pb-24">
+      <section className="mt-0">
         <div className="container-fb">
           <RequestForm />
         </div>
