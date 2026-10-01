@@ -4,17 +4,18 @@ import { TONES, WAY_FOR_TONE, type Tone } from "@/app/_components/banner";
 import { Pattern } from "@/app/_components/pattern";
 import type { Service } from "@/lib/services";
 
-// A service card for the rail: a 3:4 pastel panel with the label, one tight
+// A service card for the rail: a tall pastel panel with the label, one tight
 // line as the title, who it is for, and a Learn more button at the foot, with
-// the pattern behind them along the bottom edge. The whole card is the link:
+// the pattern behind them along the bottom edge. Cards share the height of the
+// tallest and grow with their text, never clipping it. The whole card is the link:
 // it lifts on hover, and the button darkens and its arrow moves.
 export function ServiceRailCard({ service, index, tone }: { service: Service; index: number; tone: Tone }) {
   return (
     <Link
       href={`/services/${service.slug}`}
-      className={cn("group relative flex aspect-[3/4] w-full flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black", TONES[tone])}
+      className={cn("group relative flex min-h-[460px] w-full flex-col transition-transform duration-300 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black md:min-h-[560px]", TONES[tone])}
     >
-      <div className="pointer-events-none absolute inset-x-0 bottom-0" aria-hidden="true">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 overflow-hidden" aria-hidden="true">
         <Pattern way={WAY_FOR_TONE[tone]} tiles={2} />
       </div>
       <div className="relative flex flex-1 flex-col justify-between gap-10 p-6 md:p-10">
