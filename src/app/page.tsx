@@ -34,8 +34,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services: a rail of six cards, TCF & TEF first. */}
-      <section className="section">
+      {/* Services: a rail of six cards, TCF & TEF first, in a band of its own. */}
+      <section className="bg-grey-3 py-20 md:py-28">
         <div className="container-fb">
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
             <h2 className="h1 max-w-[720px]">Six programmes, one first step</h2>
@@ -48,7 +48,7 @@ export default function Home() {
       </section>
 
       {/* How it works: on the light grey. */}
-      <section className="mt-16 bg-grey-3 py-20 md:mt-20 md:py-28">
+      <section className="py-20 md:py-28">
         <div className="container-fb">
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
             <h2 className="h1 max-w-[720px]">Want to get started?</h2>
