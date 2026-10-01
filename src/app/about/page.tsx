@@ -3,20 +3,13 @@ import { Banner } from "@/app/_components/banner";
 import { BookButton } from "@/app/_components/book-button";
 import { Hero } from "@/app/_components/hero";
 import { WhoWeHelp } from "@/app/_components/who-we-help";
-import { IMAGES, LOCATION } from "@/lib/constants";
+import { LOCATION } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "About",
   description:
     "FrancoBridge Consulting Inc. is a French language education, professional development and pathway guidance centre in Ottawa, Ontario, serving clients in Ottawa and online.",
 };
-
-const METHOD = [
-  ["Learn", "A structure, a set of words, a way of saying something, taught in context."],
-  ["Practice", "Guided repetition until it is comfortable: listening, speaking, reading, writing."],
-  ["Communicate", "Use it in real conversation, with correction that builds confidence rather than fear."],
-  ["Apply", "Take it into your exam, your workplace, your application, your life."],
-] as const;
 
 export default function About() {
   return (
@@ -46,27 +39,6 @@ export default function About() {
       </section>
 
       <WhoWeHelp className="mt-14 md:mt-20" />
-
-      {/* Method: text left, photo right. */}
-      <section className="mt-14 md:mt-20">
-        <div className="container-fb grid gap-10 md:grid-cols-[5fr_6.3fr] md:gap-16">
-          <div className="flex flex-col gap-8">
-            <h2 className="h2 max-w-[432px]">Learn, practice, communicate, apply</h2>
-            <div className="flex flex-col gap-6">
-              {METHOD.map(([step, text], i) => (
-                <div key={step} className="flex flex-col gap-3 border-t border-black pt-4">
-                  <div className="flex items-baseline justify-between">
-                    <h3 className="h3">{step}</h3>
-                    <span className="regular-s text-grey-80">0{i + 1}</span>
-                  </div>
-                  <p className="regular-m max-w-[480px]">{text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <img src={IMAGES.method} alt="" className="h-[360px] w-full object-cover md:h-full md:max-h-[640px]" />
-        </div>
-      </section>
 
       {/* Your instructor. */}
       <section className="mt-14 md:mt-20">
