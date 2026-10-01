@@ -23,10 +23,9 @@ export default function About() {
     <main>
       <Hero title="A bridge, built in Ottawa, for people who need French to get somewhere" />
 
-      {/* Discover: heading left, text right. */}
+      {/* What we do, what we offer, where. */}
       <section className="section">
-        <div className="container-fb grid gap-12 md:grid-cols-[4.1fr_7fr] md:gap-[120px]">
-          <h2 className="h2">Discover FrancoBridge</h2>
+        <div className="container-fb">
           <div className="flex flex-col gap-10">
             <div className="flex flex-col gap-4">
               <h4 className="h4">What we do</h4>
