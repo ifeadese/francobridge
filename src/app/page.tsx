@@ -35,7 +35,7 @@ export default function Home() {
       </section>
 
       {/* Services: a rail of six cards, TCF & TEF first, in a band of its own. */}
-      <section className="bg-grey-3 py-20 md:py-28">
+      <section className="bg-grey-3 py-10 md:py-14">
         <div className="container-fb">
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
             <h2 className="h1 max-w-[720px]">Six programmes, one first step</h2>
