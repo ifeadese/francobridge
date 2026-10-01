@@ -24,7 +24,7 @@ export default function About() {
       <Hero title="A bridge, built in Ottawa, for people who need French to get somewhere" compact />
 
       {/* What we do, what we offer, where. */}
-      <section className="mt-14 md:mt-20">
+      <section className="mt-0">
         <div className="container-fb">
           <div className="flex flex-col gap-6">
             <p className="regular-l max-w-[640px]">
