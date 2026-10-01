@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Banner } from "@/app/_components/banner";
 import { BookButton } from "@/app/_components/book-button";
 import { Hero } from "@/app/_components/hero";
@@ -22,14 +21,7 @@ const METHOD = [
 export default function About() {
   return (
     <main>
-      <Hero
-        title="A bridge, built in Ottawa, for people who need French to get somewhere"
-        text="FrancoBridge Consulting Inc. is a French language education, professional development and pathway guidance centre, serving clients in Ottawa and online."
-      >
-        <Link href="/contact" className="button-primary">
-          Contact us
-        </Link>
-      </Hero>
+      <Hero title="A bridge, built in Ottawa, for people who need French to get somewhere" />
 
       {/* Discover: heading left, text right. */}
       <section className="section">
