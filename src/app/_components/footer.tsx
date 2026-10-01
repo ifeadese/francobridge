@@ -1,37 +1,66 @@
-import Container from "@/app/_components/container";
-import { REPO_URL, SITE_NAME, SITE_TAGLINE } from "@/lib/constants";
+import Link from "next/link";
+import { Logo } from "@/app/_components/logo";
+import { CONTACT, LEGAL_NAME, LOCATION, NAV, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/constants";
+import { SERVICES } from "@/lib/services";
 
+// On the light grey: the mark, tagline and contact at the left, the links at
+// the right, then the legal line.
 export function Footer() {
   return (
-    <footer className="bg-navy text-soft-white">
-      <Container>
-        <div className="py-28 flex flex-col lg:flex-row items-center">
-          <div className="text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2">
-            <h3 className="font-heading font-semibold text-4xl lg:text-[2.5rem] tracking-tighter leading-tight">
-              {SITE_NAME}.
-            </h3>
-            <p className="mt-2 text-soft-white/80">{SITE_TAGLINE}</p>
+    <footer className="bg-grey-3 pb-10 pt-16">
+      <div className="container-fb">
+        <div className="mb-20 grid gap-12 md:grid-cols-2">
+          <div className="flex flex-col gap-4">
+            <Logo variant="stacked" on="ivory" className="w-40" />
+            <p className="regular-m mt-4 max-w-[320px]">{SITE_TAGLINE}</p>
+            <p className="fr-line text-[18px]" lang="fr">
+              {SITE_TAGLINE_FR}
+            </p>
+            <p className="regular-m mt-4">{LOCATION.city}</p>
+            <a href={`mailto:${CONTACT.email}`} className="regular-m self-start underline decoration-black/40 underline-offset-4 hover:decoration-black">
+              {CONTACT.email}
+            </a>
           </div>
-          <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2">
-            <a
-              href="/"
-              className="mx-3 bg-red hover:bg-soft-white hover:text-red border border-red text-white font-semibold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0"
-            >
-              Latest posts
-            </a>
-            <a
-              href={REPO_URL}
-              className="mx-3 font-semibold underline decoration-1 underline-offset-4 hover:text-soft-white/70"
-            >
-              View on GitHub
-            </a>
+          <div className="grid gap-12 sm:grid-cols-2">
+            <div className="flex flex-col gap-3">
+              <p className="h4 text-[24px]">Services</p>
+              <div className="flex flex-col gap-1">
+                {SERVICES.map((s) => (
+                  <Link key={s.slug} href={`/services/${s.slug}`} className="regular-m py-1 transition-colors hover:text-blue">
+                    {s.short}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col gap-3">
+              <p className="h4 text-[24px]">School</p>
+              <div className="flex flex-col gap-1">
+                <Link href="/" className="regular-m py-1 transition-colors hover:text-blue">
+                  Home
+                </Link>
+                {NAV.map((item) => (
+                  <Link key={item.href} href={item.href} className="regular-m py-1 transition-colors hover:text-blue">
+                    {item.label}
+                  </Link>
+                ))}
+                <Link href="/blog" className="regular-m py-1 transition-colors hover:text-blue">
+                  Blog
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
-        <p className="pb-10 text-center text-sm text-soft-white/60">
-          &copy; {new Date().getFullYear()} {SITE_NAME}. Built with Next.js and
-          deployed on Vercel.
-        </p>
-      </Container>
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-grey-8 pt-6">
+          <p className="regular-s text-grey-80">
+            &copy; {new Date().getFullYear()} {LEGAL_NAME}. All rights reserved.
+          </p>
+          <p className="regular-s max-w-[760px] text-grey-80">
+            Preparation fees do not include official TCF or TEF examination fees. Immigration information only;
+            regulated advice is referred to an authorized professional. Photographs: Wikimedia Commons
+            contributors, CC licences.
+          </p>
+        </div>
+      </div>
     </footer>
   );
 }

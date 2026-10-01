@@ -2,21 +2,182 @@
 @tailwind components;
 @tailwind utilities;
 
+/* v2: an editorial school layout. Warm white ground, near-black type and
+   buttons, light serif display type, a 1280px centred column with 64px
+   gutters, 20px body on a 760px line, 80px between sections, pastel banners
+   with a pattern strip. */
 :root {
-  --navy: #0b3d91;
-  --french-blue: #002395;
-  --red: #d52b1e;
-  --soft-white: #f8f6f1;
-  --charcoal: #1f2937;
-  --green: #5e7f66;
+  --white: #fffbf8;
+  --black: #1d1a17;
+  --grey-3: #f8f4f1;
+  --grey-8: #ede9e6;
+  --grey-80: #4a4744;
+  --blue: #0e397f;
+  --red: #db2517;
+  --blue-light: #dbe4f3;
+  --red-light: #fbe0dc;
+  --yellow: #ffdf8b;
+  --yellow-light: #f9e7b8;
+  --green-light: #dfe9dc;
+  --gutter: 64px;
+}
+@media (max-width: 991px) {
+  :root { --gutter: 48px; }
+}
+@media (max-width: 767px) {
+  :root { --gutter: 24px; }
 }
 
+html { scroll-padding-top: 96px; }
+
+/* Every page ends with the same breathing room before the footer, so no
+   section has to carry its own. */
+main { padding-bottom: 56px; }
+@media (min-width: 768px) { main { padding-bottom: 80px; } }
+
 body {
-  background-color: var(--soft-white);
-  color: var(--charcoal);
+  background-color: var(--white);
+  color: var(--black);
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: -0.005em;
 }
 
 ::selection {
-  background-color: var(--navy);
-  color: var(--soft-white);
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+@layer components {
+  .container-fb {
+    @apply mx-auto w-full max-w-[1280px];
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+
+  /* Type. Crimson Pro light, set at 100% line height and tight tracking. */
+  .h1 {
+    @apply font-heading font-light leading-none text-black;
+    font-size: clamp(48px, 7vw, 100px);
+    letter-spacing: -0.03em;
+  }
+  .h2 {
+    @apply font-heading font-light leading-none text-black;
+    font-size: clamp(40px, 4.2vw, 60px);
+    letter-spacing: -0.025em;
+  }
+  .h3 {
+    @apply font-heading font-light leading-none text-black;
+    font-size: clamp(30px, 2.7vw, 38px);
+    letter-spacing: -0.03em;
+  }
+  .h4 {
+    @apply font-heading font-light leading-none text-black;
+    font-size: clamp(26px, 2.2vw, 32px);
+    letter-spacing: -0.02em;
+  }
+  .banner-heading {
+    @apply font-heading font-light text-black;
+    font-size: clamp(46px, 5.3vw, 76px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+  }
+  .large-number {
+    @apply font-heading font-light leading-none text-black;
+    font-size: clamp(72px, 9vw, 130px);
+    letter-spacing: -0.03em;
+  }
+  .regular-l { @apply text-[20px] leading-[1.5]; }
+  .regular-m { @apply text-[18px] leading-[1.5]; }
+  .regular-s { @apply text-[15px] leading-[1.5]; }
+  .fr-line {
+    @apply font-heading italic font-light text-grey-80;
+  }
+
+  /* Buttons: square-cornered. Black on white, white on black. Red is never a
+     button in this layout; it lives in the mark and the patterns. */
+  .button {
+    @apply inline-flex items-center justify-center rounded-none text-center text-[18px] leading-[1.5] transition-colors duration-200;
+    padding: 22px 36px 24px;
+  }
+  .button-primary { @apply button bg-black text-white hover:bg-grey-80; }
+  .button-secondary { @apply button border border-black bg-transparent text-black hover:border-grey-80 hover:bg-grey-80 hover:text-white; }
+  .button-small { padding: 16px 24px; @apply text-[16px]; }
+
+  /* Tertiary: a word and a small ringed arrow. */
+  .tertiary {
+    @apply inline-flex items-center gap-2 text-[17px] leading-[1.5] text-black;
+  }
+  .tertiary-icon {
+    @apply flex h-[26px] w-[26px] items-center justify-center rounded-full border border-black transition-colors duration-200;
+  }
+  .group:hover .tertiary-icon, .tertiary:hover .tertiary-icon {
+    @apply bg-black text-white;
+  }
+
+  /* Compact section spacing, the same on every page: 80px, 56px on phones. */
+  .section { margin-top: 80px; }
+  @media (max-width: 767px) { .section { margin-top: 56px; } }
+  .section-tight { margin-top: 64px; }
+  @media (max-width: 991px) { .section-tight { margin-top: 48px; } }
+  @media (max-width: 767px) { .section-tight { margin-top: 24px; } }
+
+  .line { @apply h-px w-full bg-black; }
+  .line-white { @apply h-px w-full bg-white; }
+
+  .panel { @apply flex flex-col; padding: 24px 32px; }
+
+  /* Form fields: a bottom rule only. */
+  .field {
+    @apply w-full border-0 border-b border-black/40 bg-transparent px-0 pb-3 text-[20px] leading-[1.5] text-black outline-none transition-colors placeholder:text-black/50 focus:border-black;
+  }
+}
+
+/* ------------------------------------------------------------
+   Card rail: a horizontal run of cards that scrolls edge to edge. The scroller
+   breaks out to the viewport width; the inline padding pulls the first card
+   back in line with the heading. Controls come from CardRail.tsx.
+   ------------------------------------------------------------ */
+.rail {
+  display: flex;
+  column-gap: 24px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-inline: calc(50% - 50vw);
+  padding-inline: calc(50vw - 50%);
+  scroll-padding-inline: calc(50vw - 50%);
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.rail::-webkit-scrollbar { display: none; }
+.rail > * {
+  flex: 0 0 clamp(320px, 44%, 560px);
+  display: flex;
+}
+.card-rail-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 24px;
+}
+.card-rail-nav[data-scrollable="false"] { visibility: hidden; }
+.card-rail-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1px solid var(--black);
+  color: var(--black);
+  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+.card-rail-btn:hover:not(:disabled) { background-color: var(--black); color: var(--white); }
+.card-rail-btn:disabled { opacity: 0.3; cursor: default; }
+@media (max-width: 767px) {
+  /* Swiping already moves the rail on touch, so the controls are desktop only. */
+  .card-rail-nav { display: none; }
 }
