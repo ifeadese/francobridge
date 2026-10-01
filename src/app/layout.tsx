@@ -31,6 +31,8 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   applicationName: LEGAL_NAME,
+  // Not live yet: keep every page out of search engines. Remove at launch.
+  robots: { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false } },
   openGraph: {
     siteName: LEGAL_NAME,
     type: "website",
