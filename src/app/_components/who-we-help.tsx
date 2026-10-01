@@ -3,7 +3,8 @@ import { ServiceGlyph } from "@/app/_components/service-glyph";
 import { getService, SERVICES } from "@/lib/services";
 
 // Who we help: four grey blocks, each ending in the services that apply,
-// always in the site's service order.
+// always in the site's service order. When the four blocks share one row,
+// every service row is two lines tall so the lists line up across blocks.
 const AUDIENCES = [
   {
     glyph: "immigrants",
@@ -55,10 +56,10 @@ export function WhoWeHelp({ className = "section" }: { className?: string }) {
                       <li key={slug} className="border-b border-black/15">
                         <Link
                           href={`/services/${slug}`}
-                          className="flex items-center justify-between gap-3 py-2.5 text-[16px] transition-colors hover:text-blue"
+                          className="flex items-center justify-between gap-3 py-2.5 text-[16px] transition-colors hover:text-blue xl:min-h-[68px] xl:items-start"
                         >
                           <span>{s.short}</span>
-                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="shrink-0 xl:mt-[5px]">
                             <path d="M2 7h10M8 3l4 4-4 4" />
                           </svg>
                         </Link>
