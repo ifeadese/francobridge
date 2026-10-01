@@ -33,12 +33,12 @@ export default function About() {
         </div>
       </section>
 
-      <WhoWeHelp className="mt-14 md:mt-20" />
+      <WhoWeHelp />
 
       {/* Meet the instructor: the layout from the stratejik9000 about page. A
           portrait panel at the left, the introduction at the right; on phones
           the introduction comes first and the portrait follows it. */}
-      <section className="mt-14 md:mt-20" aria-label="Meet the instructor">
+      <section className="section" aria-label="Meet the instructor">
         <div className="container-fb grid gap-10 md:grid-cols-[minmax(0,20rem)_1fr] md:gap-14">
           <div className="order-last md:order-none">
             {/* Placeholder until a real portrait is supplied: never a stock photo of someone else. */}

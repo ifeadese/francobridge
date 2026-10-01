@@ -4,7 +4,7 @@
 
 /* v2: an editorial school layout. Warm white ground, near-black type and
    buttons, light serif display type, a 1280px centred column with 64px
-   gutters, 20px body on a 760px line, 176px between sections, pastel banners
+   gutters, 20px body on a 760px line, 80px between sections, pastel banners
    with a pattern strip. */
 :root {
   --white: #fffbf8;
@@ -115,8 +115,9 @@ body {
     @apply bg-black text-white;
   }
 
-  .section { margin-top: 176px; }
-  @media (max-width: 767px) { .section { margin-top: 144px; } }
+  /* Compact section spacing, the same on every page: 80px, 56px on phones. */
+  .section { margin-top: 80px; }
+  @media (max-width: 767px) { .section { margin-top: 56px; } }
   .section-tight { margin-top: 64px; }
   @media (max-width: 991px) { .section-tight { margin-top: 48px; } }
   @media (max-width: 767px) { .section-tight { margin-top: 24px; } }

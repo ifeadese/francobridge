@@ -14,7 +14,7 @@ export default function Home() {
     <main>
       {/* Hero: the tagline, one line, the French line and two buttons. */}
       <section className="flex flex-col pt-[88px]">
-        <div className="container-fb flex flex-col items-start justify-end gap-10 py-[88px] md:py-20">
+        <div className="container-fb flex flex-col items-start justify-end gap-8 pb-10 pt-14 md:pb-12 md:pt-16">
           <h1 className="h1 max-w-[760px]">{SITE_TAGLINE}</h1>
           <div className="max-w-[420px]">
             <p className="regular-l">

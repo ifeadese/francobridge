@@ -10,14 +10,14 @@ export function Hero({
   text,
   image,
   imageAlt = "",
-  compact = false,
+  compact = true,
   children,
 }: {
   title: string;
   text?: string;
   image?: string;
   imageAlt?: string;
-  /** Less padding above and below, for a page that keeps its sections close. */
+  /** The compact spacing is the default; pass false for the roomier opening. */
   compact?: boolean;
   children?: ReactNode;
 }) {
