@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Hero } from "@/app/_components/hero";
 import { Logo } from "@/app/_components/logo";
 import { WhoWeHelp } from "@/app/_components/who-we-help";
-import { LOCATION } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "About",
@@ -20,18 +19,15 @@ export default function About() {
         <div className="container-fb">
           <div className="flex flex-col gap-6">
             <p className="regular-l max-w-[640px]">
-              FrancoBridge helps aspiring immigrants, newcomers, students and professionals develop the French
-              language skills, confidence and career readiness needed to access educational, professional and
-              Francophone opportunities in Canada and beyond. Our programmes combine structured French language
-              instruction with practical communication, professional development and specialised preparation for
-              French-language proficiency examinations.
+              FrancoBridge helps immigrants, newcomers, students and professionals build the French they need for
+              study, work and life in Canada. Lessons are structured, practical and personal: you learn the
+              language, practise using it, and prepare for the exams that count.
             </p>
             <p className="regular-l max-w-[640px]">
-              We offer General French programmes from A1 to C1, private instruction, TCF Canada and TEF Canada
-              preparation, professional French, French conversation programmes, workplace and government French
-              preparation, career development services, educational pathway guidance, translation services, and
-              French immigration pathway information and guidance. We are based in {LOCATION.city}, and every
-              programme runs online, so the bridge reaches beyond the city as the school grows.
+              We teach General French from A1 to C1, prepare you for the TCF Canada and TEF Canada, and offer
+              professional French for the workplace and the public service. We also help with career and study
+              plans in French, explain the French-language immigration pathways, and translate documents between
+              English and French. We are based in Ottawa, and every programme runs online.
             </p>
           </div>
         </div>
