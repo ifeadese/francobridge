@@ -26,7 +26,7 @@ export default function About() {
       {/* What we do, what we offer, where. */}
       <section className="mt-14 md:mt-20">
         <div className="container-fb">
-          <div className="grid gap-8 md:grid-cols-3 md:gap-12">
+          <div className="grid gap-10 md:grid-cols-2 md:gap-16">
             <div className="flex flex-col gap-4">
               <h4 className="h4">What we do</h4>
               <p className="regular-l max-w-[640px]">
@@ -39,21 +39,23 @@ export default function About() {
                 professional development and specialised preparation for French-language proficiency examinations.
               </p>
             </div>
-            <div className="flex flex-col gap-4">
-              <h4 className="h4">What we offer</h4>
-              <p className="regular-l max-w-[640px]">
-                General French programmes from A1 to C1, private instruction, TCF Canada and TEF Canada preparation,
-                professional French, French conversation programmes, workplace and government French preparation,
-                career development services, educational pathway guidance, translation services, and French
-                immigration pathway information and guidance.
-              </p>
-            </div>
-            <div className="flex flex-col gap-4">
-              <h4 className="h4">Where</h4>
-              <p className="regular-l max-w-[640px]">
-                {LOCATION.city}. {LOCATION.reach}: every programme runs online, so the bridge reaches beyond the city
-                as the school grows.
-              </p>
+            <div className="flex flex-col gap-10">
+              <div className="flex flex-col gap-4">
+                <h4 className="h4">What we offer</h4>
+                <p className="regular-l max-w-[640px]">
+                  General French programmes from A1 to C1, private instruction, TCF Canada and TEF Canada preparation,
+                  professional French, French conversation programmes, workplace and government French preparation,
+                  career development services, educational pathway guidance, translation services, and French
+                  immigration pathway information and guidance.
+                </p>
+              </div>
+              <div className="flex flex-col gap-4">
+                <h4 className="h4">Where</h4>
+                <p className="regular-l max-w-[640px]">
+                  {LOCATION.city}. {LOCATION.reach}: every programme runs online, so the bridge reaches beyond the city
+                  as the school grows.
+                </p>
+              </div>
             </div>
           </div>
         </div>
