@@ -26,7 +26,7 @@ export default function About() {
       {/* What we do, what we offer, where. */}
       <section className="mt-14 md:mt-20">
         <div className="container-fb">
-          <div className="grid gap-8 md:grid-cols-2 md:gap-16">
+          <div className="flex flex-col gap-6">
             <p className="regular-l max-w-[640px]">
               FrancoBridge helps aspiring immigrants, newcomers, students and professionals develop the French
               language skills, confidence and career readiness needed to access educational, professional and
