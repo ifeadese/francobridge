@@ -40,6 +40,7 @@ export const PACKAGES = [20, 40, 60] as const;
 export const NAV = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
+  { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
