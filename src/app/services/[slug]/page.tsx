@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Banner } from "@/app/_components/banner";
 import { BookButton } from "@/app/_components/book-button";
 import { Hero } from "@/app/_components/hero";
 import { ServiceCard } from "@/app/_components/service-card";
@@ -10,14 +9,11 @@ import { getService, SERVICES } from "@/lib/services";
 
 type Params = { params: Promise<{ slug: string }> };
 
-const TONES = ["yellow", "blue", "red", "green"] as const;
-
 export default async function ServicePage(props: Params) {
   const { slug } = await props.params;
   const service = getService(slug);
   if (!service) return notFound();
   const related = service.related.map(getService).filter((s) => s !== undefined);
-  const tone = TONES[SERVICES.findIndex((s) => s.slug === slug) % TONES.length];
 
   return (
     <main>
@@ -93,17 +89,6 @@ export default async function ServicePage(props: Params) {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container-fb">
-          <Banner tone={tone} way={tone === "red" ? "red" : tone === "yellow" ? "yellow" : "blue"} heading="Start with a one-hour consultation. Leave with your level and a plan.">
-            <BookButton />
-            <Link href="/contact" className="button-secondary">
-              Ask a question
-            </Link>
-          </Banner>
         </div>
       </section>
 

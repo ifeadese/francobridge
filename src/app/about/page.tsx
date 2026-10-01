@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Banner } from "@/app/_components/banner";
 import { BookButton } from "@/app/_components/book-button";
 import { Hero } from "@/app/_components/hero";
 import { WhoWeHelp } from "@/app/_components/who-we-help";
@@ -65,13 +64,6 @@ export default function About() {
         </div>
       </section>
 
-      <section className="mt-14 md:mt-20">
-        <div className="container-fb">
-          <Banner tone="yellow" way="yellow" heading="Start with a one-hour consultation. Leave with your level and a plan.">
-            <BookButton />
-          </Banner>
-        </div>
-      </section>
     </main>
   );
 }
