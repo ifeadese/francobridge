@@ -23,7 +23,7 @@ export function RequestForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex max-w-[640px] flex-col">
+    <form onSubmit={onSubmit} className="flex max-w-[760px] flex-col">
       <input name="name" required autoComplete="name" placeholder="Name" aria-label="Name" className="field mb-8" />
       <input name="email" type="email" required autoComplete="email" placeholder="Email" aria-label="Email" className="field mb-8" />
       <select name="interest" defaultValue="" aria-label="Programme" className="field mb-8">

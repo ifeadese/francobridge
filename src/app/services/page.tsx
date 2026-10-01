@@ -24,7 +24,7 @@ export default function Services() {
 
       <section className="mt-12 md:mt-16">
         <div className="container-fb">
-          <p className="regular-l max-w-[640px]">
+          <p className="regular-l max-w-[760px]">
             Prices, hours, levels and what is not included are all on the{" "}
             <Link href="/faq" className="underline decoration-black/40 underline-offset-4 hover:decoration-black">
               FAQ page

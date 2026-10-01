@@ -54,12 +54,12 @@ export default async function ServicePage(props: Params) {
           </div>
           <div className="flex flex-col gap-6">
             {service.intro.map((p) => (
-              <p key={p} className="regular-l max-w-[640px]">
+              <p key={p} className="regular-l max-w-[760px]">
                 {p}
               </p>
             ))}
             {service.notes && (
-              <div className="mt-4 flex max-w-[640px] flex-col gap-3 border-l-2 border-red pl-6">
+              <div className="mt-4 flex max-w-[760px] flex-col gap-3 border-l-2 border-red pl-6">
                 {service.notes.map((n) => (
                   <p key={n} className="regular-m">
                     {n}

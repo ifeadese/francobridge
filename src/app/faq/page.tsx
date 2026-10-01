@@ -33,7 +33,7 @@ export default function Faq() {
                 </summary>
                 <div className="flex flex-col gap-4 pb-8 pr-14">
                   {item.a.map((p) => (
-                    <p key={p} className="regular-l max-w-[640px]">
+                    <p key={p} className="regular-l max-w-[760px]">
                       {p}
                     </p>
                   ))}
@@ -48,7 +48,7 @@ export default function Faq() {
               </details>
             ))}
           </div>
-          <p className="regular-l mt-10 max-w-[640px]">
+          <p className="regular-l mt-10 max-w-[760px]">
             Something else?{" "}
             <Link href="/contact" className="underline decoration-black/40 underline-offset-4 hover:decoration-black">
               Write to us

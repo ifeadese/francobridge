@@ -18,7 +18,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <nav className="hidden items-center gap-2 md:flex" aria-label="Main">
             {NAV.map((item) => (
-              <Link key={item.href} href={item.href} className="px-3 py-1.5 text-black transition-colors hover:text-blue">
+              <Link key={item.href} href={item.href} className="px-3 py-1.5 text-[17px] text-black transition-colors hover:text-blue">
                 {item.label}
               </Link>
             ))}

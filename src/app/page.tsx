@@ -15,7 +15,7 @@ export default function Home() {
       {/* Hero: the tagline, one line, the French line and two buttons. */}
       <section className="flex flex-col pt-[88px]">
         <div className="container-fb flex flex-col items-start justify-end gap-10 py-[88px] md:py-20">
-          <h1 className="h1 max-w-[640px]">{SITE_TAGLINE}</h1>
+          <h1 className="h1 max-w-[760px]">{SITE_TAGLINE}</h1>
           <div className="max-w-[420px]">
             <p className="regular-l">
               FrancoBridge Consulting Inc. is a French language education, professional development and pathway
@@ -38,7 +38,7 @@ export default function Home() {
       <section className="bg-grey-3 py-10 md:py-14">
         <div className="container-fb">
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-            <h2 className="h1 max-w-[720px]">Six programmes, one first step</h2>
+            <h2 className="h1 max-w-[880px]">Six programmes, one first step</h2>
             <Link href="/services" className="button-secondary button-small">
               All services
             </Link>
@@ -51,7 +51,7 @@ export default function Home() {
       <section className="py-10 md:py-14">
         <div className="container-fb">
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-            <h2 className="h1 max-w-[720px]">Want to get started?</h2>
+            <h2 className="h1 max-w-[880px]">Want to get started?</h2>
             <BookButton size="sm" look="secondary" />
           </div>
           <div className="grid gap-6 md:grid-cols-3">
