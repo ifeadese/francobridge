@@ -17,7 +17,7 @@ export default function Services() {
       />
 
       {/* The rail sits inside the opening, straight under the hero's line. */}
-      <div className="container-fb -mt-6 pb-16 md:-mt-2 md:pb-24">
+      <div className="container-fb -mt-6 pb-8 md:-mt-2 md:pb-12">
         <ServicesRail />
       </div>
 
