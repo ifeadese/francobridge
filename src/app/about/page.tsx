@@ -19,9 +19,9 @@ export default function About() {
         <div className="container-fb">
           <div className="flex flex-col gap-6">
             <p className="regular-l max-w-[760px]">
-              FrancoBridge helps immigrants, newcomers, students and professionals build the French they need for
-              study, work and life in Canada. Lessons are structured, practical and personal: you learn the
-              language, practise using it, and prepare for the exams that count.
+              FrancoBridge builds the French you need for study, work and life in Canada. Lessons are structured,
+              practical and personal: you learn the language, practise using it, and prepare for the exams that
+              count.
             </p>
             <p className="regular-l max-w-[760px]">
               We teach General French from A1 to C1, prepare you for the TCF Canada and TEF Canada, and offer
