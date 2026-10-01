@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { ServiceGlyph } from "@/app/_components/service-glyph";
-import { getService } from "@/lib/services";
+import { getService, SERVICES } from "@/lib/services";
 
-// Who we help: four grey blocks, each ending in the services that apply.
+// Who we help: four grey blocks, each ending in the services that apply,
+// always in the site's service order.
 const AUDIENCES = [
   {
     glyph: "immigrants",
@@ -45,7 +46,9 @@ export function WhoWeHelp({ className = "section" }: { className?: string }) {
                   <p className="regular-m">{a.text}</p>
                 </div>
                 <ul className="flex flex-col border-t border-black/15">
-                  {a.services.map((slug) => {
+                  {[...a.services]
+                    .sort((x, y) => SERVICES.findIndex((s) => s.slug === x) - SERVICES.findIndex((s) => s.slug === y))
+                    .map((slug) => {
                     const s = getService(slug);
                     if (!s) return null;
                     return (
