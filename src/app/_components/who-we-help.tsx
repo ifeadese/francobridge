@@ -8,11 +8,11 @@ const AUDIENCES = [
 ] as const;
 
 // Who we help: four grey blocks, each linking to the service that fits.
-export function WhoWeHelp() {
+export function WhoWeHelp({ className = "section" }: { className?: string }) {
   return (
-    <section className="section">
+    <section className={className}>
       <div className="container-fb">
-        <h2 className="h2 mb-14 max-w-[432px]">Who we help, and where French takes them</h2>
+        <h2 className="h2 mb-10 max-w-[432px]">Who we help, and where French takes them</h2>
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {AUDIENCES.map(([glyph, title, text, href]) => (
             <InfoBlock key={title} href={href} glyph={glyph} title={title} text={text} />

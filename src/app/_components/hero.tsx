@@ -8,17 +8,20 @@ export function Hero({
   text,
   image,
   imageAlt = "",
+  compact = false,
   children,
 }: {
   title: string;
   text?: string;
   image?: string;
   imageAlt?: string;
+  /** Less padding above and below, for a page that keeps its sections close. */
+  compact?: boolean;
   children?: ReactNode;
 }) {
   return (
     <section className="flex flex-col pt-[88px] md:flex-row">
-      <div className="flex flex-1 flex-col items-start justify-end gap-10 px-6 py-[88px] md:min-w-[560px] md:px-16 md:py-20">
+      <div className={compact ? "flex flex-1 flex-col items-start justify-end gap-6 px-6 pb-10 pt-14 md:min-w-[560px] md:px-16 md:pb-12 md:pt-16" : "flex flex-1 flex-col items-start justify-end gap-10 px-6 py-[88px] md:min-w-[560px] md:px-16 md:py-20"}>
         <h1 className="h1 max-w-[640px]">{title}</h1>
         {text && <p className="regular-l max-w-[420px]">{text}</p>}
         {children && <div className="flex flex-wrap items-center gap-4">{children}</div>}

@@ -21,12 +21,12 @@ const METHOD = [
 export default function About() {
   return (
     <main>
-      <Hero title="A bridge, built in Ottawa, for people who need French to get somewhere" />
+      <Hero title="A bridge, built in Ottawa, for people who need French to get somewhere" compact />
 
       {/* What we do, what we offer, where. */}
-      <section className="section">
+      <section className="mt-14 md:mt-20">
         <div className="container-fb">
-          <div className="flex flex-col gap-10">
+          <div className="grid gap-8 md:grid-cols-3 md:gap-12">
             <div className="flex flex-col gap-4">
               <h4 className="h4">What we do</h4>
               <p className="regular-l max-w-[640px]">
@@ -59,14 +59,14 @@ export default function About() {
         </div>
       </section>
 
-      <WhoWeHelp />
+      <WhoWeHelp className="mt-14 md:mt-20" />
 
       {/* Method: text left, photo right. */}
-      <section className="section">
-        <div className="container-fb grid gap-12 md:grid-cols-[5fr_6.3fr] md:gap-20">
-          <div className="flex flex-col gap-12">
+      <section className="mt-14 md:mt-20">
+        <div className="container-fb grid gap-10 md:grid-cols-[5fr_6.3fr] md:gap-16">
+          <div className="flex flex-col gap-8">
             <h2 className="h2 max-w-[432px]">Learn, practice, communicate, apply</h2>
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-6">
               {METHOD.map(([step, text], i) => (
                 <div key={step} className="flex flex-col gap-3 border-t border-black pt-4">
                   <div className="flex items-baseline justify-between">
@@ -78,14 +78,14 @@ export default function About() {
               ))}
             </div>
           </div>
-          <img src={IMAGES.method} alt="" className="h-[420px] w-full object-cover md:h-[720px]" />
+          <img src={IMAGES.method} alt="" className="h-[360px] w-full object-cover md:h-full md:max-h-[640px]" />
         </div>
       </section>
 
       {/* Your instructor. */}
-      <section className="section">
+      <section className="mt-14 md:mt-20">
         <div className="container-fb">
-          <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-6">
             <h2 className="h2 max-w-[432px]">Your instructor</h2>
             <BookButton size="sm" look="secondary" />
           </div>
@@ -107,7 +107,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="mt-14 md:mt-20">
         <div className="container-fb">
           <Banner tone="yellow" way="yellow" heading="Start with a one-hour consultation. Leave with your level and a plan.">
             <BookButton />
