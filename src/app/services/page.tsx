@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Hero } from "@/app/_components/hero";
 import { ServicesRail } from "@/app/_components/services-rail";
 
@@ -18,21 +17,10 @@ export default function Services() {
       />
 
       {/* The rail sits inside the opening, straight under the hero's line. */}
-      <div className="container-fb -mt-6 md:-mt-2">
+      <div className="container-fb -mt-6 pb-16 md:-mt-2 md:pb-24">
         <ServicesRail />
       </div>
 
-      <section className="mt-12 md:mt-16">
-        <div className="container-fb">
-          <p className="regular-l max-w-[760px]">
-            Prices, hours, levels and what is not included are all on the{" "}
-            <Link href="/faq" className="underline decoration-black/40 underline-offset-4 hover:decoration-black">
-              FAQ page
-            </Link>
-            .
-          </p>
-        </div>
-      </section>
     </main>
   );
 }
