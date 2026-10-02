@@ -9,7 +9,7 @@ export function BackLink({ href = "/", label = "Home" }: { href?: string; label?
     <Link href={href} aria-label={`Back to ${label.toLowerCase()}`} className="group inline-flex items-center gap-3 text-[17px] text-navy">
       <span
         aria-hidden
-        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-current transition-colors group-hover:bg-navy group-hover:text-ivory"
+        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-current transition-colors group-hover:border-blue group-hover:bg-blue group-hover:text-ivory"
       >
         <svg width="18" height="18" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 7H2M6 3L2 7l4 4" />

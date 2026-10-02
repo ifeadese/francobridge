@@ -19,7 +19,7 @@ export function CalInline({ event = "consultation" }: { event?: "consultation" |
       </div>
       <p className="regular-s mt-3 text-grey-80">
         If the calendar does not load,{" "}
-        <a href={`https://cal.com/${link}`} target="_blank" rel="noreferrer" className="underline underline-offset-4">
+        <a href={`https://cal.com/${link}`} target="_blank" rel="noreferrer" className="underline underline-offset-4 transition-colors hover:text-blue">
           open it on cal.com
         </a>
         .

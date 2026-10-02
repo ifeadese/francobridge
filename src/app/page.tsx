@@ -51,7 +51,7 @@ export default function Home() {
           button, with the bridge from the logo standing on the hero's bottom
           edge behind it all, bleeding off the right and drifting left as the
           page scrolls. */}
-      <section className="relative flex flex-col border-b border-black/10 pt-[104px] md:pt-[124px]">
+      <section className="relative flex flex-col border-b border-navy/10 pt-[104px] md:pt-[124px]">
         {/* The bridge drifts left as the page scrolls, at a third of the pace. */}
         <Drift className="pointer-events-none absolute -right-[240px] bottom-0 z-0 w-[1100px] md:-right-[420px] md:w-[2000px]">
           <Watermark kind="bridge" className="relative w-full" />
@@ -95,7 +95,7 @@ export default function Home() {
             <Link
               href="/services"
               aria-label="All services"
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-black text-black transition-colors hover:bg-black hover:text-white"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-navy text-navy transition-colors hover:border-blue hover:bg-blue hover:text-ivory"
             >
               <svg width="18" height="18" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M2 7h10M8 3l4 4-4 4" />
@@ -127,11 +127,11 @@ export default function Home() {
               title. Stacked on phones; from tablet width the title takes the
               left column and the description, with its facts in one quiet
               line beneath, the right. */}
-          <div className="border-t border-black">
+          <div className="border-t border-navy">
             {STEPS.map((step, i) => (
               <div
                 key={step.title}
-                className="grid grid-cols-1 gap-y-2 border-b border-black py-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:items-baseline md:gap-x-10 md:py-7 lg:py-8"
+                className="grid grid-cols-1 gap-y-2 border-b border-navy py-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:items-baseline md:gap-x-10 md:py-7 lg:py-8"
               >
                 <h3 className="font-heading text-[24px] leading-[1.1] text-navy md:text-[28px]">
                   {i + 1}. {step.title}

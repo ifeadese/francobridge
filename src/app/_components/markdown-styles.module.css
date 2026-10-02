@@ -10,19 +10,19 @@
 }
 
 .markdown h2 {
-  @apply font-heading font-normal text-black text-[35px] leading-none tracking-tight mt-14 mb-5;
+  @apply font-heading font-normal text-navy text-[35px] leading-none tracking-tight mt-14 mb-5;
 }
 
 .markdown h3 {
-  @apply font-heading font-normal text-black text-[30px] leading-none tracking-tight mt-10 mb-4;
+  @apply font-heading font-normal text-navy text-[30px] leading-none tracking-tight mt-10 mb-4;
 }
 
 .markdown a {
-  @apply underline decoration-black/40 underline-offset-4 hover:decoration-black transition-colors duration-200;
+  @apply underline decoration-navy/40 underline-offset-4 hover:text-blue hover:decoration-blue transition-colors duration-200;
 }
 
 .markdown blockquote {
-  @apply border-l border-black pl-6 font-heading text-[24px] text-grey-80;
+  @apply border-l border-navy pl-6 font-heading text-[24px] text-grey-80;
 }
 
 .markdown code {

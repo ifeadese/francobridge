@@ -98,34 +98,36 @@ body {
     @apply font-heading font-normal text-grey-80;
   }
 
-  /* Buttons: square-cornered, both in the logo's navy: the primary filled,
-     brand blue on hover; the secondary an outline that fills. Red is never a
-     button in this layout; it lives in the mark and the patterns. */
+  /* Buttons: square-cornered, both in the logo's navy. The primary is filled
+     and goes black on hover; the secondary is an outline that fills with the
+     brand blue. The same two rules hold for every ring and disc on the site.
+     Red is never a button in this layout; it lives in the mark and the
+     patterns. */
   .button {
     @apply inline-flex items-center justify-center rounded-none text-center text-[18px] leading-[1.5] transition-colors duration-200;
     padding: 22px 36px 24px;
   }
-  .button-primary { @apply button bg-navy text-ivory hover:bg-blue; }
-  .button-secondary { @apply button border border-navy bg-transparent text-navy hover:bg-navy hover:text-ivory; }
+  .button-primary { @apply button bg-navy text-ivory hover:bg-black; }
+  .button-secondary { @apply button border border-navy bg-transparent text-navy hover:border-blue hover:bg-blue hover:text-ivory; }
   .button-small { padding: 16px 24px; @apply text-[16px]; }
 
   /* Tertiary: a word and a small ringed arrow. */
   .tertiary {
-    @apply inline-flex items-center gap-2 text-[17px] leading-[1.5] text-black;
+    @apply inline-flex items-center gap-2 text-[17px] leading-[1.5] text-navy;
   }
   .tertiary-icon {
-    @apply flex h-[26px] w-[26px] items-center justify-center rounded-full border border-black transition-colors duration-200;
+    @apply flex h-[26px] w-[26px] items-center justify-center rounded-full border border-navy transition-colors duration-200;
   }
   .group:hover .tertiary-icon, .tertiary:hover .tertiary-icon {
-    @apply bg-black text-white;
+    @apply border-blue bg-blue text-ivory;
   }
-  /* Filled: the word at medium weight in the logo's navy, and the ring a size
-     up, solid navy at rest and brand blue on hover, like the primary button.
-     For links that sit on a pattern. */
+  /* Filled: the word at medium weight, and the ring a size up, solid navy at
+     rest and black on hover, like the primary button. For links that sit on
+     a pattern. */
   .tertiary-filled { @apply text-navy; }
   .tertiary-filled > span:first-child { @apply font-medium; }
   .tertiary-filled .tertiary-icon { @apply h-8 w-8 border-navy bg-navy text-ivory; }
-  .group:hover .tertiary-filled .tertiary-icon, .tertiary-filled:hover .tertiary-icon { @apply border-blue bg-blue; }
+  .group:hover .tertiary-filled .tertiary-icon, .tertiary-filled:hover .tertiary-icon { @apply border-black bg-black; }
 
   /* Compact section spacing, the same on every page: 80px, 56px on phones. */
   .section { margin-top: 80px; }
@@ -134,7 +136,7 @@ body {
   @media (max-width: 991px) { .section-tight { margin-top: 48px; } }
   @media (max-width: 767px) { .section-tight { margin-top: 24px; } }
 
-  .line { @apply h-px w-full bg-black; }
+  .line { @apply h-px w-full bg-navy; }
   .line-white { @apply h-px w-full bg-white; }
 
   .panel { @apply flex flex-col; padding: 24px 32px; }
@@ -142,7 +144,7 @@ body {
   /* Form fields: a box of the pale blue with a hairline in the brand blue on
      every side, the blue card's treatment. The hairline darkens on focus. */
   .field {
-    @apply w-full border border-blue/25 bg-blue-light px-4 py-4 text-[20px] leading-[1.5] text-black outline-none transition-colors placeholder:text-black/50 focus:border-blue;
+    @apply w-full border border-blue/25 bg-blue-light px-4 py-4 text-[20px] leading-[1.5] text-navy outline-none transition-colors placeholder:text-navy/50 focus:border-blue;
   }
 }
 
@@ -209,11 +211,11 @@ body {
   height: 40px;
   flex-shrink: 0;
   border-radius: 999px;
-  border: 1px solid var(--black);
-  color: var(--black);
+  border: 1px solid var(--navy);
+  color: var(--navy);
   transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
-.card-rail-btn:hover:not(:disabled) { background-color: var(--black); color: var(--white); }
+.card-rail-btn:hover:not(:disabled) { border-color: var(--blue); background-color: var(--blue); color: var(--white); }
 .card-rail-btn:disabled { opacity: 0.3; cursor: default; }
 @media (max-width: 767px) {
   /* Swiping already moves the rail on touch, so the controls are desktop only. */

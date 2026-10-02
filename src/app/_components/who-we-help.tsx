@@ -39,20 +39,20 @@ export function WhoWeHelp({ className = "section" }: { className?: string }) {
         <div className="grid gap-6 md:grid-cols-2">
           {AUDIENCES.map((a) => (
             <div key={a.title} className="panel bg-grey-3">
-              <ServiceGlyph slug={a.glyph} className="mb-10 h-10 w-10 text-black" />
+              <ServiceGlyph slug={a.glyph} className="mb-10 h-10 w-10 text-navy" />
               <div className="flex flex-1 flex-col justify-between gap-8">
                 <div className="max-w-[420px]">
                   <h4 className="h4 mb-4">{a.title}</h4>
                   <p className="regular-m">{a.text}</p>
                 </div>
-                <ul className="flex flex-col border-t border-black/15">
+                <ul className="flex flex-col border-t border-navy/15">
                   {[...a.services]
                     .sort((x, y) => SERVICES.findIndex((s) => s.slug === x) - SERVICES.findIndex((s) => s.slug === y))
                     .map((slug) => {
                     const s = getService(slug);
                     if (!s) return null;
                     return (
-                      <li key={slug} className="border-b border-black/15">
+                      <li key={slug} className="border-b border-navy/15">
                         <Link
                           href={`/services/${slug}`}
                           className="flex items-center justify-between gap-3 py-2.5 text-[16px] transition-colors hover:text-blue"

@@ -20,7 +20,7 @@ export default function Blog() {
         <div className="container-fb grid gap-6 md:grid-cols-3">
           {posts.map((post) => (
             <Link key={post.slug} href={`/posts/${post.slug}`} className="group flex flex-col gap-4">
-              <div className="flex items-center justify-between border-b border-black pb-3">
+              <div className="flex items-center justify-between border-b border-navy pb-3">
                 <span className="regular-m">Blog</span>
                 <span className="regular-s text-grey-80">
                   <DateFormatter dateString={post.date} />

@@ -45,7 +45,7 @@ export default async function ServicePage(props: Params) {
                 ["Format", service.format],
                 ["First step", `Consultation, ${CONSULTATION.label}`],
               ].map(([k, v]) => (
-                <div key={k} className="flex items-baseline justify-between gap-6 border-b border-black py-3">
+                <div key={k} className="flex items-baseline justify-between gap-6 border-b border-navy py-3">
                   <dt className="regular-m text-grey-80">{k}</dt>
                   <dd className="regular-m text-right">{v}</dd>
                 </div>
@@ -81,7 +81,7 @@ export default async function ServicePage(props: Params) {
                 <h4 className="h4 mb-6">{group.title}</h4>
                 <ul className="flex flex-col">
                   {group.items.map((item) => (
-                    <li key={item} className="regular-m border-t border-black/15 py-3">
+                    <li key={item} className="regular-m border-t border-navy/15 py-3">
                       {item}
                     </li>
                   ))}

@@ -20,7 +20,7 @@ export function ServiceRailCard({ service, tone }: { service: Service; tone: Ton
     <Link
       href={`/services/${service.slug}`}
       className={cn(
-        "group relative flex min-h-[460px] w-full flex-col border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black md:min-h-[560px]",
+        "group relative flex min-h-[460px] w-full flex-col border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-navy md:min-h-[560px]",
         TONES[tone],
         INK[way]
       )}

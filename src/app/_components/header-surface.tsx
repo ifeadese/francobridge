@@ -8,7 +8,7 @@ import cn from "classnames";
 // runs up behind the nav to the top of the window, and as soon as the page
 // scrolls it becomes a pane of frosted glass: a light white tint over a strong
 // blur, so the page shows through it. Everywhere else it is that pane from
-// the start. A faint rule closes its bottom edge: black at a tenth on the
+// the start. A faint rule closes its bottom edge: navy at a tenth on the
 // light pane, ivory at a fifth over a dark surface.
 //
 // The header also watches what is under it. When a dark surface, any element
@@ -51,7 +51,7 @@ export function HeaderSurface({ children }: { children: React.ReactNode }) {
       <div
         aria-hidden
         className={cn(
-          "pointer-events-none absolute inset-0 -z-10 border-b border-black/10 bg-white/35 backdrop-blur-xl transition-[opacity,background-color,border-color] duration-300 group-data-[dark]:border-ivory/20 group-data-[dark]:bg-navy/40",
+          "pointer-events-none absolute inset-0 -z-10 border-b border-navy/10 bg-white/35 backdrop-blur-xl transition-[opacity,background-color,border-color] duration-300 group-data-[dark]:border-ivory/20 group-data-[dark]:bg-navy/40",
           clear ? "opacity-0" : "opacity-100"
         )}
       />
