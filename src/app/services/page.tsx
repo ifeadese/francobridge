@@ -16,9 +16,10 @@ export default function Services() {
         text="Every programme starts with the same conversation: a one-hour consultation that finds your level and ends with a plan."
       />
 
-      {/* The rail sits in the opening, a clear step below the hero's line:
-          48px on phones, 64px from the tablet width up. */}
-      <div className="container-fb mt-6 md:mt-8">
+      {/* The rail sits in the opening at the hero's own padding, 24px on
+          phones and 32px up. The page is only the rail, so it also pulls the
+          site-wide gap above the footer in to 32px and 40px. */}
+      <div className="container-fb -mb-6 md:-mb-10">
         <ServicesRail />
       </div>
 
