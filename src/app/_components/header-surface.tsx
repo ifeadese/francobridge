@@ -6,8 +6,9 @@ import cn from "classnames";
 
 // The header's surface. On the home page it starts clear, so the hero's fade
 // runs up behind the nav to the top of the window, and as soon as the page
-// scrolls it becomes a pane of frosted white: mostly opaque, with the content
-// behind it softly blurred. Everywhere else it is that pane from the start.
+// scrolls it becomes a pane of frosted glass: a light white tint over a strong
+// blur, so the page shows through it. Everywhere else it is that pane from
+// the start.
 // The pane has no bottom line. It runs a little past the nav and its last
 // stretch is masked to nothing, so the white and the blur dissolve into the
 // page instead of ending at an edge.
@@ -33,7 +34,7 @@ export function HeaderSurface({ children }: { children: React.ReactNode }) {
       <div
         aria-hidden
         className={cn(
-          "pointer-events-none absolute inset-x-0 top-0 -z-10 bg-white/75 backdrop-blur-md transition-opacity duration-300",
+          "pointer-events-none absolute inset-x-0 top-0 -z-10 bg-white/35 backdrop-blur-xl transition-opacity duration-300",
           clear ? "opacity-0" : "opacity-100"
         )}
         style={{
