@@ -30,6 +30,7 @@ const STEPS = [
 // is for the client to confirm, like every French line.
 const CLOSING = {
   fr: "Tout commence par une conversation.",
+  frLines: ["Tout", "commence", "par une", "conversation."],
   en: "It all starts with a conversation.",
   link: "Get started",
   href: "/contact",
@@ -144,7 +145,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <FrenchLine line={CLOSING.fr} english={CLOSING.en} link={CLOSING.link} href={CLOSING.href} />
+        <FrenchLine line={CLOSING.fr} lines={CLOSING.frLines} english={CLOSING.en} link={CLOSING.link} href={CLOSING.href} />
       </section>
     </main>
   );
