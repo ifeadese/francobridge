@@ -79,11 +79,18 @@ export default function Home() {
       <section className="relative py-10 md:py-14">
         <div className="container-fb relative z-10">
           <div className="mb-14 flex flex-nowrap items-end justify-between gap-6">
-            <h2 className="h1">
-              Our
-              <br />
-              Programs
-            </h2>
+            <div className="flex min-w-0 flex-col gap-4">
+              <h2 className="h1">
+                Our
+                <br />
+                Programs
+              </h2>
+              {/* One line on what the six cards cover, and the thread between them. */}
+              <p className="regular-l max-w-[560px]">
+                Exam preparation, French for work and everyday life, pathway guidance and translation, all online and all
+                starting with one conversation.
+              </p>
+            </div>
             {/* All services, as the ringed arrow alone: the arch closed. */}
             <Link
               href="/services"
