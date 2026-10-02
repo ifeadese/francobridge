@@ -31,7 +31,7 @@ export function Banner({
   children?: ReactNode;
 }) {
   return (
-    <div className={cn("overflow-hidden", TONES[tone], sticky && "md:sticky md:top-[158px]")}>
+    <div className={cn("overflow-hidden", TONES[tone], sticky && "md:sticky md:top-[194px]")}>
       <div className="flex flex-col items-start gap-8 px-6 py-12 md:px-12 md:py-14">
         <p className={cn("max-w-[880px]", large ? "banner-heading" : "h2")}>{heading}</p>
         {children && <div className="flex flex-wrap items-center gap-4">{children}</div>}

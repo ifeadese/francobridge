@@ -11,7 +11,7 @@ export function Footer() {
       <div className="container-fb">
         <div className="mb-20 grid gap-12 md:grid-cols-2">
           <div className="flex flex-col gap-4">
-            <Logo variant="stacked" on="ivory" className="w-40" />
+            <Logo variant="stacked" on="ivory" className="w-64" />
             <p className="regular-m mt-4 max-w-[320px]">{SITE_TAGLINE}</p>
             <p className="fr-line text-[18px]" lang="fr">
               {SITE_TAGLINE_FR}

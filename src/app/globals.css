@@ -28,7 +28,8 @@
   :root { --gutter: 24px; }
 }
 
-html { scroll-padding-top: 96px; }
+html { scroll-padding-top: 112px; }
+@media (min-width: 768px) { html { scroll-padding-top: 132px; } }
 
 /* Every page ends with the same breathing room before the footer, so no
    section has to carry its own. */
@@ -55,43 +56,43 @@ body {
     padding-right: var(--gutter);
   }
 
-  /* Type. Crimson Pro light, set at 100% line height and tight tracking. */
+  /* Type. Marcellus, the face of the logo, in its one weight, set close. */
   .h1 {
-    @apply font-heading font-light leading-none text-black;
+    @apply font-heading font-normal leading-[1.04] text-black;
     font-size: clamp(48px, 7vw, 100px);
-    letter-spacing: -0.03em;
+    letter-spacing: -0.012em;
   }
   .h2 {
-    @apply font-heading font-light leading-none text-black;
+    @apply font-heading font-normal leading-[1.04] text-black;
     font-size: clamp(40px, 4.2vw, 60px);
-    letter-spacing: -0.025em;
+    letter-spacing: -0.01em;
   }
   .h3 {
-    @apply font-heading font-light leading-none text-black;
+    @apply font-heading font-normal leading-none text-black;
     font-size: clamp(30px, 2.7vw, 38px);
-    letter-spacing: -0.03em;
+    letter-spacing: -0.012em;
   }
   .h4 {
-    @apply font-heading font-light leading-none text-black;
+    @apply font-heading font-normal leading-none text-black;
     font-size: clamp(26px, 2.2vw, 32px);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.005em;
   }
   .banner-heading {
-    @apply font-heading font-light text-black;
+    @apply font-heading font-normal text-black;
     font-size: clamp(46px, 5.3vw, 76px);
-    line-height: 0.98;
-    letter-spacing: -0.025em;
+    line-height: 1.02;
+    letter-spacing: -0.01em;
   }
   .large-number {
-    @apply font-heading font-light leading-none text-black;
+    @apply font-heading font-normal leading-none text-black;
     font-size: clamp(72px, 9vw, 130px);
-    letter-spacing: -0.03em;
+    letter-spacing: -0.012em;
   }
   .regular-l { @apply text-[20px] leading-[1.5]; }
   .regular-m { @apply text-[18px] leading-[1.5]; }
   .regular-s { @apply text-[15px] leading-[1.5]; }
   .fr-line {
-    @apply font-heading italic font-light text-grey-80;
+    @apply font-heading font-normal text-grey-80;
   }
 
   /* Buttons: square-cornered. Black on white, white on black. Red is never a

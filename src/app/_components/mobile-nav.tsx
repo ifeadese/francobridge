@@ -22,7 +22,7 @@ export function MobileNav() {
         </svg>
       </button>
       {open && (
-        <div id="mobile-menu" className="fixed inset-x-0 bottom-0 top-[81px] z-40 flex flex-col gap-14 bg-white px-6 py-10">
+        <div id="mobile-menu" className="fixed inset-x-0 bottom-0 top-[97px] z-40 flex flex-col gap-14 bg-white px-6 py-10">
           <nav className="flex flex-col items-start gap-4" aria-label="Main">
             <Link href="/" onClick={() => setOpen(false)} className="py-1.5 text-[21px]">
               Home

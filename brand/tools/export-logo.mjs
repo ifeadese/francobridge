@@ -13,14 +13,14 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", ".
 const brandDir = path.join(root, "public", "brand");
 const appDir = path.join(root, "src", "app");
 
-const BLUE = "#0E397F";
+const BLUE = "#1B2556"; // the logo navy
 const svgs = fs.readdirSync(brandDir).filter((f) => f.endsWith(".svg"));
 
-// 1. PNGs: every SVG at 1x (600 px wide) and 2x (1200 px wide), transparent.
+// 1. PNGs: every SVG at 1x (1200 px wide) and 2x (2400 px wide), transparent.
 for (const file of svgs) {
   const src = fs.readFileSync(path.join(brandDir, file));
   const base = file.replace(/\.svg$/, "");
-  for (const [suffix, width] of [["", 600], ["@2x", 1200]]) {
+  for (const [suffix, width] of [["", 1200], ["@2x", 2400]]) {
     await sharp(src, { density: 300 })
       .resize({ width })
       .png()

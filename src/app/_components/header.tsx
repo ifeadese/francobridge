@@ -5,15 +5,13 @@ import { BookButton } from "@/app/_components/book-button";
 import { NAV } from "@/lib/constants";
 
 // Fixed, white, a hairline below. The lockup at the left, the links at the
-// right, and the one button always in view: on phones the mark alone makes
-// room for it beside the menu.
+// right, and the one button always in view beside the menu on phones.
 export function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-grey-8 bg-white">
-      <div className="container-fb flex items-center justify-between gap-4 py-5 md:gap-12">
+      <div className="container-fb flex h-24 items-center justify-between gap-4 md:h-[124px] md:gap-12">
         <Link href="/" className="shrink-0" aria-label="FrancoBridge home">
-          <Logo variant="horizontal" on="ivory" className="hidden h-10 w-auto md:block" />
-          <Logo variant="mark" on="ivory" className="block h-9 w-auto md:hidden" />
+          <Logo variant="stacked" on="ivory" className="h-14 w-auto md:h-[84px]" />
         </Link>
         <div className="flex items-center gap-2">
           <nav className="hidden items-center gap-2 md:flex" aria-label="Main">
@@ -23,7 +21,7 @@ export function Header() {
               </Link>
             ))}
           </nav>
-          <BookButton className="md:ml-3" size="sm" />
+          <BookButton className="whitespace-nowrap max-md:px-3 max-md:text-[15px] md:ml-3" size="sm" />
           <MobileNav />
         </div>
       </div>
