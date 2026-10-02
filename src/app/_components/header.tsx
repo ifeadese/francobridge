@@ -1,14 +1,17 @@
 import Link from "next/link";
 import { Logo } from "@/app/_components/logo";
+import { HeaderSurface } from "@/app/_components/header-surface";
 import { MobileNav } from "@/app/_components/mobile-nav";
 import { BookButton } from "@/app/_components/book-button";
 import { NAV } from "@/lib/constants";
 
-// Fixed, white, a hairline below. The lockup at the left, the links at the
-// right, and the one button always in view beside the menu on phones.
+// Fixed, white with a hairline below, except at the top of the home page,
+// where it is clear and the hero's fade shows through (see HeaderSurface).
+// The lockup at the left, the links at the right, and the one button always
+// in view beside the menu on phones.
 export function Header() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-grey-8 bg-white">
+    <HeaderSurface>
       <div className="container-fb flex h-24 items-center justify-between gap-4 md:h-[124px] md:gap-12">
         <Link href="/" className="shrink-0" aria-label="FrancoBridge home">
           <Logo variant="stacked" on="ivory" className="h-14 w-auto md:h-[84px]" />
@@ -25,7 +28,7 @@ export function Header() {
           <MobileNav />
         </div>
       </div>
-    </header>
+    </HeaderSurface>
   );
 }
 

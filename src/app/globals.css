@@ -135,6 +135,31 @@ body {
 }
 
 /* ------------------------------------------------------------
+   Marquee: two identical tracks side by side, each sliding left by its own
+   width, so the second takes the first's place at the instant it loops.
+   ------------------------------------------------------------ */
+.marquee {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-track {
+  display: flex;
+  flex: none;
+  align-items: baseline;
+  gap: 40px;
+  padding-right: 40px;
+  animation: marquee 60s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee {
+  to { transform: translateX(-100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* ------------------------------------------------------------
    Card rail: a horizontal run of cards that scrolls edge to edge. The scroller
    breaks out to the viewport width; the inline padding pulls the first card
    back in line with the heading. Controls come from CardRail.tsx.
