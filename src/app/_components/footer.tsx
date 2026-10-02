@@ -19,39 +19,39 @@ export function Footer() {
         <div className="mb-8 flex flex-col gap-8 md:mb-16 md:flex-row md:items-stretch md:gap-8 lg:mb-20 lg:gap-20">
           <div className="order-last flex min-w-0 flex-col gap-3 md:order-none md:min-w-[256px] md:flex-1">
             <Logo variant="stacked" on="blue" className="h-20 w-auto self-start md:h-[88px] lg:h-[108px]" />
-            <div className="mt-5 flex flex-col gap-1 lg:mt-4">
-              <p className="regular-s whitespace-nowrap py-1 lg:py-0.5">
+            <div className="mt-5 flex flex-col gap-1 md:mt-3.5 lg:mt-2.5">
+              <p className="whitespace-nowrap py-1 text-[14px] leading-[1.5] lg:py-0.5">
                 &copy; {new Date().getFullYear()} {LEGAL_NAME}
               </p>
-              <p className="regular-s py-1 lg:py-0.5">All rights reserved.</p>
-              <a href={`mailto:${CONTACT.email}`} className="regular-s self-start py-1 underline decoration-ivory/40 underline-offset-4 hover:decoration-ivory lg:py-0.5">
+              <p className="py-1 text-[14px] leading-[1.5] lg:py-0.5">All rights reserved.</p>
+              <a href={`mailto:${CONTACT.email}`} className="self-start py-1 text-[14px] leading-[1.5] underline decoration-ivory/40 underline-offset-4 hover:decoration-ivory lg:py-0.5">
                 {CONTACT.email}
               </a>
-              <p className="regular-s py-1 lg:py-0.5">Ottawa, Canada</p>
+              <p className="py-1 text-[14px] leading-[1.5] lg:py-0.5">Ottawa, Canada</p>
             </div>
           </div>
           <div className="flex flex-col gap-8 sm:flex-row sm:gap-20 md:min-w-0 md:gap-8 lg:shrink-0 lg:gap-20">
             <div className="flex flex-col gap-1">
-              <p className="h4 mb-2 py-1 text-[21px] text-ivory">FrancoBridge</p>
+              <p className="h4 mb-2 py-1 text-[19px] text-ivory">FrancoBridge</p>
               <div className="flex flex-col gap-1">
-                <Link href="/" className="py-1 text-[16px] leading-[1.5] transition-colors hover:text-yellow">
+                <Link href="/" className="py-1 text-[15px] leading-[1.5] transition-colors hover:text-yellow">
                   Home
                 </Link>
                 {NAV.map((item) => (
-                  <Link key={item.href} href={item.href} className="py-1 text-[16px] leading-[1.5] transition-colors hover:text-yellow">
+                  <Link key={item.href} href={item.href} className="py-1 text-[15px] leading-[1.5] transition-colors hover:text-yellow">
                     {item.label}
                   </Link>
                 ))}
-                <Link href="/blog" className="py-1 text-[16px] leading-[1.5] transition-colors hover:text-yellow">
+                <Link href="/blog" className="py-1 text-[15px] leading-[1.5] transition-colors hover:text-yellow">
                   Blog
                 </Link>
               </div>
             </div>
             <div className="flex min-w-0 flex-col gap-1">
-              <p className="h4 mb-2 py-1 text-[21px] text-ivory">Services</p>
+              <p className="h4 mb-2 py-1 text-[19px] text-ivory">Services</p>
               <div className="flex flex-col gap-1">
                 {SERVICES.map((s) => (
-                  <Link key={s.slug} href={`/services/${s.slug}`} className="py-1 text-[16px] leading-[1.5] transition-colors hover:text-yellow sm:whitespace-nowrap md:whitespace-normal lg:whitespace-nowrap">
+                  <Link key={s.slug} href={`/services/${s.slug}`} className="py-1 text-[15px] leading-[1.5] transition-colors hover:text-yellow sm:whitespace-nowrap md:whitespace-normal lg:whitespace-nowrap">
                     {s.short}
                   </Link>
                 ))}
