@@ -98,14 +98,15 @@ body {
     @apply font-heading font-normal text-grey-80;
   }
 
-  /* Buttons: square-cornered. Black on white, white on black. Red is never a
+  /* Buttons: square-cornered. The primary black on white; the secondary an
+     outline in the logo's navy that fills on hover. Red is never a
      button in this layout; it lives in the mark and the patterns. */
   .button {
     @apply inline-flex items-center justify-center rounded-none text-center text-[18px] leading-[1.5] transition-colors duration-200;
     padding: 22px 36px 24px;
   }
   .button-primary { @apply button bg-black text-white hover:bg-grey-80; }
-  .button-secondary { @apply button border border-black bg-transparent text-black hover:border-grey-80 hover:bg-grey-80 hover:text-white; }
+  .button-secondary { @apply button border border-navy bg-transparent text-navy hover:bg-navy hover:text-ivory; }
   .button-small { padding: 16px 24px; @apply text-[16px]; }
 
   /* Tertiary: a word and a small ringed arrow. */
