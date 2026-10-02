@@ -23,7 +23,7 @@ export function RequestForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex max-w-[760px] flex-col">
+    <form onSubmit={onSubmit} className="mx-auto flex w-full max-w-[640px] flex-col">
       <input name="name" required autoComplete="name" placeholder="Name" aria-label="Name" className="field mb-8" />
       <input name="email" type="email" required autoComplete="email" placeholder="Email" aria-label="Email" className="field mb-8" />
       <select name="interest" defaultValue="" aria-label="Programme" className="field mb-8">
@@ -38,11 +38,11 @@ export function RequestForm() {
         <option value="Not sure yet">Not sure yet</option>
       </select>
       <textarea name="message" rows={4} required placeholder="Where are you heading?" aria-label="Message" className="field mb-10" />
-      <div className="flex flex-wrap items-center gap-6">
+      <div className="flex flex-col items-center gap-6">
         <button type="submit" className="button-primary">
           Send message
         </button>
-        {sent && <p className="regular-m text-grey-80">Your mail app should open with the request ready to send.</p>}
+        {sent && <p className="regular-m text-center text-grey-80">Your mail app should open with the request ready to send.</p>}
       </div>
     </form>
   );
