@@ -8,6 +8,8 @@ import { CONSULTATION, PACKAGES, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/con
 
 // The three steps, numbered in their titles, each with its plain numbers:
 // the facts a reader wants before they ask, in a line under the sentence.
+// Book, enrol, start: the money changes hands at the first two, never at
+// the third.
 const STEPS = [
   {
     title: "Book a consultation",
@@ -15,13 +17,13 @@ const STEPS = [
     facts: [`${CONSULTATION.minutes / 60} hour · $${CONSULTATION.price} ${CONSULTATION.currency}`, "Online"],
   },
   {
-    title: "Get your plan",
-    text: "You leave with your level on the A1 to C1 scale and a recommended programme, private or semi-private, all online.",
-    facts: ["A1 to C1", `${PACKAGES.slice(0, -1).join(", ")} or ${PACKAGES[PACKAGES.length - 1]} hours`],
+    title: "Enrol in your programme",
+    text: "You leave the consultation with your level on the A1 to C1 scale and a recommended programme, private or semi-private. Choose your block of hours and pay to enrol.",
+    facts: ["A1 to C1", `${PACKAGES.slice(0, -1).join(", ")} or ${PACKAGES[PACKAGES.length - 1]} hours`, "Paid on enrolment"],
   },
   {
     title: "Start your programme",
-    text: "Pay for your programme, then begin. Sessions are online, scheduled around you, and progress is measured against the level you started at.",
+    text: "Your sessions begin: online, scheduled around you, with progress measured against the level you started at.",
     facts: ["Online", "Scheduled around you"],
   },
 ] as const;
