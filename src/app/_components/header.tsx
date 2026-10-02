@@ -1,29 +1,41 @@
 import Link from "next/link";
 import { Logo } from "@/app/_components/logo";
 import { MobileNav } from "@/app/_components/mobile-nav";
-import { BookButton } from "@/app/_components/book-button";
 import { NAV } from "@/lib/constants";
 
-// Fixed, white, a hairline below. The lockup at the left, the links at the
-// right, and the one button always in view: on phones the mark alone makes
-// room for it beside the menu.
+type NavItem = (typeof NAV)[number];
+const LEFT_HREFS: string[] = ["/about", "/services"];
+const LEFT: NavItem[] = NAV.filter((item) => LEFT_HREFS.includes(item.href));
+const RIGHT: NavItem[] = NAV.filter((item) => !LEFT_HREFS.includes(item.href));
+
+function NavLinks({ items, className }: { items: NavItem[]; className?: string }) {
+  return (
+    <div className={className}>
+      {items.map((item) => (
+        <Link key={item.href} href={item.href} className="px-3 py-1.5 text-[17px] text-black transition-colors hover:text-blue">
+          {item.label}
+        </Link>
+      ))}
+    </div>
+  );
+}
+
+// Fixed, white, a hairline below. The lockup in the centre, About and
+// Services to its left, the rest to its right. On phones the mark alone,
+// centred, with the menu at the right. Booking lives in the floating button.
 export function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-grey-8 bg-white">
-      <div className="container-fb flex items-center justify-between gap-4 py-5 md:gap-12">
-        <Link href="/" className="shrink-0" aria-label="FrancoBridge home">
-          <Logo variant="horizontal" on="ivory" className="hidden h-12 w-auto md:block" />
-          <Logo variant="mark" on="ivory" className="block h-10 w-auto md:hidden" />
-        </Link>
-        <div className="flex items-center gap-2">
-          <nav className="hidden items-center gap-2 md:flex" aria-label="Main">
-            {NAV.map((item) => (
-              <Link key={item.href} href={item.href} className="px-3 py-1.5 text-[17px] text-black transition-colors hover:text-blue">
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-          <BookButton className="md:ml-3" size="sm" />
+      <div className="container-fb grid grid-cols-[1fr_auto_1fr] items-center gap-4 py-5 md:gap-8">
+        <nav className="contents" aria-label="Main">
+          <NavLinks items={LEFT} className="hidden items-center gap-2 justify-self-start md:flex" />
+          <Link href="/" className="col-start-2 shrink-0" aria-label="FrancoBridge home">
+            <Logo variant="horizontal" on="ivory" className="hidden h-12 w-auto md:block" />
+            <Logo variant="mark" on="ivory" className="block h-10 w-auto md:hidden" />
+          </Link>
+          <NavLinks items={RIGHT} className="hidden items-center gap-2 justify-self-end md:flex" />
+        </nav>
+        <div className="col-start-3 row-start-1 justify-self-end md:hidden">
           <MobileNav />
         </div>
       </div>

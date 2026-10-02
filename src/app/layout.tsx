@@ -1,5 +1,6 @@
 import Footer from "@/app/_components/footer";
 import Header from "@/app/_components/header";
+import FloatingBookButton from "@/app/_components/floating-book-button";
 import CalProvider from "@/app/_components/cal-provider";
 import { LEGAL_NAME, SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
@@ -54,6 +55,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <FloatingBookButton />
       </body>
     </html>
   );
