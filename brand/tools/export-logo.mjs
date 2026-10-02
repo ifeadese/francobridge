@@ -28,6 +28,21 @@ for (const file of svgs) {
   }
 }
 
+// 1b. The classic logo (brand/tools/build-classic-logo.py): 1200 and 2400 px wide.
+const classicDir = path.join(brandDir, "classic");
+if (fs.existsSync(classicDir)) {
+  for (const file of fs.readdirSync(classicDir).filter((f) => f.endsWith(".svg"))) {
+    const src = fs.readFileSync(path.join(classicDir, file));
+    const base = file.replace(/\.svg$/, "");
+    for (const [suffix, width] of [["", 1200], ["@2x", 2400]]) {
+      await sharp(src, { density: 300 })
+        .resize({ width })
+        .png()
+        .toFile(path.join(classicDir, `${base}${suffix}.png`));
+    }
+  }
+}
+
 // 2. Social avatar: the mark on a blue square, 1024 px.
 const mark = fs.readFileSync(path.join(brandDir, "francobridge-mark-on-blue.svg"));
 const markPng = await sharp(mark, { density: 300 }).resize({ width: 680 }).png().toBuffer();

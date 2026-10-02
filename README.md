@@ -53,6 +53,11 @@ node brand/tools/export-logo.mjs
 
 The current logo is a placeholder that matches the client's draft.
 
+The classic logo, the arch bridge with the Peace Tower set in Marcellus, is
+built by `brand/tools/build-classic-logo.py` into `public/brand/classic/`
+(stacked and mark-only; on ivory, on navy, and one colour). It is not wired
+into the site yet.
+
 ## Writing a post
 
 Posts live in `_posts/` as markdown files with front matter:
