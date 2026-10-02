@@ -13,17 +13,17 @@ import { CONSULTATION, PACKAGES, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/con
 const STEPS = [
   {
     title: "Book a consultation",
-    text: "One hour online with your instructor, paid when you book. We assess your French and talk through what you need it for, and you leave with your level on the A1 to C1 scale and a recommended programme.",
+    text: "One hour online, paid when you book. We assess your French and talk through your goals, and you leave with your level on the A1 to C1 scale and a recommended programme.",
     facts: [`${CONSULTATION.minutes / 60} hour · $${CONSULTATION.price} ${CONSULTATION.currency}`, "Online", "A1 to C1"],
   },
   {
     title: "Enrol in your programme",
-    text: "Choose your block of hours, private or semi-private, and pay to enrol. Your place and your schedule are set once the payment is in.",
+    text: "Choose your block of hours, private or semi-private, and pay to enrol. Once the payment is in, your place is held and your schedule is set with your instructor.",
     facts: [`${PACKAGES.slice(0, -1).join(", ")} or ${PACKAGES[PACKAGES.length - 1]} hours`, "Private or semi-private", "Paid on enrolment"],
   },
   {
     title: "Start your programme",
-    text: "Your sessions begin: online, scheduled around you, with progress measured against the level you started at.",
+    text: "Your sessions begin, online and scheduled around you. Progress is measured against the level you started at, so you can see the ground you have covered.",
     facts: ["Online", "Scheduled around you"],
   },
 ] as const;
