@@ -63,7 +63,7 @@ export default function Home() {
               We are a French language education centre, building the fluency you need for study, work and
               immigration in Canada.
             </p>
-            <p className="fr-line text-[20px]" lang="fr">
+            <p className="fr-line text-[16px]" lang="fr">
               {SITE_TAGLINE_FR}
             </p>
           </div>

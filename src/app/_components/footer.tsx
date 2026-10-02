@@ -12,22 +12,23 @@ export function Footer() {
     <footer className="bg-navy pb-10 text-ivory">
       <Marquee />
       <div className="container-fb pt-8 md:pt-12">
-        <div className="mb-12 flex flex-col gap-8 lg:mb-20 lg:flex-row lg:items-start lg:gap-20">
-          <div className="order-last flex min-w-0 flex-col gap-3 lg:order-none">
-            <Logo variant="stacked" on="blue" className="h-20 w-auto self-start md:h-[120px]" />
+        <div className="mb-12 flex flex-col gap-8 lg:mb-20 lg:flex-row lg:items-stretch lg:gap-20">
+          <div className="order-last flex min-w-0 flex-col gap-3 lg:order-none lg:justify-between">
+            <Logo variant="stacked" on="blue" className="h-20 w-auto self-start md:h-[108px]" />
             <div className="mt-3 flex flex-col gap-1">
-              <p className="regular-m py-1">
-                &copy; {new Date().getFullYear()} {LEGAL_NAME} All rights reserved.
+              <p className="regular-s py-1">
+                &copy; {new Date().getFullYear()} {LEGAL_NAME}
               </p>
-              <a href={`mailto:${CONTACT.email}`} className="regular-m self-start py-1 underline decoration-ivory/40 underline-offset-4 hover:decoration-ivory">
+              <p className="regular-s py-1">All rights reserved.</p>
+              <a href={`mailto:${CONTACT.email}`} className="regular-s self-start py-1 underline decoration-ivory/40 underline-offset-4 hover:decoration-ivory">
                 {CONTACT.email}
               </a>
-              <p className="regular-m py-1">Ottawa, Canada</p>
+              <p className="regular-s py-1">Ottawa, Canada</p>
             </div>
           </div>
           <div className="flex shrink-0 gap-10 sm:gap-20">
-            <div className="flex flex-col gap-3">
-              <p className="h4 text-[24px] text-ivory">Services</p>
+            <div className="flex flex-col gap-1">
+              <p className="h4 py-1 text-[24px] text-ivory">Services</p>
               <div className="flex flex-col gap-1">
                 {SERVICES.map((s) => (
                   <Link key={s.slug} href={`/services/${s.slug}`} className="regular-m py-1 transition-colors hover:text-yellow sm:whitespace-nowrap">
@@ -36,8 +37,8 @@ export function Footer() {
                 ))}
               </div>
             </div>
-            <div className="flex flex-col gap-3">
-              <p className="h4 text-[24px] text-ivory">School</p>
+            <div className="flex flex-col gap-1">
+              <p className="h4 py-1 text-[24px] text-ivory">School</p>
               <div className="flex flex-col gap-1">
                 <Link href="/" className="regular-m py-1 transition-colors hover:text-yellow">
                   Home
