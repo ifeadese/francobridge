@@ -11,17 +11,30 @@ export function ArrowIcon() {
 }
 
 // A word and a ringed arrow. Use inside a card (as a span) or on its own.
-export function Tertiary({ href, children, as = "link" }: { href?: string; children: React.ReactNode; as?: "link" | "span" }) {
+// `filled` draws the ring solid in the ink at rest, for links that sit on a
+// pattern or a tint and need more weight than a hairline ring gives.
+export function Tertiary({
+  href,
+  children,
+  as = "link",
+  filled = false,
+}: {
+  href?: string;
+  children: React.ReactNode;
+  as?: "link" | "span";
+  filled?: boolean;
+}) {
+  const className = filled ? "tertiary tertiary-filled" : "tertiary";
   if (as === "span" || !href) {
     return (
-      <span className="tertiary">
+      <span className={className}>
         <span>{children}</span>
         <ArrowIcon />
       </span>
     );
   }
   return (
-    <Link href={href} className="tertiary group">
+    <Link href={href} className={`${className} group`}>
       <span>{children}</span>
       <ArrowIcon />
     </Link>

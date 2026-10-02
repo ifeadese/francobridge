@@ -118,6 +118,9 @@ body {
   .group:hover .tertiary-icon, .tertiary:hover .tertiary-icon {
     @apply bg-black text-white;
   }
+  /* Filled: the ring solid in the ink at rest, grey on hover like the primary button. */
+  .tertiary-filled .tertiary-icon { @apply bg-black text-white; }
+  .group:hover .tertiary-filled .tertiary-icon, .tertiary-filled:hover .tertiary-icon { @apply border-grey-80 bg-grey-80; }
 
   /* Compact section spacing, the same on every page: 80px, 56px on phones. */
   .section { margin-top: 80px; }

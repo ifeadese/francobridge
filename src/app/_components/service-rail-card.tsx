@@ -8,8 +8,8 @@ import type { Service } from "@/lib/services";
 // A service card for the rail: a pastel panel held by a hairline frame in
 // the card's ink. The label, then one tight line as the title, who it is
 // for, and a tertiary link at the foot, right-aligned: a word and the ringed
-// arrow, the arch closed, on a small outlined chip of the warm white so it
-// reads over the pattern that runs along the bottom edge behind it. Cards
+// arrow, the arch closed. The ring is filled in the ink at rest, so the link
+// holds its own over the pattern that runs along the bottom edge behind it. Cards
 // share the height of the tallest and grow with their text, never clipping
 // it. The whole card is the link; on hover the ring fills.
 const INK = { blue: "border-blue/25", red: "border-red/25", yellow: "border-blue/25" } as const;
@@ -34,8 +34,10 @@ export function ServiceRailCard({ service, tone }: { service: Service; tone: Ton
           <h3 className="h3">{service.cardTitle}</h3>
           <p className="regular-l">{service.cardFor}</p>
         </div>
-        <span className="self-end border border-black/80 bg-white/70 px-4 py-2 backdrop-blur-sm transition-colors duration-200 group-hover:bg-white">
-          <Tertiary as="span">Learn more</Tertiary>
+        <span className="self-end">
+          <Tertiary as="span" filled>
+            Learn more
+          </Tertiary>
         </span>
       </div>
     </Link>
