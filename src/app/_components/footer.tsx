@@ -12,8 +12,8 @@ export function Footer() {
         <div className="mb-20 grid gap-12 md:grid-cols-2">
           <div className="flex flex-col gap-4">
             <Logo variant="stacked" on="ivory" className="w-40" />
-            <p className="regular-m mt-4 max-w-[320px]">{SITE_TAGLINE}</p>
-            <p className="fr-line text-[18px]" lang="fr">
+            <p className="h4 mt-6 max-w-[380px] text-[26px] md:text-[28px]">{SITE_TAGLINE}</p>
+            <p className="regular-s -mt-1 max-w-[380px] text-grey-80" lang="fr">
               {SITE_TAGLINE_FR}
             </p>
             <p className="regular-m mt-4">{LOCATION.city}</p>
