@@ -83,8 +83,15 @@ export default function Home() {
               <br />
               Programs
             </h2>
-            <Link href="/services" className="button-secondary button-small shrink-0">
-              All services
+            {/* All services, as the ringed arrow alone: the arch closed. */}
+            <Link
+              href="/services"
+              aria-label="All services"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-black text-black transition-colors hover:bg-black hover:text-white"
+            >
+              <svg width="18" height="18" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M2 7h10M8 3l4 4-4 4" />
+              </svg>
             </Link>
           </div>
           <ServicesRail />

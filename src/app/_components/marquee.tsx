@@ -34,7 +34,7 @@ function Track() {
 
 export function Marquee() {
   return (
-    <div className="marquee bg-navy py-4 text-ivory md:py-5" aria-hidden="true">
+    <div className="marquee border-b border-ivory/20 bg-navy py-4 text-ivory md:py-5" aria-hidden="true">
       <Track />
       <Track />
     </div>
