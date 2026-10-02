@@ -21,17 +21,16 @@ function NavLinks({ items, className }: { items: NavItem[]; className?: string }
 }
 
 // Fixed, white, a hairline below. The lockup in the centre, About and
-// Services to its left, the rest to its right. On phones the mark alone,
+// Services to its left, the rest to its right. On phones the lockup stays
 // centred, with the menu at the right. Booking lives in the floating button.
 export function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-grey-8 bg-white">
-      <div className="container-fb grid grid-cols-[1fr_auto_1fr] items-center gap-4 py-5 md:gap-8">
+      <div className="container-fb grid grid-cols-[1fr_auto_1fr] items-center gap-4 py-3 md:gap-8">
         <nav className="contents" aria-label="Main">
           <NavLinks items={LEFT} className="hidden items-center gap-2 justify-self-start md:flex" />
           <Link href="/" className="col-start-2 shrink-0" aria-label="FrancoBridge home">
-            <Logo variant="horizontal" on="ivory" className="hidden h-12 w-auto md:block" />
-            <Logo variant="mark" on="ivory" className="block h-10 w-auto md:hidden" />
+            <Logo variant="stacked" on="ivory" className="h-14 w-auto md:h-16" />
           </Link>
           <NavLinks items={RIGHT} className="hidden items-center gap-2 justify-self-end md:flex" />
         </nav>

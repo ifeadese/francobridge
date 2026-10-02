@@ -10,7 +10,7 @@ no fonts.
 
 Outputs
   src/lib/logo-paths.ts   the geometry the <Logo> component draws from
-  public/brand/*.svg      stacked, horizontal and mark-only, on blue / on ivory / one colour
+  public/brand/*.svg      stacked and mark-only, on blue / on ivory / one colour
 
 Run
   python3 -m venv .venv && .venv/bin/pip install fonttools uharfbuzz
@@ -48,12 +48,12 @@ def f(v: float) -> str:
 W = 1000.0
 CX = W / 2
 DECK_L, DECK_R = 70.0, 930.0
-DECK_TOP, DECK_H = 420.0, 14.0
+DECK_TOP, DECK_H = 420.0, 24.0
 
 # The arch: a circular segment springing from the deck, outer edge.
 SPRING = 405.0                     # half span at the deck
-RISE = 200.0                       # deck top to the crown
-T = 13.0                           # arch thickness
+RISE = 185.0                       # deck top to the crown
+T = 24.0                           # arch thickness
 R_OUT = (SPRING ** 2 + RISE ** 2) / (2 * RISE)
 R_IN = R_OUT - T
 ACY = DECK_TOP - RISE + R_OUT      # arch centre, below the deck
@@ -62,19 +62,19 @@ def arch_y(r: float, x: float) -> float:
     return ACY - math.sqrt(r * r - (x - CX) ** 2)
 
 # The tower: body, a cornice, and the spire.
-TOWER_W = 84.0
-TOWER_TOP = 262.0
-CORNICE_W, CORNICE_H = 98.0, 7.0
-SPIRE_W = 78.0
-SPIRE_TIP = 56.0
-GAP = 7.0                          # the air between the arch and the spire
+TOWER_W = 100.0
+TOWER_TOP = 290.0
+CORNICE_W, CORNICE_H = 112.0, 12.0
+SPIRE_W = 90.0
+SPIRE_TIP = 120.0
+GAP = 11.0                         # the air between the arch and the spire
 
-# Hangers every 64 from the centre line; piers stand on the 2nd and 4th.
-PITCH = 64.0
-HANGER_W = 4.5
-PIER_W, PIER_H = 40.0, 50.0
-CAP_W, CAP_H = 52.0, 8.0
-CAP_GAP = 3.0                      # a hairline of light under each cap
+# Hangers every 66 from the centre line; piers stand on the 2nd and 4th.
+PITCH = 66.0
+HANGER_W = 8.0
+PIER_W, PIER_H = 50.0, 50.0
+CAP_W, CAP_H = 66.0, 13.0
+CAP_GAP = 5.0                     # a hairline of light under each cap
 
 def rect(x0, y0, x1, y1) -> str:
     return f"M{f(x0)} {f(y0)}H{f(x1)}V{f(y1)}H{f(x0)}Z"
@@ -196,7 +196,7 @@ def leaf(cx: float, cy: float, width: float) -> str:
             out.append(f"{seg[0]}{f(ax)} {f(ay)}")
     return "".join(out)
 
-LEAF = leaf(CX, TOWER_TOP + 52, 56.0)
+LEAF = leaf(CX, TOWER_TOP + 58, 70.0)
 
 MARK_TOP = SPIRE_TIP
 MARK_BOTTOM = DECK_TOP + DECK_H
@@ -251,34 +251,31 @@ def fit(text: str, ink_w: float, tracking_em: float):
     d, bb = shape(text, size, tracking_em)
     return translate(d, -bb[0], 0), bb[2] - bb[0], -bb[1]   # path, ink width, cap height
 
+# Marcellus comes in one weight; the type is weighted up with a stroke in its
+# own colour, as a share of the cap height, so it holds its own beside the bridge.
+WORD_WEIGHT, DESC_WEIGHT = 0.04, 0.07
+
 def lockup(x: float, word_w: float, word_base: float):
     """The name, `word_w` wide from `x`, and the descriptor centred under it
-    between two hairlines. Returns (word, descriptor, cap height, descriptor baseline)."""
-    word, _, cap = fit("FRANCOBRIDGE", word_w, 0.14)
+    between two rules. Returns (word, descriptor, cap height, descriptor baseline,
+    word stroke, descriptor stroke)."""
+    word, _, cap = fit("FRANCOBRIDGE", word_w, 0.09)
     word = translate(word, x, word_base)
-    desc, desc_w, desc_cap = fit("CONSULTING INC.", word_w * 0.4535, 0.38)
-    desc_base = word_base + cap * 0.484 + desc_cap
+    desc, desc_w, desc_cap = fit("CONSULTING INC.", word_w * 0.74, 0.2)
+    desc_base = word_base + cap * 0.42 + desc_cap
     dx = x + (word_w - desc_w) / 2
     desc = translate(desc, dx, desc_base)
-    rule_h, rule_gap = word_w * 0.0023, word_w * 0.03
+    rule_h, rule_gap = desc_cap * 0.16, desc_cap * 0.9
     ry = desc_base - desc_cap / 2 - rule_h / 2
     rules = rect(x, ry, dx - rule_gap, ry + rule_h) + rect(dx + desc_w + rule_gap, ry, x + word_w, ry + rule_h)
-    return word, rules + desc, cap, desc_base
+    return word, rules + desc, cap, desc_base, cap * WORD_WEIGHT, desc_cap * DESC_WEIGHT
 
-# Stacked: the name spans the deck, under the mark.
-_, _, st_cap, _ = lockup(DECK_L, DECK_R - DECK_L, 0)
-st_word, st_desc, _, st_bottom = lockup(DECK_L, DECK_R - DECK_L, MARK_BOTTOM + 44 + st_cap)
-STACKED = {"x": DECK_L, "y": MARK_TOP, "width": DECK_R - DECK_L, "height": st_bottom - MARK_TOP,
-           "word": st_word, "descriptor": st_desc}
-
-# Horizontal: the name to the right of the mark; the descriptor's baseline
-# sits on the underside of the deck, so the type stands on the bridge's ground line.
-HZ_GAP, HZ_WORD_W = 72.0, 1840.0
-hz_x = DECK_R + HZ_GAP
-_, _, hz_cap, hz_desc_off = lockup(hz_x, HZ_WORD_W, 0)
-hz_word, hz_desc, _, _ = lockup(hz_x, HZ_WORD_W, MARK_BOTTOM - hz_desc_off)
-HORIZONTAL = {"x": DECK_L, "y": MARK_TOP, "width": hz_x + HZ_WORD_W - DECK_L, "height": MARK_BOTTOM - MARK_TOP,
-              "word": hz_word, "descriptor": hz_desc}
+# Stacked, the one lockup: the name spans the deck, under the bridge.
+_, _, st_cap, _, _, _ = lockup(DECK_L, DECK_R - DECK_L, 0)
+st_word, st_desc, _, st_bottom, st_ws, st_ds = lockup(DECK_L, DECK_R - DECK_L, MARK_BOTTOM + 40 + st_cap)
+M = 3.0   # room for the type's stroke at the edges
+STACKED = {"x": DECK_L - M, "y": MARK_TOP, "width": DECK_R - DECK_L + 2 * M, "height": st_bottom + M - MARK_TOP,
+           "word": st_word, "descriptor": st_desc, "wordStroke": st_ws, "descriptorStroke": st_ds}
 
 MARK = {"x": DECK_L, "y": MARK_TOP, "width": DECK_R - DECK_L, "height": MARK_BOTTOM - MARK_TOP,
         "arch": ARCH, "frame": HANGERS + DECK + PIERS, "tower": TOWER, "leaf": LEAF}
@@ -287,8 +284,8 @@ MARK = {"x": DECK_L, "y": MARK_TOP, "width": DECK_R - DECK_L, "height": MARK_BOT
 NAVY, RED, IVORY = "#1B2556", "#D52B1E", "#F6F4F2"
 
 def svg(kind: str, on: str) -> str:
-    """kind: stacked | horizontal | mark; on: blue | ivory | mono-blue | mono-ivory"""
-    box = {"stacked": STACKED, "horizontal": HORIZONTAL, "mark": MARK}[kind]
+    """kind: stacked | mark; on: blue | ivory | mono-blue | mono-ivory"""
+    box = {"stacked": STACKED, "mark": MARK}[kind]
     ink = {"blue": IVORY, "ivory": NAVY, "mono-blue": NAVY, "mono-ivory": IVORY}[on]
     label = "FrancoBridge" if kind == "mark" else "FrancoBridge Consulting Inc."
     vb = f"{f(box['x'])} {f(box['y'])} {f(box['width'])} {f(box['height'])}"
@@ -302,14 +299,14 @@ def svg(kind: str, on: str) -> str:
         p.append(f'<path fill="{ink}" d="{TOWER}"/>')
         p.append(f'<path fill="{RED}" d="{LEAF}"/>')
     if kind != "mark":
-        p.append(f'<path fill="{ink}" d="{box["word"]}"/>')
-        p.append(f'<path fill="{ink}" d="{box["descriptor"]}"/>')
+        p.append(f'<path fill="{ink}" stroke="{ink}" stroke-width="{f(box["wordStroke"])}" stroke-linejoin="round" d="{box["word"]}"/>')
+        p.append(f'<path fill="{ink}" stroke="{ink}" stroke-width="{f(box["descriptorStroke"])}" stroke-linejoin="round" d="{box["descriptor"]}"/>')
     p.append("</svg>")
     return "\n".join(p) + "\n"
 
 out_dir = os.path.join(ROOT, "public", "brand")
 os.makedirs(out_dir, exist_ok=True)
-for kind in ("stacked", "horizontal", "mark"):
+for kind in ("stacked", "mark"):
     for on in ("blue", "ivory", "mono-blue", "mono-ivory"):
         name = f"francobridge-{kind}-{on}.svg" if on.startswith("mono") else f"francobridge-{kind}-on-{on}.svg"
         with open(os.path.join(out_dir, name), "w") as fh:
@@ -317,8 +314,8 @@ for kind in ("stacked", "horizontal", "mark"):
 
 # The app icon: the heart of the mark (spire, tower, the inner piers and the
 # crown of the arch) full bleed on a navy square, so it holds up at 16 px.
-ICON_SIDE = 560.0
-icon_x, icon_y = CX - ICON_SIDE / 2, MARK_BOTTOM + 76 - ICON_SIDE
+ICON_SIDE = 470.0
+icon_x, icon_y = CX - ICON_SIDE / 2, MARK_BOTTOM + 66 - ICON_SIDE
 icon = (
     f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{f(icon_x)} {f(icon_y)} {f(ICON_SIDE)} {f(ICON_SIDE)}" width="64" height="64">\n'
     f'  <clipPath id="i"><rect x="{f(icon_x)}" y="{f(icon_y)}" width="{f(ICON_SIDE)}" height="{f(ICON_SIDE)}" rx="{f(ICON_SIDE * 0.1875)}"/></clipPath>\n'
@@ -343,9 +340,9 @@ ts = (
     "// Generated by brand/tools/build-logo.py. Do not edit by hand.\n"
     "// Each box is a viewBox: x, y, width, height in the mark's units (the deck is 860 long).\n"
     f'export const COLORS = {{ navy: "{NAVY}", red: "{RED}", ivory: "{IVORY}" }} as const;\n\n'
-    + ts_obj("MARK", MARK) + "\n" + ts_obj("STACKED", STACKED) + "\n" + ts_obj("HORIZONTAL", HORIZONTAL)
+    + ts_obj("MARK", MARK) + "\n" + ts_obj("STACKED", STACKED)
 )
 with open(os.path.join(ROOT, "src", "lib", "logo-paths.ts"), "w") as fh:
     fh.write(ts)
 
-print("stacked", f(STACKED["width"]), "x", f(STACKED["height"]), "| horizontal", f(HORIZONTAL["width"]), "x", f(HORIZONTAL["height"]))
+print("stacked", f(STACKED["width"]), "x", f(STACKED["height"]), "| mark", f(MARK["width"]), "x", f(MARK["height"]), "| cap", f(st_cap))
