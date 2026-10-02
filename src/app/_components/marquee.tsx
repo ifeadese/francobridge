@@ -1,6 +1,6 @@
 import { SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/constants";
 
-// The marquee: a blue strip at the head of the footer. The two taglines run
+// The marquee: a strip in the logo's navy at the head of the footer. The two taglines run
 // across in the serif, the English then the French, in ivory with the red half-sun on the base line between them. The
 // track is drawn twice so the loop never shows a seam; it pauses under the
 // pointer and stands still for anyone who prefers reduced motion. Hidden
@@ -34,7 +34,7 @@ function Track() {
 
 export function Marquee() {
   return (
-    <div className="marquee bg-blue py-4 text-ivory md:py-5" aria-hidden="true">
+    <div className="marquee bg-navy py-4 text-ivory md:py-5" aria-hidden="true">
       <Track />
       <Track />
     </div>

@@ -31,7 +31,7 @@ export function ServiceRailCard({ service, index, tone }: { service: Service; in
       <div className="relative flex flex-1 flex-col justify-between gap-10 p-6 md:p-10">
         <div className="flex flex-col gap-4">
           <p className="flex items-baseline gap-3">
-            <span className="h3">{String(index + 1).padStart(2, "0")}</span>
+            <span className="font-heading text-[22px] leading-none">{String(index + 1).padStart(2, "0")}</span>
             <span className="regular-s">{service.short}</span>
           </p>
           <h3 className="h3">{service.cardTitle}</h3>

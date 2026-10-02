@@ -24,7 +24,7 @@ export function FrenchLine({
   return (
     <div className={`overflow-hidden ${className}`}>
       <div className="container-fb flex flex-col gap-8 pb-10 pt-14 md:flex-row md:items-end md:justify-between md:pb-12 md:pt-20">
-        <div className="flex max-w-[880px] flex-col gap-4">
+        <div className="flex max-w-[760px] flex-col gap-4">
           <p className="banner-heading" lang="fr">
             {line}
           </p>

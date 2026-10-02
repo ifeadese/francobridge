@@ -13,6 +13,8 @@ const config: Config = {
         black: "#1d1a17",
         grey: { 3: "#f8f4f1", 8: "#ede9e6", 80: "#4a4744" },
         blue: { DEFAULT: "#0E397F", deep: "#0A2A5E", light: "#dbe4f3", pale: "#eef2f9" },
+        // The logo's navy, for the few surfaces that sit next to the mark.
+        navy: "#1B2556",
         red: { DEFAULT: "#DB2517", deep: "#B81E12", light: "#fbe0dc" },
         yellow: { DEFAULT: "#ffdf8b", light: "#f9e7b8" },
         green: { light: "#dfe9dc" },

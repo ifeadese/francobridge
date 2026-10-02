@@ -124,8 +124,6 @@ body {
   @media (max-width: 767px) { .section-tight { margin-top: 24px; } }
 
   .line { @apply h-px w-full bg-black; }
-  /* The arch: the brand's one curve, square at the foot. */
-  .arch { border-radius: 9999px 9999px 0 0; }
   .line-white { @apply h-px w-full bg-white; }
 
   .panel { @apply flex flex-col; padding: 24px 32px; }
