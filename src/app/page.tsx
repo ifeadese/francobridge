@@ -26,10 +26,10 @@ const STEPS = [
   },
 ] as const;
 
-// The closing banner, under the steps. Narrow no-break spaces inside the
-// guillemets (U+202F). For the client to confirm, like every French line.
+// The closing banner, under the steps. For the client to confirm, like every
+// French line.
 const CLOSING = {
-  fr: "« Tout commence par une conversation. »",
+  fr: "Tout commence par une conversation.",
   en: "It all starts with a conversation.",
   link: "Start the conversation",
   href: "/contact",

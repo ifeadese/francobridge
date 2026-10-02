@@ -27,7 +27,7 @@ export const SERVICES: Service[] = [
     short: "TCF & TEF",
     headline: "Prepare with purpose. Practice with guidance.",
     sub: "Approach your TCF or TEF examination with confidence.",
-    fr: "« Préparez-vous avec méthode. Passez l’examen avec confiance. »",
+    fr: "Préparez-vous avec méthode. Passez l’examen avec confiance.",
     level: "A2 to C1",
     format: "Online · Private coaching · Intensive options",
     intro: [
@@ -73,7 +73,7 @@ export const SERVICES: Service[] = [
     short: "Professional French",
     headline: "French for the Workplace",
     sub: "Build the language skills and confidence you need to communicate effectively in a professional environment.",
-    fr: "« Le français au travail, avec assurance. »",
+    fr: "Le français au travail, avec assurance.",
     level: "B1 to C1",
     format: "Online · Private or semi-private",
     intro: [
@@ -119,7 +119,7 @@ export const SERVICES: Service[] = [
     short: "General French A1–C1",
     headline: "French A1 to C1",
     sub: "Structured French instruction for adults, from complete beginner to advanced level.",
-    fr: "« Du niveau A1 au niveau C1, à votre rythme. »",
+    fr: "Du niveau A1 au niveau C1, à votre rythme.",
     level: "A1 to C1",
     format: "Online · Private now, semi-private as groups form",
     intro: [
@@ -171,7 +171,7 @@ export const SERVICES: Service[] = [
     short: "Career & Education Pathway Guidance",
     headline: "Turn Language Skills into Career Opportunities.",
     sub: "Career preparation and education planning, delivered in French, for people building a future in a Francophone environment.",
-    fr: "« Faites de vos compétences en français une carrière. »",
+    fr: "Faites de vos compétences en français une carrière.",
     level: "B1 and above",
     format: "Online · Offered in French only",
     intro: [
@@ -213,7 +213,7 @@ export const SERVICES: Service[] = [
     short: "Immigration Pathway Guidance",
     headline: "Understand the French-language pathways.",
     sub: "Clear, publicly available information on French-language immigration pathways, their language requirements, and how to prepare for them.",
-    fr: "« Comprendre les voies d’immigration francophones. »",
+    fr: "Comprendre les voies d’immigration francophones.",
     level: "All levels",
     format: "Online or in Ottawa · Consultation",
     intro: [
@@ -246,7 +246,7 @@ export const SERVICES: Service[] = [
     short: "Translation & Proofreading",
     headline: "Translation, editing and revision.",
     sub: "English to French and French to English, for documents that have to be right.",
-    fr: "« Traduction et révision, dans les deux sens. »",
+    fr: "Traduction et révision, dans les deux sens.",
     level: "Any",
     format: "Remote · Quoted per document",
     intro: [
