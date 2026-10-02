@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, type KeyboardEvent, type ReactNode } from "react";
 
 /** Wheel deltas can arrive in lines or pages; normalise both to pixels. */
 const LINE_HEIGHT = 16;
@@ -14,42 +14,18 @@ const EDGE_SLACK = 1;
 
 /**
  * A horizontally scrolling rail with the affordances a plain scroller lacks.
- * Touch swipe and trackpad already move it; this adds the two paths a
- * wheel-only mouse has no way to reach: vertical wheel deltas are redirected
- * sideways while the rail can still move, so the page keeps scrolling at the
- * ends, and prev/next buttons advance one card at a time. The buttons hide
- * when everything already fits, and on touch widths where swiping is natural.
+ * Touch swipe and trackpad already move it; this adds what a wheel-only
+ * mouse and the keyboard have no way to reach: vertical wheel deltas are
+ * redirected sideways while the rail can still move, so the page keeps
+ * scrolling at the ends, and the arrow keys advance one card at a time. At
+ * grid widths the rail does not overflow and all of this stays idle (see
+ * .rail in globals.css).
  *
- * Ported from the Lighthouse site's CardRail. Pass the scrolling element's own
- * classes as `className`; the component owns only the controls around it.
+ * Ported from the Lighthouse site's CardRail, without its prev/next buttons.
+ * Pass the scrolling element's own classes as `className`.
  */
 export function CardRail({ className, label, children }: { className: string; label: string; children: ReactNode }) {
   const rail = useRef<HTMLDivElement>(null);
-  // Both true until measured, so a rail that doesn't overflow never flashes
-  // a pair of live buttons on first paint.
-  const [atStart, setAtStart] = useState(true);
-  const [atEnd, setAtEnd] = useState(true);
-
-  const sync = useCallback(() => {
-    const el = rail.current;
-    if (!el) return;
-    const max = el.scrollWidth - el.clientWidth;
-    setAtStart(el.scrollLeft <= EDGE_SLACK);
-    setAtEnd(el.scrollLeft >= max - EDGE_SLACK);
-  }, []);
-
-  useEffect(() => {
-    const el = rail.current;
-    if (!el) return;
-    sync();
-    el.addEventListener("scroll", sync, { passive: true });
-    const observer = new ResizeObserver(sync);
-    observer.observe(el);
-    return () => {
-      el.removeEventListener("scroll", sync);
-      observer.disconnect();
-    };
-  }, [sync]);
 
   useEffect(() => {
     const el = rail.current;
@@ -90,30 +66,10 @@ export function CardRail({ className, label, children }: { className: string; la
     }
   };
 
-  const scrollable = !(atStart && atEnd);
-
   return (
-    <div className="card-rail" role="group" aria-label={label}>
-      <div ref={rail} className={className} onKeyDown={onKeyDown}>
-        {children}
-      </div>
-      <div className="card-rail-nav" data-scrollable={scrollable}>
-        <button type="button" className="card-rail-btn card-rail-btn--prev" onClick={() => nudge(-1)} disabled={atStart} aria-label="Previous cards">
-          <RailArrow direction="left" />
-        </button>
-        <button type="button" className="card-rail-btn" onClick={() => nudge(1)} disabled={atEnd} aria-label="Next cards">
-          <RailArrow direction="right" />
-        </button>
-      </div>
+    <div ref={rail} className={className} role="group" aria-label={label} onKeyDown={onKeyDown}>
+      {children}
     </div>
-  );
-}
-
-function RailArrow({ direction }: { direction: "left" | "right" }) {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      {direction === "right" ? <path d="M2 8h12M9 3l5 5-5 5" /> : <path d="M14 8H2M7 3L2 8l5 5" />}
-    </svg>
   );
 }
 

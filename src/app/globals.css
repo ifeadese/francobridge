@@ -174,9 +174,12 @@ body {
 }
 
 /* ------------------------------------------------------------
-   Card rail: a horizontal run of cards that scrolls edge to edge. The scroller
-   breaks out to the viewport width; the inline padding pulls the first card
-   back in line with the heading. Controls come from CardRail.tsx.
+   Card rail. On phones, a horizontal run of cards that scrolls edge to edge:
+   the scroller breaks out to the viewport width and the inline padding pulls
+   the first card back in line with the heading. From the width where two
+   cards fit side by side it is a grid instead, two columns, then three from
+   1152px, and nothing scrolls. Wheel and keyboard handling come from
+   CardRail.tsx.
    ------------------------------------------------------------ */
 .rail {
   display: flex;
@@ -196,28 +199,17 @@ body {
   flex: 0 0 clamp(320px, 44%, 560px);
   display: flex;
 }
-.card-rail-nav {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  margin-top: 24px;
+@media (min-width: 768px) {
+  .rail {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    overflow: visible;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+  .rail > * { flex: none; }
 }
-.card-rail-nav[data-scrollable="false"] { visibility: hidden; }
-.card-rail-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  border-radius: 999px;
-  border: 1px solid var(--navy);
-  color: var(--navy);
-  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
-}
-.card-rail-btn:hover:not(:disabled) { border-color: var(--blue); background-color: var(--blue); color: var(--white); }
-.card-rail-btn:disabled { opacity: 0.3; cursor: default; }
-@media (max-width: 767px) {
-  /* Swiping already moves the rail on touch, so the controls are desktop only. */
-  .card-rail-nav { display: none; }
+@media (min-width: 1152px) {
+  .rail { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
