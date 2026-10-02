@@ -119,12 +119,13 @@ body {
   .group:hover .tertiary-icon, .tertiary:hover .tertiary-icon {
     @apply bg-black text-white;
   }
-  /* Filled: the word at medium weight and the ring a size up, solid in the
-     ink at rest, grey on hover. For links that sit
-     on a pattern. */
+  /* Filled: the word at medium weight in the logo's navy, and the ring a size
+     up, solid navy at rest and brand blue on hover, like the primary button.
+     For links that sit on a pattern. */
+  .tertiary-filled { @apply text-navy; }
   .tertiary-filled > span:first-child { @apply font-medium; }
-  .tertiary-filled .tertiary-icon { @apply h-8 w-8 bg-black text-white; }
-  .group:hover .tertiary-filled .tertiary-icon, .tertiary-filled:hover .tertiary-icon { @apply border-grey-80 bg-grey-80; }
+  .tertiary-filled .tertiary-icon { @apply h-8 w-8 border-navy bg-navy text-ivory; }
+  .group:hover .tertiary-filled .tertiary-icon, .tertiary-filled:hover .tertiary-icon { @apply border-blue bg-blue; }
 
   /* Compact section spacing, the same on every page: 80px, 56px on phones. */
   .section { margin-top: 80px; }
