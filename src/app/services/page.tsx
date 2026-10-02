@@ -12,7 +12,7 @@ export default function Services() {
   return (
     <main>
       <Hero
-        title="Six programmes, one first step"
+        title="Our Programs"
         text="Every programme starts with the same conversation: a one-hour consultation that finds your level and ends with a plan."
       />
 
