@@ -26,12 +26,12 @@ const STEPS = [
   },
 ] as const;
 
-// The closing banner, under the steps. For the client to confirm, like every
-// French line.
+// The closing banner, under the steps, and the page's last button. The French
+// is for the client to confirm, like every French line.
 const CLOSING = {
   fr: "Tout commence par une conversation.",
   en: "It all starts with a conversation.",
-  link: "Start the conversation",
+  link: "Get started",
   href: "/contact",
 } as const;
 
