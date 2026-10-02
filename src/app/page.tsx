@@ -83,8 +83,8 @@ export default function Home() {
       <section className="relative py-10 md:py-14">
         <div className="container-fb relative z-10">
           {/* The heading with the All services ring on its row, the ring's
-              foot on the title's baseline, and the line under both, free to
-              run the column's width. */}
+              foot on the title's baseline, and the line under both at the
+              hero text's width. */}
           <div className="mb-14 flex flex-col gap-4">
             <div className="flex flex-nowrap items-end justify-between gap-6">
               <h2 className="h1">
@@ -97,7 +97,7 @@ export default function Home() {
               </Link>
             </div>
             {/* One line on what the six cards cover, and the thread between them. */}
-            <p className="regular-l">
+            <p className="regular-l max-w-[560px]">
               Exam preparation, French for work and everyday life, pathway guidance and translation, all online and all
               starting with one conversation.
             </p>
