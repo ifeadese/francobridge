@@ -16,11 +16,11 @@ export function Footer() {
     <footer data-surface="dark" className="bg-navy pb-8 text-ivory md:pb-10">
       <Marquee />
       <div className="container-fb pt-8 md:pt-12">
-        <div className="mb-8 flex flex-col gap-8 md:mb-16 md:flex-row md:items-stretch md:gap-12 lg:mb-20 lg:gap-20">
-          <div className="order-last flex min-w-0 flex-col gap-3 md:order-none md:min-w-[220px] md:flex-1">
+        <div className="mb-8 flex flex-col gap-8 md:mb-16 md:flex-row md:items-stretch md:gap-8 lg:mb-20 lg:gap-20">
+          <div className="order-last flex min-w-0 flex-col gap-3 md:order-none md:min-w-[256px] md:flex-1">
             <Logo variant="stacked" on="blue" className="h-20 w-auto self-start md:h-[88px] lg:h-[108px]" />
             <div className="mt-5 flex flex-col gap-1 lg:mt-4">
-              <p className="regular-s py-1 lg:py-0.5">
+              <p className="regular-s whitespace-nowrap py-1 lg:py-0.5">
                 &copy; {new Date().getFullYear()} {LEGAL_NAME}
               </p>
               <p className="regular-s py-1 lg:py-0.5">All rights reserved.</p>
@@ -30,7 +30,7 @@ export function Footer() {
               <p className="regular-s py-1 lg:py-0.5">Ottawa, Canada</p>
             </div>
           </div>
-          <div className="flex flex-col gap-8 sm:flex-row sm:gap-20 md:min-w-0 md:gap-12 lg:shrink-0 lg:gap-20">
+          <div className="flex flex-col gap-8 sm:flex-row sm:gap-20 md:min-w-0 md:gap-8 lg:shrink-0 lg:gap-20">
             <div className="flex flex-col gap-1">
               <p className="h4 mb-2 py-1 text-[21px] text-ivory">FrancoBridge</p>
               <div className="flex flex-col gap-1">
