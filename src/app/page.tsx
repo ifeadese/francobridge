@@ -82,24 +82,25 @@ export default function Home() {
       {/* Services: a rail of six cards, TCF & TEF first, on the white. */}
       <section className="relative py-10 md:py-14">
         <div className="container-fb relative z-10">
-          <div className="mb-14 flex flex-nowrap items-center justify-between gap-6">
-            <div className="flex min-w-0 flex-col gap-4">
+          {/* The heading with the All services ring on its row, the ring's
+              foot on the title's baseline, and the line under both, free to
+              run the column's width. */}
+          <div className="mb-14 flex flex-col gap-4">
+            <div className="flex flex-nowrap items-end justify-between gap-6">
               <h2 className="h1">
                 Our
                 <br />
                 Programs
               </h2>
-              {/* One line on what the six cards cover, and the thread between them. */}
-              <p className="regular-l max-w-[560px]">
-                Exam preparation, French for work and everyday life, pathway guidance and translation, all online and all
-                starting with one conversation.
-              </p>
+              <Link href="/services" aria-label="All services" className={RING}>
+                <RingArrow />
+              </Link>
             </div>
-            {/* All services, as the ringed arrow alone: the same large ring as
-                the booking and closing links, centred on the heading. */}
-            <Link href="/services" aria-label="All services" className={RING}>
-              <RingArrow />
-            </Link>
+            {/* One line on what the six cards cover, and the thread between them. */}
+            <p className="regular-l">
+              Exam preparation, French for work and everyday life, pathway guidance and translation, all online and all
+              starting with one conversation.
+            </p>
           </div>
           <ServicesRail />
         </div>
