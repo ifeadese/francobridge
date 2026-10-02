@@ -5,8 +5,9 @@ import { MobileNav } from "@/app/_components/mobile-nav";
 import { BookButton } from "@/app/_components/book-button";
 import { NAV } from "@/lib/constants";
 
-// Fixed, white with a hairline below, except at the top of the home page,
-// where it is clear and the hero's fade shows through (see HeaderSurface).
+// Fixed, frosted white with a bottom edge that fades out, except at the top
+// of the home page, where it is clear and the hero's fade shows through (see
+// HeaderSurface).
 // The lockup at the left, the links at the right, and the one button always
 // in view beside the menu on phones.
 export function Header() {
