@@ -137,9 +137,10 @@ body {
 
   .panel { @apply flex flex-col; padding: 24px 32px; }
 
-  /* Form fields: a bottom rule only. */
+  /* Form fields: a box of the pale blue with a hairline in the brand blue on
+     every side, the blue card's treatment. The hairline darkens on focus. */
   .field {
-    @apply w-full border-0 border-b border-black/40 bg-transparent px-0 pb-3 text-[20px] leading-[1.5] text-black outline-none transition-colors placeholder:text-black/50 focus:border-black;
+    @apply w-full border border-blue/25 bg-blue-light px-4 py-4 text-[20px] leading-[1.5] text-black outline-none transition-colors placeholder:text-black/50 focus:border-blue;
   }
 }
 
