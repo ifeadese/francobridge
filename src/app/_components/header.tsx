@@ -10,9 +10,7 @@ import { NAV } from "@/lib/constants";
 // HeaderSurface). The lockup at the left, the links at the right, and the
 // one button always in view beside the menu on phones. Over a dark surface
 // the header carries data-dark, and everything here swaps to its light
-// treatment: the inverted lockup, ivory links and an ivory button. On the
-// light pane the links and the button are the logo's navy, and the links go
-// brand blue on hover.
+// treatment: the inverted lockup, ivory links and an ivory button.
 export function Header() {
   return (
     <HeaderSurface>
@@ -45,7 +43,7 @@ export function Header() {
             ))}
           </nav>
           <BookButton
-            className="whitespace-nowrap bg-navy text-ivory transition-colors hover:bg-blue max-md:px-3 max-md:text-[15px] md:ml-3 group-data-[dark]:bg-ivory group-data-[dark]:text-navy group-data-[dark]:hover:bg-white"
+            className="whitespace-nowrap max-md:px-3 max-md:text-[15px] md:ml-3 group-data-[dark]:bg-ivory group-data-[dark]:text-navy group-data-[dark]:hover:bg-white"
             size="sm"
           />
           <MobileNav />

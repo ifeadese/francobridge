@@ -98,14 +98,14 @@ body {
     @apply font-heading font-normal text-grey-80;
   }
 
-  /* Buttons: square-cornered. The primary black on white; the secondary an
-     outline in the logo's navy that fills on hover. Red is never a
+  /* Buttons: square-cornered, both in the logo's navy: the primary filled,
+     brand blue on hover; the secondary an outline that fills. Red is never a
      button in this layout; it lives in the mark and the patterns. */
   .button {
     @apply inline-flex items-center justify-center rounded-none text-center text-[18px] leading-[1.5] transition-colors duration-200;
     padding: 22px 36px 24px;
   }
-  .button-primary { @apply button bg-black text-white hover:bg-grey-80; }
+  .button-primary { @apply button bg-navy text-ivory hover:bg-blue; }
   .button-secondary { @apply button border border-navy bg-transparent text-navy hover:bg-navy hover:text-ivory; }
   .button-small { padding: 16px 24px; @apply text-[16px]; }
 
@@ -120,7 +120,7 @@ body {
     @apply bg-black text-white;
   }
   /* Filled: the word at medium weight and the ring a size up, solid in the
-     ink at rest, grey on hover like the primary button. For links that sit
+     ink at rest, grey on hover. For links that sit
      on a pattern. */
   .tertiary-filled > span:first-child { @apply font-medium; }
   .tertiary-filled .tertiary-icon { @apply h-8 w-8 bg-black text-white; }
