@@ -22,7 +22,7 @@ export function Hero({
   children?: ReactNode;
 }) {
   return (
-    <section className="flex flex-col pt-[88px] md:flex-row md:pt-[100px]">
+    <section className="flex flex-col pt-[104px] md:flex-row md:pt-[124px]">
       <div
         className={cn(
           "flex flex-1 flex-col items-start justify-end",

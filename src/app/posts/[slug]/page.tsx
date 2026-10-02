@@ -13,7 +13,7 @@ export default async function Post(props: Params) {
   const content = await markdownToHtml(post.content || "");
 
   return (
-    <main className="pt-[88px] md:pt-[100px]">
+    <main className="pt-[104px] md:pt-[124px]">
       <article>
         <div className="container-fb grid gap-12 py-20 md:grid-cols-[4.1fr_7fr] md:gap-[120px]">
           <div className="flex flex-col gap-4">

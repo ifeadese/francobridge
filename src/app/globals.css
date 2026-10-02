@@ -28,8 +28,8 @@
   :root { --gutter: 24px; }
 }
 
-html { scroll-padding-top: 96px; }
-@media (min-width: 768px) { html { scroll-padding-top: 108px; } }
+html { scroll-padding-top: 112px; }
+@media (min-width: 768px) { html { scroll-padding-top: 132px; } }
 
 /* Every page ends with the same breathing room before the footer, so no
    section has to carry its own. */
