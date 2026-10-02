@@ -25,7 +25,7 @@ export function Hero({
   compact?: boolean;
   /** Where the back link goes. Home by default. */
   back?: { href: string; label: string };
-  /** A centred 640px column, text ranged left inside it, for a page that is
+  /** A centred 760px column, text ranged left inside it, for a page that is
       one column, like the contact form. Only without a photo. */
   align?: "start" | "center";
   children?: ReactNode;
@@ -37,7 +37,7 @@ export function Hero({
         className={cn(
           "flex flex-1 flex-col items-start justify-end",
           // The centred column is the form's width, placed on the page's axis.
-          centered && "mx-auto w-full max-w-[calc(640px+2*var(--gutter))]",
+          centered && "mx-auto w-full max-w-[calc(760px+2*var(--gutter))]",
           compact ? "gap-6 pb-6 pt-14 md:pb-8 md:pt-16" : "gap-10 py-[88px] md:py-20",
           // Without a photo the text sits in the page column. Beside a photo
           // it keeps the column's left edge but may run to the photo.
@@ -46,7 +46,7 @@ export function Hero({
       >
         <BackLink {...back} />
         <h1 className="h1 max-w-[760px]">{title}</h1>
-        {text && <p className="regular-l max-w-[560px]">{text}</p>}
+        {text && <p className={cn("regular-l", centered ? "max-w-none" : "max-w-[560px]")}>{text}</p>}
         {children && <div className="flex flex-wrap items-center gap-4">{children}</div>}
       </div>
       {image && (
