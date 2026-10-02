@@ -29,7 +29,7 @@ the account exists.
 
 The layout follows a light, editorial school template: fixed white header with
 a hairline, split hero with the photo filling the right half and a yellow card
-on it, 176px between sections, light serif display type (Crimson Pro 300),
+on it, 176px between sections, serif display type in Marcellus (the face of the logo),
 black pill buttons, grey blocks, photo service tiles, and pastel banners with a
 pattern strip drawn from the mark. Tokens live in `tailwind.config.ts` and
 `src/app/globals.css`. Photos are Lorem Picsum placeholders listed in `IMAGES`

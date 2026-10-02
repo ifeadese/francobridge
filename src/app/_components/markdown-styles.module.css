@@ -10,11 +10,11 @@
 }
 
 .markdown h2 {
-  @apply font-heading font-light text-black text-[35px] leading-none tracking-tight mt-14 mb-5;
+  @apply font-heading font-normal text-black text-[35px] leading-none tracking-tight mt-14 mb-5;
 }
 
 .markdown h3 {
-  @apply font-heading font-light text-black text-[30px] leading-none tracking-tight mt-10 mb-4;
+  @apply font-heading font-normal text-black text-[30px] leading-none tracking-tight mt-10 mb-4;
 }
 
 .markdown a {
@@ -22,7 +22,7 @@
 }
 
 .markdown blockquote {
-  @apply border-l border-black pl-6 font-heading italic text-[24px] text-grey-80;
+  @apply border-l border-black pl-6 font-heading text-[24px] text-grey-80;
 }
 
 .markdown code {

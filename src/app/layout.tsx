@@ -3,15 +3,16 @@ import Header from "@/app/_components/header";
 import CalProvider from "@/app/_components/cal-provider";
 import { LEGAL_NAME, SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
-import { Crimson_Pro, Figtree } from "next/font/google";
+import { Figtree, Marcellus } from "next/font/google";
 import cn from "classnames";
 
 import "./globals.css";
 
-const crimson = Crimson_Pro({
+// Marcellus, the face of the logo, for every heading and title. It has one
+// weight and no italic.
+const marcellus = Marcellus({
   subsets: ["latin"],
-  weight: ["300", "500"],
-  style: ["normal", "italic"],
+  weight: "400",
   variable: "--font-heading",
   display: "swap",
 });
@@ -45,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(crimson.variable, figtree.variable)}>
+    <html lang="en" className={cn(marcellus.variable, figtree.variable)}>
       <head>
         <meta name="theme-color" content="#fffbf8" />
       </head>
