@@ -13,13 +13,13 @@ import { CONSULTATION, PACKAGES, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/con
 const STEPS = [
   {
     title: "Book a consultation",
-    text: "One hour online with your instructor, paid when you book. We assess your French level and talk through what you need it for.",
-    facts: [`${CONSULTATION.minutes / 60} hour · $${CONSULTATION.price} ${CONSULTATION.currency}`, "Online"],
+    text: "One hour online with your instructor, paid when you book. We assess your French and talk through what you need it for, and you leave with your level on the A1 to C1 scale and a recommended programme.",
+    facts: [`${CONSULTATION.minutes / 60} hour · $${CONSULTATION.price} ${CONSULTATION.currency}`, "Online", "A1 to C1"],
   },
   {
     title: "Enrol in your programme",
-    text: "You leave the consultation with your level on the A1 to C1 scale and a recommended programme, private or semi-private. Choose your block of hours and pay to enrol.",
-    facts: ["A1 to C1", `${PACKAGES.slice(0, -1).join(", ")} or ${PACKAGES[PACKAGES.length - 1]} hours`, "Paid on enrolment"],
+    text: "Choose your block of hours, private or semi-private, and pay to enrol. Your place and your schedule are set once the payment is in.",
+    facts: [`${PACKAGES.slice(0, -1).join(", ")} or ${PACKAGES[PACKAGES.length - 1]} hours`, "Private or semi-private", "Paid on enrolment"],
   },
   {
     title: "Start your programme",
