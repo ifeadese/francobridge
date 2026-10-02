@@ -111,10 +111,11 @@ export default function Home() {
       {/* How it works and the closing line, on the yellow end of the fade. */}
       <section className="pt-10 md:pt-14">
         <div className="container-fb">
-          {/* The heading with the booking button beside it, one row at every
-              width, like the programmes heading above. On phones the heading
-              breaks a word per line: Want / to get / started? */}
-          <div className="mb-10 flex flex-nowrap items-end justify-between gap-6 md:mb-12">
+          {/* The heading with the booking ring beside it, the same large
+              ringed arrow as the closing banner, one row at every width. On
+              phones the heading breaks a word per line: Want / to get /
+              started? */}
+          <div className="mb-10 flex flex-nowrap items-center justify-between gap-6 md:mb-12">
             <h2 className="h1 min-w-0">
               Want
               <br className="md:hidden" />
@@ -122,7 +123,7 @@ export default function Home() {
               <br />
               started?
             </h2>
-            <BookButton size="sm" look="secondary" className="min-w-0 text-center md:shrink-0 md:whitespace-nowrap" />
+            <BookButton look="ring" />
           </div>
           {/* The ledger: three rows between rules, each numbered in its
               title. Stacked on phones; from tablet width the title takes the

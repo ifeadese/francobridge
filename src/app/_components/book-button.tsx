@@ -1,10 +1,12 @@
 import type { ReactNode } from "react";
 import cn from "classnames";
 import { CAL } from "@/lib/constants";
+import { RING, RingArrow } from "@/app/_components/ring";
 
 type Props = {
   event?: "consultation" | "lesson";
-  look?: "primary" | "secondary";
+  /** "ring" is the large ringed arrow alone; the label becomes its name. */
+  look?: "primary" | "secondary" | "ring";
   size?: "md" | "sm";
   className?: string;
   children?: ReactNode;
@@ -30,9 +32,14 @@ export function BookButton({
       data-cal-namespace={event}
       data-cal-link={link}
       data-cal-config='{"layout":"month_view"}'
-      className={cn(look === "primary" ? "button-primary" : "button-secondary", size === "sm" && "button-small", className)}
+      aria-label={look === "ring" ? String(label) : undefined}
+      className={cn(
+        look === "ring" ? RING : look === "primary" ? "button-primary" : "button-secondary",
+        look !== "ring" && size === "sm" && "button-small",
+        className
+      )}
     >
-      {label}
+      {look === "ring" ? <RingArrow /> : label}
     </a>
   );
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Pattern } from "@/app/_components/pattern";
+import { RING, RingArrow } from "@/app/_components/ring";
 
 // The French line as a closing banner: the brand's "two lines" with the
 // French in the lead for once, set at banner scale, its English under it,
@@ -47,14 +48,8 @@ export function FrenchLine({
           <p className="regular-l text-navy/70">{english}</p>
         </div>
         <div className="flex justify-end">
-          <Link
-            href={href}
-            aria-label={link}
-            className="group flex h-20 w-20 shrink-0 items-center justify-center rounded-full border border-navy text-navy transition-colors hover:border-blue hover:bg-blue hover:text-ivory md:h-28 md:w-28"
-          >
-            <svg className="h-9 w-9 md:h-12 md:w-12" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M2 7h10M8 3l4 4-4 4" />
-            </svg>
+          <Link href={href} aria-label={link} className={RING}>
+            <RingArrow />
           </Link>
         </div>
       </div>
