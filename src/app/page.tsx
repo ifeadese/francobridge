@@ -4,6 +4,7 @@ import { ServicesRail } from "@/app/_components/services-rail";
 import { FrenchLine } from "@/app/_components/french-line";
 import { Watermark } from "@/app/_components/watermark";
 import { Drift } from "@/app/_components/drift";
+import { RING, RingArrow } from "@/app/_components/ring";
 import { CONSULTATION, PACKAGES, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/constants";
 
 // The three steps, numbered in their titles, each with its plain numbers:
@@ -81,7 +82,7 @@ export default function Home() {
       {/* Services: a rail of six cards, TCF & TEF first, on the white. */}
       <section className="relative py-10 md:py-14">
         <div className="container-fb relative z-10">
-          <div className="mb-14 flex flex-nowrap items-end justify-between gap-6">
+          <div className="mb-14 flex flex-nowrap items-center justify-between gap-6">
             <div className="flex min-w-0 flex-col gap-4">
               <h2 className="h1">
                 Our
@@ -94,15 +95,10 @@ export default function Home() {
                 starting with one conversation.
               </p>
             </div>
-            {/* All services, as the ringed arrow alone: the arch closed. */}
-            <Link
-              href="/services"
-              aria-label="All services"
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-navy text-navy transition-colors hover:border-blue hover:bg-blue hover:text-ivory"
-            >
-              <svg width="18" height="18" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M2 7h10M8 3l4 4-4 4" />
-              </svg>
+            {/* All services, as the ringed arrow alone: the same large ring as
+                the booking and closing links, centred on the heading. */}
+            <Link href="/services" aria-label="All services" className={RING}>
+              <RingArrow />
             </Link>
           </div>
           <ServicesRail />
