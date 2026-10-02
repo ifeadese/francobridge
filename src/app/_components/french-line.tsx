@@ -1,21 +1,30 @@
+import Link from "next/link";
 import { Pattern } from "@/app/_components/pattern";
-import { Tertiary } from "@/app/_components/tertiary";
+import { RING, RingArrow } from "@/app/_components/ring";
 
 // The French line as a closing banner: the brand's "two lines" with the
-// French in the lead for once, set at banner scale, its
-// English under it, a ringed-arrow link at the right, and the pattern strip
-// along the foot like every banner on the site. It paints no background of
-// its own: the section it closes carries the colour, on the home page a
+// French in the lead for once, set at banner scale, its English under it,
+// and the pattern strip along the foot like every banner on the site. The
+// row is two halves: the lines in the left, and at the far right, on the
+// text's vertical middle, the page's last link: the ringed arrow alone,
+// large enough to ask to be pressed, its name carried for screen readers,
+// the ring filling with the brand blue on hover like every outlined thing.
+// The row holds on phones too: the French steps down a size and breaks
+// where `lines` says, one short line under another. It paints no
+// background of its own: the section it closes carries the colour, on the home page a
 // gradient from the white down to the yellow. English is the door; French
 // is the room.
 export function FrenchLine({
   line,
+  lines,
   english,
   href,
   link,
   className = "",
 }: {
   line: string;
+  /** The French broken for phones, a line per entry. Falls back to `line`. */
+  lines?: readonly string[];
   english: string;
   href: string;
   link: string;
@@ -23,15 +32,25 @@ export function FrenchLine({
 }) {
   return (
     <div className={`overflow-hidden ${className}`}>
-      <div className="container-fb flex flex-col gap-8 pb-10 pt-14 md:flex-row md:items-end md:justify-between md:pb-12 md:pt-20">
-        <div className="flex max-w-[760px] flex-col gap-4">
-          <p className="banner-heading" lang="fr">
-            {line}
+      <div className="container-fb grid grid-cols-[1fr_auto] items-center gap-6 pb-10 pt-14 md:grid-cols-2 md:gap-12 md:pb-12 md:pt-20">
+        <div className="flex min-w-0 flex-col gap-4">
+          <p className="banner-heading max-md:text-[40px]" lang="fr">
+            {lines
+              ? lines.map((part, i) => (
+                  <span key={part}>
+                    {i > 0 && <br className="md:hidden" />}
+                    {i > 0 && " "}
+                    {part}
+                  </span>
+                ))
+              : line}
           </p>
-          <p className="regular-l text-grey-80">{english}</p>
+          <p className="regular-l text-navy/70">{english}</p>
         </div>
-        <div className="shrink-0 md:pb-2">
-          <Tertiary href={href}>{link}</Tertiary>
+        <div className="flex justify-end">
+          <Link href={href} aria-label={link} className={RING}>
+            <RingArrow />
+          </Link>
         </div>
       </div>
       <Pattern way="yellow" />

@@ -1,8 +1,8 @@
 export const SITE_NAME = "FrancoBridge";
 export const LEGAL_NAME = "FrancoBridge Consulting Inc.";
 export const SITE_TAGLINE = "Bridging language. Unlocking opportunities.";
-// French lines sit inside guillemets with narrow no-break spaces (U+202F).
-export const SITE_TAGLINE_FR = "« Un pont vers la langue. Des portes qui s’ouvrent. »";
+// French lines are plain taglines, no guillemets; only a real quotation takes them.
+export const SITE_TAGLINE_FR = "Un pont vers la langue. Des portes qui s’ouvrent.";
 export const SITE_DESCRIPTION =
   "French language education, TCF and TEF Canada preparation, professional French and pathway guidance in Ottawa and online. Book a consultation to find your level and your programme.";
 export const SITE_URL = "https://francobridge.vercel.app";

@@ -6,14 +6,15 @@ import { SERVICES } from "@/lib/services";
 
 // The logo's navy, with the mark inverted on it: the marquee along the top,
 // then the mark, tagline, contact and copyright at the left, the links at
-// the right, and the fee and advice note under a rule, all in ivory.
+// the right, and the fee and advice note under a rule, all in ivory. Marked
+// as a dark surface so the header switches to its light treatment over it.
 export function Footer() {
   return (
-    <footer className="bg-navy pb-8 text-ivory md:pb-10">
+    <footer data-surface="dark" className="bg-navy pb-8 text-ivory md:pb-10">
       <Marquee />
       <div className="container-fb pt-8 md:pt-12">
-        <div className="mb-8 flex flex-col gap-8 lg:mb-20 lg:flex-row lg:items-stretch lg:gap-20">
-          <div className="order-last flex min-w-0 flex-col gap-3 lg:order-none lg:justify-between">
+        <div className="mb-8 flex flex-col gap-8 md:mb-16 md:flex-row md:items-stretch md:gap-12 lg:mb-20 lg:gap-20">
+          <div className="order-last flex min-w-0 flex-col gap-3 md:order-none md:flex-1 md:justify-between">
             <Logo variant="stacked" on="blue" className="h-20 w-auto self-start md:h-[108px]" />
             <div className="mt-5 flex flex-col gap-1">
               <p className="regular-s py-1">
@@ -26,7 +27,7 @@ export function Footer() {
               <p className="regular-s py-1">Ottawa, Canada</p>
             </div>
           </div>
-          <div className="flex flex-col gap-8 sm:flex-row sm:gap-20 lg:shrink-0">
+          <div className="flex flex-col gap-8 sm:flex-row sm:gap-20 md:gap-12 lg:shrink-0 lg:gap-20">
             <div className="flex flex-col gap-1">
               <p className="h4 mb-2 py-1 text-[24px] text-ivory">FrancoBridge</p>
               <div className="flex flex-col gap-1">
@@ -47,7 +48,7 @@ export function Footer() {
               <p className="h4 mb-2 py-1 text-[24px] text-ivory">Services</p>
               <div className="flex flex-col gap-1">
                 {SERVICES.map((s) => (
-                  <Link key={s.slug} href={`/services/${s.slug}`} className="regular-m py-1 transition-colors hover:text-yellow sm:whitespace-nowrap">
+                  <Link key={s.slug} href={`/services/${s.slug}`} className="regular-m py-1 transition-colors hover:text-yellow sm:whitespace-nowrap md:whitespace-normal lg:whitespace-nowrap">
                     {s.short}
                   </Link>
                 ))}

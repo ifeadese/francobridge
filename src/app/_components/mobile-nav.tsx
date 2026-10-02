@@ -15,11 +15,11 @@ export function MobileNav() {
   const panel = (
     <div id="mobile-menu" className="fixed inset-x-0 bottom-0 top-[97px] z-40 flex flex-col gap-14 overflow-y-auto bg-white px-6 py-10 md:hidden">
       <nav className="flex flex-col items-start gap-4" aria-label="Main">
-        <Link href="/" onClick={() => setOpen(false)} className="py-1.5 text-[21px]">
+        <Link href="/" onClick={() => setOpen(false)} className="py-1.5 text-[21px] transition-colors hover:text-blue">
           Home
         </Link>
         {NAV.map((item) => (
-          <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="py-1.5 text-[21px]">
+          <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="py-1.5 text-[21px] transition-colors hover:text-blue">
             {item.label}
           </Link>
         ))}
@@ -36,7 +36,7 @@ export function MobileNav() {
         aria-expanded={open}
         aria-controls="mobile-menu"
         onClick={() => setOpen((v) => !v)}
-        className="flex h-11 w-11 items-center justify-center text-black"
+        className="flex h-11 w-11 items-center justify-center text-navy transition-colors hover:text-blue group-data-[dark]:text-ivory"
       >
         <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">

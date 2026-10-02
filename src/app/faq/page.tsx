@@ -19,12 +19,12 @@ export default function Faq() {
 
       <section className="mt-0">
         <div className="container-fb">
-          <div className="max-w-[880px] border-t border-black">
+          <div className="max-w-[880px] border-t border-navy">
             {FAQS.map((item) => (
-              <details key={item.q} className="group border-b border-black">
+              <details key={item.q} className="group border-b border-navy">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
                   <span className="h4">{item.q}</span>
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black" aria-hidden="true">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-navy text-navy transition-colors group-hover:border-blue group-hover:bg-blue group-hover:text-ivory" aria-hidden="true">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round">
                       <path d="M2 7h10" />
                       <path d="M7 2v10" className="group-open:hidden" />
@@ -50,7 +50,7 @@ export default function Faq() {
           </div>
           <p className="regular-l mt-10 max-w-[760px]">
             Something else?{" "}
-            <Link href="/contact" className="underline decoration-black/40 underline-offset-4 hover:decoration-black">
+            <Link href="/contact" className="underline decoration-navy/40 underline-offset-4 transition-colors hover:text-blue hover:decoration-blue">
               Write to us
             </Link>{" "}
             and we will reply with what we would suggest and what it costs.

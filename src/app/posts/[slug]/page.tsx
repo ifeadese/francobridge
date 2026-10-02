@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
 import { SITE_NAME } from "@/lib/constants";
 import markdownToHtml from "@/lib/markdownToHtml";
+import { BackLink } from "@/app/_components/back-link";
 import DateFormatter from "@/app/_components/date-formatter";
 import { PostBody } from "@/app/_components/post-body";
 
@@ -17,7 +18,8 @@ export default async function Post(props: Params) {
       <article>
         <div className="container-fb grid gap-12 py-20 md:grid-cols-[4.1fr_7fr] md:gap-[120px]">
           <div className="flex flex-col gap-4">
-            <p className="regular-m text-grey-80">
+            <BackLink href="/blog" label="Blog" />
+            <p className="regular-m text-navy/70">
               <DateFormatter dateString={post.date} /> · {post.author.name}
             </p>
             <h1 className="h1">{post.title}</h1>

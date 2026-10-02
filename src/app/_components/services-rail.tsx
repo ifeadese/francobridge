@@ -5,8 +5,9 @@ import { SERVICES } from "@/lib/services";
 
 const TONES: Tone[] = ["yellow", "blue", "red", "green", "blue", "yellow"];
 
-// The six services as a card rail, TCF & TEF first. Shared by the home page
-// and the services page so the two never drift apart.
+// The six services, TCF & TEF first: a grid of three, then two, and on phones
+// a swipeable rail (see .rail in globals.css). Shared by the home page and
+// the services page so the two never drift apart.
 export function ServicesRail() {
   return (
     <CardRail className="rail" label="Programmes and services">

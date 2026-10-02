@@ -8,7 +8,8 @@ import type { Service } from "@/lib/services";
 // A service card for the rail: a pastel panel held by a hairline frame in
 // the card's ink. The label, then one tight line as the title, who it is
 // for, and a tertiary link at the foot, right-aligned: a word and the ringed
-// arrow, the arch closed. The pattern runs along the bottom edge behind them. Cards
+// arrow, the arch closed. The ring is filled in the ink at rest, so the link
+// holds its own over the pattern that runs along the bottom edge behind it. Cards
 // share the height of the tallest and grow with their text, never clipping
 // it. The whole card is the link; on hover the ring fills.
 const INK = { blue: "border-blue/25", red: "border-red/25", yellow: "border-blue/25" } as const;
@@ -19,7 +20,7 @@ export function ServiceRailCard({ service, tone }: { service: Service; tone: Ton
     <Link
       href={`/services/${service.slug}`}
       className={cn(
-        "group relative flex min-h-[460px] w-full flex-col border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black md:min-h-[560px]",
+        "group relative flex min-h-[460px] w-full flex-col border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-navy md:min-h-[560px]",
         TONES[tone],
         INK[way]
       )}
@@ -34,7 +35,9 @@ export function ServiceRailCard({ service, tone }: { service: Service; tone: Ton
           <p className="regular-l">{service.cardFor}</p>
         </div>
         <span className="self-end">
-          <Tertiary as="span">Learn more</Tertiary>
+          <Tertiary as="span" filled>
+            Learn more
+          </Tertiary>
         </span>
       </div>
     </Link>
