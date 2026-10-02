@@ -12,8 +12,8 @@ export function Header() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-grey-8 bg-white">
       <div className="container-fb flex items-center justify-between gap-4 py-5 md:gap-12">
         <Link href="/" className="shrink-0" aria-label="FrancoBridge home">
-          <Logo variant="horizontal" on="ivory" className="hidden h-10 w-auto md:block" />
-          <Logo variant="mark" on="ivory" className="block h-9 w-auto md:hidden" />
+          <Logo variant="horizontal" on="ivory" className="hidden h-12 w-auto md:block" />
+          <Logo variant="mark" on="ivory" className="block h-10 w-auto md:hidden" />
         </Link>
         <div className="flex items-center gap-2">
           <nav className="hidden items-center gap-2 md:flex" aria-label="Main">

@@ -40,7 +40,7 @@ in `src/lib/constants.ts`.
 - `brand/brand-book.html`: one self-contained page. Story, the mark, signatures, don'ts, colour and type, in use.
 - `src/app/_components/logo.tsx`: the mark as code, drawing `src/lib/logo-paths.ts`.
 - `public/brand/`: SVG and PNG exports, social avatar, Open Graph image, icons.
-- `brand/tools/build-logo.py`: the source of truth for the logo geometry. It outlines the name from Fraunces and the descriptor from Fredoka, so the SVGs need no fonts.
+- `brand/tools/build-logo.py`: the source of truth for the logo geometry, the arch bridge with the Peace Tower. It outlines the name and descriptor from Marcellus, so the SVGs need no fonts, and writes the app icon.
 - `brand/tools/export-logo.mjs`: renders PNGs and icons with sharp and inlines the SVGs into the book.
 
 To regenerate after a geometry change:
@@ -50,13 +50,6 @@ python3 -m venv .venv && .venv/bin/pip install fonttools uharfbuzz
 .venv/bin/python brand/tools/build-logo.py
 node brand/tools/export-logo.mjs
 ```
-
-The current logo is a placeholder that matches the client's draft.
-
-The classic logo, the arch bridge with the Peace Tower set in Marcellus, is
-built by `brand/tools/build-classic-logo.py` into `public/brand/classic/`
-(stacked and mark-only; on ivory, on navy, and one colour). It is not wired
-into the site yet.
 
 ## Writing a post
 
