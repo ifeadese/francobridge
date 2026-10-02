@@ -14,7 +14,7 @@ export function MobileNav() {
         aria-expanded={open}
         aria-controls="mobile-menu"
         onClick={() => setOpen((v) => !v)}
-        className="flex h-11 w-11 items-center justify-center text-black"
+        className="flex h-11 w-11 items-center justify-center text-black transition-colors group-data-[dark]:text-ivory"
       >
         <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">

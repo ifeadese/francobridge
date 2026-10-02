@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import cn from "classnames";
 
@@ -9,39 +9,63 @@ import cn from "classnames";
 // scrolls it becomes a pane of frosted glass: a light white tint over a strong
 // blur, so the page shows through it. Everywhere else it is that pane from
 // the start.
+//
 // The pane has no bottom line. It runs a little past the nav and its last
-// stretch is masked to nothing, so the white and the blur dissolve into the
-// page instead of ending at an edge.
-const FADE = "2.5rem";
+// stretch is masked away along an eased curve, so the white and the blur
+// dissolve into the page instead of ending at an edge.
+//
+// The header also watches what is under it. When a dark surface, any element
+// with data-surface="dark" such as the footer, scrolls up behind the logo,
+// the header sets data-dark and its tint turns navy; the logo, links and
+// button inside it pick that up through group-data-[dark] and switch to
+// their light treatment, so they stay legible on it.
+const FADE = "3.5rem";
+
+// Smoothstep from fully visible to gone, across the fade band.
+const CURVE = [1, 0.97, 0.88, 0.73, 0.5, 0.27, 0.12, 0.03, 0];
+const MASK = `linear-gradient(to bottom, black calc(100% - ${FADE}), ${CURVE.map(
+  (a, i) => `rgb(0 0 0 / ${a}) calc(100% - ${FADE} * ${(1 - i / (CURVE.length - 1)).toFixed(3)})`
+).join(", ")})`;
 
 export function HeaderSurface({ children }: { children: React.ReactNode }) {
-  const home = usePathname() === "/";
+  const pathname = usePathname();
+  const home = pathname === "/";
+  const ref = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [dark, setDark] = useState(false);
 
   useEffect(() => {
-    if (!home) return;
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [home]);
+    const update = () => {
+      setScrolled(window.scrollY > 8);
+      // Dark if a dark surface covers the vertical middle of the header.
+      const y = (ref.current?.getBoundingClientRect().height ?? 0) / 2;
+      const over = Array.from(document.querySelectorAll<HTMLElement>('[data-surface="dark"]')).some((el) => {
+        const r = el.getBoundingClientRect();
+        return r.top <= y && r.bottom >= y;
+      });
+      setDark(over);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [pathname]);
 
   const clear = home && !scrolled;
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header ref={ref} data-dark={dark ? "" : undefined} className="group fixed inset-x-0 top-0 z-50">
       {/* The pane sits behind the nav as its own layer, so the mask that
           fades its bottom edge cannot clip the menu that opens from it. */}
       <div
         aria-hidden
         className={cn(
-          "pointer-events-none absolute inset-x-0 top-0 -z-10 bg-white/35 backdrop-blur-xl transition-opacity duration-300",
+          "pointer-events-none absolute inset-x-0 top-0 -z-10 bg-white/35 backdrop-blur-xl transition-[opacity,background-color] duration-300 group-data-[dark]:bg-navy/40",
           clear ? "opacity-0" : "opacity-100"
         )}
-        style={{
-          bottom: `-${FADE}`,
-          maskImage: `linear-gradient(to bottom, black calc(100% - ${FADE}), transparent)`,
-          WebkitMaskImage: `linear-gradient(to bottom, black calc(100% - ${FADE}), transparent)`,
-        }}
+        style={{ bottom: `-${FADE}`, maskImage: MASK, WebkitMaskImage: MASK }}
       />
       {children}
     </header>

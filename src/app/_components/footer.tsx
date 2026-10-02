@@ -6,10 +6,11 @@ import { SERVICES } from "@/lib/services";
 
 // The logo's navy, with the mark inverted on it: the marquee along the top,
 // then the mark, tagline, contact and copyright at the left, the links at
-// the right, and the fee and advice note under a rule, all in ivory.
+// the right, and the fee and advice note under a rule, all in ivory. Marked
+// as a dark surface so the header switches to its light treatment over it.
 export function Footer() {
   return (
-    <footer className="bg-navy pb-8 text-ivory md:pb-10">
+    <footer data-surface="dark" className="bg-navy pb-8 text-ivory md:pb-10">
       <Marquee />
       <div className="container-fb pt-8 md:pt-12">
         <div className="mb-8 flex flex-col gap-8 lg:mb-20 lg:flex-row lg:items-stretch lg:gap-20">
