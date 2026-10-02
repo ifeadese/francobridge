@@ -16,7 +16,7 @@ export function Footer() {
       <Marquee />
       <div className="container-fb pt-8 md:pt-12">
         <div className="mb-8 flex flex-col gap-8 md:mb-16 md:flex-row md:items-stretch md:gap-12 lg:mb-20 lg:gap-20">
-          <div className="order-last flex min-w-0 flex-col gap-3 md:order-none md:min-w-[220px] md:flex-1 md:justify-between">
+          <div className="order-last flex min-w-0 flex-col gap-3 md:order-none md:min-w-[220px] md:flex-1">
             <Logo variant="stacked" on="blue" className="h-20 w-auto self-start md:h-[88px] lg:h-[108px]" />
             <div className="mt-5 flex flex-col gap-1">
               <p className="regular-s py-1">
