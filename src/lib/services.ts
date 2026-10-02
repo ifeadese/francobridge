@@ -269,7 +269,7 @@ export const SERVICES: Service[] = [
       },
     ],
     cta: "consultation",
-    cardTitle: "Translation and proofreading, English and French.",
+    cardTitle: "Translate and proofread English and French",
     cardFor: "For anyone with an application, letter, certificate or report that has to read perfectly in the other language.",
     ctaLabel: "Request a translation quote",
     related: ["career-pathway-guidance", "professional-french"],
