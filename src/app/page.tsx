@@ -29,7 +29,7 @@ export default function Home() {
     <main className="pb-0">
       {/* Hero: the tagline, one line, the French line and two buttons, on a
           fade from the pale blue at the top of the page down to the white. */}
-      <section className="flex flex-col bg-gradient-to-b from-blue-light to-white pt-[88px]">
+      <section className="flex flex-col bg-gradient-to-b from-blue-light to-white pt-[104px] md:pt-[124px]">
         <div className="container-fb flex flex-col items-start justify-end gap-8 pb-10 pt-14 md:pb-12 md:pt-16">
           <h1 className="h1 max-w-[760px]">{SITE_TAGLINE}</h1>
           <div className="max-w-[420px]">

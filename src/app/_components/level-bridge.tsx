@@ -13,7 +13,7 @@ export function LevelBridge({ className = "" }: { className?: string }) {
         <div className="grid grid-cols-5 gap-2 pr-9 sm:gap-3 sm:pr-16 md:gap-6 md:pr-24">
           {LEVELS.map((level) => (
             <div key={level} className="arch flex aspect-[1/1.9] items-end justify-center bg-blue-light pb-4 sm:aspect-[1/1.3] md:aspect-[1/1.12] md:pb-7">
-              <span className="font-heading text-[22px] font-medium leading-none tracking-tighter text-blue sm:text-[32px] md:text-[44px]">
+              <span className="font-heading text-[22px] leading-none text-blue sm:text-[32px] md:text-[44px]">
                 {level}
               </span>
             </div>

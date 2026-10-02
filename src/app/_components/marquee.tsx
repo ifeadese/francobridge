@@ -1,8 +1,7 @@
 import { SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/constants";
 
 // The marquee: a blue strip at the head of the footer. The two taglines run
-// across in the serif, the English upright and the French in the italic, in
-// ivory with the red half-sun on the base line between them. The
+// across in the serif, the English then the French, in ivory with the red half-sun on the base line between them. The
 // track is drawn twice so the loop never shows a seam; it pauses under the
 // pointer and stands still for anyone who prefers reduced motion. Hidden
 // from assistive tech: it is decoration, and the taglines are read elsewhere.
@@ -21,9 +20,9 @@ function Track() {
     <div className="marquee-track">
       {Array.from({ length: REPEATS }, (_, i) => (
         <span key={i} className="flex items-baseline gap-10">
-          <span className="font-heading text-[22px] font-light md:text-[26px]">{SITE_TAGLINE}</span>
+          <span className="font-heading text-[22px] md:text-[26px]">{SITE_TAGLINE}</span>
           <Sun />
-          <span className="font-heading text-[22px] font-light italic md:text-[26px]" lang="fr">
+          <span className="font-heading text-[22px] md:text-[26px]" lang="fr">
             {SITE_TAGLINE_FR}
           </span>
           <Sun />

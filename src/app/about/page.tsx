@@ -47,7 +47,7 @@ export default function About() {
               aria-label="Portrait of the founder, to follow"
               className="relative flex aspect-[4/5] flex-col items-center justify-center gap-5 overflow-hidden bg-blue text-white"
             >
-              <Logo variant="mark" on="blue" className="w-40" />
+              <Logo variant="stacked" on="blue" className="w-56" />
               <span className="regular-s uppercase tracking-[0.14em] text-white/70">Portrait to follow</span>
             </div>
           </div>

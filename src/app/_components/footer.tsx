@@ -19,7 +19,7 @@ export function Footer() {
             between the columns. */}
         <div className="mb-20 flex flex-col gap-12 md:flex-row md:items-start md:gap-20">
           <div className="flex min-w-0 flex-col gap-4">
-            <Logo variant="stacked" on="tint" className="w-40" />
+            <Logo variant="stacked" on="ivory" className="w-56" />
             <p className="regular-m">{SITE_TAGLINE}</p>
             <p className="regular-m">{LOCATION.city}</p>
             <a href={`mailto:${CONTACT.email}`} className="regular-m self-start underline decoration-black/40 underline-offset-4 hover:decoration-black">

@@ -1,22 +1,26 @@
 """
-Builds the FrancoBridge placeholder logo as pure vector paths.
+Builds the FrancoBridge logo, the arch bridge with the Peace Tower, as pure
+vector paths.
 
-The mark is drawn on a 100-unit arch radius; the two text lines are shaped
-with HarfBuzz and outlined from the variable fonts, so the SVGs need no fonts.
+It redraws the client's original artwork with clean geometry: one circular
+arch that passes behind the tower, hangers on an even rhythm, four piers
+centred on hangers, a slim spire and the flag's maple leaf. Both lines of
+type are outlined from Marcellus, the face of the original, so the SVGs need
+no fonts.
 
 Outputs
   src/lib/logo-paths.ts   the geometry the <Logo> component draws from
-  public/brand/*.svg      stacked, horizontal and mark-only, on blue / on ivory / one colour
+  public/brand/*.svg      stacked and mark-only, on blue / on ivory / one colour
 
 Run
   python3 -m venv .venv && .venv/bin/pip install fonttools uharfbuzz
   .venv/bin/python brand/tools/build-logo.py
-Fonts are fetched into brand/tools/fonts/ on first run.
+  node brand/tools/export-logo.mjs
+Marcellus is fetched from npm (@fontsource/marcellus) into brand/tools/fonts/ on first run.
 """
 from __future__ import annotations
-import os, sys, json, urllib.request
+import io, math, os, re, tarfile, urllib.request
 from fontTools.ttLib import TTFont
-from fontTools.varLib import instancer
 from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.pens.transformPen import TransformPen
 from fontTools.pens.boundsPen import BoundsPen
@@ -24,239 +28,337 @@ import uharfbuzz as hb
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 FONTS = os.path.join(os.path.dirname(__file__), "fonts")
+MARCELLUS = os.path.join(FONTS, "Marcellus.ttf")
 os.makedirs(FONTS, exist_ok=True)
-
-FONT_URLS = {
-    "Fraunces.ttf": "https://github.com/google/fonts/raw/main/ofl/fraunces/Fraunces%5BSOFT%2CWONK%2Copsz%2Cwght%5D.ttf",
-    "Fredoka.ttf": "https://github.com/google/fonts/raw/main/ofl/fredoka/Fredoka%5Bwdth%2Cwght%5D.ttf",
-}
-for name, url in FONT_URLS.items():
-    path = os.path.join(FONTS, name)
-    if not os.path.exists(path):
-        print("fetching", name)
-        urllib.request.urlretrieve(url, path)
-
-# ---------------------------------------------------------------- the mark
-# Units: arch radius R = 100. Origin at the top-left of the deck slab.
-R = 100.0
-SLAB_W, SLAB_H = 292.0, 24.0          # the deck
-BODY_W = 264.0                         # the abutments, edge to edge
-CX = SLAB_W / 2                        # centre line
-CY = SLAB_H + 106.0                    # arch centre: 6 units of stone above the arch
-BASE = CY + 2.0                        # the legs end just under the centre line
-MARK_W, MARK_H = SLAB_W, BASE          # 292 x 132
-DOME_R = 76.0                          # the sun: band = R - DOME_R = 24 = SLAB_H
-BODY_X = CX - BODY_W / 2
+if not os.path.exists(MARCELLUS):
+    print("fetching Marcellus")
+    url = "https://registry.npmjs.org/@fontsource/marcellus/-/marcellus-5.3.0.tgz"
+    with tarfile.open(fileobj=io.BytesIO(urllib.request.urlopen(url).read())) as tar:
+        woff = tar.extractfile("package/files/marcellus-latin-400-normal.woff").read()
+    font = TTFont(io.BytesIO(woff))
+    font.flavor = None
+    font.save(MARCELLUS)
 
 def f(v: float) -> str:
     s = f"{v:.2f}".rstrip("0").rstrip(".")
     return "0" if s == "-0" else s
 
-# The stone: slab + body with the arch opening cut out (even-odd is avoided by
-# drawing the outline as one path that walks around the opening).
-STONE = (
-    f"M0 0H{f(SLAB_W)}V{f(SLAB_H)}H{f(BODY_X + BODY_W)}V{f(BASE)}"
-    f"H{f(CX + R)}V{f(CY)}A{f(R)} {f(R)} 0 0 0 {f(CX - R)} {f(CY)}"
-    f"V{f(BASE)}H{f(BODY_X)}V{f(SLAB_H)}H0Z"
+# ---------------------------------------------------------------- the mark
+# Units: the deck is 860 long. Origin at the top-left of the canvas.
+W = 1000.0
+CX = W / 2
+DECK_L, DECK_R = 70.0, 930.0
+DECK_TOP, DECK_H = 420.0, 30.0
+
+# The arch: a band of even thickness whose outer edge runs down through the
+# deck to its bottom corners, so each end of the bridge comes to a point.
+DECK_BOTTOM = DECK_TOP + DECK_H
+SPRING = (DECK_R - DECK_L) / 2     # half span at the deck's underside
+RISE = 185.0                       # deck top to the crown, outer edge
+T = 30.0                           # arch thickness
+_h = DECK_BOTTOM - (DECK_TOP - RISE)
+R_OUT = (SPRING ** 2 + _h ** 2) / (2 * _h)
+R_IN = R_OUT - T
+ACY = DECK_TOP - RISE + R_OUT      # arch centre, below the deck
+
+def outer_y(x: float) -> float:
+    return ACY - math.sqrt(R_OUT ** 2 - (x - CX) ** 2)
+
+def inner_y(x: float) -> float:
+    return ACY - math.sqrt(R_IN ** 2 - (x - CX) ** 2)
+
+def edge_x(r: float, y: float) -> float:
+    """Half width of the arch edge of radius r at height y."""
+    return math.sqrt(r * r - (ACY - y) ** 2)
+
+SPRING_IN = edge_x(R_IN, DECK_TOP)      # where the inner edge lands on the deck
+SPRING_TOP = edge_x(R_OUT, DECK_TOP)    # where the outer edge passes the deck's top
+
+# The tower: body, a cornice, and the spire.
+TOWER_W = 106.0
+TOWER_TOP = 300.0
+CORNICE_W, CORNICE_H = 116.0, 14.0
+SPIRE_W = 96.0
+SPIRE_TIP = 150.0
+GAP = 13.0                         # the air between the arch and the spire
+
+# Hangers every 68 from the centre line; piers stand on the 2nd and 4th.
+PITCH = 68.0
+HANGER_W = 11.0
+PIER_W, PIER_H = 50.0, 40.0
+CAP_W, CAP_H = 64.0, 14.0
+CAP_GAP = 4.0                     # a hairline of light under each cap
+
+def rect(x0, y0, x1, y1) -> str:
+    return f"M{f(x0)} {f(y0)}H{f(x1)}V{f(y1)}H{f(x0)}Z"
+
+# The arch meets the spire's flanks; cut it along a line parallel to each
+# flank, GAP away, so the arch reads as passing behind the tower.
+spire_base = TOWER_TOP - CORNICE_H
+fx, fy = SPIRE_W / 2, SPIRE_TIP - spire_base          # left flank, base to tip
+flen = math.hypot(fx, fy)
+nx, ny = fy / flen, -fx / flen                         # outward normal (left, up)
+px, py = CX - SPIRE_W / 2 + GAP * nx, spire_base + GAP * ny
+
+def cut_x(edge) -> float:
+    """x where an arch edge meets the offset left flank."""
+    def side(x):
+        y = edge(x)
+        return (x - px) * fy - (y - py) * fx
+    lo, hi = CX - 200, CX
+    s_lo = side(lo)
+    for _ in range(80):
+        mid = (lo + hi) / 2
+        if (side(mid) > 0) == (s_lo > 0):
+            lo = mid
+        else:
+            hi = mid
+    return (lo + hi) / 2
+
+xo, xi = cut_x(outer_y), cut_x(inner_y)
+
+def arch_half(sign: int) -> str:
+    """One half of the arch band, from the deck's bottom corner to the tower cut."""
+    def X(x):
+        return CX + sign * (x - CX)
+    sweep_out = 1 if sign > 0 else 0
+    sweep_in = 1 - sweep_out
+    return (
+        f"M{f(X(CX - SPRING))} {f(DECK_BOTTOM)}"
+        f"A{f(R_OUT)} {f(R_OUT)} 0 0 {sweep_out} {f(X(xo))} {f(outer_y(xo))}"
+        f"L{f(X(xi))} {f(inner_y(xi))}"
+        f"A{f(R_IN)} {f(R_IN)} 0 0 {sweep_in} {f(X(CX - SPRING_IN))} {f(DECK_TOP)}Z"
+    )
+
+ARCH = arch_half(-1) + arch_half(1)
+
+# The deck's ends follow the arch's outer edge down to the bottom corners.
+DECK = (
+    f"M{f(DECK_L)} {f(DECK_BOTTOM)}A{f(R_OUT)} {f(R_OUT)} 0 0 1 {f(CX - SPRING_TOP)} {f(DECK_TOP)}"
+    f"H{f(CX + SPRING_TOP)}A{f(R_OUT)} {f(R_OUT)} 0 0 1 {f(DECK_R)} {f(DECK_BOTTOM)}Z"
 )
-# The arch band (the blue ring): a semicircle of radius R, with the dome
-# removed so the layers never overprint.
-BAND = (
-    f"M{f(CX - R)} {f(CY)}A{f(R)} {f(R)} 0 0 1 {f(CX + R)} {f(CY)}"
-    f"H{f(CX + DOME_R)}A{f(DOME_R)} {f(DOME_R)} 0 0 0 {f(CX - DOME_R)} {f(CY)}Z"
+
+hangers, piers = [], []
+for k in range(1, 20):
+    off = k * PITCH
+    if off >= SPRING_IN:
+        break
+    for sign in (-1, 1):
+        x = CX + sign * off
+        top = inner_y(x) - 1               # tuck under the arch
+        if DECK_TOP - top < 24:
+            continue
+        if k in (2, 4):
+            body_top = DECK_TOP - PIER_H + CAP_H + CAP_GAP
+            piers.append(rect(x - PIER_W / 2, body_top, x + PIER_W / 2, DECK_TOP + 0.5))
+            piers.append(rect(x - CAP_W / 2, DECK_TOP - PIER_H, x + CAP_W / 2, DECK_TOP - PIER_H + CAP_H))
+            hangers.append(rect(x - HANGER_W / 2, top, x + HANGER_W / 2, DECK_TOP - PIER_H + 0.5))
+        else:
+            hangers.append(rect(x - HANGER_W / 2, top, x + HANGER_W / 2, DECK_TOP + 0.5))
+HANGERS = "".join(hangers)
+PIERS = "".join(piers)
+
+# One outline, so the leaf can be cut out of it in the one-colour versions.
+TOWER = (
+    f"M{f(CX - TOWER_W / 2)} {f(DECK_TOP + 0.5)}V{f(TOWER_TOP)}H{f(CX - CORNICE_W / 2)}"
+    f"V{f(spire_base)}H{f(CX - SPIRE_W / 2)}L{f(CX)} {f(SPIRE_TIP)}L{f(CX + SPIRE_W / 2)} {f(spire_base)}"
+    f"H{f(CX + CORNICE_W / 2)}V{f(TOWER_TOP)}H{f(CX + TOWER_W / 2)}V{f(DECK_TOP + 0.5)}Z"
 )
-# The sun: a semicircle of radius DOME_R on the centre line.
-DOME = f"M{f(CX - DOME_R)} {f(CY)}A{f(DOME_R)} {f(DOME_R)} 0 0 1 {f(CX + DOME_R)} {f(CY)}Z"
+
+# The maple leaf of the national flag (relative path, leaf centred on x = 0).
+LEAF_SRC = (
+    "m-90 2030 45-863a95 95 0 0 0-111-98l-859 151 116-320a65 65 0 0 0-20-73l-941-762 212-99"
+    "a65 65 0 0 0 34-79l-186-572 542 115a65 65 0 0 0 73-38l105-247 423 454a65 65 0 0 0 111-57"
+    "l-204-1052 327 189a65 65 0 0 0 91-27l332-652 332 652a65 65 0 0 0 91 27l327-189-204 1052"
+    "a65 65 0 0 0 111 57l423-454 105 247a65 65 0 0 0 73 38l542-115-186 572a65 65 0 0 0 34 79"
+    "l212 99-941 762a65 65 0 0 0-20 73l116 320-859-151a95 95 0 0 0-111 98l45 863z"
+)
+
+def leaf(cx: float, cy: float, width: float) -> str:
+    tokens = re.findall(r"[a-zA-Z]|-?\d+(?:\.\d+)?", LEAF_SRC)
+    # Walk once for the bounds (arc fillets are tiny; endpoints are enough).
+    pts, x, y, i, cmd = [], 0.0, 0.0, 0, None
+    segs = []
+    while i < len(tokens):
+        t = tokens[i]
+        if t.isalpha():
+            cmd = t; i += 1
+            if cmd == "z":
+                segs.append(("z",))
+            continue
+        if cmd in ("m", "l"):
+            dx, dy = float(tokens[i]), float(tokens[i + 1]); i += 2
+            segs.append(("L" if segs else "M", dx, dy))
+            if cmd == "m":
+                cmd = "l"
+        elif cmd == "a":
+            rx, ry, rot, la, sw, dx, dy = (float(v) for v in tokens[i:i + 7]); i += 7
+            segs.append(("A", rx, ry, rot, la, sw, dx, dy))
+        x += segs[-1][-2]; y += segs[-1][-1]
+        pts.append((x, y))
+    x0, x1 = min(p[0] for p in pts), max(p[0] for p in pts)
+    y0, y1 = min(p[1] for p in pts), max(p[1] for p in pts)
+    s = width / (x1 - x0)
+    ox, oy = cx - (x0 + x1) / 2 * s, cy - (y0 + y1) / 2 * s
+    out, x, y = [], 0.0, 0.0
+    for seg in segs:
+        if seg[0] == "z":
+            out.append("Z"); continue
+        x += seg[-2]; y += seg[-1]
+        ax, ay = ox + x * s, oy + y * s
+        if seg[0] == "A":
+            out.append(f"A{f(seg[1] * s)} {f(seg[2] * s)} 0 0 {int(seg[5])} {f(ax)} {f(ay)}")
+        else:
+            out.append(f"{seg[0]}{f(ax)} {f(ay)}")
+    return "".join(out)
+
+LEAF = leaf(CX, TOWER_TOP + 56, 78.0)
+
+MARK_TOP = SPIRE_TIP
+MARK_BOTTOM = DECK_TOP + DECK_H
 
 # ---------------------------------------------------------------- the type
-def instance(path: str, axes: dict) -> TTFont:
-    font = TTFont(path)
-    return instancer.instantiateVariableFont(font, axes)
-
-def shape(font: TTFont, fontfile: str, axes: dict, text: str, size: float, tracking: float = 0.0):
-    """Returns (path_d, advance_width, bbox) for `text` at `size` units, baseline at y=0, x from 0."""
-    upem = font["head"].unitsPerEm
-    scale = size / upem
-    blob = hb.Blob.from_file_path(fontfile)
-    face = hb.Face(blob)
-    hbfont = hb.Font(face)
-    hbfont.set_variations(axes)
-    buf = hb.Buffer()
-    buf.add_str(text)
-    buf.guess_segment_properties()
-    hb.shape(hbfont, buf, {"kern": True, "liga": True})
-    glyph_order = font.getGlyphOrder()
-    glyphs = font.getGlyphSet()
-    x = 0.0
-    parts = []
-    bounds = BoundsPen(glyphs)
-    for info, pos in zip(buf.glyph_infos, buf.glyph_positions):
-        name = glyph_order[info.codepoint]
-        gx = x + pos.x_offset * scale
-        pen = SVGPathPen(glyphs, ntos=lambda v: f(v))
-        tp = TransformPen(pen, (scale, 0, 0, -scale, gx, 0))
-        glyphs[name].draw(tp)
-        d = pen.getCommands()
-        if d:
-            parts.append(d)
-        bp = TransformPen(bounds, (scale, 0, 0, -scale, gx, 0))
-        glyphs[name].draw(bp)
-        x += pos.x_advance * scale + tracking
-    x -= tracking
-    return " ".join(parts), x, bounds.bounds
-
-def fit(fontfile, axes, text, target_w, tracking_ratio=0.0):
-    """Sets the size so the outlined text is `target_w` wide."""
-    font = instance(fontfile, axes)
-    probe = 100.0
-    d, adv, bb = shape(font, fontfile, axes, text, probe, tracking=probe * tracking_ratio)
-    ink_w = bb[2] - bb[0]
-    size = probe * target_w / ink_w
-    d, adv, bb = shape(font, fontfile, axes, text, size, tracking=size * tracking_ratio)
-    return d, bb, size
-
-FRAUNCES = os.path.join(FONTS, "Fraunces.ttf")
-FREDOKA = os.path.join(FONTS, "Fredoka.ttf")
-WORD_AXES = {"wght": 650, "opsz": 144, "SOFT": 50, "WONK": 0}
-DESC_AXES = {"wght": 700, "wdth": 108}
-
-import re
 TOKEN = re.compile(r"[MLCQZHV]|-?(?:\d+\.?\d*|\.\d+)(?:e-?\d+)?")
 
 def translate(d: str, dx: float, dy: float) -> str:
-    # SVGPathPen emits absolute M L C Q Z H V, so shift x's and y's by command.
     tokens = TOKEN.findall(d)
     out, i, cmd = [], 0, "M"
     while i < len(tokens):
         t = tokens[i]
         if t in "MLCQZHV":
-            cmd = t
-            out.append(t); i += 1
+            cmd = t; out.append(t); i += 1
             continue
         if cmd == "H":
             out.append(f(float(t) + dx)); i += 1
         elif cmd == "V":
             out.append(f(float(t) + dy)); i += 1
         else:
-            x, y = float(tokens[i]), float(tokens[i + 1])
-            out.append(f"{f(x + dx)} {f(y + dy)}"); i += 2
+            out.append(f"{f(float(tokens[i]) + dx)} {f(float(tokens[i + 1]) + dy)}"); i += 2
     s = ""
     for o in out:
         s += o if o in "MLCQZHV" else o + " "
     return s.strip()
 
-def lockup(word_w, desc_w, word_tracking=0.0, desc_tracking=0.10):
-    """Builds the two text lines with their left edge at 0 and the wordmark baseline at 0.
-    Returns dict with paths, and the vertical metrics of the block."""
-    wd, wbb, wsize = fit(FRAUNCES, WORD_AXES, "FrancoBridge", word_w, word_tracking)
-    dd, dbb, dsize = fit(FREDOKA, DESC_AXES, "CONSULTING INC.", desc_w, desc_tracking)
-    # left-align both lines on the wordmark's ink edge
-    # Bounds are in SVG space already (y down): bb = (xmin, ymin, xmax, ymax).
-    wd = translate(wd, -wbb[0], 0)
-    ink_top = wbb[1]              # the ascenders, above the baseline
-    cap_top = 0.20 * R            # from the wordmark baseline down to the descriptor's cap line
-    cap_h = -dbb[1]
-    dd = translate(dd, -dbb[0], cap_top + cap_h)
-    block = {
-        "word": wd, "desc": dd,
-        "word_size": wsize, "desc_size": dsize,
-        "top": ink_top, "bottom": cap_top + cap_h,   # the descriptor's baseline
-        "desc_w": dbb[2] - dbb[0],
-        "width": max(wbb[2] - wbb[0], dbb[2] - dbb[0]),
-    }
-    return block
+FONT = TTFont(MARCELLUS)
 
-# Stacked: the text is 258 wide, centred under the mark; baseline 48 under the base.
-st = lockup(word_w=258.0, desc_w=191.0)
-st_word_dx = CX - 258.0 / 2
-st_desc_dx = CX - st["desc_w"] / 2
-st_baseline = BASE + 48.0
-STACKED = {
-    "width": MARK_W,
-    "height": st_baseline + st["bottom"],
-    "word": translate(st["word"], st_word_dx, st_baseline),
-    "desc": translate(st["desc"], st_desc_dx, st_baseline),
-}
+def shape(text: str, size: float, tracking_em: float):
+    """Returns (path_d, bbox) for `text` at `size`, baseline at y = 0, x from 0."""
+    scale = size / FONT["head"].unitsPerEm
+    face = hb.Face(hb.Blob.from_file_path(MARCELLUS))
+    buf = hb.Buffer()
+    buf.add_str(text)
+    buf.guess_segment_properties()
+    hb.shape(hb.Font(face), buf, {"kern": True, "liga": False})
+    order, glyphs = FONT.getGlyphOrder(), FONT.getGlyphSet()
+    x, parts, bounds = 0.0, [], BoundsPen(glyphs)
+    for info, pos in zip(buf.glyph_infos, buf.glyph_positions):
+        name = order[info.codepoint]
+        pen = SVGPathPen(glyphs, ntos=f)
+        glyphs[name].draw(TransformPen(pen, (scale, 0, 0, -scale, x, 0)))
+        if pen.getCommands():
+            parts.append(pen.getCommands())
+        glyphs[name].draw(TransformPen(bounds, (scale, 0, 0, -scale, x, 0)))
+        x += pos.x_advance * scale + size * tracking_em
+    return " ".join(parts), bounds.bounds
 
-# Horizontal: mark at left, text 25 units to its right, 416 wide, centred on the mark.
-hz = lockup(word_w=416.0, desc_w=318.0)
-hz_text_h = hz["bottom"] - hz["top"]
-hz_baseline = (MARK_H - hz_text_h) / 2 - hz["top"]
-hz_x = MARK_W + 25.0
-HORIZONTAL = {
-    "width": hz_x + hz["width"],
-    "height": MARK_H,
-    "word": translate(hz["word"], hz_x, hz_baseline),
-    "desc": translate(hz["desc"], hz_x, hz_baseline),
-}
+def fit(text: str, ink_w: float, tracking_em: float):
+    _, bb = shape(text, 100.0, tracking_em)
+    size = 100.0 * ink_w / (bb[2] - bb[0])
+    d, bb = shape(text, size, tracking_em)
+    return translate(d, -bb[0], 0), bb[2] - bb[0], -bb[1]   # path, ink width, cap height
+
+# Marcellus comes in one weight; the type is weighted up with a stroke in its
+# own colour, as a share of the cap height, so it holds its own beside the bridge.
+WORD_WEIGHT, DESC_WEIGHT = 0.055, 0.09
+
+def lockup(x: float, word_w: float, word_base: float):
+    """The name, `word_w` wide from `x`, and the descriptor centred under it
+    between two rules. Returns (word, descriptor, cap height, descriptor baseline,
+    word stroke, descriptor stroke)."""
+    word, _, cap = fit("FRANCOBRIDGE", word_w, 0.08)
+    word = translate(word, x, word_base)
+    desc, desc_w, desc_cap = fit("CONSULTING INC.", word_w * 0.76, 0.17)
+    desc_base = word_base + cap * 0.42 + desc_cap
+    dx = x + (word_w - desc_w) / 2
+    desc = translate(desc, dx, desc_base)
+    rule_h, rule_gap = desc_cap * 0.16, desc_cap * 0.9
+    ry = desc_base - desc_cap / 2 - rule_h / 2
+    rules = rect(x, ry, dx - rule_gap, ry + rule_h) + rect(dx + desc_w + rule_gap, ry, x + word_w, ry + rule_h)
+    return word, rules + desc, cap, desc_base, cap * WORD_WEIGHT, desc_cap * DESC_WEIGHT
+
+# Stacked, the one lockup: the name spans the deck, under the bridge.
+_, _, st_cap, _, _, _ = lockup(DECK_L, DECK_R - DECK_L, 0)
+st_word, st_desc, _, st_bottom, st_ws, st_ds = lockup(DECK_L, DECK_R - DECK_L, MARK_BOTTOM + 36 + st_cap)
+M = 4.0   # room for the type's stroke at the edges
+STACKED = {"x": DECK_L - M, "y": MARK_TOP, "width": DECK_R - DECK_L + 2 * M, "height": st_bottom + M - MARK_TOP,
+           "word": st_word, "descriptor": st_desc, "wordStroke": st_ws, "descriptorStroke": st_ds}
+
+MARK = {"x": DECK_L, "y": MARK_TOP, "width": DECK_R - DECK_L, "height": MARK_BOTTOM - MARK_TOP,
+        "arch": ARCH, "frame": HANGERS + DECK + PIERS, "tower": TOWER, "leaf": LEAF}
 
 # ---------------------------------------------------------------- outputs
-BLUE, RED, IVORY = "#0E397F", "#DB2517", "#F6F4F2"
+NAVY, RED, IVORY = "#1B2556", "#D52B1E", "#F6F4F2"
 
 def svg(kind: str, on: str) -> str:
-    """kind: stacked | horizontal | mark; on: blue | ivory | mono-blue | mono-ivory"""
-    if kind == "stacked":
-        W, H, word, desc = STACKED["width"], STACKED["height"], STACKED["word"], STACKED["desc"]
-    elif kind == "horizontal":
-        W, H, word, desc = HORIZONTAL["width"], HORIZONTAL["height"], HORIZONTAL["word"], HORIZONTAL["desc"]
+    """kind: stacked | mark; on: blue | ivory | mono-blue | mono-ivory"""
+    box = {"stacked": STACKED, "mark": MARK}[kind]
+    ink = {"blue": IVORY, "ivory": NAVY, "mono-blue": NAVY, "mono-ivory": IVORY}[on]
+    label = "FrancoBridge" if kind == "mark" else "FrancoBridge Consulting Inc."
+    vb = f"{f(box['x'])} {f(box['y'])} {f(box['width'])} {f(box['height'])}"
+    p = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" width="{f(box["width"])}" height="{f(box["height"])}" role="img" aria-label="{label}">']
+    p.append(f'<path fill="{ink}" d="{ARCH}"/>')
+    p.append(f'<path fill="{ink}" d="{MARK["frame"]}"/>')
+    if on.startswith("mono"):
+        # One colour: the leaf is cut out of the tower.
+        p.append(f'<path fill="{ink}" fill-rule="evenodd" d="{TOWER}{LEAF}"/>')
     else:
-        W, H, word, desc = MARK_W, MARK_H, None, None
-    if on == "blue":
-        stone, band, dome, text = IVORY, BLUE, RED, IVORY
-    elif on == "ivory":
-        stone, band, dome, text = BLUE, IVORY, RED, BLUE
-    elif on == "mono-blue":
-        stone, band, dome, text = BLUE, None, BLUE, BLUE
-    else:
-        stone, band, dome, text = IVORY, None, IVORY, IVORY
-    label = "FrancoBridge Consulting Inc." if word else "FrancoBridge"
-    parts = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {f(W)} {f(H)}" width="{f(W)}" height="{f(H)}" role="img" aria-label="{label}">']
-    parts.append(f'<path fill="{stone}" d="{STONE}"/>')
-    if band:
-        parts.append(f'<path fill="{band}" d="{BAND}"/>')
-    parts.append(f'<path fill="{dome}" d="{DOME}"/>')
-    if word:
-        parts.append(f'<path fill="{text}" d="{word}"/>')
-        parts.append(f'<path fill="{text}" d="{desc}"/>')
-    parts.append("</svg>")
-    return "\n".join(parts) + "\n"
+        p.append(f'<path fill="{ink}" d="{TOWER}"/>')
+        p.append(f'<path fill="{RED}" d="{LEAF}"/>')
+    if kind != "mark":
+        p.append(f'<path fill="{ink}" stroke="{ink}" stroke-width="{f(box["wordStroke"])}" stroke-linejoin="round" d="{box["word"]}"/>')
+        p.append(f'<path fill="{ink}" stroke="{ink}" stroke-width="{f(box["descriptorStroke"])}" stroke-linejoin="round" d="{box["descriptor"]}"/>')
+    p.append("</svg>")
+    return "\n".join(p) + "\n"
 
 out_dir = os.path.join(ROOT, "public", "brand")
 os.makedirs(out_dir, exist_ok=True)
-for kind in ("stacked", "horizontal", "mark"):
+for kind in ("stacked", "mark"):
     for on in ("blue", "ivory", "mono-blue", "mono-ivory"):
-        name = f"francobridge-{kind}-on-{on.replace('mono-', 'mono-')}.svg" if not on.startswith("mono") else f"francobridge-{kind}-{on}.svg"
+        name = f"francobridge-{kind}-{on}.svg" if on.startswith("mono") else f"francobridge-{kind}-on-{on}.svg"
         with open(os.path.join(out_dir, name), "w") as fh:
             fh.write(svg(kind, on))
 
-ts = f"""// Generated by brand/tools/build-logo.py. Do not edit by hand.
-// Units: the arch radius is 100. The mark is {f(MARK_W)} x {f(MARK_H)}.
-export const MARK = {{
-  width: {f(MARK_W)},
-  height: {f(MARK_H)},
-  stone: "{STONE}",
-  band: "{BAND}",
-  dome: "{DOME}",
-}} as const;
+# The app icon: the heart of the mark (spire, tower, the inner piers and the
+# crown of the arch) full bleed on a navy square, so it holds up at 16 px.
+ICON_SIDE = 470.0
+icon_x, icon_y = CX - ICON_SIDE / 2, MARK_BOTTOM + 66 - ICON_SIDE
+icon = (
+    f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{f(icon_x)} {f(icon_y)} {f(ICON_SIDE)} {f(ICON_SIDE)}" width="64" height="64">\n'
+    f'  <clipPath id="i"><rect x="{f(icon_x)}" y="{f(icon_y)}" width="{f(ICON_SIDE)}" height="{f(ICON_SIDE)}" rx="{f(ICON_SIDE * 0.1875)}"/></clipPath>\n'
+    f'  <g clip-path="url(#i)">\n'
+    f'    <rect x="{f(icon_x)}" y="{f(icon_y)}" width="{f(ICON_SIDE)}" height="{f(ICON_SIDE)}" fill="{NAVY}"/>\n'
+    f'    <path fill="{IVORY}" d="{ARCH}{TOWER}"/>\n'
+    f'    <path fill="{IVORY}" d="{MARK["frame"]}"/>\n'
+    f'    <path fill="{RED}" d="{LEAF}"/>\n'
+    f'  </g>\n'
+    f'</svg>\n'
+)
+with open(os.path.join(ROOT, "src", "app", "icon.svg"), "w") as fh:
+    fh.write(icon)
 
-export const STACKED = {{
-  width: {f(STACKED['width'])},
-  height: {f(STACKED['height'])},
-  word: "{STACKED['word']}",
-  descriptor: "{STACKED['desc']}",
-}} as const;
+def ts_obj(name: str, box: dict) -> str:
+    lines = [f"export const {name} = {{"]
+    for k, v in box.items():
+        lines.append(f"  {k}: {f(v)}," if isinstance(v, float) else f'  {k}: "{v}",')
+    return "\n".join(lines) + "\n} as const;\n"
 
-export const HORIZONTAL = {{
-  width: {f(HORIZONTAL['width'])},
-  height: {f(HORIZONTAL['height'])},
-  word: "{HORIZONTAL['word']}",
-  descriptor: "{HORIZONTAL['desc']}",
-}} as const;
-"""
-os.makedirs(os.path.join(ROOT, "src", "lib"), exist_ok=True)
+ts = (
+    "// Generated by brand/tools/build-logo.py. Do not edit by hand.\n"
+    "// Each box is a viewBox: x, y, width, height in the mark's units (the deck is 860 long).\n"
+    f'export const COLORS = {{ navy: "{NAVY}", red: "{RED}", ivory: "{IVORY}" }} as const;\n\n'
+    + ts_obj("MARK", MARK) + "\n" + ts_obj("STACKED", STACKED)
+)
 with open(os.path.join(ROOT, "src", "lib", "logo-paths.ts"), "w") as fh:
     fh.write(ts)
 
-print("stacked", STACKED["width"], round(STACKED["height"], 2), "word size", round(st["word_size"], 1), "desc size", round(st["desc_size"], 1))
-print("horizontal", round(HORIZONTAL["width"], 2), HORIZONTAL["height"], "word size", round(hz["word_size"], 1), "desc size", round(hz["desc_size"], 1))
-print("wrote", len(os.listdir(out_dir)), "svgs to", out_dir)
+print("stacked", f(STACKED["width"]), "x", f(STACKED["height"]), "| mark", f(MARK["width"]), "x", f(MARK["height"]), "| cap", f(st_cap))
