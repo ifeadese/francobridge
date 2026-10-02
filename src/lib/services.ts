@@ -168,7 +168,7 @@ export const SERVICES: Service[] = [
   {
     slug: "career-pathway-guidance",
     name: "Career Development & Education Pathway Guidance",
-    short: "Career & Education Pathways",
+    short: "Career & Education Pathway Guidance",
     headline: "Turn Language Skills into Career Opportunities.",
     sub: "Career preparation and education planning, delivered in French, for people building a future in a Francophone environment.",
     fr: "« Faites de vos compétences en français une carrière. »",
@@ -210,7 +210,7 @@ export const SERVICES: Service[] = [
   {
     slug: "immigration-pathways",
     name: "French Immigration Pathway Information & Guidance",
-    short: "Immigration Pathways",
+    short: "Immigration Pathway Guidance",
     headline: "Understand the French-language pathways.",
     sub: "Clear, publicly available information on French-language immigration pathways, their language requirements, and how to prepare for them.",
     fr: "« Comprendre les voies d’immigration francophones. »",
@@ -243,7 +243,7 @@ export const SERVICES: Service[] = [
   {
     slug: "translation",
     name: "Translation & Language Support",
-    short: "Translation",
+    short: "Translation & Proofreading",
     headline: "Translation, editing and revision.",
     sub: "English to French and French to English, for documents that have to be right.",
     fr: "« Traduction et révision, dans les deux sens. »",

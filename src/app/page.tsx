@@ -6,23 +6,20 @@ import { Watermark } from "@/app/_components/watermark";
 import { Drift } from "@/app/_components/drift";
 import { CONSULTATION, PACKAGES, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/constants";
 
-// The three steps, each with its plain numbers: the facts a reader wants
-// before they ask, set beside the step rather than buried in its sentence.
+// The three steps, numbered in their titles, each with its plain numbers:
+// the facts a reader wants before they ask, in a line under the sentence.
 const STEPS = [
   {
-    number: "01",
     title: "Book a consultation",
     text: "One hour online with your instructor, paid when you book. We assess your French level and talk through what you need it for.",
     facts: [`${CONSULTATION.minutes / 60} hour · $${CONSULTATION.price} ${CONSULTATION.currency}`, "Online"],
   },
   {
-    number: "02",
     title: "Get your plan",
     text: "You leave with your level on the A1 to C1 scale and a recommended programme, private or semi-private, all online.",
     facts: ["A1 to C1", `${PACKAGES.slice(0, -1).join(", ")} or ${PACKAGES[PACKAGES.length - 1]} hours`],
   },
   {
-    number: "03",
     title: "Start your programme",
     text: "Pay for your programme, then begin. Sessions are online, scheduled around you, and progress is measured against the level you started at.",
     facts: ["Online", "Scheduled around you"],
@@ -116,22 +113,20 @@ export default function Home() {
             </h2>
             <BookButton size="sm" look="secondary" className="min-w-0 text-center md:shrink-0 md:whitespace-nowrap" />
           </div>
-          {/* The ledger: three rows between rules. On phones the number, the
-              title, the description and the facts stack; on tablets the
-              number stands beside them; on wide screens the title takes a
-              column of its own, with the facts as one line under the
-              description. */}
+          {/* The ledger: three rows between rules, each numbered in its
+              title. Stacked on phones; from tablet width the title takes the
+              left column and the description, with its facts in one quiet
+              line beneath, the right. */}
           <div className="border-t border-black">
-            {STEPS.map((step) => (
+            {STEPS.map((step, i) => (
               <div
-                key={step.number}
-                className="grid grid-cols-1 gap-y-2 border-b border-black py-6 md:grid-cols-[88px_minmax(0,1fr)] md:gap-x-8 md:gap-y-3 md:py-7 lg:grid-cols-[96px_minmax(0,1fr)_minmax(0,1.6fr)] lg:items-baseline lg:py-8"
+                key={step.title}
+                className="grid grid-cols-1 gap-y-2 border-b border-black py-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:items-baseline md:gap-x-10 md:py-7 lg:py-8"
               >
-                <span className="font-heading text-[32px] leading-none text-navy md:row-span-2 md:text-[40px] lg:row-span-1 lg:text-[48px]">
-                  {step.number}
-                </span>
-                <h3 className="font-heading text-[24px] leading-[1.1] text-navy md:col-start-2 md:text-[28px]">{step.title}</h3>
-                <div className="flex flex-col gap-2 md:col-start-2 lg:col-start-3">
+                <h3 className="font-heading text-[24px] leading-[1.1] text-navy md:text-[28px]">
+                  {i + 1}. {step.title}
+                </h3>
+                <div className="flex flex-col gap-2">
                   <p className="text-[16px] leading-[1.5] md:text-[17px]">{step.text}</p>
                   <p className="regular-s text-grey-80">{step.facts.join(" · ")}</p>
                 </div>
