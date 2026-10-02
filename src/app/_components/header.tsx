@@ -10,8 +10,9 @@ import { NAV } from "@/lib/constants";
 // HeaderSurface). The lockup at the left, the links at the right, and the
 // one button always in view beside the menu on phones. Over a dark surface
 // the header carries data-dark, and everything here swaps to its light
-// treatment: the inverted lockup, ivory links and an ivory button. The
-// button is the logo's navy on the light pane, brand blue on hover.
+// treatment: the inverted lockup, ivory links and an ivory button. On the
+// light pane the links and the button are the logo's navy, and the links go
+// brand blue on hover.
 export function Header() {
   return (
     <HeaderSurface>
@@ -37,7 +38,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-3 py-1.5 text-[17px] text-black transition-colors hover:text-blue group-data-[dark]:text-ivory group-data-[dark]:hover:text-yellow"
+                className="px-3 py-1.5 text-[17px] text-navy transition-colors hover:text-blue group-data-[dark]:text-ivory group-data-[dark]:hover:text-yellow"
               >
                 {item.label}
               </Link>
