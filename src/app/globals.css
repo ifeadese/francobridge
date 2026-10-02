@@ -9,6 +9,7 @@
 :root {
   --white: #fffbf8;
   --black: #1d1a17;
+  --navy: #1B2556;
   --grey-3: #f8f4f1;
   --grey-8: #ede9e6;
   --grey-80: #4a4744;
@@ -36,9 +37,10 @@ html { scroll-padding-top: 112px; }
 main { padding-bottom: 56px; }
 @media (min-width: 768px) { main { padding-bottom: 80px; } }
 
+/* Body text in the logo's navy, like the headings. */
 body {
   background-color: var(--white);
-  color: var(--black);
+  color: var(--navy);
   font-size: 18px;
   line-height: 1.5;
   letter-spacing: -0.005em;

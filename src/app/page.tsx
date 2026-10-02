@@ -116,30 +116,25 @@ export default function Home() {
             </h2>
             <BookButton size="sm" look="secondary" className="min-w-0 text-center md:shrink-0 md:whitespace-nowrap" />
           </div>
-          {/* The ledger: three rows between rules. On phones the number and
-              the facts share the first line, then the title and the text;
-              on tablets the number stands beside the title and text with
-              the facts at the right; on wide screens all four take a column. */}
+          {/* The ledger: three rows between rules. On phones the number, the
+              title, the description and the facts stack; on tablets the
+              number stands beside them; on wide screens the title takes a
+              column of its own, with the facts as one line under the
+              description. */}
           <div className="border-t border-black">
             {STEPS.map((step) => (
               <div
                 key={step.number}
-                className="grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-4 gap-y-2 border-b border-black py-6 md:grid-cols-[88px_minmax(0,1fr)_200px] md:gap-x-8 md:gap-y-3 md:py-7 lg:grid-cols-[96px_minmax(0,1fr)_minmax(0,1.6fr)_200px] lg:py-8"
+                className="grid grid-cols-1 gap-y-2 border-b border-black py-6 md:grid-cols-[88px_minmax(0,1fr)] md:gap-x-8 md:gap-y-3 md:py-7 lg:grid-cols-[96px_minmax(0,1fr)_minmax(0,1.6fr)] lg:items-baseline lg:py-8"
               >
                 <span className="font-heading text-[32px] leading-none text-navy md:row-span-2 md:text-[40px] lg:row-span-1 lg:text-[48px]">
                   {step.number}
                 </span>
-                <p className="regular-s text-right text-grey-80 md:col-start-3 md:row-span-2 md:row-start-1 lg:col-start-4 lg:row-span-1">
-                  <span className="lg:block">{step.facts[0]}</span>
-                  <span className="lg:hidden"> · </span>
-                  <span className="lg:block">{step.facts[1]}</span>
-                </p>
-                <h3 className="col-span-2 font-heading text-[24px] leading-[1.1] text-navy md:col-span-1 md:col-start-2 md:row-start-1 md:text-[28px] lg:col-start-2">
-                  {step.title}
-                </h3>
-                <p className="col-span-2 text-[16px] leading-[1.5] md:col-span-1 md:col-start-2 md:row-start-2 md:text-[17px] lg:col-start-3 lg:row-start-1">
-                  {step.text}
-                </p>
+                <h3 className="font-heading text-[24px] leading-[1.1] text-navy md:col-start-2 md:text-[28px]">{step.title}</h3>
+                <div className="flex flex-col gap-2 md:col-start-2 lg:col-start-3">
+                  <p className="text-[16px] leading-[1.5] md:text-[17px]">{step.text}</p>
+                  <p className="regular-s text-grey-80">{step.facts.join(" · ")}</p>
+                </div>
               </div>
             ))}
           </div>

@@ -50,7 +50,7 @@ export default function RootLayout({
       <head>
         <meta name="theme-color" content="#fffbf8" />
       </head>
-      <body className="font-body bg-white text-black antialiased">
+      <body className="font-body bg-white text-navy antialiased">
         <CalProvider />
         <Header />
         {children}
