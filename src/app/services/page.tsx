@@ -16,8 +16,9 @@ export default function Services() {
         text="Every programme starts with the same conversation: a one-hour consultation that finds your level and ends with a plan."
       />
 
-      {/* The rail sits inside the opening, straight under the hero's line. */}
-      <div className="container-fb -mt-6 md:-mt-2">
+      {/* The rail sits in the opening, a clear step below the hero's line:
+          48px on phones, 64px from the tablet width up. */}
+      <div className="container-fb mt-6 md:mt-8">
         <ServicesRail />
       </div>
 
