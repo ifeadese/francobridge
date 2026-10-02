@@ -48,12 +48,12 @@ def f(v: float) -> str:
 W = 1000.0
 CX = W / 2
 DECK_L, DECK_R = 70.0, 930.0
-DECK_TOP, DECK_H = 420.0, 24.0
+DECK_TOP, DECK_H = 420.0, 30.0
 
 # The arch: a circular segment springing from the deck, outer edge.
 SPRING = 405.0                     # half span at the deck
 RISE = 185.0                       # deck top to the crown
-T = 24.0                           # arch thickness
+T = 30.0                           # arch thickness
 R_OUT = (SPRING ** 2 + RISE ** 2) / (2 * RISE)
 R_IN = R_OUT - T
 ACY = DECK_TOP - RISE + R_OUT      # arch centre, below the deck
@@ -62,19 +62,19 @@ def arch_y(r: float, x: float) -> float:
     return ACY - math.sqrt(r * r - (x - CX) ** 2)
 
 # The tower: body, a cornice, and the spire.
-TOWER_W = 100.0
-TOWER_TOP = 290.0
-CORNICE_W, CORNICE_H = 112.0, 12.0
-SPIRE_W = 90.0
-SPIRE_TIP = 120.0
-GAP = 11.0                         # the air between the arch and the spire
+TOWER_W = 106.0
+TOWER_TOP = 300.0
+CORNICE_W, CORNICE_H = 116.0, 14.0
+SPIRE_W = 96.0
+SPIRE_TIP = 150.0
+GAP = 13.0                         # the air between the arch and the spire
 
-# Hangers every 66 from the centre line; piers stand on the 2nd and 4th.
-PITCH = 66.0
-HANGER_W = 8.0
-PIER_W, PIER_H = 50.0, 50.0
-CAP_W, CAP_H = 66.0, 13.0
-CAP_GAP = 5.0                     # a hairline of light under each cap
+# Hangers every 68 from the centre line; piers stand on the 2nd and 4th.
+PITCH = 68.0
+HANGER_W = 11.0
+PIER_W, PIER_H = 50.0, 40.0
+CAP_W, CAP_H = 64.0, 14.0
+CAP_GAP = 4.0                     # a hairline of light under each cap
 
 def rect(x0, y0, x1, y1) -> str:
     return f"M{f(x0)} {f(y0)}H{f(x1)}V{f(y1)}H{f(x0)}Z"
@@ -196,7 +196,7 @@ def leaf(cx: float, cy: float, width: float) -> str:
             out.append(f"{seg[0]}{f(ax)} {f(ay)}")
     return "".join(out)
 
-LEAF = leaf(CX, TOWER_TOP + 58, 70.0)
+LEAF = leaf(CX, TOWER_TOP + 56, 78.0)
 
 MARK_TOP = SPIRE_TIP
 MARK_BOTTOM = DECK_TOP + DECK_H
@@ -253,15 +253,15 @@ def fit(text: str, ink_w: float, tracking_em: float):
 
 # Marcellus comes in one weight; the type is weighted up with a stroke in its
 # own colour, as a share of the cap height, so it holds its own beside the bridge.
-WORD_WEIGHT, DESC_WEIGHT = 0.04, 0.07
+WORD_WEIGHT, DESC_WEIGHT = 0.055, 0.09
 
 def lockup(x: float, word_w: float, word_base: float):
     """The name, `word_w` wide from `x`, and the descriptor centred under it
     between two rules. Returns (word, descriptor, cap height, descriptor baseline,
     word stroke, descriptor stroke)."""
-    word, _, cap = fit("FRANCOBRIDGE", word_w, 0.09)
+    word, _, cap = fit("FRANCOBRIDGE", word_w, 0.08)
     word = translate(word, x, word_base)
-    desc, desc_w, desc_cap = fit("CONSULTING INC.", word_w * 0.74, 0.2)
+    desc, desc_w, desc_cap = fit("CONSULTING INC.", word_w * 0.76, 0.17)
     desc_base = word_base + cap * 0.42 + desc_cap
     dx = x + (word_w - desc_w) / 2
     desc = translate(desc, dx, desc_base)
@@ -272,8 +272,8 @@ def lockup(x: float, word_w: float, word_base: float):
 
 # Stacked, the one lockup: the name spans the deck, under the bridge.
 _, _, st_cap, _, _, _ = lockup(DECK_L, DECK_R - DECK_L, 0)
-st_word, st_desc, _, st_bottom, st_ws, st_ds = lockup(DECK_L, DECK_R - DECK_L, MARK_BOTTOM + 40 + st_cap)
-M = 3.0   # room for the type's stroke at the edges
+st_word, st_desc, _, st_bottom, st_ws, st_ds = lockup(DECK_L, DECK_R - DECK_L, MARK_BOTTOM + 36 + st_cap)
+M = 4.0   # room for the type's stroke at the edges
 STACKED = {"x": DECK_L - M, "y": MARK_TOP, "width": DECK_R - DECK_L + 2 * M, "height": st_bottom + M - MARK_TOP,
            "word": st_word, "descriptor": st_desc, "wordStroke": st_ws, "descriptorStroke": st_ds}
 
