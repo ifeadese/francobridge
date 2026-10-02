@@ -8,7 +8,8 @@ import { SERVICES } from "@/lib/services";
 // then the mark, tagline, contact and copyright at the left, the links at
 // the right, and the fee and advice note under a rule, all in ivory. The
 // left column always keeps room for the lockup; on tablets the services
-// column wraps its longer names to make that room. Marked
+// column wraps its longer names to make that room. The legal lines are
+// spaced so the column ends level with the link columns at every width. Marked
 // as a dark surface so the header switches to its light treatment over it.
 export function Footer() {
   return (
@@ -18,15 +19,15 @@ export function Footer() {
         <div className="mb-8 flex flex-col gap-8 md:mb-16 md:flex-row md:items-stretch md:gap-12 lg:mb-20 lg:gap-20">
           <div className="order-last flex min-w-0 flex-col gap-3 md:order-none md:min-w-[220px] md:flex-1">
             <Logo variant="stacked" on="blue" className="h-20 w-auto self-start md:h-[88px] lg:h-[108px]" />
-            <div className="mt-5 flex flex-col gap-1">
-              <p className="regular-s py-1">
+            <div className="mt-5 flex flex-col gap-1 lg:mt-4">
+              <p className="regular-s py-1 lg:py-0.5">
                 &copy; {new Date().getFullYear()} {LEGAL_NAME}
               </p>
-              <p className="regular-s py-1">All rights reserved.</p>
-              <a href={`mailto:${CONTACT.email}`} className="regular-s self-start py-1 underline decoration-ivory/40 underline-offset-4 hover:decoration-ivory">
+              <p className="regular-s py-1 lg:py-0.5">All rights reserved.</p>
+              <a href={`mailto:${CONTACT.email}`} className="regular-s self-start py-1 underline decoration-ivory/40 underline-offset-4 hover:decoration-ivory lg:py-0.5">
                 {CONTACT.email}
               </a>
-              <p className="regular-s py-1">Ottawa, Canada</p>
+              <p className="regular-s py-1 lg:py-0.5">Ottawa, Canada</p>
             </div>
           </div>
           <div className="flex flex-col gap-8 sm:flex-row sm:gap-20 md:min-w-0 md:gap-12 lg:shrink-0 lg:gap-20">
