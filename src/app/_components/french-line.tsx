@@ -4,7 +4,7 @@ import { Pattern } from "@/app/_components/pattern";
 // The French line as a closing banner: the brand's "two lines" with the
 // French in the lead for once, set at banner scale, its English under it,
 // and the pattern strip along the foot like every banner on the site. The
-// row is two halves: the lines in the left, and in the right, level with
+// row is two halves: the lines in the left, and centred in the right, level with
 // their foot, the page's last button. It paints no background of its own:
 // the section it closes carries the colour, on the home page a gradient
 // from the white down to the yellow. English is the door; French is the
@@ -31,7 +31,7 @@ export function FrenchLine({
           </p>
           <p className="regular-l text-navy/70">{english}</p>
         </div>
-        <div className="md:pb-2">
+        <div className="md:flex md:justify-center md:pb-2">
           <Link href={href} className="button-primary">
             {link}
           </Link>
