@@ -1,12 +1,34 @@
 "use client";
 
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { BookButton } from "@/app/_components/book-button";
 import { NAV } from "@/lib/constants";
 
+// The menu button lives in the header; the panel is portalled to the body.
+// The header's frosted surface (a backdrop filter) would otherwise become
+// the containing block for the fixed panel, which then collapses to the
+// header's height and lets the links spill over the page.
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const panel = (
+    <div id="mobile-menu" className="fixed inset-x-0 bottom-0 top-[97px] z-40 flex flex-col gap-14 overflow-y-auto bg-white px-6 py-10 md:hidden">
+      <nav className="flex flex-col items-start gap-4" aria-label="Main">
+        <Link href="/" onClick={() => setOpen(false)} className="py-1.5 text-[21px]">
+          Home
+        </Link>
+        {NAV.map((item) => (
+          <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="py-1.5 text-[21px]">
+            {item.label}
+          </Link>
+        ))}
+      </nav>
+      <div className="flex flex-col items-start gap-4">
+        <BookButton event="lesson" />
+      </div>
+    </div>
+  );
   return (
     <div className="md:hidden">
       <button
@@ -21,23 +43,8 @@ export function MobileNav() {
           {open ? <path d="M6 6l16 16M22 6L6 22" /> : <path d="M4 8h20M4 14h20M4 20h20" />}
         </svg>
       </button>
-      {open && (
-        <div id="mobile-menu" className="fixed inset-x-0 bottom-0 top-[97px] z-40 flex flex-col gap-14 bg-white px-6 py-10">
-          <nav className="flex flex-col items-start gap-4" aria-label="Main">
-            <Link href="/" onClick={() => setOpen(false)} className="py-1.5 text-[21px]">
-              Home
-            </Link>
-            {NAV.map((item) => (
-              <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="py-1.5 text-[21px]">
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="flex flex-col items-start gap-4">
-            <BookButton event="lesson" />
-          </div>
-        </div>
-      )}
+      {/* Only ever open after a click, so document is always there to portal into. */}
+      {open && createPortal(panel, document.body)}
     </div>
   );
 }

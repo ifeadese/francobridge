@@ -59,7 +59,7 @@ export function Footer() {
         {/* The tagline, on its own between the columns and the legal note:
             one sentence per line, large and faint, in the heading face. */}
         <div className="pb-4 md:pb-10">
-          <p className="font-heading text-[clamp(25px,7.4vw,96px)] leading-[0.95] text-ivory/20">
+          <p className="font-heading text-[clamp(25px,7.4vw,96px)] leading-[1.1] text-ivory/20">
             {SITE_TAGLINE.split(". ").map((sentence, i, all) => (
               <span key={sentence} className="block">
                 {i < all.length - 1 ? `${sentence}.` : sentence}
