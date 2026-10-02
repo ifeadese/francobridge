@@ -3,6 +3,7 @@ import { BookButton } from "@/app/_components/book-button";
 import { ServicesRail } from "@/app/_components/services-rail";
 import { FrenchLine } from "@/app/_components/french-line";
 import { Watermark } from "@/app/_components/watermark";
+import { Drift } from "@/app/_components/drift";
 import { CONSULTATION, PACKAGES, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/constants";
 
 // The three steps, each with its plain numbers: the facts a reader wants
@@ -37,24 +38,27 @@ const CLOSING = {
   href: "/contact",
 } as const;
 
-// The French line closes the page as a banner under the steps. The
-// footer gap that main normally carries is dropped: the steps and the closing
-// line share one gradient that runs down to the footer.
+// The whole page sits on one fade, from the pale blue at the top through the
+// red tint behind the programmes to the yellow under the closing banner, and
+// then the footer. The footer gap that main normally carries is dropped so
+// the yellow meets the navy.
 export default function Home() {
   return (
-    <main className="pb-0">
+    <main className="bg-gradient-to-b from-blue-light via-red-light to-yellow-light pb-0">
       {/* The opening: hero, statement and programmes share one clipped
           canvas, so the watermarks drawn from the logo can bleed off its
           edges and run from one section into the next. Each section's
           content sits above them. */}
       <div className="relative isolate overflow-hidden">
       {/* Hero: the tagline, the statement with its French line, and one
-          button, on a fade from the pale blue at the top of the page down to
-          the white, with the bridge from the logo standing on the hero's
-          bottom edge behind it all, bleeding off the right. */}
-      <section className="relative flex flex-col border-b border-grey-8 pt-[104px] md:pt-[124px]">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-blue-light to-white" aria-hidden="true" />
-        <Watermark kind="bridge" className="-right-[180px] bottom-0 w-[760px] md:-right-[260px] md:w-[1240px]" />
+          button, with the bridge from the logo standing on the hero's bottom
+          edge behind it all, bleeding off the right and drifting left as the
+          page scrolls. */}
+      <section className="relative flex flex-col border-b border-black/10 pt-[104px] md:pt-[124px]">
+        {/* The bridge drifts left as the page scrolls, at a third of the pace. */}
+        <Drift className="pointer-events-none absolute -right-[240px] bottom-0 z-0 w-[1100px] md:-right-[420px] md:w-[2000px]">
+          <Watermark kind="bridge" className="relative w-full" />
+        </Drift>
         <div className="container-fb relative z-10 flex flex-col items-start justify-end gap-8 pb-10 pt-14 md:pb-12 md:pt-16">
           <h1 className="h1 w-[60%]">{SITE_TAGLINE}</h1>
           <div className="flex max-w-[560px] flex-col gap-3">
@@ -99,9 +103,8 @@ export default function Home() {
       </section>
       </div>
 
-      {/* How it works and the closing line: one section, one gradient, from
-          the warm white at the heading down to the yellow under the pattern. */}
-      <section className="bg-gradient-to-b from-white to-yellow-light pt-10 md:pt-14">
+      {/* How it works and the closing line, on the yellow end of the fade. */}
+      <section className="pt-10 md:pt-14">
         <div className="container-fb">
           {/* The heading with the booking button beside it, one row at every
               width, like the programmes heading above. */}
@@ -131,7 +134,7 @@ export default function Home() {
                   <span className="lg:hidden"> · </span>
                   <span className="lg:block">{step.facts[1]}</span>
                 </p>
-                <h3 className="col-span-2 font-heading text-[24px] leading-[1.1] md:col-span-1 md:col-start-2 md:row-start-1 md:text-[28px] lg:col-start-2">
+                <h3 className="col-span-2 font-heading text-[24px] leading-[1.1] text-navy md:col-span-1 md:col-start-2 md:row-start-1 md:text-[28px] lg:col-start-2">
                   {step.title}
                 </h3>
                 <p className="col-span-2 text-[16px] leading-[1.5] md:col-span-1 md:col-start-2 md:row-start-2 md:text-[17px] lg:col-start-3 lg:row-start-1">
