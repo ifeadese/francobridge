@@ -11,7 +11,7 @@ export function ServicesRail() {
   return (
     <CardRail className="rail" label="Programmes and services">
       {SERVICES.map((s, i) => (
-        <ServiceRailCard key={s.slug} service={s} index={i} tone={TONES[i % TONES.length]} />
+        <ServiceRailCard key={s.slug} service={s} tone={TONES[i % TONES.length]} />
       ))}
     </CardRail>
   );

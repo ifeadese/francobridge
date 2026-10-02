@@ -1,65 +1,73 @@
 import Link from "next/link";
 import { Logo } from "@/app/_components/logo";
 import { Marquee } from "@/app/_components/marquee";
-import { CONTACT, LEGAL_NAME, LOCATION, NAV, SITE_TAGLINE } from "@/lib/constants";
+import { CONTACT, LEGAL_NAME, NAV, SITE_TAGLINE } from "@/lib/constants";
 import { SERVICES } from "@/lib/services";
 
-// A gradient from the pale yellow, where the home page's closing banner ends,
-// through the red tint into the blue tint: the marquee along the top, then
-// the mark, tagline and contact at the left, the links at the right, and
-// the legal line.
+// The logo's navy, with the mark inverted on it: the marquee along the top,
+// then the mark, tagline, contact and copyright at the left, the links at
+// the right, and the fee and advice note under a rule, all in ivory.
 export function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-yellow-light via-red-light to-blue-light pb-10">
+    <footer className="bg-navy pb-8 text-ivory md:pb-10">
       <Marquee />
-      <div className="container-fb pt-10 md:pt-12">
-        {/* The mark and contact at the left, shrinking to their content, and
-            the link columns packed beside them, each as wide as its longest
-            line, so nothing wraps above phone width and no width goes idle
-            between the columns. */}
-        <div className="mb-20 flex flex-col gap-12 md:flex-row md:items-start md:gap-20">
-          <div className="flex min-w-0 flex-col gap-4">
-            <Logo variant="stacked" on="ivory" className="w-56" />
-            <p className="regular-m">{SITE_TAGLINE}</p>
-            <p className="regular-m">{LOCATION.city}</p>
-            <a href={`mailto:${CONTACT.email}`} className="regular-m self-start underline decoration-black/40 underline-offset-4 hover:decoration-black">
-              {CONTACT.email}
-            </a>
+      <div className="container-fb pt-8 md:pt-12">
+        <div className="mb-8 flex flex-col gap-8 lg:mb-20 lg:flex-row lg:items-stretch lg:gap-20">
+          <div className="order-last flex min-w-0 flex-col gap-3 lg:order-none lg:justify-between">
+            <Logo variant="stacked" on="blue" className="h-20 w-auto self-start md:h-[108px]" />
+            <div className="mt-5 flex flex-col gap-1">
+              <p className="regular-s py-1">
+                &copy; {new Date().getFullYear()} {LEGAL_NAME}
+              </p>
+              <p className="regular-s py-1">All rights reserved.</p>
+              <a href={`mailto:${CONTACT.email}`} className="regular-s self-start py-1 underline decoration-ivory/40 underline-offset-4 hover:decoration-ivory">
+                {CONTACT.email}
+              </a>
+              <p className="regular-s py-1">Ottawa, Canada</p>
+            </div>
           </div>
-          <div className="flex shrink-0 gap-10 sm:gap-20">
-            <div className="flex flex-col gap-3">
-              <p className="h4 text-[24px]">Services</p>
+          <div className="flex flex-col gap-8 sm:flex-row sm:gap-20 lg:shrink-0">
+            <div className="flex flex-col gap-1">
+              <p className="h4 mb-2 py-1 text-[24px] text-ivory">FrancoBridge</p>
+              <div className="flex flex-col gap-1">
+                <Link href="/" className="regular-m py-1 transition-colors hover:text-yellow">
+                  Home
+                </Link>
+                {NAV.map((item) => (
+                  <Link key={item.href} href={item.href} className="regular-m py-1 transition-colors hover:text-yellow">
+                    {item.label}
+                  </Link>
+                ))}
+                <Link href="/blog" className="regular-m py-1 transition-colors hover:text-yellow">
+                  Blog
+                </Link>
+              </div>
+            </div>
+            <div className="flex flex-col gap-1">
+              <p className="h4 mb-2 py-1 text-[24px] text-ivory">Services</p>
               <div className="flex flex-col gap-1">
                 {SERVICES.map((s) => (
-                  <Link key={s.slug} href={`/services/${s.slug}`} className="regular-m py-1 transition-colors hover:text-blue sm:whitespace-nowrap">
+                  <Link key={s.slug} href={`/services/${s.slug}`} className="regular-m py-1 transition-colors hover:text-yellow sm:whitespace-nowrap">
                     {s.short}
                   </Link>
                 ))}
               </div>
             </div>
-            <div className="flex flex-col gap-3">
-              <p className="h4 text-[24px]">School</p>
-              <div className="flex flex-col gap-1">
-                <Link href="/" className="regular-m py-1 transition-colors hover:text-blue">
-                  Home
-                </Link>
-                {NAV.map((item) => (
-                  <Link key={item.href} href={item.href} className="regular-m py-1 transition-colors hover:text-blue">
-                    {item.label}
-                  </Link>
-                ))}
-                <Link href="/blog" className="regular-m py-1 transition-colors hover:text-blue">
-                  Blog
-                </Link>
-              </div>
-            </div>
           </div>
         </div>
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-black/15 pt-6">
-          <p className="regular-s text-grey-80">
-            &copy; {new Date().getFullYear()} {LEGAL_NAME}. All rights reserved.
+        {/* The tagline, on its own between the columns and the legal note:
+            one sentence per line, large and faint, in the heading face. */}
+        <div className="pb-4 md:pb-10">
+          <p className="font-heading text-[clamp(25px,7.4vw,96px)] leading-[0.95] text-ivory/20">
+            {SITE_TAGLINE.split(". ").map((sentence, i, all) => (
+              <span key={sentence} className="block">
+                {i < all.length - 1 ? `${sentence}.` : sentence}
+              </span>
+            ))}
           </p>
-          <p className="regular-s max-w-[760px] text-grey-80">
+        </div>
+        <div className="border-t border-ivory/20 pt-4 md:pt-6">
+          <p className="regular-s max-w-[760px] text-ivory/70">
             Preparation fees do not include official TCF or TEF examination fees. Immigration information only;
             regulated advice is referred to an authorized professional. Photographs: Wikimedia Commons
             contributors, CC licences.
