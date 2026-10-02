@@ -9,13 +9,13 @@ import { SERVICES } from "@/lib/services";
 // the right, and the fee and advice note under a rule, all in ivory.
 export function Footer() {
   return (
-    <footer className="bg-navy pb-10 text-ivory">
+    <footer className="bg-navy pb-8 text-ivory md:pb-10">
       <Marquee />
       <div className="container-fb pt-8 md:pt-12">
-        <div className="mb-12 flex flex-col gap-8 lg:mb-20 lg:flex-row lg:items-stretch lg:gap-20">
+        <div className="mb-8 flex flex-col gap-8 lg:mb-20 lg:flex-row lg:items-stretch lg:gap-20">
           <div className="order-last flex min-w-0 flex-col gap-3 lg:order-none lg:justify-between">
             <Logo variant="stacked" on="blue" className="h-20 w-auto self-start md:h-[108px]" />
-            <div className="mt-3 flex flex-col gap-1">
+            <div className="mt-5 flex flex-col gap-1">
               <p className="regular-s py-1">
                 &copy; {new Date().getFullYear()} {LEGAL_NAME}
               </p>
@@ -26,19 +26,9 @@ export function Footer() {
               <p className="regular-s py-1">Ottawa, Canada</p>
             </div>
           </div>
-          <div className="flex shrink-0 gap-10 sm:gap-20">
+          <div className="flex flex-col gap-8 sm:flex-row sm:gap-20 lg:shrink-0">
             <div className="flex flex-col gap-1">
-              <p className="h4 py-1 text-[24px] text-ivory">Services</p>
-              <div className="flex flex-col gap-1">
-                {SERVICES.map((s) => (
-                  <Link key={s.slug} href={`/services/${s.slug}`} className="regular-m py-1 transition-colors hover:text-yellow sm:whitespace-nowrap">
-                    {s.short}
-                  </Link>
-                ))}
-              </div>
-            </div>
-            <div className="flex flex-col gap-1">
-              <p className="h4 py-1 text-[24px] text-ivory">School</p>
+              <p className="h4 mb-2 py-1 text-[24px] text-ivory">FrancoBridge</p>
               <div className="flex flex-col gap-1">
                 <Link href="/" className="regular-m py-1 transition-colors hover:text-yellow">
                   Home
@@ -53,11 +43,21 @@ export function Footer() {
                 </Link>
               </div>
             </div>
+            <div className="flex flex-col gap-1">
+              <p className="h4 mb-2 py-1 text-[24px] text-ivory">Services</p>
+              <div className="flex flex-col gap-1">
+                {SERVICES.map((s) => (
+                  <Link key={s.slug} href={`/services/${s.slug}`} className="regular-m py-1 transition-colors hover:text-yellow sm:whitespace-nowrap">
+                    {s.short}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
         {/* The tagline, on its own between the columns and the legal note:
             one sentence per line, large and faint, in the heading face. */}
-        <div className="pb-8 md:pb-10">
+        <div className="pb-4 md:pb-10">
           <p className="font-heading text-[clamp(25px,7.4vw,96px)] leading-[0.95] text-ivory/20">
             {SITE_TAGLINE.split(". ").map((sentence, i, all) => (
               <span key={sentence} className="block">
@@ -66,7 +66,7 @@ export function Footer() {
             ))}
           </p>
         </div>
-        <div className="border-t border-ivory/20 pt-6">
+        <div className="border-t border-ivory/20 pt-4 md:pt-6">
           <p className="regular-s max-w-[760px] text-ivory/70">
             Preparation fees do not include official TCF or TEF examination fees. Immigration information only;
             regulated advice is referred to an authorized professional. Photographs: Wikimedia Commons
