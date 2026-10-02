@@ -104,10 +104,13 @@ export default function Home() {
       <section className="pt-10 md:pt-14">
         <div className="container-fb">
           {/* The heading with the booking button beside it, one row at every
-              width, like the programmes heading above. */}
+              width, like the programmes heading above. On phones the heading
+              breaks a word per line: Want / to get / started? */}
           <div className="mb-10 flex flex-nowrap items-end justify-between gap-6 md:mb-12">
             <h2 className="h1 min-w-0">
-              Want to get
+              Want
+              <br className="md:hidden" />
+              {" "}to get
               <br />
               started?
             </h2>
