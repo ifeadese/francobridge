@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ServicesRail } from "@/app/_components/services-rail";
 import { BookButton } from "@/app/_components/book-button";
+import { LevelBridge } from "@/app/_components/level-bridge";
+import { FrenchLine } from "@/app/_components/french-line";
 import { CONSULTATION, PACKAGES, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/constants";
 
 const STEPS = [
@@ -9,11 +11,25 @@ const STEPS = [
   ["Step 03", "Start your programme", "Pay for your programme, then begin. Sessions are online, scheduled around you, and progress is measured against the level you started at."],
 ] as const;
 
+// The closing banner, under the steps. Narrow no-break spaces inside the
+// guillemets (U+202F). For the client to confirm, like every French line.
+const CLOSING = {
+  fr: "« Tout commence par une conversation. »",
+  en: "It all starts with a conversation.",
+  link: "Start the conversation",
+  href: "/contact",
+} as const;
+
+// Each seam on this page has its own divider, drawn from a brand signature:
+// the level bridge under the hero and the French line before the footer. The
+// footer gap that main normally carries is dropped: the steps and the closing
+// line share one gradient that runs down to the footer.
 export default function Home() {
   return (
-    <main>
-      {/* Hero: the tagline, one line, the French line and two buttons. */}
-      <section className="flex flex-col pt-[88px]">
+    <main className="pb-0">
+      {/* Hero: the tagline, one line, the French line and two buttons, on a
+          fade from the pale blue at the top of the page down to the white. */}
+      <section className="flex flex-col bg-gradient-to-b from-blue-light to-white pt-[88px]">
         <div className="container-fb flex flex-col items-start justify-end gap-8 pb-10 pt-14 md:pb-12 md:pt-16">
           <h1 className="h1 max-w-[760px]">{SITE_TAGLINE}</h1>
           <div className="max-w-[420px]">
@@ -34,8 +50,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services: a rail of six cards, TCF & TEF first, in a band of its own. */}
-      <section className="bg-grey-3 py-10 md:py-14">
+      {/* The level bridge: five arches on the base line, the sun past C1. */}
+      <LevelBridge className="pb-10 md:pb-14" />
+
+      {/* Services: a rail of six cards, TCF & TEF first, on the white. */}
+      <section className="py-10 md:py-14">
         <div className="container-fb">
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
             <h2 className="h1 max-w-[880px]">Six programmes, one first step</h2>
@@ -47,13 +66,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How it works: on the light grey. */}
-      <section className="pt-10 md:pt-14">
+      {/* How it works and the closing line: one section, one gradient, from
+          the warm white at the heading down to the yellow under the pattern. */}
+      <section className="bg-gradient-to-b from-white to-yellow-light pt-10 md:pt-14">
         <div className="container-fb">
-          <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-            <h2 className="h1 max-w-[880px]">Want to get started?</h2>
-            <BookButton size="sm" look="secondary" />
-          </div>
+          <h2 className="h1 mb-14 max-w-[880px]">Want to get started?</h2>
           <div className="grid gap-6 md:grid-cols-3">
             {STEPS.map(([label, title, text]) => (
               <div key={label} className="flex h-full flex-col gap-4">
@@ -66,8 +83,8 @@ export default function Home() {
             ))}
           </div>
         </div>
+        <FrenchLine line={CLOSING.fr} english={CLOSING.en} link={CLOSING.link} href={CLOSING.href} />
       </section>
-
     </main>
   );
 }

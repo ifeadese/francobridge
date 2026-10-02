@@ -123,6 +123,8 @@ body {
   @media (max-width: 767px) { .section-tight { margin-top: 24px; } }
 
   .line { @apply h-px w-full bg-black; }
+  /* The arch: the brand's one curve, square at the foot. */
+  .arch { border-radius: 9999px 9999px 0 0; }
   .line-white { @apply h-px w-full bg-white; }
 
   .panel { @apply flex flex-col; padding: 24px 32px; }
@@ -131,6 +133,31 @@ body {
   .field {
     @apply w-full border-0 border-b border-black/40 bg-transparent px-0 pb-3 text-[20px] leading-[1.5] text-black outline-none transition-colors placeholder:text-black/50 focus:border-black;
   }
+}
+
+/* ------------------------------------------------------------
+   Marquee: two identical tracks side by side, each sliding left by its own
+   width, so the second takes the first's place at the instant it loops.
+   ------------------------------------------------------------ */
+.marquee {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-track {
+  display: flex;
+  flex: none;
+  align-items: baseline;
+  gap: 40px;
+  padding-right: 40px;
+  animation: marquee 60s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee {
+  to { transform: translateX(-100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
 }
 
 /* ------------------------------------------------------------

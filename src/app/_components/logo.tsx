@@ -7,9 +7,10 @@ import { HORIZONTAL, MARK, STACKED } from "@/lib/logo-paths";
 //
 // The stone (the bridge) and the type take one colour; the arch band takes the
 // surface's colour; the sun is always red, except in the one-colour version,
-// where the band becomes a true cutout.
+// where the band becomes a true cutout. On a tinted surface (a pastel band,
+// a gradient) the band is a cutout too, so the surface shows through the arch.
 
-export type LogoSurface = "blue" | "ivory" | "mono";
+export type LogoSurface = "blue" | "ivory" | "tint" | "mono";
 export type LogoVariant = "stacked" | "horizontal" | "mark";
 
 export const BRAND = {
@@ -27,7 +28,7 @@ type Props = Omit<SVGProps<SVGSVGElement>, "color"> & {
 export function Logo({ variant = "horizontal", on = "ivory", ...props }: Props) {
   const box =
     variant === "stacked" ? STACKED : variant === "horizontal" ? HORIZONTAL : MARK;
-  const stone = on === "blue" ? BRAND.ivory : on === "ivory" ? BRAND.blue : "currentColor";
+  const stone = on === "blue" ? BRAND.ivory : on === "mono" ? "currentColor" : BRAND.blue;
   const band = on === "blue" ? BRAND.blue : on === "ivory" ? BRAND.ivory : null;
   const sun = on === "mono" ? "currentColor" : BRAND.red;
   const label = variant === "mark" ? "FrancoBridge" : "FrancoBridge Consulting Inc.";
