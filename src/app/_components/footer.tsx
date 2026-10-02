@@ -7,7 +7,7 @@ import { SERVICES } from "@/lib/services";
 // the right, then the legal line.
 export function Footer() {
   return (
-    <footer className="bg-grey-3 pb-28 pt-16">
+    <footer className="bg-grey-3 pb-10 pt-16">
       <div className="container-fb">
         <div className="mb-20 grid gap-12 md:grid-cols-2">
           <div className="flex flex-col gap-4">
