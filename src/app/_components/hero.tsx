@@ -1,9 +1,11 @@
 import type { ReactNode } from "react";
 import cn from "classnames";
+import { BackLink } from "@/app/_components/back-link";
 
 // The internal-page hero: text at the bottom left, in the page column so it
 // lines up with everything below, a photo filling the right half, 600px tall
-// on desktop. Without an image the text block stands alone.
+// on desktop. Without an image the text block stands alone. Above the title,
+// the way back: home unless the page passes its parent.
 // The home page has its own in page.tsx.
 export function Hero({
   title,
@@ -11,6 +13,7 @@ export function Hero({
   image,
   imageAlt = "",
   compact = true,
+  back,
   children,
 }: {
   title: string;
@@ -19,6 +22,8 @@ export function Hero({
   imageAlt?: string;
   /** The compact spacing is the default; pass false for the roomier opening. */
   compact?: boolean;
+  /** Where the back link goes. Home by default. */
+  back?: { href: string; label: string };
   children?: ReactNode;
 }) {
   return (
@@ -32,6 +37,7 @@ export function Hero({
           image ? "px-[var(--gutter)] md:min-w-[560px] md:pl-[max(var(--gutter),calc((100vw-1280px)/2+var(--gutter)))]" : "container-fb",
         )}
       >
+        <BackLink {...back} />
         <h1 className="h1 max-w-[760px]">{title}</h1>
         {text && <p className="regular-l max-w-[560px]">{text}</p>}
         {children && <div className="flex flex-wrap items-center gap-4">{children}</div>}

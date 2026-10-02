@@ -17,7 +17,7 @@ export default async function ServicePage(props: Params) {
 
   return (
     <main>
-      <Hero title={service.headline} text={service.sub} image={IMAGES.services[service.slug]}>
+      <Hero title={service.headline} text={service.sub} image={IMAGES.services[service.slug]} back={{ href: "/services", label: "All programs" }}>
         <BookButton />
         <BookButton event="lesson" />
       </Hero>
