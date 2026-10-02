@@ -28,7 +28,7 @@ export function FrenchLine({
           <p className="banner-heading" lang="fr">
             {line}
           </p>
-          <p className="regular-l text-grey-80">{english}</p>
+          <p className="regular-l text-navy/70">{english}</p>
         </div>
         <div className="shrink-0 md:pb-2">
           <Tertiary href={href}>{link}</Tertiary>

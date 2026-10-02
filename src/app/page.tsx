@@ -138,7 +138,7 @@ export default function Home() {
                 </h3>
                 <div className="flex flex-col gap-2">
                   <p className="text-[16px] leading-[1.5] md:text-[17px]">{step.text}</p>
-                  <p className="regular-s text-grey-80">{step.facts.join(" · ")}</p>
+                  <p className="regular-s text-navy/70">{step.facts.join(" · ")}</p>
                 </div>
               </div>
             ))}

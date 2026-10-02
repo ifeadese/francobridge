@@ -95,7 +95,7 @@ body {
   .regular-m { @apply text-[18px] leading-[1.5]; }
   .regular-s { @apply text-[15px] leading-[1.5]; }
   .fr-line {
-    @apply font-heading font-normal text-grey-80;
+    @apply font-heading font-normal text-navy/70;
   }
 
   /* Buttons: square-cornered, both in the logo's navy. The primary is filled

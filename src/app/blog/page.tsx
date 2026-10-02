@@ -22,7 +22,7 @@ export default function Blog() {
             <Link key={post.slug} href={`/posts/${post.slug}`} className="group flex flex-col gap-4">
               <div className="flex items-center justify-between border-b border-navy pb-3">
                 <span className="regular-m">Blog</span>
-                <span className="regular-s text-grey-80">
+                <span className="regular-s text-navy/70">
                   <DateFormatter dateString={post.date} />
                 </span>
               </div>

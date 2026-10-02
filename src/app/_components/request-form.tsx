@@ -44,7 +44,7 @@ export function RequestForm() {
         <button type="submit" className="button-primary">
           Send message
         </button>
-        {sent && <p className="regular-m text-grey-80">Your mail app should open with the request ready to send.</p>}
+        {sent && <p className="regular-m text-navy/70">Your mail app should open with the request ready to send.</p>}
       </div>
     </form>
   );

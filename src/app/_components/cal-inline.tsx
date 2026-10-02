@@ -17,7 +17,7 @@ export function CalInline({ event = "consultation" }: { event?: "consultation" |
           config={{ layout: "month_view", theme: "light" }}
         />
       </div>
-      <p className="regular-s mt-3 text-grey-80">
+      <p className="regular-s mt-3 text-navy/70">
         If the calendar does not load,{" "}
         <a href={`https://cal.com/${link}`} target="_blank" rel="noreferrer" className="underline underline-offset-4 transition-colors hover:text-blue">
           open it on cal.com

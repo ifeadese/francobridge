@@ -29,7 +29,7 @@ export default async function ServicePage(props: Params) {
             <p className="h3 max-w-[880px]" lang="fr">
               {service.fr}
             </p>
-            <p className="regular-m text-grey-80">{service.name}</p>
+            <p className="regular-m text-navy/70">{service.name}</p>
           </div>
         </div>
       </section>
@@ -46,7 +46,7 @@ export default async function ServicePage(props: Params) {
                 ["First step", `Consultation, ${CONSULTATION.label}`],
               ].map(([k, v]) => (
                 <div key={k} className="flex items-baseline justify-between gap-6 border-b border-navy py-3">
-                  <dt className="regular-m text-grey-80">{k}</dt>
+                  <dt className="regular-m text-navy/70">{k}</dt>
                   <dd className="regular-m text-right">{v}</dd>
                 </div>
               ))}

@@ -22,7 +22,7 @@
 }
 
 .markdown blockquote {
-  @apply border-l border-navy pl-6 font-heading text-[24px] text-grey-80;
+  @apply border-l border-navy pl-6 font-heading text-[24px] text-navy/70;
 }
 
 .markdown code {

@@ -52,7 +52,7 @@ export default function About() {
             </div>
           </div>
           <div>
-            <p className="regular-s uppercase tracking-[0.14em] text-grey-80">Meet the instructor</p>
+            <p className="regular-s uppercase tracking-[0.14em] text-navy/70">Meet the instructor</p>
             <div className="mt-4 flex max-w-2xl flex-col gap-5 text-[18px] leading-[1.5] md:text-[20px]">
               <p>
                 I’m [NAME], the founder and lead instructor of FrancoBridge. Every consultation and, for now, every
