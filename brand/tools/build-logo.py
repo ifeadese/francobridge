@@ -50,25 +50,29 @@ CX = W / 2
 DECK_L, DECK_R = 70.0, 930.0
 DECK_TOP, DECK_H = 420.0, 30.0
 
-# The arch: two circular segments that spring from the deck's two ends and
-# part to T at the crown, so the rib tapers to a point where it meets the deck.
-SPRING = (DECK_R - DECK_L) / 2     # half span at the deck: the points are the deck's ends
+# The arch: a band of even thickness whose outer edge runs down through the
+# deck to its bottom corners, so each end of the bridge comes to a point.
+DECK_BOTTOM = DECK_TOP + DECK_H
+SPRING = (DECK_R - DECK_L) / 2     # half span at the deck's underside
 RISE = 185.0                       # deck top to the crown, outer edge
-T = 30.0                           # arch thickness at the crown
-
-def segment(rise: float):
-    """Radius and centre height of the circle through both deck ends, `rise` high."""
-    r = (SPRING ** 2 + rise ** 2) / (2 * rise)
-    return r, DECK_TOP - rise + r
-
-R_OUT, ACY_OUT = segment(RISE)
-R_IN, ACY_IN = segment(RISE - T)
+T = 30.0                           # arch thickness
+_h = DECK_BOTTOM - (DECK_TOP - RISE)
+R_OUT = (SPRING ** 2 + _h ** 2) / (2 * _h)
+R_IN = R_OUT - T
+ACY = DECK_TOP - RISE + R_OUT      # arch centre, below the deck
 
 def outer_y(x: float) -> float:
-    return ACY_OUT - math.sqrt(R_OUT ** 2 - (x - CX) ** 2)
+    return ACY - math.sqrt(R_OUT ** 2 - (x - CX) ** 2)
 
 def inner_y(x: float) -> float:
-    return ACY_IN - math.sqrt(R_IN ** 2 - (x - CX) ** 2)
+    return ACY - math.sqrt(R_IN ** 2 - (x - CX) ** 2)
+
+def edge_x(r: float, y: float) -> float:
+    """Half width of the arch edge of radius r at height y."""
+    return math.sqrt(r * r - (ACY - y) ** 2)
+
+SPRING_IN = edge_x(R_IN, DECK_TOP)      # where the inner edge lands on the deck
+SPRING_TOP = edge_x(R_OUT, DECK_TOP)    # where the outer edge passes the deck's top
 
 # The tower: body, a cornice, and the spire.
 TOWER_W = 106.0
@@ -114,31 +118,30 @@ def cut_x(edge) -> float:
 xo, xi = cut_x(outer_y), cut_x(inner_y)
 
 def arch_half(sign: int) -> str:
-    """One half of the arch rib, from its point on the deck to the tower cut."""
+    """One half of the arch band, from the deck's bottom corner to the tower cut."""
     def X(x):
         return CX + sign * (x - CX)
     sweep_out = 1 if sign > 0 else 0
     sweep_in = 1 - sweep_out
     return (
-        f"M{f(X(CX - SPRING))} {f(DECK_TOP)}"
+        f"M{f(X(CX - SPRING))} {f(DECK_BOTTOM)}"
         f"A{f(R_OUT)} {f(R_OUT)} 0 0 {sweep_out} {f(X(xo))} {f(outer_y(xo))}"
         f"L{f(X(xi))} {f(inner_y(xi))}"
-        f"A{f(R_IN)} {f(R_IN)} 0 0 {sweep_in} {f(X(CX - SPRING))} {f(DECK_TOP)}Z"
+        f"A{f(R_IN)} {f(R_IN)} 0 0 {sweep_in} {f(X(CX - SPRING_IN))} {f(DECK_TOP)}Z"
     )
 
 ARCH = arch_half(-1) + arch_half(1)
 
-# The deck's ends are cut back underneath, so with the arch they come to a point.
-CHAMFER = 1.3 * DECK_H
+# The deck's ends follow the arch's outer edge down to the bottom corners.
 DECK = (
-    f"M{f(DECK_L)} {f(DECK_TOP)}H{f(DECK_R)}"
-    f"L{f(DECK_R - CHAMFER)} {f(DECK_TOP + DECK_H)}H{f(DECK_L + CHAMFER)}Z"
+    f"M{f(DECK_L)} {f(DECK_BOTTOM)}A{f(R_OUT)} {f(R_OUT)} 0 0 1 {f(CX - SPRING_TOP)} {f(DECK_TOP)}"
+    f"H{f(CX + SPRING_TOP)}A{f(R_OUT)} {f(R_OUT)} 0 0 1 {f(DECK_R)} {f(DECK_BOTTOM)}Z"
 )
 
 hangers, piers = [], []
 for k in range(1, 20):
     off = k * PITCH
-    if off >= SPRING:
+    if off >= SPRING_IN:
         break
     for sign in (-1, 1):
         x = CX + sign * off
