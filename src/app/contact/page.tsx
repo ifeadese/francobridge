@@ -8,7 +8,8 @@ export const metadata: Metadata = {
 };
 
 // The contact page is the form and nothing else: a title, one line, the
-// fields and the button, all on one centred column. Booking lives in the
+// fields and the button, on one centred column with everything ranged
+// left inside it. Booking lives in the
 // header on every page.
 export default function Contact() {
   return (
