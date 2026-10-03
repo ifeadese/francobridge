@@ -167,7 +167,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "career-pathway-guidance",
-    name: "Career Development & Education Pathway Guidance",
+    name: "Education Pathway Guidance & Career Development",
     short: "Education & Career Pathway Guidance",
     headline: "Turn Language Skills into Career Opportunities.",
     sub: "A resume and cover letter that read naturally in French, practice for the interview in the language it will be held in, and a clear plan for French-language study in Canada. Everything is delivered in French, so the service is also the practice.",
