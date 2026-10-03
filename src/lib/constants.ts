@@ -13,9 +13,9 @@ export const LOCATION = {
   reach: "In Ottawa and online, anywhere",
 };
 
-// Placeholders until the client confirms them.
+// The email is the client's; the phone waits until they confirm one.
 export const CONTACT = {
-  email: "info@francobridge.ca",
+  email: "info@francobridgeconsulting.com",
   phone: "",
 };
 

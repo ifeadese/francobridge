@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BookButton } from "@/app/_components/book-button";
 import { Hero } from "@/app/_components/hero";
+import { CONTACT } from "@/lib/constants";
 import { FAQS } from "@/lib/faq";
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 export default function Faq() {
   return (
     <main>
-      <Hero title="Questions, answered in plain numbers" compact />
+      <Hero title="Some questions you probably have…" compact />
 
       <section className="mt-0">
         <div className="container-fb">
@@ -49,11 +50,11 @@ export default function Faq() {
             ))}
           </div>
           <p className="regular-l mt-10 max-w-[760px]">
-            Something else?{" "}
-            <Link href="/contact" className="underline decoration-navy/40 underline-offset-4 transition-colors hover:text-blue hover:decoration-blue">
-              Write to us
-            </Link>{" "}
-            and we will reply with what we would suggest and what it costs.
+            Something else? Send us a message at{" "}
+            <a href={`mailto:${CONTACT.email}`} className="underline decoration-navy/40 underline-offset-4 transition-colors hover:text-blue hover:decoration-blue">
+              {CONTACT.email}
+            </a>{" "}
+            and we’ll be happy to assist.
           </p>
         </div>
       </section>
