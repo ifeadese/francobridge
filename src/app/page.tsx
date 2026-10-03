@@ -85,7 +85,7 @@ export default function Home() {
           {/* The heading with the All services ring on its row, the ring's
               foot on the title's baseline, and the line under both at the
               hero text's width. */}
-          <div className="mb-14 flex flex-col gap-4">
+          <div className="mb-6 flex flex-col gap-6">
             <div className="flex flex-nowrap items-end justify-between gap-6">
               <h2 className="h1">
                 Our
@@ -111,17 +111,10 @@ export default function Home() {
       <section className="pt-10 md:pt-14">
         <div className="container-fb">
           {/* The heading with the booking ring beside it, the same large
-              ringed arrow as the closing banner, one row at every width. On
-              phones the heading breaks a word per line: Want / to get /
-              started? */}
+              ringed arrow as the closing banner, one row at every width. The
+              heading wraps as the width allows. */}
           <div className="mb-10 flex flex-nowrap items-end justify-between gap-6 md:mb-12">
-            <h2 className="h1 min-w-0">
-              Want
-              <br className="md:hidden" />
-              {" "}to get
-              <br />
-              started?
-            </h2>
+            <h2 className="h1 min-w-0">Want to get started?</h2>
             <BookButton look="ring" />
           </div>
           {/* The ledger: three rows between rules, each numbered in its
