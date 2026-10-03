@@ -114,7 +114,7 @@ export default function Home() {
               ringed arrow as the closing banner, one row at every width. On
               phones the heading breaks a word per line: Want / to get /
               started? */}
-          <div className="mb-10 flex flex-nowrap items-center justify-between gap-6 md:mb-12">
+          <div className="mb-10 flex flex-nowrap items-end justify-between gap-6 md:mb-12">
             <h2 className="h1 min-w-0">
               Want
               <br className="md:hidden" />
