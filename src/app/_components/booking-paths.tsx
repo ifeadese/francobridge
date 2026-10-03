@@ -26,7 +26,7 @@ const PATHS: { id: PathId; who: string; tag: string; title: string; meta: string
     who: "Enrolled students",
     tag: "bg-blue-light",
     title: "Book a lesson",
-    meta: "Your next session",
+    meta: "Your Next Session",
     blurb:
       "For students already enrolled in a program. Choose your program and pick a time for your next session, within the hours agreed at your consultation.",
   },

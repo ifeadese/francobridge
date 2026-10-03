@@ -44,7 +44,7 @@ export const CONSULTATION = {
   minutes: 60,
   price: 100,
   currency: "CAD",
-  label: "1 hour · $100 CAD · online",
+  label: "1 Hour · $100 CAD · Online",
 } as const;
 
 export const PACKAGES = [20, 40, 60] as const;
