@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function Faq() {
   return (
     <main>
-      <Hero title="Questions, answered in plain numbers" compact />
+      <Hero title="Some questions you probably have…" compact />
 
       <section className="mt-0">
         <div className="container-fb">
