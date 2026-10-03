@@ -26,7 +26,7 @@ export const SERVICES: Service[] = [
     name: "TCF & TEF Canada Preparation",
     short: "TCF & TEF",
     headline: "Prepare with purpose. Practice with guidance.",
-    sub: "Approach your TCF or TEF examination with confidence.",
+    sub: "The TCF and TEF Canada are the French tests recognised for Canadian immigration and citizenship. We start from your target score and test date, then train the four skills the exam measures, with mock exams along the way so the real one holds no surprises.",
     fr: "Préparez-vous avec méthode. Passez l’examen avec confiance.",
     level: "A2 to C1",
     format: "Online · Private coaching · Intensive options",
@@ -72,7 +72,7 @@ export const SERVICES: Service[] = [
     name: "Professional French",
     short: "Professional French",
     headline: "French for the Workplace",
-    sub: "Build the language skills and confidence you need to communicate effectively in a professional environment.",
+    sub: "For people who already have some French and need it for meetings, emails, presentations and interviews. Sessions are built around your job, your real documents and the vocabulary of your field, so what you practise one day you can use the next.",
     fr: "Le français au travail, avec assurance.",
     level: "B1 to C1",
     format: "Online · Private or semi-private",
@@ -118,7 +118,7 @@ export const SERVICES: Service[] = [
     name: "General French Programs",
     short: "General French A1–C1",
     headline: "French A1 to C1",
-    sub: "Structured French instruction for adults, from complete beginner to advanced level.",
+    sub: "A clear path from your first words to confident, nuanced French. Each level builds listening, speaking, reading and writing together, and everything you learn is practised in real conversation.",
     fr: "Du niveau A1 au niveau C1, à votre rythme.",
     level: "A1 to C1",
     format: "Online · Private now, semi-private as groups form",
@@ -170,7 +170,7 @@ export const SERVICES: Service[] = [
     name: "Career Development & Education Pathway Guidance",
     short: "Career & Education Pathway Guidance",
     headline: "Turn Language Skills into Career Opportunities.",
-    sub: "Career preparation and education planning, delivered in French, for people building a future in a Francophone environment.",
+    sub: "A resume and cover letter that read naturally in French, practice for the interview in the language it will be held in, and a clear plan for French-language study in Canada. Everything is delivered in French, so the service is also the practice.",
     fr: "Faites de vos compétences en français une carrière.",
     level: "B1 and above",
     format: "Online · Offered in French only",
@@ -212,7 +212,7 @@ export const SERVICES: Service[] = [
     name: "French Immigration Pathway Information & Guidance",
     short: "Immigration Pathway Guidance",
     headline: "Understand the French-language pathways.",
-    sub: "Clear, publicly available information on French-language immigration pathways, their language requirements, and how to prepare for them.",
+    sub: "Canada has immigration pathways that reward French, and each sets its own language requirement. We show you which pathways exist, what level each expects, and how to build a preparation plan that gets you there.",
     fr: "Comprendre les voies d’immigration francophones.",
     level: "All levels",
     format: "Online or in Ottawa · Consultation",
@@ -245,7 +245,7 @@ export const SERVICES: Service[] = [
     name: "Translation & Language Support",
     short: "Translation & Proofreading",
     headline: "Translation, editing and revision.",
-    sub: "English to French and French to English, for documents that have to be right.",
+    sub: "Applications, letters, resumes, certificates and reports that have to read perfectly in the other language. Send the document and your deadline, and you get a quote and a turnaround before any work starts.",
     fr: "Traduction et révision, dans les deux sens.",
     level: "Any",
     format: "Remote · Quoted per document",
@@ -278,4 +278,11 @@ export const SERVICES: Service[] = [
 
 export function getService(slug: string) {
   return SERVICES.find((s) => s.slug === slug);
+}
+
+/** The services either side of this one, in the site's order. */
+export function getAdjacentServices(slug: string) {
+  const i = SERVICES.findIndex((s) => s.slug === slug);
+  if (i === -1) return {};
+  return { previous: SERVICES[i - 1], next: SERVICES[i + 1] };
 }

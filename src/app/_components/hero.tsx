@@ -15,6 +15,7 @@ export function Hero({
   compact = true,
   back,
   wide = false,
+  note,
   children,
 }: {
   title: string;
@@ -27,11 +28,16 @@ export function Hero({
   back?: { href: string; label: string };
   /** The text runs the page column's full width, as wide as the header and
       footer, for a page that is one column, like the contact form. Only
-      without a photo. */
-  wide?: boolean;
+      without a photo. "80%" stops it at four fifths of the column from
+      tablets up, as on the service pages. */
+  wide?: boolean | "80%";
+  /** A notice the reader should not miss, between the text and the buttons,
+      behind the red rule. */
+  note?: ReactNode;
   children?: ReactNode;
 }) {
   const full = wide && !image;
+  const measure = wide === "80%" && "md:max-w-[80%]";
   return (
     <section className="flex flex-col pt-[104px] md:flex-row md:pt-[124px]">
       <div
@@ -44,8 +50,9 @@ export function Hero({
         )}
       >
         <BackLink {...back} />
-        <h1 className={cn("h1", !full && "max-w-[760px]")}>{title}</h1>
-        {text && <p className={cn("regular-l", !full && "max-w-[560px]")}>{text}</p>}
+        <h1 className={cn("h1", full ? measure : "max-w-[760px]")}>{title}</h1>
+        {text && <p className={cn("regular-l", full ? measure : "max-w-[560px]")}>{text}</p>}
+        {note && <div className={cn("regular-m flex flex-col gap-3 border-l-2 border-red pl-6", full ? measure : "max-w-[560px]")}>{note}</div>}
         {children && <div className="flex flex-wrap items-center gap-4">{children}</div>}
       </div>
       {image && (
