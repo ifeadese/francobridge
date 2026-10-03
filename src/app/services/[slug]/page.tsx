@@ -36,7 +36,7 @@ export default async function ServicePage(props: Params) {
         back={{ href: "/services", label: "All programs" }}
       >
         <BookButton />
-        <BookButton event="lesson" />
+        <BookButton event="lesson" service={service.slug} />
       </Hero>
 
       {/* The grey band, about the program, the same on every service: the

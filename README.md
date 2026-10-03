@@ -9,7 +9,7 @@ with Next.js, deployed on Vercel.
 
 ## Pages
 
-Home, About, Services, Contact, and one page per service under `/services/`:
+Home, About, Services, FAQ, Contact, Consultation (booking), and one page per service under `/services/`:
 TCF & TEF preparation, Professional French, General French A1–C1, Career &
 education pathway guidance, Immigration pathway information, Translation.
 The blog from the starter lives on at `/blog` and `/posts/<slug>`.
@@ -19,11 +19,16 @@ handles and the consultation price in `src/lib/constants.ts`.
 
 ## Booking
 
-Buttons open a cal.com popup; the contact page embeds the calendar. Two event
-types are expected on the cal.com account named in `CAL` in
-`src/lib/constants.ts`: `consultation` (60 min, CAD 100, paid on booking) and
-`lesson` (private now, semi-private later). Replace the placeholder handle once
-the account exists.
+Every booking button goes to `/consultation`, which has two cards: **Book a
+consultation** for new students, and **Book a lesson** for current students,
+who pick their program and get that program's calendar. Buttons open the right
+card through the query (`/consultation?book=lesson&service=general-french`).
+The calendars are cal.com inline embeds; the links live in `CAL` in
+`src/lib/constants.ts`.
+
+They are placeholders: every link points at ADESE's discovery call until the
+client has a cal.com account. Then create a `consultation` event (60 min,
+CAD 100, paid on booking) and one event per program, and swap the links in.
 
 ## Design
 
