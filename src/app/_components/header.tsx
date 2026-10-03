@@ -43,7 +43,7 @@ export function Header() {
             ))}
           </nav>
           <BookButton
-            className="whitespace-nowrap max-md:px-3 max-md:text-[15px] md:ml-3 group-data-[dark]:bg-ivory group-data-[dark]:text-navy group-data-[dark]:hover:bg-white"
+            className="whitespace-nowrap max-md:px-3 max-md:text-[15px] md:ml-8 group-data-[dark]:bg-ivory group-data-[dark]:text-navy group-data-[dark]:hover:bg-white"
             size="sm"
           />
           <MobileNav />
