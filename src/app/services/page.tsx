@@ -13,7 +13,7 @@ export default function Services() {
     <main>
       <Hero
         title="Our Programs"
-        text="Every programme starts with the same conversation: a one-hour consultation that finds your level and ends with a plan."
+        text="Every program starts with the same conversation: a one-hour consultation that finds your level and ends with a plan."
       />
 
       {/* The grid sits in the opening at the hero's own padding, 24px on

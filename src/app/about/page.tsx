@@ -27,7 +27,7 @@ export default function About() {
               We teach General French from A1 to C1, prepare you for the TCF Canada and TEF Canada, and offer
               professional French for the workplace and the public service. We also help with study and career
               plans in French, explain the French-language immigration pathways, and translate documents between
-              English and French. We are based in Ottawa, and every programme runs online.
+              English and French. We are based in Ottawa, and every program runs online.
             </p>
           </div>
         </div>

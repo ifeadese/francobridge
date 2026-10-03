@@ -19,7 +19,7 @@ function PagerLink({ service, direction }: { service: Service; direction: "previ
   );
 }
 
-// Foot of a service page: the programmes before and after it, in the site's
+// Foot of a service page: the programs before and after it, in the site's
 // order. "Next" always sits on the right, even with no "previous".
 export function ServicePager({ previous, next }: { previous?: Service; next?: Service }) {
   if (!previous && !next) return null;

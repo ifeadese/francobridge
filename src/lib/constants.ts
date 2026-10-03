@@ -4,7 +4,7 @@ export const SITE_TAGLINE = "Bridging language. Unlocking opportunities.";
 // French lines are plain taglines, no guillemets; only a real quotation takes them.
 export const SITE_TAGLINE_FR = "Un pont vers la langue. Des portes qui s’ouvrent.";
 export const SITE_DESCRIPTION =
-  "French language education, TCF and TEF Canada preparation, professional French and pathway guidance in Ottawa and online. Book a consultation to find your level and your programme.";
+  "French language education, TCF and TEF Canada preparation, professional French and pathway guidance in Ottawa and online. Book a consultation to find your level and your program.";
 export const SITE_URL = "https://francobridge.vercel.app";
 export const REPO_URL = "https://github.com/ifeadese/francobridge";
 

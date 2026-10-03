@@ -14,16 +14,16 @@ import { CONSULTATION, PACKAGES, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/con
 const STEPS = [
   {
     title: "Book a consultation",
-    text: "One hour online, paid when you book. We assess your French and talk through your goals, and you leave with your level on the A1 to C1 scale and a recommended programme.",
+    text: "One hour online, paid when you book. We assess your French and talk through your goals, and you leave with your level on the A1 to C1 scale and a recommended program.",
     facts: [`${CONSULTATION.minutes / 60} hour · $${CONSULTATION.price} ${CONSULTATION.currency}`, "Online", "A1 to C1"],
   },
   {
-    title: "Enrol in your programme",
+    title: "Enrol in your program",
     text: "Choose your block of hours, private or semi-private, and pay to enrol. Once the payment is in, your place is held and your schedule is set with your instructor.",
     facts: [`${PACKAGES.slice(0, -1).join(", ")} or ${PACKAGES[PACKAGES.length - 1]} hours`, "Private or semi-private", "Paid on enrolment"],
   },
   {
-    title: "Start your programme",
+    title: "Start your program",
     text: "Your sessions begin, online and scheduled around you. Progress is measured against the level you started at, so you can see the ground you have covered.",
     facts: ["Online", "Scheduled around you"],
   },
@@ -40,13 +40,13 @@ const CLOSING = {
 } as const;
 
 // The whole page sits on one fade, from the pale blue at the top through the
-// red tint behind the programmes to the yellow under the closing banner, and
+// red tint behind the programs to the yellow under the closing banner, and
 // then the footer. The footer gap that main normally carries is dropped so
 // the yellow meets the navy.
 export default function Home() {
   return (
     <main className="bg-gradient-to-b from-blue-light via-red-light to-yellow-light pb-0">
-      {/* The opening: hero, statement and programmes share one clipped
+      {/* The opening: hero, statement and programs share one clipped
           canvas, so the watermarks drawn from the logo can bleed off its
           edges and run from one section into the next. Each section's
           content sits above them. */}
