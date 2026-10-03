@@ -46,7 +46,7 @@ export default async function ServicePage(props: Params) {
         <div className="container-fb">
           <div className="flex flex-col gap-10 bg-grey-3 px-6 py-10 md:gap-14 md:px-16 md:py-14">
             <div className="flex flex-col gap-10">
-              <h2 className="h2">About this program</h2>
+              <h2 className="h2">About this service</h2>
               <dl className="flex flex-col">
                 {facts.map(([k, v]) => (
                   <div key={k} className="flex flex-col gap-1 border-b border-navy py-3 first:pt-0">
