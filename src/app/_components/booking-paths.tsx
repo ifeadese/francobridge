@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type CSSProperties } from "react";
+import { Fragment, useRef, useState, type CSSProperties } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import cn from "classnames";
 import { CalInline } from "@/app/_components/cal-inline";
@@ -120,10 +120,24 @@ export function BookingPaths() {
                 isSlim ? "p-5 sm:p-6" : "p-6 sm:p-8 md:p-10"
               )}
             >
-              <span className="regular-s flex items-center justify-between gap-4 text-navy/70">
+              {/* The tag and the details, side by side; the slim card stacks
+                  them, and lets the details wrap, so both always show. */}
+              <span
+                className={cn(
+                  "regular-s flex text-navy/70",
+                  isSlim ? "flex-col items-start gap-2" : "flex-wrap items-center justify-between gap-x-4 gap-y-2"
+                )}
+              >
                 <span className={cn("whitespace-nowrap px-2.5 py-0.5 text-navy", path.tag)}>{path.who}</span>
-                {/* Too long for the slim card's width. */}
-                {!isSlim && <span className="text-right">{path.meta}</span>}
+                {/* Breaks only between the parts, never inside one. */}
+                <span>
+                  {path.meta.split(" · ").map((part, i) => (
+                    <Fragment key={part}>
+                      {i > 0 && " · "}
+                      <span className="whitespace-nowrap">{part}</span>
+                    </Fragment>
+                  ))}
+                </span>
               </span>
               <span className={cn("mt-4 block", isSlim ? "h4" : "h3")}>{path.title}</span>
 
