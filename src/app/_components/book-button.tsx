@@ -10,7 +10,7 @@ type Props = {
   service?: string;
   /** "ring" is the large ringed arrow alone; the label becomes its name. */
   look?: "primary" | "secondary" | "ring";
-  size?: "md" | "sm";
+  size?: "md" | "sm" | "compact";
   className?: string;
   children?: ReactNode;
 };
@@ -35,6 +35,7 @@ export function BookButton({
       className={cn(
         look === "ring" ? RING : look === "primary" ? "button-primary" : "button-secondary",
         look !== "ring" && size === "sm" && "button-small",
+        look !== "ring" && size === "compact" && "button-compact",
         className
       )}
     >

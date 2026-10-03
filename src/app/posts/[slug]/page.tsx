@@ -22,7 +22,7 @@ export default async function Post(props: Params) {
             <p className="regular-m text-navy/70">
               <DateFormatter dateString={post.date} /> · {post.author.name}
             </p>
-            <h1 className="h1">{post.title}</h1>
+            <h1 className="h2">{post.title}</h1>
           </div>
           <div className="flex flex-col gap-10">
             <img src={post.coverImage} alt="" className="aspect-[16/9] w-full object-cover" />

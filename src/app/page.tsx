@@ -71,9 +71,17 @@ export default function Home() {
               {SITE_TAGLINE_FR}
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-4">
-            <Link href="/about" className="button-secondary">
+          <div className="-mt-2 flex flex-wrap items-center gap-4">
+            {/* A quiet button: a navy rule on the pattern, and an arrow that
+                steps forward on hover. */}
+            <Link
+              href="/about"
+              className="button-secondary button-compact group gap-3 hover:border-navy hover:bg-navy"
+            >
               About FrancoBridge
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1">
+                <path d="M2 7h10M8 3l4 4-4 4" />
+              </svg>
             </Link>
           </div>
         </div>

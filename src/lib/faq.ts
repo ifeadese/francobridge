@@ -3,7 +3,15 @@ import { CONSULTATION, PACKAGES } from "@/lib/constants";
 // The questions people ask before booking, answered in plain numbers. The
 // facts come from the brief and the client's answers; keep them in step with
 // src/lib/constants.ts.
-export type Faq = { q: string; a: string[]; cta?: "consultation" | "lesson" | "contact" };
+// `groups` sets a table under the answer: who, and the services for them, by
+// slug in the site's service order. `end` closes the answer after it.
+export type Faq = {
+  q: string;
+  a: string[];
+  groups?: { label: string; services: string[] }[];
+  end?: string;
+  cta?: "consultation" | "lesson" | "contact";
+};
 
 export const FAQS: Faq[] = [
   {
@@ -43,6 +51,18 @@ export const FAQS: Faq[] = [
     a: [
       "Online. FrancoBridge is based in Ottawa, Ontario, and every program runs online, so it reaches beyond the city as the school grows.",
     ],
+  },
+  {
+    q: "Which services are right for me?",
+    a: ["It depends on why you need French. The usual fit:"],
+    groups: [
+      { label: "Aspiring immigrants", services: ["tcf-tef-preparation", "general-french", "immigration-pathways"] },
+      { label: "Newcomers", services: ["professional-french", "general-french", "career-pathway-guidance"] },
+      { label: "Students", services: ["tcf-tef-preparation", "general-french", "career-pathway-guidance"] },
+      { label: "Professionals", services: ["professional-french", "career-pathway-guidance", "translation"] },
+    ],
+    end: "Not sure? Your consultation ends with a recommended program.",
+    cta: "consultation",
   },
   {
     q: "What is not included?",
