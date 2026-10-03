@@ -43,8 +43,8 @@ const isPath = (value: string | null): value is PathId => value === "consultatio
 // Column widths per state, all in fr so the grid can animate between them.
 const COLUMNS: Record<PathId | "none", [string, string]> = {
   none: ["1fr", "1fr"],
-  consultation: ["3fr", "1fr"],
-  lesson: ["1fr", "3fr"],
+  consultation: ["5fr", "2fr"],
+  lesson: ["2fr", "5fr"],
 };
 
 // The grid-row trick: 0fr folds the content away, 1fr lets it in.
@@ -123,9 +123,9 @@ export function BookingPaths() {
               )}
             >
               <span className="regular-s flex items-center justify-between gap-4 text-navy/70">
-                <span className="flex items-center gap-3">
+                <span className="flex flex-wrap items-center gap-x-3 gap-y-2">
                   <span>{path.number}</span>
-                  <span className={cn("px-2.5 py-0.5 text-navy", path.tag)}>{path.who}</span>
+                  <span className={cn("whitespace-nowrap px-2.5 py-0.5 text-navy", path.tag)}>{path.who}</span>
                 </span>
                 {/* Too long for the slim card's width. */}
                 {!isSlim && <span className="text-right">{path.meta}</span>}
@@ -141,9 +141,9 @@ export function BookingPaths() {
               </span>
 
               {!isOpen && (
-                <span className="tertiary mt-6">
+                <span className="tertiary mt-6 whitespace-nowrap">
                   <span className="underline-offset-4 group-hover:text-blue group-hover:underline">
-                    {isSlim ? "Switch to this" : "Choose this"}
+                    {isSlim ? "Switch" : "Choose this"}
                   </span>
                   <span className="tertiary-icon group-hover:border-blue group-hover:bg-blue group-hover:text-ivory" aria-hidden>
                     <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
