@@ -5,7 +5,7 @@ import { ServicesRail } from "@/app/_components/services-rail";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "TCF and TEF Canada preparation, professional French, General French A1 to C1, career and education pathway guidance, French immigration pathway information, and translation.",
+    "TCF and TEF Canada preparation, professional French, General French A1 to C1, education and career pathway guidance, French immigration pathway information, and translation.",
 };
 
 export default function Services() {

@@ -49,7 +49,7 @@ export const FAQS: Faq[] = [
     a: [
       "Official TCF or TEF examination fees, which you pay directly to the test centre.",
       "Regulated immigration advice or representation, which we refer to an appropriately authorized immigration professional.",
-      "Career and education pathway services are offered in French only.",
+      "Education and career pathway services are offered in French only.",
     ],
     cta: "contact",
   },
