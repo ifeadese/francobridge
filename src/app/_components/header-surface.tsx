@@ -1,8 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import cn from "classnames";
+
+// Whether the phone menu is open. The surface owns it, because an open menu
+// is the same pane as the bar, stretched down to the bottom of the window.
+const MenuContext = createContext<{ open: boolean; setOpen: (open: boolean) => void }>({
+  open: false,
+  setOpen: () => {},
+});
+export const useMenu = () => useContext(MenuContext);
 
 // The header's surface. On the home page it starts clear, so the hero's fade
 // runs up behind the nav to the top of the window, and as soon as the page
@@ -16,12 +24,17 @@ import cn from "classnames";
 // the header sets data-dark and its tint turns navy; the logo, links and
 // button inside it pick that up through group-data-[dark] and switch to
 // their light treatment, so they stay legible on it.
+//
+// When the phone menu opens, the pane always shows and runs to the bottom of
+// the window, the menu sits on it under the bar, and the page behind is held
+// still until it closes.
 export function HeaderSurface({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const home = pathname === "/";
   const ref = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
   const [dark, setDark] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const update = () => {
@@ -43,20 +56,46 @@ export function HeaderSurface({ children }: { children: React.ReactNode }) {
     };
   }, [pathname]);
 
-  const clear = home && !scrolled;
+  // A new page closes the menu.
+  useEffect(() => setOpen(false), [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    // Hold the page still behind the menu.
+    const root = document.documentElement;
+    const overflow = root.style.overflow;
+    root.style.overflow = "hidden";
+    // Escape closes it, and so does widening past the phone layout, where
+    // the menu is hidden and would otherwise leave the page locked.
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const wide = window.matchMedia("(min-width: 768px)");
+    const onWide = () => wide.matches && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    wide.addEventListener("change", onWide);
+    return () => {
+      root.style.overflow = overflow;
+      window.removeEventListener("keydown", onKey);
+      wide.removeEventListener("change", onWide);
+    };
+  }, [open]);
+
+  const clear = home && !scrolled && !open;
   return (
-    <header ref={ref} data-dark={dark ? "" : undefined} className="group fixed inset-x-0 top-0 z-50">
-      {/* The pane sits behind the nav as its own layer, so its blur does not
-          become the containing block for the menu that opens from it. */}
-      <div
-        aria-hidden
-        className={cn(
-          "pointer-events-none absolute inset-0 -z-10 border-b border-navy/10 bg-white/35 backdrop-blur-xl transition-[opacity,background-color,border-color] duration-300 group-data-[dark]:border-ivory/20 group-data-[dark]:bg-navy/40",
-          clear ? "opacity-0" : "opacity-100"
-        )}
-      />
-      {children}
-    </header>
+    <MenuContext.Provider value={{ open, setOpen }}>
+      <header ref={ref} data-dark={dark ? "" : undefined} className="group fixed inset-x-0 top-0 z-50">
+        {/* The pane sits behind the nav as its own layer, so its blur does not
+            become the containing block for the menu that opens on it. */}
+        <div
+          aria-hidden
+          className={cn(
+            "pointer-events-none absolute inset-x-0 top-0 -z-10 border-b border-navy/10 bg-white/35 backdrop-blur-xl transition-[opacity,background-color,border-color] duration-300 group-data-[dark]:border-ivory/20 group-data-[dark]:bg-navy/40",
+            open ? "h-dvh" : "bottom-0",
+            clear ? "opacity-0" : "opacity-100"
+          )}
+        />
+        {children}
+      </header>
+    </MenuContext.Provider>
   );
 }
 
