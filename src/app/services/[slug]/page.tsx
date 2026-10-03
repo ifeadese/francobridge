@@ -29,7 +29,7 @@ export default async function ServicePage(props: Params) {
   return (
     <main>
       <Hero
-        wide="80%"
+        wide
         title={service.cardTitle}
         text={service.sub}
         note={service.notes?.map((n) => <p key={n}>{n}</p>)}

@@ -19,7 +19,7 @@ export default function Consultation() {
         title="Start with a conversation"
         text="New to FrancoBridge? Book a consultation and we will find your level and your program together. Already studying with us? Book your next lesson."
         compact
-        wide="80%"
+        wide
       />
       <section className="mt-6 md:mt-8">
         <Suspense>
