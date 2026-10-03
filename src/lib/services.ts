@@ -126,7 +126,7 @@ export const SERVICES: Service[] = [
         ],
       },
       {
-        title: "Students develop",
+        title: "Skills developed",
         items: [
           "Speaking",
           "Listening",
