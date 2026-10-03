@@ -110,6 +110,9 @@ body {
   .button-primary { @apply button bg-navy text-ivory hover:bg-black; }
   .button-secondary { @apply button border border-navy bg-transparent text-navy hover:border-blue hover:bg-blue hover:text-ivory; }
   .button-small { padding: 16px 24px; @apply text-[16px]; }
+  /* Compact: 48px tall whatever the text size, for the header and the home
+     hero, so the two read as one family. */
+  .button-compact { height: 48px; padding: 0 20px; @apply text-[16px]; }
 
   /* Tertiary: a word and a small ringed arrow. */
   .tertiary {

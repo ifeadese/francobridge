@@ -49,7 +49,7 @@ export function Header() {
               hover; on phones there is no space to spare for it. */}
           <BookButton
             className="group/book gap-2 whitespace-nowrap transition-[background-color,color,transform] active:scale-[0.97] motion-reduce:active:scale-100 max-md:px-3 max-md:text-[15px] md:ml-4 lg:ml-8 group-data-[dark]:bg-ivory group-data-[dark]:text-navy group-data-[dark]:hover:bg-white"
-            size="sm"
+            size="compact"
           >
             Book a consultation
             <svg

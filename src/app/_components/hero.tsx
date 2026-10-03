@@ -6,7 +6,8 @@ import { BackLink } from "@/app/_components/back-link";
 // lines up with everything below, a photo filling the right half, 600px tall
 // on desktop. Without an image the text block stands alone. Above the title,
 // the way back: home unless the page passes its parent.
-// The home page has its own in page.tsx.
+// The title is the page's h1 set one size down, at the h2 size; only the
+// home page, which has its own hero in page.tsx, runs the full h1.
 export function Hero({
   title,
   text,
@@ -50,7 +51,7 @@ export function Hero({
         )}
       >
         <BackLink {...back} />
-        <h1 className={cn("h1", full ? measure : "max-w-[760px]")}>{title}</h1>
+        <h1 className={cn("h2", full ? measure : "max-w-[760px]")}>{title}</h1>
         {text && <p className={cn("regular-l", full ? measure : "max-w-[560px]")}>{text}</p>}
         {note && <div className={cn("regular-m flex flex-col gap-3 border-l-2 border-red pl-6", full ? measure : "max-w-[560px]")}>{note}</div>}
         {children && <div className="flex flex-wrap items-center gap-4">{children}</div>}

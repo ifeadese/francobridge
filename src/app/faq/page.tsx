@@ -4,6 +4,7 @@ import { BookButton } from "@/app/_components/book-button";
 import { Hero } from "@/app/_components/hero";
 import { CONTACT } from "@/lib/constants";
 import { FAQS } from "@/lib/faq";
+import { getService } from "@/lib/services";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -38,6 +39,34 @@ export default function Faq() {
                       {p}
                     </p>
                   ))}
+                  {item.groups && (
+                    <dl className="max-w-[760px] border-t border-navy/15">
+                      {item.groups.map((g) => (
+                        <div key={g.label} className="grid gap-2 border-b border-navy/15 py-4 md:grid-cols-[13rem_1fr] md:gap-6">
+                          <dt className="regular-m">{g.label}</dt>
+                          <dd className="flex flex-col items-start gap-1.5">
+                            {g.services.map((slug) => {
+                              const svc = getService(slug);
+                              if (!svc) return null;
+                              return (
+                                <Link
+                                  key={slug}
+                                  href={`/services/${slug}`}
+                                  className="regular-m inline-flex items-center gap-2 text-navy/80 transition-colors hover:text-blue"
+                                >
+                                  {svc.short}
+                                  <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                    <path d="M2 7h10M8 3l4 4-4 4" />
+                                  </svg>
+                                </Link>
+                              );
+                            })}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                  )}
+                  {item.end && <p className="regular-l max-w-[760px]">{item.end}</p>}
                   {item.cta === "consultation" && <BookButton className="self-start" />}
                   {item.cta === "lesson" && <BookButton event="lesson" className="self-start" />}
                   {item.cta === "contact" && (
