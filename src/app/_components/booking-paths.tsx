@@ -9,21 +9,28 @@ import { SERVICES } from "@/lib/services";
 
 type PathId = "consultation" | "lesson";
 
-const PATHS: { id: PathId; number: string; title: string; meta: string; blurb: string }[] = [
+// Each card says first who it is for, on a tag that stays on the slim card
+// too, so the two are never mistaken for each other.
+const PATHS: { id: PathId; number: string; who: string; tag: string; title: string; meta: string; blurb: string }[] = [
   {
     id: "consultation",
     number: "01",
+    who: "New students",
+    tag: "bg-yellow-light",
     title: "Book a consultation",
-    meta: `New students · ${CONSULTATION.label}`,
+    meta: CONSULTATION.label,
     blurb:
-      "Your first step. We assess your French level and agree your program and hours. You pay when you book.",
+      "Start here if you have not studied with us yet. We assess your French level and agree your program and hours. You pay when you book.",
   },
   {
     id: "lesson",
     number: "02",
+    who: "Enrolled students",
+    tag: "bg-blue-light",
     title: "Book a lesson",
-    meta: "Current students",
-    blurb: "Already studying with us? Choose your program and book your next session.",
+    meta: "Your next session",
+    blurb:
+      "For students already in a program. Book your next session in the program you agreed at your consultation.",
   },
 ];
 
@@ -115,8 +122,11 @@ export function BookingPaths() {
                 isSlim ? "p-5 sm:p-6" : "p-6 sm:p-8 md:p-10"
               )}
             >
-              <span className="regular-s flex items-baseline justify-between gap-4 text-navy/70">
-                <span>{path.number}</span>
+              <span className="regular-s flex items-center justify-between gap-4 text-navy/70">
+                <span className="flex items-center gap-3">
+                  <span>{path.number}</span>
+                  <span className={cn("px-2.5 py-0.5 text-navy", path.tag)}>{path.who}</span>
+                </span>
                 {/* Too long for the slim card's width. */}
                 {!isSlim && <span className="text-right">{path.meta}</span>}
               </span>
@@ -150,7 +160,11 @@ export function BookingPaths() {
                   {path.id === "consultation"
                     ? mounted("consultation") && <CalInline namespace="consultation" calLink={CAL.consultation} />
                     : mounted("lesson") && (
-                        <LessonPicker selected={service?.slug ?? null} onSelect={(slug) => go("lesson", slug)} />
+                        <LessonPicker
+                          selected={service?.slug ?? null}
+                          onSelect={(slug) => go("lesson", slug)}
+                          onConsult={() => choose("consultation")}
+                        />
                       )}
                 </div>
               </div>
@@ -164,11 +178,20 @@ export function BookingPaths() {
 
 // The program first, then that program's calendar. Each program has its own
 // cal.com event, so the calendar is keyed to it and reloads on a change.
-function LessonPicker({ selected, onSelect }: { selected: string | null; onSelect: (slug: string) => void }) {
+// New students who land here are pointed back to the consultation.
+function LessonPicker({
+  selected,
+  onSelect,
+  onConsult,
+}: {
+  selected: string | null;
+  onSelect: (slug: string) => void;
+  onConsult: () => void;
+}) {
   return (
     <div className="flex flex-col gap-6">
       <fieldset>
-        <legend className="regular-s mb-3 text-navy/70">Which program?</legend>
+        <legend className="regular-s mb-3 text-navy/70">Which program are you enrolled in?</legend>
         <div className="flex flex-wrap gap-2">
           {BOOKABLE.map((s) => (
             <label key={s.slug} className="cursor-pointer">
@@ -192,6 +215,12 @@ function LessonPicker({ selected, onSelect }: { selected: string | null; onSelec
       ) : (
         <p className="regular-m border-l-2 border-navy pl-6">Choose your program to see the times open for it.</p>
       )}
+      <p className="regular-s text-navy/70">
+        Not enrolled yet? Lessons follow a consultation.{" "}
+        <button type="button" onClick={onConsult} className="text-navy underline underline-offset-4 transition-colors hover:text-blue">
+          Book a consultation instead
+        </button>
+      </p>
     </div>
   );
 }
