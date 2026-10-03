@@ -85,7 +85,7 @@ export default function Home() {
           {/* The heading with the All services ring on its row, the ring's
               foot on the title's baseline, and the line under both at the
               hero text's width. */}
-          <div className="mb-14 flex flex-col gap-4">
+          <div className="mb-10 flex flex-col gap-4">
             <div className="flex flex-nowrap items-end justify-between gap-6">
               <h2 className="h1">
                 Our
