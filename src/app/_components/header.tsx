@@ -44,10 +44,29 @@ export function Header() {
               </Link>
             ))}
           </nav>
+          {/* Presses in when clicked, like the rows of the phone menu. From
+              tablets up, where the row has room, an arrow nudges forward on
+              hover; on phones there is no space to spare for it. */}
           <BookButton
-            className="whitespace-nowrap max-md:px-3 max-md:text-[15px] md:ml-4 lg:ml-8 group-data-[dark]:bg-ivory group-data-[dark]:text-navy group-data-[dark]:hover:bg-white"
+            className="group/book gap-2 whitespace-nowrap transition-[background-color,color,transform] active:scale-[0.97] motion-reduce:active:scale-100 max-md:px-3 max-md:text-[15px] md:ml-4 lg:ml-8 group-data-[dark]:bg-ivory group-data-[dark]:text-navy group-data-[dark]:hover:bg-white"
             size="sm"
-          />
+          >
+            Book a consultation
+            <svg
+              aria-hidden
+              width="16"
+              height="16"
+              viewBox="0 0 20 20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="hidden transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/book:translate-x-1 motion-reduce:transition-none md:block"
+            >
+              <path d="M4 10h12M11 5l5 5-5 5" />
+            </svg>
+          </BookButton>
           <MobileNav />
         </div>
       </div>
