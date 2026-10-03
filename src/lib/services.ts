@@ -116,7 +116,7 @@ export const SERVICES: Service[] = [
     method: "Learn → Practice → Communicate → Apply",
     includes: [
       {
-        title: "Levels",
+        title: "French Fluency Levels",
         items: [
           "A1 — Foundation",
           "A2 — Elementary",
