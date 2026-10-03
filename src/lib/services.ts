@@ -168,7 +168,7 @@ export const SERVICES: Service[] = [
   {
     slug: "career-pathway-guidance",
     name: "Career Development & Education Pathway Guidance",
-    short: "Career & Education Pathway Guidance",
+    short: "Education & Career Pathway Guidance",
     headline: "Turn Language Skills into Career Opportunities.",
     sub: "A resume and cover letter that read naturally in French, practice for the interview in the language it will be held in, and a clear plan for French-language study in Canada. Everything is delivered in French, so the service is also the practice.",
     fr: "Faites de vos compétences en français une carrière.",
@@ -202,7 +202,7 @@ export const SERVICES: Service[] = [
     ],
     notes: ["These services are offered only in French."],
     cta: "consultation",
-    cardTitle: "Plan your career and studies, in French.",
+    cardTitle: "Plan your studies and career, in French.",
     cardFor: "For newcomers and students who want a French resume, interview practice and a plan for French-language study in Canada.",
     ctaLabel: "Explore career guidance",
     related: ["professional-french", "immigration-pathways"],
