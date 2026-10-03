@@ -26,7 +26,7 @@ export const useMenu = () => useContext(MenuContext);
 // their light treatment, so they stay legible on it.
 //
 // When the phone menu opens, the pane always shows and runs to the bottom of
-// the window, the menu sits on it under the bar, and the page behind is held
+// the window (animating its height), the menu sits on it under the bar, and the page behind is held
 // still until it closes.
 export function HeaderSurface({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -88,8 +88,10 @@ export function HeaderSurface({ children }: { children: React.ReactNode }) {
         <div
           aria-hidden
           className={cn(
-            "pointer-events-none absolute inset-x-0 top-0 -z-10 border-b border-navy/10 bg-white/35 backdrop-blur-xl transition-[opacity,background-color,border-color] duration-300 group-data-[dark]:border-ivory/20 group-data-[dark]:bg-navy/40",
-            open ? "h-dvh" : "bottom-0",
+            "pointer-events-none absolute inset-x-0 top-0 -z-10 border-b border-navy/10 bg-white/35 backdrop-blur-xl transition-[opacity,background-color,border-color,height] [transition-duration:300ms,300ms,300ms,500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-data-[dark]:border-ivory/20 group-data-[dark]:bg-navy/40 motion-reduce:transition-none",
+            // Draws back up only once the menu's rows have gone (the delays
+            // follow the order of the transition's properties).
+            open ? "h-dvh" : "h-full [transition-delay:0ms,0ms,0ms,150ms]",
             clear ? "opacity-0" : "opacity-100"
           )}
         />
