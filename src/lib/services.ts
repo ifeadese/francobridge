@@ -1,5 +1,7 @@
 // The six services, in the order they appear on the site. TCF & TEF first:
-// the brief asks for it to be the most visible.
+// the brief asks for it to be the most visible. What a service page's About
+// band shows (lessons, method, includes) states only what the brief and the
+// client's answers say; nothing there is inferred.
 export type Service = {
   slug: string;
   name: string;
@@ -7,9 +9,13 @@ export type Service = {
   headline: string;
   sub: string;
   fr: string;
-  level: string;
-  format: string;
   intro: string[];
+  /** Taught as lessons: private, online, in 20, 40 or 60 hour blocks, as the
+      client confirmed. Left off the services that are not classes. */
+  lessons?: boolean;
+  /** The brief's methodology line, where it gives one. */
+  method?: string;
+  /** The brief's own lists, word for word, under the brief's own headings. */
   includes: { title: string; items: string[] }[];
   notes?: string[];
   cta: "consultation" | "lesson";
@@ -28,34 +34,27 @@ export const SERVICES: Service[] = [
     headline: "Prepare with purpose. Practice with guidance.",
     sub: "The TCF and TEF Canada are the French tests recognised for Canadian immigration and citizenship. We start from your target score and test date, then train the four skills the exam measures, with mock exams along the way so the real one holds no surprises.",
     fr: "Préparez-vous avec méthode. Passez l’examen avec confiance.",
-    level: "A2 to C1",
-    format: "Online · Private coaching · Intensive options",
     intro: [
       "The TCF Canada and TEF Canada are the French proficiency tests recognised for Canadian immigration and citizenship. Preparation is not the same as learning French: it is learning the format, the timing and what the examiners reward, then practising until it is familiar.",
       "We start with your target score and your test date, then work backwards. Every session is built around the four skills the exam measures, with mock examinations along the way so the real one holds no surprises.",
     ],
+    lessons: true,
     includes: [
       {
-        title: "Orientation and courses",
+        title: "What’s included",
         items: [
           "TEF Canada orientation",
           "TEF preparation courses",
-          "Intensive preparation",
-          "Private coaching",
-        ],
-      },
-      {
-        title: "The four skills",
-        items: [
           "Listening preparation",
           "Reading preparation",
           "Written expression",
           "Oral expression",
+          "Mock examinations",
+          "Speaking evaluation",
+          "Writing correction",
+          "Private coaching",
+          "Intensive preparation",
         ],
-      },
-      {
-        title: "Practice and feedback",
-        items: ["Mock examinations", "Speaking evaluation", "Writing correction"],
       },
     ],
     notes: [
@@ -74,36 +73,25 @@ export const SERVICES: Service[] = [
     headline: "French for the Workplace",
     sub: "For people who already have some French and need it for meetings, emails, presentations and interviews. Sessions are built around your job, your real documents and the vocabulary of your field, so what you practise one day you can use the next.",
     fr: "Le français au travail, avec assurance.",
-    level: "B1 to C1",
-    format: "Online · Private or semi-private",
     intro: [
-      "Workplace French is its own register: meetings, emails, presentations, interviews and the small talk in between. This programme is for people who already have some French and need to use it at work, in business or in the public service.",
+      "Workplace French is its own register: meetings, emails, presentations, interviews and the small talk in between. This program is for people who already have some French and need to use it at work, in business or in the public service.",
       "Sessions are built around your job. We work with your real documents, your real meetings and the vocabulary of your field, so what you practise on Tuesday you can use on Wednesday.",
     ],
+    lessons: true,
     includes: [
       {
-        title: "At work",
+        title: "What’s included",
         items: [
           "French for professionals",
           "Workplace French",
           "Business French",
-          "Workplace conversation",
-          "Professional vocabulary",
-        ],
-      },
-      {
-        title: "Communication",
-        items: [
           "French communication coaching",
           "French presentation skills",
+          "Professional vocabulary",
           "French interview preparation",
-        ],
-      },
-      {
-        title: "Public service",
-        items: [
-          "Government and public-service French preparation",
-          "Second Language Evaluation (SLE) preparation",
+          "Workplace conversation",
+          "Government/public-service French preparation",
+          "Second Language Evaluation preparation",
         ],
       },
     ],
@@ -120,12 +108,12 @@ export const SERVICES: Service[] = [
     headline: "French A1 to C1",
     sub: "A clear path from your first words to confident, nuanced French. Each level builds listening, speaking, reading and writing together, and everything you learn is practised in real conversation.",
     fr: "Du niveau A1 au niveau C1, à votre rythme.",
-    level: "A1 to C1",
-    format: "Online · Private now, semi-private as groups form",
     intro: [
       "A clear path through the six levels of the Common European Framework, from your first words to confident, nuanced French. Each level builds listening, speaking, reading and writing together, with grammar and vocabulary taught in context rather than in isolation.",
       "Our method is simple: Learn, Practice, Communicate, Apply. You learn a structure, practise it with guidance, use it in real conversation, then apply it to your own life, studies or work.",
     ],
+    lessons: true,
+    method: "Learn → Practice → Communicate → Apply",
     includes: [
       {
         title: "Levels",
@@ -138,26 +126,20 @@ export const SERVICES: Service[] = [
         ],
       },
       {
-        title: "Formats",
+        title: "Students develop",
         items: [
-          "Private sessions",
-          "Semi-private sessions (as groups form)",
-          "Intensive French programs",
-          "Online French classes, 20, 40 or 60 hours",
-        ],
-      },
-      {
-        title: "What you develop",
-        items: [
-          "Speaking, listening, reading and writing",
-          "Grammar, vocabulary and pronunciation",
-          "Conversation and cultural awareness",
+          "Speaking",
+          "Listening",
+          "Reading",
+          "Writing",
+          "Grammar",
+          "Vocabulary",
+          "Pronunciation",
+          "Conversation",
+          "Cultural awareness",
           "Real-world communication",
         ],
       },
-    ],
-    notes: [
-      "Programmes run online in 20, 40 or 60 hour blocks. The right block and level are decided with you at your consultation, after your French level assessment.",
     ],
     cta: "consultation",
     cardTitle: "Learn French from A1 to C1, online.",
@@ -172,15 +154,13 @@ export const SERVICES: Service[] = [
     headline: "Turn Language Skills into Career Opportunities.",
     sub: "A resume and cover letter that read naturally in French, practice for the interview in the language it will be held in, and a clear plan for French-language study in Canada. Everything is delivered in French, so the service is also the practice.",
     fr: "Faites de vos compétences en français une carrière.",
-    level: "B1 and above",
-    format: "Online · Offered in French only",
     intro: [
       "Learning French opens doors. This service helps you walk through them: a resume and cover letter that read naturally in French, interview practice in the language you will be interviewed in, and a clear plan for French-language study in Canada.",
       "Everything here is delivered in French. It is both the service and the practice.",
     ],
     includes: [
       {
-        title: "Career development",
+        title: "What’s included",
         items: [
           "Resume preparation",
           "Cover letter preparation",
@@ -188,11 +168,6 @@ export const SERVICES: Service[] = [
           "French-language interview preparation",
           "Workplace communication",
           "Professional presentation preparation",
-        ],
-      },
-      {
-        title: "Education pathway guidance",
-        items: [
           "French-language educational opportunities",
           "Program selection",
           "Admission planning",
@@ -214,20 +189,18 @@ export const SERVICES: Service[] = [
     headline: "Understand the French-language pathways.",
     sub: "Canada has immigration pathways that reward French, and each sets its own language requirement. We show you which pathways exist, what level each expects, and how to build a preparation plan that gets you there.",
     fr: "Comprendre les voies d’immigration francophones.",
-    level: "All levels",
-    format: "Online or in Ottawa · Consultation",
     intro: [
       "Canada has immigration pathways that reward French, and each one sets its own language requirement. FrancoBridge helps you understand what is publicly available: which pathways exist, what level of French each expects, and how to build a preparation plan that gets you there.",
       "We are a language and preparation centre, not an immigration consultancy. Where regulated immigration advice or representation is required, we refer you to an appropriately authorized immigration professional.",
     ],
     includes: [
       {
-        title: "What we cover",
+        title: "What’s included",
         items: [
-          "French-language immigration pathways, as publicly described",
-          "Language requirements and the tests that meet them",
-          "Preparation strategies and timelines",
-          "Referral to an authorized immigration professional where regulated advice is required",
+          "Publicly available information about French-language immigration pathways",
+          "Language requirements",
+          "Preparation strategies",
+          "Referral to an appropriately authorized immigration professional where regulated immigration advice or representation is required",
         ],
       },
     ],
@@ -247,25 +220,21 @@ export const SERVICES: Service[] = [
     headline: "Translation, editing and revision.",
     sub: "Applications, letters, resumes, certificates and reports that have to read perfectly in the other language. Send the document and your deadline, and you get a quote and a turnaround before any work starts.",
     fr: "Traduction et révision, dans les deux sens.",
-    level: "Any",
-    format: "Remote · Quoted per document",
     intro: [
       "Applications, letters, resumes, certificates, reports: some documents have to read perfectly in the other language. We translate between English and French, and edit or proofread French text you have already written.",
       "Send the document and tell us the deadline. You get a quote and a turnaround before any work starts.",
     ],
     includes: [
       {
-        title: "Translation",
+        title: "What’s included",
         items: [
           "English → French translation",
           "French → English translation",
           "Document translation",
           "Professional documents",
+          "Editing and proofreading",
+          "Revision services",
         ],
-      },
-      {
-        title: "Language support",
-        items: ["Editing and proofreading", "Revision services"],
       },
     ],
     cta: "consultation",

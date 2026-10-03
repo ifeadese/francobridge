@@ -7,7 +7,7 @@ import { FAQS } from "@/lib/faq";
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "What happens in the consultation, what a programme costs and how long it runs, which levels we teach, and what is not included.",
+    "What happens in the consultation, what a program costs and how long it runs, which levels we teach, and what is not included.",
 };
 
 // Each question is a native disclosure: the summary row carries the question

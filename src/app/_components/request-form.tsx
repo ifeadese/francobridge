@@ -5,7 +5,7 @@ import { CONTACT } from "@/lib/constants";
 import { SERVICES } from "@/lib/services";
 
 // Request information. Each field is a box of the pale blue held by a
-// hairline in the brand blue, like the blue programme card. There is no
+// hairline in the brand blue, like the blue program card. There is no
 // mail service wired yet, so submitting composes an email in the visitor's
 // mail app with the form's contents.
 export function RequestForm() {
@@ -28,7 +28,7 @@ export function RequestForm() {
     <form onSubmit={onSubmit} className="flex w-full flex-col">
       <input name="name" required autoComplete="name" placeholder="Name" aria-label="Name" className="field mb-8" />
       <input name="email" type="email" required autoComplete="email" placeholder="Email" aria-label="Email" className="field mb-8" />
-      <select name="interest" defaultValue="" aria-label="Programme" className="field mb-8">
+      <select name="interest" defaultValue="" aria-label="Program" className="field mb-8">
         <option value="" disabled>
           I’m interested in
         </option>

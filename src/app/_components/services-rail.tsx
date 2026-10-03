@@ -10,7 +10,7 @@ const TONES: Tone[] = ["yellow", "blue", "red", "green", "blue", "yellow"];
 // the services page so the two never drift apart.
 export function ServicesRail() {
   return (
-    <CardRail className="rail" label="Programmes and services">
+    <CardRail className="rail" label="Programs and services">
       {SERVICES.map((s, i) => (
         <ServiceRailCard key={s.slug} service={s} tone={TONES[i % TONES.length]} />
       ))}

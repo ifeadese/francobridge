@@ -20,7 +20,7 @@ const AUDIENCES = [
   {
     glyph: "students",
     title: "Students",
-    text: "Meet the language requirement of a French-language college or university programme, and plan your admission.",
+    text: "Meet the language requirement of a French-language college or university program, and plan your admission.",
     services: ["career-pathway-guidance", "general-french", "tcf-tef-preparation"],
   },
   {

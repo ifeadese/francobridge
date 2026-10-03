@@ -15,7 +15,7 @@ export default function Contact() {
     <main>
       <Hero
         title="Tell us where you are heading"
-        text="An exam date, a job, a study programme, a move. Write a few lines and we will reply with what we would suggest and what it costs."
+        text="An exam date, a job, a study program, a move. Write a few lines and we will reply with what we would suggest and what it costs."
         compact
         wide
       />

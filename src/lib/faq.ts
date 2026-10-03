@@ -9,26 +9,26 @@ export const FAQS: Faq[] = [
   {
     q: "What happens in the consultation?",
     a: [
-      `One hour online with your instructor, $${CONSULTATION.price} ${CONSULTATION.currency}, paid when you book. It includes your French level assessment and ends with a recommended programme.`,
+      `One hour online with your instructor, $${CONSULTATION.price} ${CONSULTATION.currency}, paid when you book. It includes your French level assessment and ends with a recommended program.`,
     ],
     cta: "consultation",
   },
   {
     q: "Do I pay before the consultation?",
     a: [
-      "Yes. You book and pay for the consultation online. Once your level has been determined, you pay for your programme separately, before your first session.",
+      "Yes. You book and pay for the consultation online. Once your level has been determined, you pay for your program separately, before your first session.",
     ],
   },
   {
-    q: "How long is a programme?",
+    q: "How long is a program?",
     a: [
-      `Programmes run online in blocks of ${PACKAGES.join(", ")} hours. The block and the level are agreed at your consultation and paid for afterwards, before your first session.`,
+      `Programs run online in blocks of ${PACKAGES.join(", ")} hours. The block and the level are agreed at your consultation and paid for afterwards, before your first session.`,
     ],
   },
   {
     q: "What levels do you teach?",
     a: [
-      "From A1 to C1 on the Common European Framework. Every programme names the level it is for, and your consultation tells you where you start.",
+      "From A1 to C1 on the Common European Framework. Every program names the level it is for, and your consultation tells you where you start.",
     ],
   },
   {
@@ -41,7 +41,7 @@ export const FAQS: Faq[] = [
   {
     q: "Where are classes held?",
     a: [
-      "Online. FrancoBridge is based in Ottawa, Ontario, and every programme runs online, so it reaches beyond the city as the school grows.",
+      "Online. FrancoBridge is based in Ottawa, Ontario, and every program runs online, so it reaches beyond the city as the school grows.",
     ],
   },
   {
