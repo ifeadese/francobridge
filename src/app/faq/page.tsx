@@ -13,7 +13,9 @@ export const metadata: Metadata = {
 };
 
 // Each question is a native disclosure: the summary row carries the question
-// and a ringed plus that turns into a minus when open. No script needed.
+// and a ringed plus that turns into a minus when open. A shared name makes
+// them one exclusive group, so opening a question closes the one before it.
+// No script needed.
 export default function Faq() {
   return (
     <main>
@@ -23,7 +25,7 @@ export default function Faq() {
         <div className="container-fb">
           <div className="border-t border-navy">
             {FAQS.map((item) => (
-              <details key={item.q} className="group border-b border-navy">
+              <details key={item.q} name="faq" className="group border-b border-navy">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
                   <span className="h4">{item.q}</span>
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-navy text-navy transition-colors group-hover:border-blue group-hover:bg-blue group-hover:text-ivory" aria-hidden="true">
