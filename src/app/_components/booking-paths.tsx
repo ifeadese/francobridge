@@ -16,7 +16,7 @@ const PATHS: { id: PathId; who: string; tag: string; title: string; meta: string
     id: "consultation",
     who: "New students",
     tag: "bg-yellow-light",
-    title: "Book a consultation",
+    title: "Book an online consultation",
     meta: CONSULTATION.label,
     blurb:
       "Start here if you have not studied with us yet. We assess your French level and agree your program and hours. You pay when you book.",
