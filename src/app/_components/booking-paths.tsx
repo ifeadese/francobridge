@@ -30,7 +30,7 @@ const PATHS: { id: PathId; number: string; who: string; tag: string; title: stri
     title: "Book a lesson",
     meta: "Your next session",
     blurb:
-      "Come back here once you are in a program. Choose the program you are enrolled in and pick a time for your next session, within the hours agreed at your consultation.",
+      "For students already enrolled in a program. Choose your program and pick a time for your next session, within the hours agreed at your consultation.",
   },
 ];
 
