@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function Faq() {
   return (
     <main>
-      <Hero title="Some questions you probably have…" compact />
+      <Hero title="Some questions you probably have…" compact wide />
 
       <section className="mt-0">
         <div className="container-fb">
