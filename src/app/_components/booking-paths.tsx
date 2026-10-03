@@ -11,7 +11,7 @@ type PathId = "consultation" | "lesson";
 
 // Each card says first who it is for, on a tag that stays on the slim card
 // too, so the two are never mistaken for each other.
-const PATHS: { id: PathId; who: string; tag: string; title: string; meta: string; blurb: string }[] = [
+const PATHS: { id: PathId; who: string; tag: string; title: string; meta?: string; blurb: string }[] = [
   {
     id: "consultation",
     who: "New students",
@@ -26,7 +26,6 @@ const PATHS: { id: PathId; who: string; tag: string; title: string; meta: string
     who: "Enrolled students",
     tag: "bg-blue-light",
     title: "Book a lesson",
-    meta: "Your Next Session",
     blurb:
       "For students already enrolled in a program. Choose your program and pick a time for your next session, within the hours agreed at your consultation.",
   },
@@ -120,8 +119,9 @@ export function BookingPaths() {
                 isSlim ? "p-5 sm:p-6" : "p-6 sm:p-8 md:p-10"
               )}
             >
-              {/* The tag and the details, side by side; the slim card stacks
-                  them, and lets the details wrap, so both always show. */}
+              {/* The tag and the details (the consultation's length and
+                  price), side by side; the slim card stacks them, and lets
+                  the details wrap, so both always show. */}
               <span
                 className={cn(
                   "regular-s flex text-navy/70",
@@ -130,14 +130,16 @@ export function BookingPaths() {
               >
                 <span className={cn("whitespace-nowrap px-2.5 py-0.5 text-navy", path.tag)}>{path.who}</span>
                 {/* Breaks only between the parts, never inside one. */}
-                <span>
-                  {path.meta.split(" · ").map((part, i) => (
-                    <Fragment key={part}>
-                      {i > 0 && " · "}
-                      <span className="whitespace-nowrap">{part}</span>
-                    </Fragment>
-                  ))}
-                </span>
+                {path.meta && (
+                  <span>
+                    {path.meta.split(" · ").map((part, i) => (
+                      <Fragment key={part}>
+                        {i > 0 && " · "}
+                        <span className="whitespace-nowrap">{part}</span>
+                      </Fragment>
+                    ))}
+                  </span>
+                )}
               </span>
               <span className={cn("mt-4 block", isSlim ? "h4" : "h3")}>{path.title}</span>
 
