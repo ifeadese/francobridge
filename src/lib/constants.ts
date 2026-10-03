@@ -19,14 +19,26 @@ export const CONTACT = {
   phone: "",
 };
 
-// cal.com. Replace the handle with the real one once the account is set up.
-// Event types to create in cal.com: "consultation" (60 min, CAD 100, paid via
-// Stripe) and "lesson" (a page listing private and, later, semi-private).
+// cal.com links, "<username>/<event-slug>" as in the event's own URL.
+// PLACEHOLDER: every link is ADESE's discovery call until the client has a
+// cal.com account. Then: "consultation" (60 min, CAD 100, paid via Stripe)
+// for new students, and one event per program for returning students, e.g.
+// "francobridge/tcf-tef-lesson". Translation is quoted, not booked, so it has
+// no event.
+const PLACEHOLDER = "adese-studio/discovery-call";
 export const CAL = {
-  handle: "francobridge",
-  consultation: "francobridge/consultation",
-  lesson: "francobridge/lesson",
+  consultation: PLACEHOLDER,
+  services: {
+    "tcf-tef-preparation": PLACEHOLDER,
+    "professional-french": PLACEHOLDER,
+    "general-french": PLACEHOLDER,
+    "career-pathway-guidance": PLACEHOLDER,
+    "immigration-pathways": PLACEHOLDER,
+  } as Record<string, string>,
 } as const;
+
+// The booking page. BookButton links here with the card to open.
+export const BOOK_PATH = "/consultation";
 
 export const CONSULTATION = {
   minutes: 60,

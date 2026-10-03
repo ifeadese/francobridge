@@ -1,6 +1,5 @@
 import Footer from "@/app/_components/footer";
 import Header from "@/app/_components/header";
-import CalProvider from "@/app/_components/cal-provider";
 import { LEGAL_NAME, SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
 import { Figtree, Marcellus } from "next/font/google";
@@ -51,7 +50,6 @@ export default function RootLayout({
         <meta name="theme-color" content="#fffbf8" />
       </head>
       <body className="font-body bg-white text-navy antialiased">
-        <CalProvider />
         <Header />
         {children}
         <Footer />
