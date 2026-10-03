@@ -11,10 +11,9 @@ type PathId = "consultation" | "lesson";
 
 // Each card says first who it is for, on a tag that stays on the slim card
 // too, so the two are never mistaken for each other.
-const PATHS: { id: PathId; number: string; who: string; tag: string; title: string; meta: string; blurb: string }[] = [
+const PATHS: { id: PathId; who: string; tag: string; title: string; meta: string; blurb: string }[] = [
   {
     id: "consultation",
-    number: "01",
     who: "New students",
     tag: "bg-yellow-light",
     title: "Book a consultation",
@@ -24,7 +23,6 @@ const PATHS: { id: PathId; number: string; who: string; tag: string; title: stri
   },
   {
     id: "lesson",
-    number: "02",
     who: "Enrolled students",
     tag: "bg-blue-light",
     title: "Book a lesson",
@@ -123,10 +121,7 @@ export function BookingPaths() {
               )}
             >
               <span className="regular-s flex items-center justify-between gap-4 text-navy/70">
-                <span className="flex flex-wrap items-center gap-x-3 gap-y-2">
-                  <span>{path.number}</span>
-                  <span className={cn("whitespace-nowrap px-2.5 py-0.5 text-navy", path.tag)}>{path.who}</span>
-                </span>
+                <span className={cn("whitespace-nowrap px-2.5 py-0.5 text-navy", path.tag)}>{path.who}</span>
                 {/* Too long for the slim card's width. */}
                 {!isSlim && <span className="text-right">{path.meta}</span>}
               </span>
