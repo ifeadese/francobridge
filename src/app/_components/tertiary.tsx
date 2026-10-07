@@ -12,7 +12,7 @@ export function ArrowIcon() {
 
 // A word and a ringed arrow. Use inside a card (as a span) or on its own.
 // `filled` draws the ring solid in the ink at rest, for links that sit on a
-// pattern or a tint and need more weight than a hairline ring gives.
+// wave or a tint and need more weight than a hairline ring gives.
 export function Tertiary({
   href,
   children,

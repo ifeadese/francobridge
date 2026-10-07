@@ -100,7 +100,7 @@ body {
   /* Buttons: square-cornered, both in the blue. The primary is filled and
      turns gold on hover; the secondary is an outline that fills with the
      blue. The same two rules hold for every ring and disc on the site. Red
-     is never a button; it lives in the wordmark and the patterns. */
+     is never a button; it lives in the wordmark and the waves. */
   .button {
     @apply inline-flex items-center justify-center rounded-none text-center text-[18px] leading-[1.5] transition-colors duration-200;
     padding: 22px 36px 24px;
@@ -124,7 +124,7 @@ body {
   }
   /* Filled: the word at medium weight, and the ring a size up, solid blue at
      rest and gold on hover, like the primary button. For links that sit on
-     a pattern. */
+     a tint. */
   .tertiary-filled { @apply text-blue; }
   .tertiary-filled > span:first-child { @apply font-medium; }
   .tertiary-filled .tertiary-icon { @apply h-8 w-8 border-blue bg-blue text-white; }

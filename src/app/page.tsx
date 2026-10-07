@@ -72,7 +72,7 @@ export default function Home() {
             </p>
           </div>
           <div className="-mt-2 flex flex-wrap items-center gap-4">
-            {/* A quiet button: a blue rule on the pattern, and an arrow that
+            {/* A quiet button: a blue rule on the fade, and an arrow that
                 steps forward on hover. */}
             <Link
               href="/about"
