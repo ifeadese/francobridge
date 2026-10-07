@@ -11,8 +11,8 @@ over "Consulting Inc." in blue, is Avenir, which is not a free font, so it is
 outlined here and never depends on a font loading: the client's two lines
 are traced from the artwork, and "Inc." is set from the Avenir on macOS
 (/System/Library/Fonts/Avenir.ttc), so this script runs on a Mac. The
-wordmark is drawn larger against the mark than in the artwork; see
-WORDMARK_SCALE.
+wordmark is drawn larger against the mark than in the artwork, with more
+room between its lines; see WORDMARK_SCALE and LINE_GAP.
 
 Outputs
   src/lib/logo-paths.ts   the geometry the <Logo> component draws from
@@ -131,9 +131,11 @@ TRACKING = 0.01                  # em, the spacing that best matches "Consulting
 DESCRIPTOR_TAIL = " Inc."
 
 # How much bigger the wordmark is than in the client's artwork, against the
-# mark. Its left edge keeps the artwork's gap to the mark, one stroke width;
-# the two lines, cap top to baseline, are centred on the mark's height.
-WORDMARK_SCALE = 1.4
+# mark, and how much more room it has between its lines, as a share of the
+# cap height. Its left edge keeps the artwork's gap to the mark, one stroke
+# width; the two lines, cap top to baseline, are centred on the mark's height.
+WORDMARK_SCALE = 1.7
+LINE_GAP = 0.3
 
 
 def trace_wordmark():
@@ -264,17 +266,21 @@ TAIL_SRC, DESC_SRC_RIGHT = set_tail(DESC_SRC_BOX, BASELINE_SRC, X_HEIGHT_SRC, CA
 def to_units(x, y):
     return (x + WORD_CROP[0] - ORIGIN[0]) * SCALE, (y + WORD_CROP[1] - ORIGIN[1]) * SCALE
 
+# The second line moves down by the extra line gap before the two are
+# centred, so the gap opens evenly about the mark's middle.
+GAP = LINE_GAP * CAP_HEIGHT_SRC * SCALE                     # lockup units, before enlarging
 TEXT_LEFT = to_units(min(WORD_SRC_BOX[0], DESC_SRC_BOX[0]), 0)[0]
 CAP_TOP = to_units(0, WORD_SRC_BOX[1])[1]
-BASELINE = to_units(0, BASELINE_SRC)[1]
+BASELINE = to_units(0, BASELINE_SRC)[1] + GAP
 CENTRE = (CAP_TOP + BASELINE) / 2
 fx = lambda x: TEXT_LEFT + (to_units(x, 0)[0] - TEXT_LEFT) * WORDMARK_SCALE
-fy = lambda y: MARK_H / 2 + (to_units(0, y)[1] - CENTRE) * WORDMARK_SCALE
+fy_word = lambda y: MARK_H / 2 + (to_units(0, y)[1] - CENTRE) * WORDMARK_SCALE
+fy_desc = lambda y: MARK_H / 2 + (to_units(0, y)[1] + GAP - CENTRE) * WORDMARK_SCALE
 
-WORD = map_path(WORD_SRC, fx, fy)
-DESCRIPTOR = map_path(DESC_SRC, fx, fy) + map_path(TAIL_SRC, fx, fy)
-WORD_BOX = (fx(WORD_SRC_BOX[0]), fy(WORD_SRC_BOX[1]), fx(WORD_SRC_BOX[2]), fy(WORD_SRC_BOX[3]))
-DESC_BOX = (fx(DESC_SRC_BOX[0]), fy(DESC_SRC_BOX[1]), fx(DESC_SRC_RIGHT), fy(DESC_SRC_BOX[3]))
+WORD = map_path(WORD_SRC, fx, fy_word)
+DESCRIPTOR = map_path(DESC_SRC, fx, fy_desc) + map_path(TAIL_SRC, fx, fy_desc)
+WORD_BOX = (fx(WORD_SRC_BOX[0]), fy_word(WORD_SRC_BOX[1]), fx(WORD_SRC_BOX[2]), fy_word(WORD_SRC_BOX[3]))
+DESC_BOX = (fx(DESC_SRC_BOX[0]), fy_desc(DESC_SRC_BOX[1]), fx(DESC_SRC_RIGHT), fy_desc(DESC_SRC_BOX[3]))
 
 # The lockup's box: the mark and the two lines, outer edge to outer edge.
 LOCKUP_Y = min(0.0, WORD_BOX[1])
