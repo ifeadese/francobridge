@@ -58,7 +58,7 @@ red and "Consulting Inc." in blue, set in Avenir, in blue, white, gold and red.
 - `brand/brand-book.html`: one self-contained page. Story, the mark, signatures, don'ts, colour and type, in use.
 - `src/app/_components/logo.tsx`: the logo as code, drawing `src/lib/logo-paths.ts`: `variant="lockup"` (mark and wordmark) or `"mark"`, `on="white"`, `"blue"` or `"mono"`.
 - `public/brand/`: SVG and PNG exports, social avatar, Open Graph image, icons.
-- `brand/tools/build-logo.py`: the source of truth. It redraws the monogram as clean stroke geometry measured from the artwork, traces the client's two lines from it into outlines (Avenir is not a free font, so the SVGs need none), sets "Inc." from the Avenir that ships with macOS, enlarges the wordmark by `WORDMARK_SCALE`, opens its lines by `LINE_GAP`, sizes the mark in the lockup to `MARK_TO_TEXT` times the text block with the lines centred on it, `MARK_GAP` strokes clear, and writes the app icon. It needs a Mac for that font.
+- `brand/tools/build-logo.py`: the source of truth. It redraws the monogram as clean stroke geometry measured from the artwork, traces the client's two lines from it into outlines (Avenir is not a free font, so the SVGs need none), sets "Inc." from the Avenir that ships with macOS, enlarges the wordmark by `WORDMARK_SCALE`, sets the second line at `DESCRIPTOR_SCALE` of the first, spaces the lines by `LINE_GAP`, sizes the mark in the lockup to `MARK_TO_TEXT` times the text block with the lines centred on it, `MARK_GAP` strokes clear, and writes the app icon. It needs a Mac for that font.
 - `brand/tools/export-logo.mjs`: renders PNGs and icons with sharp and inlines the SVGs into the book.
 
 To regenerate after a change to the geometry or the artwork:

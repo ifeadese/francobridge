@@ -136,11 +136,15 @@ DESCRIPTOR_TAIL = " Inc."
 # more room it has between its lines, as a share of the cap height. In the
 # lockup the mark is then scaled to the height of the text block; see below.
 WORDMARK_SCALE = 1.7
-LINE_GAP = 0.3
+LINE_GAP = 0.05
 # The mark's height in the lockup, as a multiple of the text block's (top of
 # the tallest letter to the foot of the "g"). The client's artwork is 1.3;
 # 1.0 makes the text look too big beside it.
 MARK_TO_TEXT = 1.15
+# The second line's size against the first. In the artwork "Consulting" is
+# as large as "FrancoBridge"; with "Inc." it runs wider than the name and
+# outweighs it, so it is set smaller, about its top-left corner.
+DESCRIPTOR_SCALE = 0.65
 # The clear space between the mark and the text in the lockup, in stroke
 # widths of the mark at its lockup size. The client's artwork has one.
 MARK_GAP = 2.0
@@ -284,10 +288,13 @@ CENTRE = (CAP_TOP + BASELINE) / 2
 fx = lambda x: TEXT_LEFT + (to_units(x, 0)[0] - TEXT_LEFT) * WORDMARK_SCALE
 fy_word = lambda y: MARK_H / 2 + (to_units(0, y)[1] - CENTRE) * WORDMARK_SCALE
 fy_desc = lambda y: MARK_H / 2 + (to_units(0, y)[1] + GAP - CENTRE) * WORDMARK_SCALE
+_desc_left, _desc_top = fx(DESC_SRC_BOX[0]), fy_desc(DESC_SRC_BOX[1])
+fxd = lambda x: _desc_left + (fx(x) - _desc_left) * DESCRIPTOR_SCALE
+fyd = lambda y: _desc_top + (fy_desc(y) - _desc_top) * DESCRIPTOR_SCALE
 
 # Where the two lines' ink falls at this size, before the lockup is laid out.
 _word_box = (fx(WORD_SRC_BOX[0]), fy_word(WORD_SRC_BOX[1]), fx(WORD_SRC_BOX[2]), fy_word(WORD_SRC_BOX[3]))
-_desc_box = (fx(DESC_SRC_BOX[0]), fy_desc(DESC_SRC_BOX[1]), fx(DESC_SRC_RIGHT), fy_desc(DESC_SRC_BOX[3]))
+_desc_box = (fxd(DESC_SRC_BOX[0]), fyd(DESC_SRC_BOX[1]), fxd(DESC_SRC_RIGHT), fyd(DESC_SRC_BOX[3]))
 
 # The lockup: the mark MARK_TO_TEXT times the height of the text block, and
 # the two lines centred on it, cap top of "FrancoBridge" to the baseline of
@@ -295,7 +302,7 @@ _desc_box = (fx(DESC_SRC_BOX[0]), fy_desc(DESC_SRC_BOX[1]), fx(DESC_SRC_RIGHT), 
 # text MARK_GAP stroke widths (at the mark's new scale) to its right. The
 # origin is the top-left of the mark, so the lockup's box starts at 0, 0.
 TEXT_TOP, TEXT_BOTTOM = _word_box[1], _desc_box[3]
-TEXT_BASELINE = fy_desc(BASELINE_SRC)
+TEXT_BASELINE = fyd(BASELINE_SRC)
 MARK_SCALE_IN_LOCKUP = round(MARK_TO_TEXT * (TEXT_BOTTOM - TEXT_TOP) / MARK_H, 4)
 _mark_h = MARK_H * MARK_SCALE_IN_LOCKUP
 _mark_top = (TEXT_TOP + TEXT_BASELINE) / 2 - _mark_h / 2   # in the text's coordinates
@@ -303,12 +310,13 @@ _text_left = (MARK_W + MARK_GAP * MARK_STROKE) * MARK_SCALE_IN_LOCKUP
 _dx = _text_left - min(_word_box[0], _desc_box[0])
 gx = lambda x: fx(x) + _dx
 gy_word = lambda y: fy_word(y) - _mark_top
-gy_desc = lambda y: fy_desc(y) - _mark_top
+gxd = lambda x: fxd(x) + _dx
+gy_desc = lambda y: fyd(y) - _mark_top
 
 WORD = map_path(WORD_SRC, gx, gy_word)
-DESCRIPTOR = map_path(DESC_SRC, gx, gy_desc) + map_path(TAIL_SRC, gx, gy_desc)
+DESCRIPTOR = map_path(DESC_SRC, gxd, gy_desc) + map_path(TAIL_SRC, gxd, gy_desc)
 WORD_BOX = (gx(WORD_SRC_BOX[0]), gy_word(WORD_SRC_BOX[1]), gx(WORD_SRC_BOX[2]), gy_word(WORD_SRC_BOX[3]))
-DESC_BOX = (gx(DESC_SRC_BOX[0]), gy_desc(DESC_SRC_BOX[1]), gx(DESC_SRC_RIGHT), gy_desc(DESC_SRC_BOX[3]))
+DESC_BOX = (gxd(DESC_SRC_BOX[0]), gy_desc(DESC_SRC_BOX[1]), gxd(DESC_SRC_RIGHT), gy_desc(DESC_SRC_BOX[3]))
 
 LOCKUP_W = max(WORD_BOX[2], DESC_BOX[2])
 assert WORD_BOX[1] >= 0 and DESC_BOX[3] <= _mark_h, "the text must fall inside the mark's height"
