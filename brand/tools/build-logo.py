@@ -135,16 +135,16 @@ DESCRIPTOR_TAIL = " Inc."
 # How much bigger the wordmark is than in the client's artwork, and how much
 # more room it has between its lines, as a share of the cap height. In the
 # lockup the mark is then scaled to the height of the text block; see below.
-WORDMARK_SCALE = 1.7
+WORDMARK_SCALE = 1.53
 LINE_GAP = 0.05
 # The mark's height in the lockup, as a multiple of the text block's (top of
 # the tallest letter to the foot of the "g"). The client's artwork is 1.3;
 # 1.0 makes the text look too big beside it.
-MARK_TO_TEXT = 1.15
+MARK_TO_TEXT = 1.23
 # The second line's size against the first. In the artwork "Consulting" is
 # as large as "FrancoBridge"; with "Inc." it runs wider than the name and
 # outweighs it, so it is set smaller, about its top-left corner.
-DESCRIPTOR_SCALE = 0.65
+DESCRIPTOR_SCALE = 0.7222
 # The clear space between the mark and the text in the lockup, in stroke
 # widths of the mark at its lockup size. The client's artwork has one.
 MARK_GAP = 2.0
