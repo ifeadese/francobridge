@@ -19,7 +19,7 @@ export default async function Post(props: Params) {
         <div className="container-fb grid gap-12 py-20 md:grid-cols-[4.1fr_7fr] md:gap-[120px]">
           <div className="flex flex-col gap-4">
             <BackLink href="/blog" label="Blog" />
-            <p className="regular-m text-navy/70">
+            <p className="regular-m text-blue/70">
               <DateFormatter dateString={post.date} /> · {post.author.name}
             </p>
             <h1 className="h2">{post.title}</h1>

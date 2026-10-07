@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import { Hero } from "@/app/_components/hero";
 import { RequestForm } from "@/app/_components/request-form";
+import { CONTACT, LOCATION } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Contact",
   description: "Tell FrancoBridge where you are heading and we will reply with what we would suggest and what it costs.",
 };
 
-// The contact page is the form and nothing else: a title, one line, the
-// fields and the button, on the page column, as wide as the header and
-// footer. Booking lives in the header on every page.
+// The contact page: a title, one line, the ways to reach us, then the form
+// on the page column, as wide as the header and footer. Booking lives in
+// the header on every page.
 export default function Contact() {
   return (
     <main>
@@ -19,7 +20,37 @@ export default function Contact() {
         compact
         wide
       />
+      {/* Phone, email and where: three facts between rules, from the
+          business card. */}
       <section className="mt-0">
+        <div className="container-fb">
+          <dl className="grid border-t border-blue md:grid-cols-3">
+            <div className="flex flex-col gap-2 border-b border-blue py-5 md:border-r md:pr-8">
+              <dt className="regular-s text-blue/70">Call</dt>
+              <dd className="flex flex-col items-start gap-1">
+                {CONTACT.phones.map((phone) => (
+                  <a key={phone.tel} href={`tel:${phone.tel}`} className="regular-m whitespace-nowrap underline decoration-blue/40 underline-offset-4 transition-colors hover:text-blue/70 hover:decoration-blue">
+                    {phone.display}
+                  </a>
+                ))}
+              </dd>
+            </div>
+            <div className="flex flex-col gap-2 border-b border-blue py-5 md:border-r md:px-8">
+              <dt className="regular-s text-blue/70">Email</dt>
+              <dd>
+                <a href={`mailto:${CONTACT.email}`} className="regular-m break-all underline decoration-blue/40 underline-offset-4 transition-colors hover:text-blue/70 hover:decoration-blue">
+                  {CONTACT.email}
+                </a>
+              </dd>
+            </div>
+            <div className="flex flex-col gap-2 border-b border-blue py-5 md:pl-8">
+              <dt className="regular-s text-blue/70">Where</dt>
+              <dd className="regular-m">{LOCATION.reach}</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+      <section className="section-tight">
         <div className="container-fb">
           <RequestForm />
         </div>

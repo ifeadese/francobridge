@@ -14,7 +14,14 @@ const glyphs: Record<string, React.ReactNode> = {
     </>
   ),
   "general-french": <path d="M6 40h9V30H6zM19.5 40h9V22h-9zM33 40h9V12h-9z" />,
-  "career-pathway-guidance": <path d="M24 44V10M24 14h14l4 4-4 4H24M24 26H10l-4 4 4 4h14" />,
+  "bilingual-interview-preparation": <path d="M24 44V10M24 14h14l4 4-4 4H24M24 26H10l-4 4 4 4h14" />,
+  "academic-support": <path d="M4 18l20-8 20 8-20 8zM12 22v10c0 3 6 6 12 6s12-3 12-6V22M40 18v10" />,
+  "sle-preparation": (
+    <>
+      <rect x="6" y="16" width="36" height="24" rx="3" />
+      <path d="M18 16v-5h12v5M6 27h36" />
+    </>
+  ),
   "immigration-pathways": (
     <path d="M24 6l3 7 5-3-1 8 7-2-4 7 6 3-8 3 3 6-8-2-3 8-3-8-8 2 3-6-8-3 6-3-4-7 7 2-1-8 5 3z" />
   ),

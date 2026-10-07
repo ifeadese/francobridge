@@ -13,7 +13,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", ".
 const brandDir = path.join(root, "public", "brand");
 const appDir = path.join(root, "src", "app");
 
-const BLUE = "#1B2556"; // the logo navy
+const BLUE = "#283990"; // the logo blue
 const svgs = fs.readdirSync(brandDir).filter((f) => f.endsWith(".svg"));
 
 // 1. PNGs: every SVG at 1x (1200 px wide) and 2x (2400 px wide), transparent.
@@ -30,19 +30,19 @@ for (const file of svgs) {
 
 // 2. Social avatar: the mark on a blue square, 1024 px.
 const mark = fs.readFileSync(path.join(brandDir, "francobridge-mark-on-blue.svg"));
-const markPng = await sharp(mark, { density: 300 }).resize({ width: 680 }).png().toBuffer();
+const markPng = await sharp(mark, { density: 300 }).resize({ height: 680 }).png().toBuffer();
 const markMeta = await sharp(markPng).metadata();
 await sharp({ create: { width: 1024, height: 1024, channels: 4, background: BLUE } })
-  .composite([{ input: markPng, left: (1024 - markMeta.width) / 2, top: Math.round((1024 - markMeta.height) / 2) }])
+  .composite([{ input: markPng, left: Math.round((1024 - markMeta.width) / 2), top: Math.round((1024 - markMeta.height) / 2) }])
   .png()
   .toFile(path.join(brandDir, "francobridge-social-avatar.png"));
 
-// 3. Open Graph image: the stacked lockup on blue, 1200 x 630.
-const stacked = fs.readFileSync(path.join(brandDir, "francobridge-stacked-on-blue.svg"));
-const stackedPng = await sharp(stacked, { density: 300 }).resize({ height: 400 }).png().toBuffer();
-const stackedMeta = await sharp(stackedPng).metadata();
+// 3. Open Graph image: the lockup on blue, 1200 x 630.
+const lockup = fs.readFileSync(path.join(brandDir, "francobridge-lockup-on-blue.svg"));
+const lockupPng = await sharp(lockup, { density: 300 }).resize({ width: 800 }).png().toBuffer();
+const lockupMeta = await sharp(lockupPng).metadata();
 const og = sharp({ create: { width: 1200, height: 630, channels: 4, background: BLUE } })
-  .composite([{ input: stackedPng, left: Math.round((1200 - stackedMeta.width) / 2), top: Math.round((630 - stackedMeta.height) / 2) }])
+  .composite([{ input: lockupPng, left: Math.round((1200 - lockupMeta.width) / 2), top: Math.round((630 - lockupMeta.height) / 2) }])
   .png();
 await og.clone().toFile(path.join(brandDir, "francobridge-og.png"));
 await og.clone().toFile(path.join(appDir, "opengraph-image.png"));

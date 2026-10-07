@@ -31,9 +31,9 @@ export function CalInline({ calLink, namespace }: { calLink: string; namespace: 
           config={{ layout: "month_view", theme: "light", useSlotsViewOnSmallScreen: "true" }}
         />
       </div>
-      <p className="regular-s mt-3 text-navy/70">
+      <p className="regular-s mt-3 text-blue/70">
         If the calendar does not load,{" "}
-        <a href={`https://cal.com/${calLink}`} target="_blank" rel="noreferrer" className="underline underline-offset-4 transition-colors hover:text-blue">
+        <a href={`https://cal.com/${calLink}`} target="_blank" rel="noreferrer" className="underline underline-offset-4 transition-colors hover:text-blue/70">
           open it on cal.com
         </a>
         .

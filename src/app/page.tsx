@@ -39,44 +39,44 @@ const CLOSING = {
   href: "/contact",
 } as const;
 
-// The whole page sits on one fade, from the pale blue at the top through the
-// red tint behind the programs to the yellow under the closing banner, and
-// then the footer. The footer gap that main normally carries is dropped so
-// the yellow meets the navy.
+// The whole page sits on the site's one gradient, the blue at the top fading
+// to white under the closing banner, and then the footer. The footer gap
+// that main normally carries is dropped so the white meets the blue.
 export default function Home() {
   return (
-    <main className="bg-gradient-to-b from-blue-light via-red-light to-yellow-light pb-0">
-      {/* The opening: hero, statement and programs share one clipped
-          canvas, so the watermarks drawn from the logo can bleed off its
+    <main className="bg-gradient-to-b from-blue/[0.12] to-white pb-0">
+      {/* The opening: hero, statement and services share one clipped
+          canvas, so the watermark drawn from the logo can bleed off its
           edges and run from one section into the next. Each section's
-          content sits above them. */}
+          content sits above it. */}
       <div className="relative isolate overflow-hidden">
       {/* Hero: the tagline, the statement with its French line, and one
-          button, with the bridge from the logo standing on the hero's bottom
-          edge behind it all, bleeding off the right and drifting left as the
-          page scrolls. */}
-      <section className="relative flex flex-col border-b border-navy/10 pt-[104px] md:pt-[124px]">
-        {/* The bridge drifts left as the page scrolls, at a third of the pace. */}
-        <Drift className="pointer-events-none absolute -right-[240px] bottom-0 z-0 w-[1100px] md:-right-[420px] md:w-[2000px]">
-          <Watermark kind="bridge" className="relative w-full" />
+          button, with the monogram from the logo standing at the right behind
+          it all, bleeding off the hero's foot and drifting as the page
+          scrolls. */}
+      <section className="relative flex flex-col border-b border-blue/10 pt-[104px] md:pt-[124px]">
+        {/* The monogram drifts left as the page scrolls, at a fraction of the pace. */}
+        <Drift rate={0.15} className="pointer-events-none absolute -bottom-[60px] right-[4%] z-0 w-[260px] md:-bottom-[120px] md:right-[8%] md:w-[520px]">
+          <Watermark kind="mark" className="relative w-full" />
         </Drift>
         <div className="container-fb relative z-10 flex flex-col items-start justify-end gap-8 pb-10 pt-14 md:pb-12 md:pt-16">
           <h1 className="h1 w-[60%]">{SITE_TAGLINE}</h1>
           <div className="flex max-w-[560px] flex-col gap-3">
             <p className="regular-l">
-              We are a French language education centre, building the fluency you need for study, work and
-              immigration in Canada.
+              FrancoBridge Consulting is a language education and professional development firm. We build the
+              French language confidence and skills you need to succeed academically, professionally and through
+              immigration pathways, in Canada’s bilingual and Francophone communities.
             </p>
             <p className="fr-line text-[16px]" lang="fr">
               {SITE_TAGLINE_FR}
             </p>
           </div>
           <div className="-mt-2 flex flex-wrap items-center gap-4">
-            {/* A quiet button: a navy rule on the pattern, and an arrow that
+            {/* A quiet button: a blue rule on the pattern, and an arrow that
                 steps forward on hover. */}
             <Link
               href="/about"
-              className="button-secondary button-compact group gap-3 hover:border-navy hover:bg-navy"
+              className="button-secondary button-compact group gap-3 hover:border-blue hover:bg-blue"
             >
               About FrancoBridge
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1">
@@ -87,7 +87,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services: a rail of six cards, TCF & TEF first, on the white. */}
+      {/* Services: a rail of cards, TCF & TEF first, on the white. */}
       <section className="relative py-10 md:py-14">
         <div className="container-fb relative z-10">
           {/* The heading with the All services ring on its row, the ring's
@@ -98,16 +98,16 @@ export default function Home() {
               <h2 className="h1">
                 Our
                 <br />
-                Programs
+                Services
               </h2>
               <Link href="/services" aria-label="All services" className={RING}>
                 <RingArrow />
               </Link>
             </div>
-            {/* One line on what the six cards cover, and the thread between them. */}
+            {/* One line on what the cards cover, and the thread between them. */}
             <p className="regular-l max-w-[560px]">
-              Exam preparation, French for work and everyday life, pathway guidance and translation, all online and all
-              starting with one conversation.
+              Language coaching, exam preparation, French for the public service and the workplace, pathway support
+              and translation, all online and all starting with one conversation.
             </p>
           </div>
           <ServicesRail />
@@ -115,7 +115,7 @@ export default function Home() {
       </section>
       </div>
 
-      {/* How it works and the closing line, on the yellow end of the fade. */}
+      {/* How it works and the closing line, on the white end of the fade. */}
       <section className="pt-10 md:pt-14">
         <div className="container-fb">
           {/* The heading with the booking ring beside it, the same large
@@ -129,18 +129,18 @@ export default function Home() {
               title. Stacked on phones; from tablet width the title takes the
               left column and the description, with its facts in one quiet
               line beneath, the right. */}
-          <div className="border-t border-navy">
+          <div className="border-t border-blue">
             {STEPS.map((step, i) => (
               <div
                 key={step.title}
-                className="grid grid-cols-1 gap-y-2 border-b border-navy py-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:items-baseline md:gap-x-10 md:py-7 lg:py-8"
+                className="grid grid-cols-1 gap-y-2 border-b border-blue py-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:items-baseline md:gap-x-10 md:py-7 lg:py-8"
               >
-                <h3 className="font-heading text-[24px] leading-[1.1] text-navy md:text-[28px]">
+                <h3 className="font-heading text-[24px] leading-[1.1] text-blue md:text-[28px]">
                   {i + 1}. {step.title}
                 </h3>
                 <div className="flex flex-col gap-2">
                   <p className="text-[16px] leading-[1.5] md:text-[17px]">{step.text}</p>
-                  <p className="regular-s text-navy/70">{step.facts.join(" · ")}</p>
+                  <p className="regular-s text-blue/70">{step.facts.join(" · ")}</p>
                 </div>
               </div>
             ))}

@@ -12,7 +12,7 @@ import { RING, RingArrow } from "@/app/_components/ring";
 // The row holds on phones too: the French steps down a size and breaks
 // where `lines` says, one short line under another. It paints no
 // background of its own: the section it closes carries the colour, on the home page a
-// gradient from the white down to the yellow. English is the door; French
+// gradient from the blue down to white. English is the door; French
 // is the room.
 export function FrenchLine({
   line,
@@ -45,7 +45,7 @@ export function FrenchLine({
                 ))
               : line}
           </p>
-          <p className="regular-l text-navy/70">{english}</p>
+          <p className="regular-l text-blue/70">{english}</p>
         </div>
         <div className="flex justify-end">
           <Link href={href} aria-label={link} className={RING}>
@@ -53,7 +53,7 @@ export function FrenchLine({
           </Link>
         </div>
       </div>
-      <Pattern way="yellow" />
+      <Pattern way="gold" />
     </div>
   );
 }

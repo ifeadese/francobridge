@@ -24,12 +24,12 @@ export default function Faq() {
 
       <section className="mt-0">
         <div className="container-fb">
-          <div className="border-t border-navy">
+          <div className="border-t border-blue">
             {FAQS.map((item) => (
-              <details key={item.q} name="faq" className="group border-b border-navy" suppressHydrationWarning>
+              <details key={item.q} name="faq" className="group border-b border-blue" suppressHydrationWarning>
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
                   <span className="h4">{item.q}</span>
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-navy text-navy transition-colors group-hover:border-blue group-hover:bg-blue group-hover:text-ivory" aria-hidden="true">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-blue text-blue transition-colors group-hover:border-blue group-hover:bg-blue group-hover:text-white" aria-hidden="true">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round">
                       <path d="M2 7h10" />
                       <path d="M7 2v10" className="group-open:hidden" />
@@ -43,9 +43,9 @@ export default function Faq() {
                     </p>
                   ))}
                   {item.groups && (
-                    <dl className="max-w-[760px] border-t border-navy/15">
+                    <dl className="max-w-[760px] border-t border-blue/15">
                       {item.groups.map((g) => (
-                        <div key={g.label} className="grid gap-2 border-b border-navy/15 py-4 md:grid-cols-[13rem_1fr] md:gap-6">
+                        <div key={g.label} className="grid gap-2 border-b border-blue/15 py-4 md:grid-cols-[13rem_1fr] md:gap-6">
                           <dt className="regular-m">{g.label}</dt>
                           <dd className="flex flex-col items-start gap-1.5">
                             {g.services.map((slug) => {
@@ -55,7 +55,7 @@ export default function Faq() {
                                 <Link
                                   key={slug}
                                   href={`/services/${slug}`}
-                                  className="regular-m inline-flex items-center gap-2 text-navy/80 transition-colors hover:text-blue"
+                                  className="regular-m inline-flex items-center gap-2 text-blue/80 transition-colors hover:text-blue/70"
                                 >
                                   {svc.short}
                                   <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -83,7 +83,7 @@ export default function Faq() {
           </div>
           <p className="regular-l mt-10 max-w-[760px]">
             Something else? Send us a message at{" "}
-            <a href={`mailto:${CONTACT.email}`} className="underline decoration-navy/40 underline-offset-4 transition-colors hover:text-blue hover:decoration-blue">
+            <a href={`mailto:${CONTACT.email}`} className="underline decoration-blue/40 underline-offset-4 transition-colors hover:text-blue/70 hover:decoration-blue">
               {CONTACT.email}
             </a>{" "}
             and we’ll be happy to assist.

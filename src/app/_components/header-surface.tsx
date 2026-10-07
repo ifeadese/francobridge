@@ -16,12 +16,12 @@ export const useMenu = () => useContext(MenuContext);
 // runs up behind the nav to the top of the window, and as soon as the page
 // scrolls it becomes a pane of frosted glass: a light white tint over a strong
 // blur, so the page shows through it. Everywhere else it is that pane from
-// the start. A faint rule closes its bottom edge: navy at a tenth on the
-// light pane, ivory at a fifth over a dark surface.
+// the start. A faint rule closes its bottom edge: blue at a tenth on the
+// light pane, white at a fifth over a dark surface.
 //
 // The header also watches what is under it. When a dark surface, any element
 // with data-surface="dark" such as the footer, scrolls up behind the logo,
-// the header sets data-dark and its tint turns navy; the logo, links and
+// the header sets data-dark and its tint turns blue; the logo, links and
 // button inside it pick that up through group-data-[dark] and switch to
 // their light treatment, so they stay legible on it.
 //
@@ -88,7 +88,7 @@ export function HeaderSurface({ children }: { children: React.ReactNode }) {
         <div
           aria-hidden
           className={cn(
-            "pointer-events-none absolute inset-x-0 top-0 -z-10 border-b border-navy/10 bg-white/35 backdrop-blur-xl transition-[opacity,background-color,border-color,height] [transition-duration:300ms,300ms,300ms,500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-data-[dark]:border-ivory/20 group-data-[dark]:bg-navy/40 motion-reduce:transition-none",
+            "pointer-events-none absolute inset-x-0 top-0 -z-10 border-b border-blue/10 bg-white/35 backdrop-blur-xl transition-[opacity,background-color,border-color,height] [transition-duration:300ms,300ms,300ms,500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-data-[dark]:border-white/20 group-data-[dark]:bg-blue/40 motion-reduce:transition-none",
             // Draws back up only once the menu's rows have gone (the delays
             // follow the order of the transition's properties).
             open ? "h-dvh" : "h-full [transition-delay:0ms,0ms,0ms,150ms]",

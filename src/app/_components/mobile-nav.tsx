@@ -31,7 +31,7 @@ export function MobileNav() {
         aria-expanded={open}
         aria-controls="mobile-menu"
         onClick={() => setOpen(!open)}
-        className="relative flex h-11 w-11 items-center justify-center text-navy transition-[color,transform] duration-200 hover:text-blue active:scale-90 group-data-[dark]:text-ivory group-data-[dark]:hover:text-yellow"
+        className="relative flex h-11 w-11 items-center justify-center text-blue transition-[color,transform] duration-200 hover:text-blue/70 active:scale-90 group-data-[dark]:text-white group-data-[dark]:hover:text-gold"
       >
         <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
         <span aria-hidden className="relative block h-[14px] w-[22px]">
@@ -74,9 +74,9 @@ export function MobileNav() {
                     // the last row its bottom too, so no two lines ever stack.
                     // A hovered or focused row also darkens the next row's top,
                     // which is its own bottom edge.
-                    "border-x border-t border-navy/15 transition-[opacity,border-color] last:border-b motion-reduce:transition-none",
-                    "hover:border-navy/30 focus-within:border-navy/30 [&:focus-within+li]:border-t-navy/30 [&:hover+li]:border-t-navy/30",
-                    "group-data-[dark]:border-ivory/20 group-data-[dark]:hover:border-ivory/40 group-data-[dark]:focus-within:border-ivory/40 group-data-[dark]:[&:focus-within+li]:border-t-ivory/40 group-data-[dark]:[&:hover+li]:border-t-ivory/40",
+                    "border-x border-t border-blue/15 transition-[opacity,border-color] last:border-b motion-reduce:transition-none",
+                    "hover:border-blue/30 focus-within:border-blue/30 [&:focus-within+li]:border-t-blue/30 [&:hover+li]:border-t-blue/30",
+                    "group-data-[dark]:border-white/20 group-data-[dark]:hover:border-white/40 group-data-[dark]:focus-within:border-white/40 group-data-[dark]:[&:focus-within+li]:border-t-white/40 group-data-[dark]:[&:hover+li]:border-t-white/40",
                     EASE,
                     open ? "opacity-100 duration-500" : "opacity-0 duration-200"
                   )}
@@ -86,9 +86,9 @@ export function MobileNav() {
                     aria-current={current ? "page" : undefined}
                     onClick={() => setOpen(false)}
                     className={cn(
-                      "group/item block px-4 py-4 text-[21px] text-navy outline-none transition-[background-color,color,transform] duration-200",
-                      "hover:bg-navy/[0.04] focus-visible:bg-navy/[0.06] active:scale-[0.98] active:bg-navy/[0.08] motion-reduce:active:scale-100",
-                      "group-data-[dark]:text-ivory group-data-[dark]:hover:bg-ivory/[0.06] group-data-[dark]:focus-visible:bg-ivory/[0.08] group-data-[dark]:active:bg-ivory/[0.12]"
+                      "group/item block px-4 py-4 text-[21px] text-blue outline-none transition-[background-color,color,transform] duration-200",
+                      "hover:bg-blue/[0.04] focus-visible:bg-blue/[0.06] active:scale-[0.98] active:bg-blue/[0.08] motion-reduce:active:scale-100",
+                      "group-data-[dark]:text-white group-data-[dark]:hover:bg-white/[0.06] group-data-[dark]:focus-visible:bg-white/[0.08] group-data-[dark]:active:bg-white/[0.12]"
                     )}
                   >
                     {/* Only the contents rise into place; the ruled box itself

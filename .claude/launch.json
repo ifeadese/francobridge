@@ -3,10 +3,14 @@
   "configurations": [
     {
       "name": "francobridge-dev",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeExecutable": "/bin/zsh",
+      "runtimeArgs": ["-c", "export PATH=\"$HOME/.local/node/bin:$PATH\"; exec npm run dev"],
       "port": 3011,
       "autoPort": true
+    },
+    {
+      "name": "francobridge-attach",
+      "url": "http://localhost:3000"
     }
   ]
 }

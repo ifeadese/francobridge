@@ -33,24 +33,24 @@ export default async function ServicePage(props: Params) {
         title={service.cardTitle}
         text={service.sub}
         note={service.notes?.map((n) => <p key={n}>{n}</p>)}
-        back={{ href: "/services", label: "All programs" }}
+        back={{ href: "/services", label: "All services" }}
       >
         <BookButton />
         <BookButton event="lesson" service={service.slug} />
       </Hero>
 
-      {/* The grey band, about the program, the same on every service: the
+      {/* The grey band, about the service, the same on every one: the
           heading, the facts, then the brief's lists, group under group. The description and
           any note are in the hero. */}
       <section className="section-tight">
         <div className="container-fb">
-          <div className="flex flex-col gap-10 bg-grey-3 px-6 py-10 md:gap-14 md:px-16 md:py-14">
+          <div className="flex flex-col gap-10 bg-blue/[0.05] px-6 py-10 md:gap-14 md:px-16 md:py-14">
             <div className="flex flex-col gap-10">
               <h2 className="h2">What to expect</h2>
               <dl className="flex flex-col">
                 {facts.map(([k, v]) => (
-                  <div key={k} className="flex flex-col gap-1 border-b border-navy py-3 first:pt-0">
-                    <dt className="regular-s text-navy/70">{k}</dt>
+                  <div key={k} className="flex flex-col gap-1 border-b border-blue py-3 first:pt-0">
+                    <dt className="regular-s text-blue/70">{k}</dt>
                     <dd className="regular-m">{v}</dd>
                   </div>
                 ))}
@@ -62,7 +62,7 @@ export default async function ServicePage(props: Params) {
                   <h3 className="h4 mb-6">{group.title}</h3>
                   <ul className="flex flex-col">
                     {group.items.map((item) => (
-                      <li key={item} className="regular-m border-t border-navy/15 py-3">
+                      <li key={item} className="regular-m border-t border-blue/15 py-3">
                         {item}
                       </li>
                     ))}

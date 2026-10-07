@@ -32,8 +32,8 @@ export function WhoWeHelp({ className = "section" }: { className?: string }) {
         <h2 className="h2 mb-10 max-w-[640px]">Who do we help?</h2>
         <div className="grid gap-6 md:grid-cols-2">
           {AUDIENCES.map((a) => (
-            <div key={a.title} className="panel bg-grey-3">
-              <ServiceGlyph slug={a.glyph} className="mb-10 h-10 w-10 text-navy" />
+            <div key={a.title} className="panel bg-blue/[0.05]">
+              <ServiceGlyph slug={a.glyph} className="mb-10 h-10 w-10 text-blue" />
               <div className="flex flex-1 flex-col justify-between gap-8">
                 <div className="max-w-[420px]">
                   <h4 className="h4 mb-4">{a.title}</h4>

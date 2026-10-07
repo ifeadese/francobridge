@@ -56,7 +56,7 @@ export function Hero({
       </div>
       {image && (
         <div
-          className="flex min-h-[420px] w-full items-end bg-grey-3 bg-cover bg-[50%_35%] md:min-h-[600px] md:w-1/2"
+          className="flex min-h-[420px] w-full items-end bg-blue/[0.05] bg-cover bg-[50%_35%] md:min-h-[600px] md:w-1/2"
           style={{ backgroundImage: `url(${image})` }}
           role="img"
           aria-label={imageAlt}

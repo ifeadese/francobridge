@@ -2,23 +2,17 @@ import Footer from "@/app/_components/footer";
 import Header from "@/app/_components/header";
 import { LEGAL_NAME, SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
-import { Figtree, Marcellus } from "next/font/google";
+import { Figtree } from "next/font/google";
 import cn from "classnames";
 
 import "./globals.css";
 
-// Marcellus, the face of the logo, for every heading and title. It has one
-// weight and no italic.
-const marcellus = Marcellus({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-heading",
-  display: "swap",
-});
-
+// Figtree, the closest open face to the Avenir Next of the client's wordmark
+// and print collateral: regular and medium for reading, semibold and bold
+// for headings.
 const figtree = Figtree({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-body",
   display: "swap",
 });
@@ -45,11 +39,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(marcellus.variable, figtree.variable)}>
+    <html lang="en" className={cn(figtree.variable)}>
       <head>
-        <meta name="theme-color" content="#fffbf8" />
+        <meta name="theme-color" content="#ffffff" />
       </head>
-      <body className="font-body bg-white text-navy antialiased">
+      <body className="font-body bg-white text-blue antialiased">
         <Header />
         {children}
         <Footer />

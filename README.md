@@ -1,8 +1,9 @@
 # FrancoBridge
 
-The website and brand for FrancoBridge Consulting Inc., a French language
-education, TCF/TEF preparation and pathway guidance centre in Ottawa. Built
-with Next.js, deployed on Vercel.
+The website for FrancoBridge Consulting Inc., a language education and
+professional development firm in Ottawa: French language coaching, exam
+preparation, immigration pathway support and translation, online across
+North America. Built with Next.js, deployed on Vercel.
 
 - Live site: https://francobridge.vercel.app
 - Brand book: `brand/brand-book.html` (open it in a browser)
@@ -10,12 +11,17 @@ with Next.js, deployed on Vercel.
 ## Pages
 
 Home, About, Services, FAQ, Contact, Consultation (booking), and one page per service under `/services/`:
-TCF & TEF preparation, Professional French, General French A1–C1, Career &
-education pathway guidance, Immigration pathway information, Translation.
-The blog from the starter lives on at `/blog` and `/posts/<slug>`.
+TCF/TEF and DELF/DALF exam preparation, Language coaching A1–C1, Government
+of Canada Second Language Evaluation preparation, Professional French,
+Interview preparation for bilingual roles, Academic support, French
+immigration pathway support, Translation. The blog from the starter lives on
+at `/blog` and `/posts/<slug>`.
 
-Service copy lives in `src/lib/services.ts`; site-wide words, the cal.com
-handles and the consultation price in `src/lib/constants.ts`.
+Service copy lives in `src/lib/services.ts`; site-wide words (who we are,
+mission, vision, values, the founder, the phone lines), the cal.com handles
+and the consultation price in `src/lib/constants.ts`. The services and the
+words are the client's own, from the pamphlet, banner and business card in
+`brand/source/`.
 
 ## Booking
 
@@ -33,25 +39,32 @@ CAD 100, paid on booking) and one event per program, and swap the links in.
 ## Design
 
 The layout follows a light, editorial school template: fixed white header with
-a hairline, split hero with the photo filling the right half and a yellow card
-on it, 176px between sections, serif display type in Marcellus (the face of the logo),
-black pill buttons, grey blocks, photo service tiles, and pastel banners with a
-pattern strip drawn from the mark. Tokens live in `tailwind.config.ts` and
-`src/app/globals.css`. Photos are Lorem Picsum placeholders listed in `IMAGES`
-in `src/lib/constants.ts`.
+a hairline, a 1280px column, 80px between sections, display type in Figtree
+semibold (the closest open face to the Avenir Next of the client's wordmark),
+blue buttons, and white cards with a pattern strip. The palette is four
+colours and nothing else: blue `#283990`, white, gold `#D2AC66` and red
+`#C42040`. Tailwind's default colours are replaced, not extended, so no other
+colour can slip in; lighter shades are the blue at reduced opacity, and the one
+gradient runs from blue to white. Tokens live in `tailwind.config.ts` and
+`src/app/globals.css`. Photos are Wikimedia Commons placeholders listed in
+`IMAGES` in `src/lib/constants.ts` and credited in `public/images/CREDITS.md`.
 
 ## Brand
 
+The identity is the client's own: the FB monogram with "FrancoBridge" in
+red and "Consulting" in blue, set in Avenir Next, in blue, white, gold and red.
+
+- `brand/source/`: the client's artwork and collateral as supplied: the logo (4500 px JPEG), the pamphlet, the banner and the business card.
 - `brand/brand-book.html`: one self-contained page. Story, the mark, signatures, don'ts, colour and type, in use.
-- `src/app/_components/logo.tsx`: the mark as code, drawing `src/lib/logo-paths.ts`.
+- `src/app/_components/logo.tsx`: the logo as code, drawing `src/lib/logo-paths.ts`: `variant="lockup"` (mark and wordmark) or `"mark"`, `on="white"`, `"blue"` or `"mono"`.
 - `public/brand/`: SVG and PNG exports, social avatar, Open Graph image, icons.
-- `brand/tools/build-logo.py`: the source of truth for the logo geometry, the arch bridge with the Peace Tower. It outlines the name and descriptor from Marcellus, so the SVGs need no fonts, and writes the app icon.
+- `brand/tools/build-logo.py`: the source of truth. It redraws the monogram as clean stroke geometry measured from the artwork, traces the wordmark from it into outlines (Avenir Next is not a free font, so the SVGs need none), and writes the app icon.
 - `brand/tools/export-logo.mjs`: renders PNGs and icons with sharp and inlines the SVGs into the book.
 
-To regenerate after a geometry change:
+To regenerate after a change to the geometry or the artwork:
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install fonttools uharfbuzz
+python3 -m venv .venv && .venv/bin/pip install numpy pillow potracer
 .venv/bin/python brand/tools/build-logo.py
 node brand/tools/export-logo.mjs
 ```
