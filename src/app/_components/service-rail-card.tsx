@@ -6,8 +6,7 @@ import type { Service } from "@/lib/services";
 
 // A service card for the rail: a white panel held by a hairline frame in
 // the card's ink, blue, gold or red, with the pamphlet's wave along its foot
-// in the same ink, faint: a tint of the curve, not the solid one that closes
-// the page. The label, then one tight line as the title, who it is
+// in the same ink. The label, then one tight line as the title, who it is
 // for, and a tertiary link, right-aligned above the wave: a word and the
 // ringed arrow. Alternate cards mirror the wave, so a row of them rises and
 // falls. Cards share the height of the tallest and grow with their text,
@@ -24,7 +23,7 @@ export function ServiceRailCard({ service, ink, flip = false }: { service: Servi
         FRAME[ink]
       )}
     >
-      <Wave variant={ink} flip={flip} className="pointer-events-none absolute inset-x-0 bottom-0 h-16 opacity-[0.15] md:h-20" />
+      <Wave variant={ink} flip={flip} className="pointer-events-none absolute inset-x-0 bottom-0 h-16 md:h-20" />
       <div className="relative flex flex-1 flex-col justify-between gap-10 p-6 pb-24 md:p-10 md:pb-32">
         <div className="flex flex-col gap-4">
           <p className="regular-s">{service.short}</p>
