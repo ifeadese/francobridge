@@ -134,6 +134,10 @@ body {
   .tertiary-filled > span:first-child { @apply font-medium; }
   .tertiary-filled .tertiary-icon { @apply h-8 w-8 border-blue bg-blue text-white; }
   .group:hover .tertiary-filled .tertiary-icon, .tertiary-filled:hover .tertiary-icon { @apply border-gold bg-gold text-blue; }
+  /* On blue: the word in white and the ring solid white, gold on hover. For
+     links set on the blue of a wave. */
+  .tertiary-on-blue { @apply text-white; }
+  .tertiary-on-blue .tertiary-icon { @apply border-white bg-white text-blue; }
 
   /* Compact section spacing, the same on every page: 80px, 56px on phones. */
   .section { margin-top: 80px; }

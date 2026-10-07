@@ -19,7 +19,9 @@ const BLUE = "#283990";
 const GOLD = "#D2AC66";
 
 const W = 561.2; // a card's slice, in the units of the pamphlet's wave
-const H = 240;
+// The curve rides in the top two thirds; below its lowest point the field
+// runs on as solid blue, room for anything set on the wave.
+const H = 320;
 const STEPS = 24; // cubic segments per card
 
 // In card units: s runs 0 to 2 over one period.

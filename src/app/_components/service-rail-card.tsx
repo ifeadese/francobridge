@@ -8,10 +8,11 @@ import type { Service } from "@/lib/services";
 // the card's ink, blue, gold or red, with its slice of the running wave
 // along its foot: the wave runs on from card to card through the whole
 // sequence (see RunningWave), so `index` is the card's place in it. The
-// label, then one tight line as the title, who it is for, and a tertiary
-// link, right-aligned above the wave: a word and the ringed arrow. Cards
-// share the height of the tallest and grow with their text, never clipping
-// it. The whole card is the link; on hover the ring fills.
+// label, then one tight line as the title, and who it is for, all above the
+// wave; then the tertiary link, a word and the ringed arrow, in white at the
+// bottom right, down in the wave's blue beneath its curve. Cards share the
+// height of the tallest and grow with their text, never clipping it. The
+// whole card is the link; on hover the ring turns gold.
 const FRAME = { blue: "border-blue/25", red: "border-red/30", gold: "border-gold/60" } as const;
 export type Ink = keyof typeof FRAME;
 
@@ -26,15 +27,15 @@ export function ServiceRailCard({ service, ink, index }: { service: Service; ink
       )}
     >
       {/* Edge to edge, so the curve meets the next card's exactly. */}
-      <RunningWave index={index} className="pointer-events-none absolute inset-x-0 bottom-0 h-40 w-full md:h-56" />
-      <div className="relative flex flex-1 flex-col justify-between gap-10 p-6 pb-48 md:p-10 md:pb-[264px]">
+      <RunningWave index={index} className="pointer-events-none absolute inset-x-0 bottom-0 h-64 w-full md:h-80" />
+      <div className="relative flex flex-1 flex-col gap-10 p-6 pb-64 md:p-10 md:pb-80">
         <div className="flex flex-col gap-4">
           <p className="regular-s">{service.short}</p>
           <h3 className="h3">{service.cardTitle}</h3>
           <p className="regular-l">{service.cardFor}</p>
         </div>
-        <span className="self-end">
-          <Tertiary as="span" filled>
+        <span className="absolute bottom-6 right-6 md:bottom-8 md:right-10">
+          <Tertiary as="span" filled onBlue>
             Learn more
           </Tertiary>
         </span>
