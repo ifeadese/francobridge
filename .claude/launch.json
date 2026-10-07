@@ -5,7 +5,7 @@
       "name": "francobridge-dev",
       "runtimeExecutable": "/bin/zsh",
       "runtimeArgs": ["-c", "export PATH=\"$HOME/.local/node/bin:$PATH\"; exec npm run dev"],
-      "port": 3011,
+      "port": 3000,
       "autoPort": true
     },
     {
