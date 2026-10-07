@@ -18,7 +18,7 @@ export function Footer() {
       <div className="container-fb pt-8 md:pt-12">
         <div className="mb-8 flex flex-col gap-8 md:mb-16 md:flex-row md:items-stretch md:gap-8 lg:mb-20 lg:gap-20">
           <div className="order-last flex min-w-0 flex-col gap-3 md:order-none md:min-w-[256px] md:flex-1">
-            <Logo variant="lockup" on="blue" className="h-16 w-auto self-start md:h-[72px] lg:h-[88px]" />
+            <Logo variant="lockup" on="blue" className="h-12 w-auto self-start md:h-14 lg:h-[68px]" />
             <div className="mt-5 flex flex-col gap-1 md:mt-3.5 lg:mt-2.5">
               <p className="whitespace-nowrap py-1 text-[14px] leading-[1.5] lg:py-0.5">
                 &copy; {new Date().getFullYear()} {LEGAL_NAME}

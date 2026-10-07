@@ -36,17 +36,20 @@ export function Logo({ variant = "lockup", on = "white", ...props }: Props) {
       aria-label={label}
       {...props}
     >
-      {MARK.paths.map((d) => (
-        <path
-          key={d}
-          fill="none"
-          stroke={ink}
-          strokeWidth={MARK.stroke}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d={d}
-        />
-      ))}
+      {/* In the lockup the mark is scaled to the height of the two lines. */}
+      <g transform={variant === "lockup" ? `scale(${LOCKUP.markScale})` : undefined}>
+        {MARK.paths.map((d) => (
+          <path
+            key={d}
+            fill="none"
+            stroke={ink}
+            strokeWidth={MARK.stroke}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d={d}
+          />
+        ))}
+      </g>
       {variant === "lockup" && (
         <>
           <path fill={word} d={LOCKUP.word} />

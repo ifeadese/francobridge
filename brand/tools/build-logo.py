@@ -11,8 +11,9 @@ over "Consulting Inc." in blue, is Avenir, which is not a free font, so it is
 outlined here and never depends on a font loading: the client's two lines
 are traced from the artwork, and "Inc." is set from the Avenir on macOS
 (/System/Library/Fonts/Avenir.ttc), so this script runs on a Mac. The
-wordmark is drawn larger against the mark than in the artwork, with more
-room between its lines; see WORDMARK_SCALE and LINE_GAP.
+wordmark is drawn larger than in the artwork, with more room between its
+lines (see WORDMARK_SCALE and LINE_GAP), and in the lockup the mark is
+scaled to the height of the two lines.
 
 Outputs
   src/lib/logo-paths.ts   the geometry the <Logo> component draws from
@@ -130,10 +131,9 @@ AVENIR_LIGHT = 6                 # face index in the collection: the weight of "
 TRACKING = 0.01                  # em, the spacing that best matches "Consulting"
 DESCRIPTOR_TAIL = " Inc."
 
-# How much bigger the wordmark is than in the client's artwork, against the
-# mark, and how much more room it has between its lines, as a share of the
-# cap height. Its left edge keeps the artwork's gap to the mark, one stroke
-# width; the two lines, cap top to baseline, are centred on the mark's height.
+# How much bigger the wordmark is than in the client's artwork, and how much
+# more room it has between its lines, as a share of the cap height. In the
+# lockup the mark is then scaled to the height of the text block; see below.
 WORDMARK_SCALE = 1.7
 LINE_GAP = 0.3
 
@@ -277,19 +277,33 @@ fx = lambda x: TEXT_LEFT + (to_units(x, 0)[0] - TEXT_LEFT) * WORDMARK_SCALE
 fy_word = lambda y: MARK_H / 2 + (to_units(0, y)[1] - CENTRE) * WORDMARK_SCALE
 fy_desc = lambda y: MARK_H / 2 + (to_units(0, y)[1] + GAP - CENTRE) * WORDMARK_SCALE
 
-WORD = map_path(WORD_SRC, fx, fy_word)
-DESCRIPTOR = map_path(DESC_SRC, fx, fy_desc) + map_path(TAIL_SRC, fx, fy_desc)
-WORD_BOX = (fx(WORD_SRC_BOX[0]), fy_word(WORD_SRC_BOX[1]), fx(WORD_SRC_BOX[2]), fy_word(WORD_SRC_BOX[3]))
-DESC_BOX = (fx(DESC_SRC_BOX[0]), fy_desc(DESC_SRC_BOX[1]), fx(DESC_SRC_RIGHT), fy_desc(DESC_SRC_BOX[3]))
+# Where the two lines' ink falls at this size, before the lockup is laid out.
+_word_box = (fx(WORD_SRC_BOX[0]), fy_word(WORD_SRC_BOX[1]), fx(WORD_SRC_BOX[2]), fy_word(WORD_SRC_BOX[3]))
+_desc_box = (fx(DESC_SRC_BOX[0]), fy_desc(DESC_SRC_BOX[1]), fx(DESC_SRC_RIGHT), fy_desc(DESC_SRC_BOX[3]))
 
-# The lockup's box: the mark and the two lines, outer edge to outer edge.
-LOCKUP_Y = min(0.0, WORD_BOX[1])
+# The lockup: the mark scaled to the height of the text block, from the top
+# of its tallest letter to the foot of the "g", and set level with it; the
+# text one stroke width (at the mark's new scale) to its right. The origin is
+# the top-left of the mark, so the lockup's box starts at 0, 0.
+TEXT_TOP, TEXT_BOTTOM = _word_box[1], _desc_box[3]
+MARK_SCALE_IN_LOCKUP = round((TEXT_BOTTOM - TEXT_TOP) / MARK_H, 4)
+_text_left = MARK_W * MARK_SCALE_IN_LOCKUP + MARK_STROKE * MARK_SCALE_IN_LOCKUP
+_dx = _text_left - min(_word_box[0], _desc_box[0])
+gx = lambda x: fx(x) + _dx
+gy_word = lambda y: fy_word(y) - TEXT_TOP
+gy_desc = lambda y: fy_desc(y) - TEXT_TOP
+
+WORD = map_path(WORD_SRC, gx, gy_word)
+DESCRIPTOR = map_path(DESC_SRC, gx, gy_desc) + map_path(TAIL_SRC, gx, gy_desc)
+WORD_BOX = (gx(WORD_SRC_BOX[0]), gy_word(WORD_SRC_BOX[1]), gx(WORD_SRC_BOX[2]), gy_word(WORD_SRC_BOX[3]))
+DESC_BOX = (gx(DESC_SRC_BOX[0]), gy_desc(DESC_SRC_BOX[1]), gx(DESC_SRC_RIGHT), gy_desc(DESC_SRC_BOX[3]))
+
 LOCKUP_W = max(WORD_BOX[2], DESC_BOX[2])
-LOCKUP_H = max(MARK_H, DESC_BOX[3]) - LOCKUP_Y
+LOCKUP_H = TEXT_BOTTOM - TEXT_TOP
 
 MARK = {"x": 0.0, "y": 0.0, "width": MARK_W, "height": MARK_H, "stroke": MARK_STROKE, "paths": MARK_PATHS}
-LOCKUP = {"x": 0.0, "y": LOCKUP_Y, "width": LOCKUP_W, "height": LOCKUP_H, "word": WORD, "descriptor": DESCRIPTOR,
-          "wordBox": WORD_BOX, "descriptorBox": DESC_BOX}
+LOCKUP = {"x": 0.0, "y": 0.0, "width": LOCKUP_W, "height": LOCKUP_H, "markScale": MARK_SCALE_IN_LOCKUP,
+          "word": WORD, "descriptor": DESCRIPTOR, "wordBox": WORD_BOX, "descriptorBox": DESC_BOX}
 
 # ---------------------------------------------------------------- outputs
 def mark_svg(ink: str) -> str:
@@ -307,7 +321,10 @@ def svg(kind: str, on: str, pad: float = 0.0) -> str:
     label = "FrancoBridge" if kind == "mark" else "FrancoBridge Consulting Inc."
     x, y, w, h = box["x"] - pad, box["y"] - pad, box["width"] + 2 * pad, box["height"] + 2 * pad
     p = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{f(x)} {f(y)} {f(w)} {f(h)}" width="{f(w)}" height="{f(h)}" role="img" aria-label="{label}">']
-    p.append(mark_svg(ink))
+    if kind == "lockup":
+        p.append(f'<g transform="scale({MARK_SCALE_IN_LOCKUP})">{mark_svg(ink)}</g>')
+    else:
+        p.append(mark_svg(ink))
     if kind == "lockup":
         p.append(f'<path fill="{word}" d="{WORD}"/>')
         p.append(f'<path fill="{ink}" d="{DESCRIPTOR}"/>')
@@ -340,6 +357,8 @@ with open(os.path.join(ROOT, "src", "app", "icon.svg"), "w") as fh:
 
 
 def ts_value(v) -> str:
+    if v is MARK_SCALE_IN_LOCKUP:
+        return str(v)                       # four places: two would leave the mark taller than its box
     if isinstance(v, float):
         return f(v)
     if isinstance(v, str):
