@@ -1,19 +1,21 @@
 import Link from "next/link";
 import cn from "classnames";
-import { Wave, type WaveVariant } from "@/app/_components/wave";
+import { RunningWave } from "@/app/_components/running-wave";
 import { Tertiary } from "@/app/_components/tertiary";
 import type { Service } from "@/lib/services";
 
 // A service card for the rail: a white panel held by a hairline frame in
-// the card's ink, blue, gold or red, with the pamphlet's wave along its foot
-// in the same ink. The label, then one tight line as the title, who it is
-// for, and a tertiary link, right-aligned above the wave: a word and the
-// ringed arrow. Alternate cards mirror the wave, so a row of them rises and
-// falls. Cards share the height of the tallest and grow with their text,
-// never clipping it. The whole card is the link; on hover the ring fills.
+// the card's ink, blue, gold or red, with its slice of the running wave
+// along its foot: the wave runs on from card to card through the whole
+// sequence (see RunningWave), so `index` is the card's place in it. The
+// label, then one tight line as the title, who it is for, and a tertiary
+// link, right-aligned above the wave: a word and the ringed arrow. Cards
+// share the height of the tallest and grow with their text, never clipping
+// it. The whole card is the link; on hover the ring fills.
 const FRAME = { blue: "border-blue/25", red: "border-red/30", gold: "border-gold/60" } as const;
+export type Ink = keyof typeof FRAME;
 
-export function ServiceRailCard({ service, ink, flip = false }: { service: Service; ink: WaveVariant; flip?: boolean }) {
+export function ServiceRailCard({ service, ink, index }: { service: Service; ink: Ink; index: number }) {
   return (
     <Link
       href={`/services/${service.slug}`}
@@ -23,11 +25,8 @@ export function ServiceRailCard({ service, ink, flip = false }: { service: Servi
         FRAME[ink]
       )}
     >
-      {/* The wave runs wider than the card, a stretch that eases the curve,
-          and the card clips it at both edges. */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 md:h-56" aria-hidden="true">
-        <Wave variant={ink} flip={flip} className="absolute bottom-0 left-[-15%] h-full w-[130%]" />
-      </div>
+      {/* Edge to edge, so the curve meets the next card's exactly. */}
+      <RunningWave index={index} className="pointer-events-none absolute inset-x-0 bottom-0 h-40 w-full md:h-56" />
       <div className="relative flex flex-1 flex-col justify-between gap-10 p-6 pb-48 md:p-10 md:pb-[264px]">
         <div className="flex flex-col gap-4">
           <p className="regular-s">{service.short}</p>
