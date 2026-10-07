@@ -13,7 +13,7 @@ are traced from the artwork, and "Inc." is set from the Avenir on macOS
 (/System/Library/Fonts/Avenir.ttc), so this script runs on a Mac. The
 wordmark is drawn larger than in the artwork, with more room between its
 lines (see WORDMARK_SCALE and LINE_GAP), and in the lockup the mark is
-scaled to the height of the two lines.
+scaled to the two lines, cap top to baseline, MARK_GAP strokes clear of them.
 
 Outputs
   src/lib/logo-paths.ts   the geometry the <Logo> component draws from
@@ -136,6 +136,9 @@ DESCRIPTOR_TAIL = " Inc."
 # lockup the mark is then scaled to the height of the text block; see below.
 WORDMARK_SCALE = 1.7
 LINE_GAP = 0.3
+# The clear space between the mark and the text in the lockup, in stroke
+# widths of the mark at its lockup size. The client's artwork has one.
+MARK_GAP = 2.0
 
 
 def trace_wordmark():
@@ -281,13 +284,15 @@ fy_desc = lambda y: MARK_H / 2 + (to_units(0, y)[1] + GAP - CENTRE) * WORDMARK_S
 _word_box = (fx(WORD_SRC_BOX[0]), fy_word(WORD_SRC_BOX[1]), fx(WORD_SRC_BOX[2]), fy_word(WORD_SRC_BOX[3]))
 _desc_box = (fx(DESC_SRC_BOX[0]), fy_desc(DESC_SRC_BOX[1]), fx(DESC_SRC_RIGHT), fy_desc(DESC_SRC_BOX[3]))
 
-# The lockup: the mark scaled to the height of the text block, from the top
-# of its tallest letter to the foot of the "g", and set level with it; the
-# text one stroke width (at the mark's new scale) to its right. The origin is
-# the top-left of the mark, so the lockup's box starts at 0, 0.
+# The lockup: the mark scaled to the height of the text, from the top of its
+# tallest letter to the baseline of "Consulting Inc.", and set level with it,
+# so only the "g" descends below the mark's foot; the text MARK_GAP stroke
+# widths (at the mark's new scale) to its right. The origin is the top-left of
+# the mark, so the lockup's box starts at 0, 0.
 TEXT_TOP, TEXT_BOTTOM = _word_box[1], _desc_box[3]
-MARK_SCALE_IN_LOCKUP = round((TEXT_BOTTOM - TEXT_TOP) / MARK_H, 4)
-_text_left = MARK_W * MARK_SCALE_IN_LOCKUP + MARK_STROKE * MARK_SCALE_IN_LOCKUP
+TEXT_BASELINE = fy_desc(BASELINE_SRC)
+MARK_SCALE_IN_LOCKUP = round((TEXT_BASELINE - TEXT_TOP) / MARK_H, 4)
+_text_left = (MARK_W + MARK_GAP * MARK_STROKE) * MARK_SCALE_IN_LOCKUP
 _dx = _text_left - min(_word_box[0], _desc_box[0])
 gx = lambda x: fx(x) + _dx
 gy_word = lambda y: fy_word(y) - TEXT_TOP
