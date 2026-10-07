@@ -7,9 +7,12 @@ and round joins, an F whose top bar hairpins back into a second stem, and a
 B whose two bowls are arcs of one circle size. It is redrawn here as clean
 geometry measured from brand/source/francobridge-logo.jpg (4500 px), so it
 scales without the raster's softness. The wordmark, "FrancoBridge" in red
-and "Consulting" in navy, is Avenir Next, which is not a free font, so it is
-traced from the same artwork into outlines once, here, and never depends on
-a font loading.
+over "Consulting Inc." in blue, is Avenir, which is not a free font, so it is
+outlined here and never depends on a font loading: the client's two lines
+are traced from the artwork, and "Inc." is set from the Avenir on macOS
+(/System/Library/Fonts/Avenir.ttc), so this script runs on a Mac. The
+wordmark is drawn larger against the mark than in the artwork; see
+WORDMARK_SCALE.
 
 Outputs
   src/lib/logo-paths.ts   the geometry the <Logo> component draws from
@@ -17,7 +20,7 @@ Outputs
   src/app/icon.svg        the mark on a blue rounded square
 
 Run
-  python3 -m venv .venv && .venv/bin/pip install numpy pillow potracer
+  python3 -m venv .venv && .venv/bin/pip install numpy pillow potracer fonttools uharfbuzz
   .venv/bin/python brand/tools/build-logo.py
   node brand/tools/export-logo.mjs
 """
@@ -115,8 +118,24 @@ MARK_H = (SRC_MARK[3] - SRC_MARK[1]) * SCALE
 MARK_STROKE = STROKE * SCALE
 
 # ---------------------------------------------------------------- the wordmark
-# Traced from the artwork at 3x: the red line and the navy line separately,
-# the navy mask kept clear of the red letters' soft edges.
+# "FrancoBridge" and "Consulting" are traced from the artwork at 3x, the red
+# line and the blue line separately, the blue mask kept clear of the red
+# letters' soft edges, so both keep the client's own letter-spacing. "Inc."
+# is not in the artwork; it is set in Avenir Light, whose stems match
+# "Consulting", from macOS's system copy, sized to the traced x-height and
+# cap height and set on the traced baseline after one word space. Coordinates here are crop pixels until
+# place() maps them into lockup units.
+AVENIR = "/System/Library/Fonts/Avenir.ttc"
+AVENIR_LIGHT = 6                 # face index in the collection: the weight of "Consulting"
+TRACKING = 0.01                  # em, the spacing that best matches "Consulting"
+DESCRIPTOR_TAIL = " Inc."
+
+# How much bigger the wordmark is than in the client's artwork, against the
+# mark. Its left edge keeps the artwork's gap to the mark, one stroke width;
+# the two lines, cap top to baseline, are centred on the mark's height.
+WORDMARK_SCALE = 1.4
+
+
 def trace_wordmark():
     im = Image.open(SOURCE).convert("RGB")
     crop = im.crop(WORD_CROP)
@@ -129,45 +148,141 @@ def trace_wordmark():
     rows = np.arange(ink.shape[0])[:, None]
     split = 520 * s  # the gap between the two lines, in crop pixels
     red &= rows < split
-    navy = ink & ~red_soft & (rows > split)
-    dx, dy = WORD_CROP[0] - ORIGIN[0], WORD_CROP[1] - ORIGIN[1]
+    blue = ink & ~red_soft & (rows > split)
 
     def trace(mask):
         path = potrace.Bitmap(~mask).trace(turdsize=30, alphamax=1.0, opticurve=1, opttolerance=0.3)
         d = []
         for curve in path:
             p = curve.start_point
-            d.append(f"M{f((p.x / s + dx) * SCALE)} {f((p.y / s + dy) * SCALE)}")
+            d.append(f"M{f(p.x / s)} {f(p.y / s)}")
             for seg in curve:
                 e = seg.end_point
                 if seg.is_corner:
-                    c = seg.c
-                    d.append(f"L{f((c.x / s + dx) * SCALE)} {f((c.y / s + dy) * SCALE)}L{f((e.x / s + dx) * SCALE)} {f((e.y / s + dy) * SCALE)}")
+                    d.append(f"L{f(seg.c.x / s)} {f(seg.c.y / s)}L{f(e.x / s)} {f(e.y / s)}")
                 else:
                     c1, c2 = seg.c1, seg.c2
-                    d.append(
-                        f"C{f((c1.x / s + dx) * SCALE)} {f((c1.y / s + dy) * SCALE)} "
-                        f"{f((c2.x / s + dx) * SCALE)} {f((c2.y / s + dy) * SCALE)} "
-                        f"{f((e.x / s + dx) * SCALE)} {f((e.y / s + dy) * SCALE)}"
-                    )
+                    d.append(f"C{f(c1.x / s)} {f(c1.y / s)} {f(c2.x / s)} {f(c2.y / s)} {f(e.x / s)} {f(e.y / s)}")
             d.append("Z")
         return "".join(d)
 
     def bbox(mask):
         ys, xs = np.where(mask)
-        return ((xs.min() / s + dx) * SCALE, (ys.min() / s + dy) * SCALE, (xs.max() / s + dx) * SCALE, (ys.max() / s + dy) * SCALE)
+        return (xs.min() / s, ys.min() / s, (xs.max() + 1) / s, (ys.max() + 1) / s)
 
-    return trace(red), trace(navy), bbox(red), bbox(navy)
+    # Measurements of "Consulting", letter by letter: each letter is a run of
+    # inked columns. The baseline is the foot of the "n" (the third letter;
+    # the round letters overshoot it), the x-height its top, and the cap
+    # height the "C" less the overshoot of its round top and bottom
+    # (Avenir's is 1.5% each way).
+    cols = blue.any(axis=0)
+    edges = np.flatnonzero(np.diff(np.r_[0, cols.astype(int), 0]))
+    letters = list(zip(edges[::2], edges[1::2]))
+    assert len(letters) == len("Consulting"), letters
+
+    def rows(i):
+        return np.flatnonzero(blue[:, letters[i][0]:letters[i][1]].any(axis=1))
+
+    n_rows, c_rows = rows(2), rows(0)
+    baseline = (n_rows.max() + 1) / s
+    x_height = baseline - n_rows.min() / s
+    cap_height = (c_rows.max() + 1 - c_rows.min()) / s / 1.03
+    return trace(red), trace(blue), bbox(red), bbox(blue), baseline, x_height, cap_height
 
 
-WORD, DESCRIPTOR, WORD_BOX, DESC_BOX = trace_wordmark()
+def set_tail(blue_box, baseline, x_height, cap_height):
+    """" Inc." in Avenir Light, placed after the traced "Consulting": its
+    lowercase scaled to the traced x-height, the "I" to the traced cap height,
+    all on the traced baseline, after the font's own gap following a "g".
+    Returns the path in crop pixels and its right edge."""
+    import uharfbuzz as hb
+    from fontTools.ttLib import TTCollection
+    from fontTools.pens.svgPathPen import SVGPathPen
+    from fontTools.pens.transformPen import TransformPen
+    from fontTools.pens.boundsPen import BoundsPen
+
+    font = TTCollection(AVENIR).fonts[AVENIR_LIGHT]
+    glyphs, order, cmap = font.getGlyphSet(), font.getGlyphOrder(), font.getBestCmap()
+
+    def bounds(name, dx=0.0):
+        pen = BoundsPen(glyphs)
+        glyphs[name].draw(TransformPen(pen, (1, 0, 0, 1, dx, 0)))
+        return pen.bounds
+
+    n = bounds(cmap[ord("n")])
+    k = x_height / (n[3] - n[1])                               # lowercase: font units to crop pixels
+    capital = bounds(cmap[ord("I")])
+    k_cap = cap_height / (capital[3] - capital[1])             # the "I" is a bar; only its height changes
+
+    text = "g" + DESCRIPTOR_TAIL
+    buf = hb.Buffer()
+    buf.add_str(text)
+    buf.guess_segment_properties()
+    hb.shape(hb.Font(hb.Face(hb.Blob.from_file_path(AVENIR), AVENIR_LIGHT)), buf, {"kern": True, "liga": False})
+    placed, x = [], 0.0
+    for info, pos in zip(buf.glyph_infos, buf.glyph_positions):
+        placed.append((order[info.codepoint], x))
+        x += pos.x_advance + TRACKING * 1000
+    g_right = bounds(placed[0][0], placed[0][1])[2]
+    origin = blue_box[2] - g_right * k                         # the font's "g" laid on the traced one
+    pen, right = SVGPathPen(glyphs, ntos=f), 0.0
+    for name, gx in placed[1:]:
+        if name == "space":
+            continue
+        sy = k_cap if name == cmap[ord("I")] else k
+        glyphs[name].draw(TransformPen(pen, (k, 0, 0, -sy, origin + gx * k, baseline)))
+        right = max(right, origin + bounds(name, gx)[2] * k)
+    return pen.getCommands(), right
+
+
+def map_path(d: str, fx, fy) -> str:
+    """Applies an axis-aligned map to an absolute path (M L H V C Q Z)."""
+    import re
+    tokens = re.findall(r"[MLHVCQZ]|-?(?:\d+\.?\d*|\.\d+)", d)
+    out, i, cmd = [], 0, ""
+    while i < len(tokens):
+        t = tokens[i]
+        if t.isalpha():
+            cmd = t
+            out.append(t)
+            i += 1
+        elif cmd == "H":
+            out.append(f(fx(float(t))) + " "); i += 1
+        elif cmd == "V":
+            out.append(f(fy(float(t))) + " "); i += 1
+        else:
+            out.append(f"{f(fx(float(tokens[i])))} {f(fy(float(tokens[i + 1])))} "); i += 2
+    return "".join(out).replace(" Z", "Z").replace(" M", "M").replace(" L", "L").replace(" C", "C").replace(" Q", "Q").replace(" H", "H").replace(" V", "V").strip()
+
+
+WORD_SRC, DESC_SRC, WORD_SRC_BOX, DESC_SRC_BOX, BASELINE_SRC, X_HEIGHT_SRC, CAP_HEIGHT_SRC = trace_wordmark()
+TAIL_SRC, DESC_SRC_RIGHT = set_tail(DESC_SRC_BOX, BASELINE_SRC, X_HEIGHT_SRC, CAP_HEIGHT_SRC)
+
+# Crop pixels to lockup units at the artwork's size, then the enlargement
+# about the wordmark's left edge and its optical centre (cap top of
+# "FrancoBridge" to the baseline of "Consulting Inc.").
+def to_units(x, y):
+    return (x + WORD_CROP[0] - ORIGIN[0]) * SCALE, (y + WORD_CROP[1] - ORIGIN[1]) * SCALE
+
+TEXT_LEFT = to_units(min(WORD_SRC_BOX[0], DESC_SRC_BOX[0]), 0)[0]
+CAP_TOP = to_units(0, WORD_SRC_BOX[1])[1]
+BASELINE = to_units(0, BASELINE_SRC)[1]
+CENTRE = (CAP_TOP + BASELINE) / 2
+fx = lambda x: TEXT_LEFT + (to_units(x, 0)[0] - TEXT_LEFT) * WORDMARK_SCALE
+fy = lambda y: MARK_H / 2 + (to_units(0, y)[1] - CENTRE) * WORDMARK_SCALE
+
+WORD = map_path(WORD_SRC, fx, fy)
+DESCRIPTOR = map_path(DESC_SRC, fx, fy) + map_path(TAIL_SRC, fx, fy)
+WORD_BOX = (fx(WORD_SRC_BOX[0]), fy(WORD_SRC_BOX[1]), fx(WORD_SRC_BOX[2]), fy(WORD_SRC_BOX[3]))
+DESC_BOX = (fx(DESC_SRC_BOX[0]), fy(DESC_SRC_BOX[1]), fx(DESC_SRC_RIGHT), fy(DESC_SRC_BOX[3]))
 
 # The lockup's box: the mark and the two lines, outer edge to outer edge.
+LOCKUP_Y = min(0.0, WORD_BOX[1])
 LOCKUP_W = max(WORD_BOX[2], DESC_BOX[2])
-LOCKUP_H = max(MARK_H, DESC_BOX[3])
+LOCKUP_H = max(MARK_H, DESC_BOX[3]) - LOCKUP_Y
 
 MARK = {"x": 0.0, "y": 0.0, "width": MARK_W, "height": MARK_H, "stroke": MARK_STROKE, "paths": MARK_PATHS}
-LOCKUP = {"x": 0.0, "y": 0.0, "width": LOCKUP_W, "height": LOCKUP_H, "word": WORD, "descriptor": DESCRIPTOR,
+LOCKUP = {"x": 0.0, "y": LOCKUP_Y, "width": LOCKUP_W, "height": LOCKUP_H, "word": WORD, "descriptor": DESCRIPTOR,
           "wordBox": WORD_BOX, "descriptorBox": DESC_BOX}
 
 # ---------------------------------------------------------------- outputs
@@ -183,7 +298,7 @@ def svg(kind: str, on: str, pad: float = 0.0) -> str:
     box = LOCKUP if kind == "lockup" else MARK
     ink = {"white": BLUE, "blue": WHITE, "mono-blue": BLUE, "mono-white": WHITE}[on]
     word = RED if on == "white" else ink
-    label = "FrancoBridge" if kind == "mark" else "FrancoBridge Consulting"
+    label = "FrancoBridge" if kind == "mark" else "FrancoBridge Consulting Inc."
     x, y, w, h = box["x"] - pad, box["y"] - pad, box["width"] + 2 * pad, box["height"] + 2 * pad
     p = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{f(x)} {f(y)} {f(w)} {f(h)}" width="{f(w)}" height="{f(h)}" role="img" aria-label="{label}">']
     p.append(mark_svg(ink))

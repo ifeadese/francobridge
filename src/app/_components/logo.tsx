@@ -3,7 +3,7 @@ import { COLORS, LOCKUP, MARK } from "@/lib/logo-paths";
 
 // The FrancoBridge Consulting logo as flat vector paths: the FB monogram,
 // four open strokes with round caps and joins, and beside it the wordmark,
-// "FrancoBridge" in red over "Consulting" in blue, traced from the client's
+// "FrancoBridge" in red over "Consulting Inc." in blue, from the client's
 // artwork so nothing here depends on a font loading. Geometry is generated
 // by brand/tools/build-logo.py.
 //
@@ -27,7 +27,7 @@ export function Logo({ variant = "lockup", on = "white", ...props }: Props) {
   const box = variant === "lockup" ? LOCKUP : MARK;
   const ink = on === "blue" ? BRAND.white : on === "white" ? BRAND.blue : "currentColor";
   const word = on === "white" ? BRAND.red : ink;
-  const label = variant === "mark" ? "FrancoBridge" : "FrancoBridge Consulting";
+  const label = variant === "mark" ? "FrancoBridge" : "FrancoBridge Consulting Inc.";
 
   return (
     <svg

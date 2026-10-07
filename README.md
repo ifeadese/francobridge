@@ -52,19 +52,19 @@ gradient runs from blue to white. Tokens live in `tailwind.config.ts` and
 ## Brand
 
 The identity is the client's own: the FB monogram with "FrancoBridge" in
-red and "Consulting" in blue, set in Avenir Next, in blue, white, gold and red.
+red and "Consulting Inc." in blue, set in Avenir, in blue, white, gold and red.
 
 - `brand/source/`: the client's artwork and collateral as supplied: the logo (4500 px JPEG), the pamphlet, the banner and the business card.
 - `brand/brand-book.html`: one self-contained page. Story, the mark, signatures, don'ts, colour and type, in use.
 - `src/app/_components/logo.tsx`: the logo as code, drawing `src/lib/logo-paths.ts`: `variant="lockup"` (mark and wordmark) or `"mark"`, `on="white"`, `"blue"` or `"mono"`.
 - `public/brand/`: SVG and PNG exports, social avatar, Open Graph image, icons.
-- `brand/tools/build-logo.py`: the source of truth. It redraws the monogram as clean stroke geometry measured from the artwork, traces the wordmark from it into outlines (Avenir Next is not a free font, so the SVGs need none), and writes the app icon.
+- `brand/tools/build-logo.py`: the source of truth. It redraws the monogram as clean stroke geometry measured from the artwork, traces the client's two lines from it into outlines (Avenir is not a free font, so the SVGs need none), sets "Inc." from the Avenir that ships with macOS, enlarges the wordmark by `WORDMARK_SCALE`, and writes the app icon. It needs a Mac for that font.
 - `brand/tools/export-logo.mjs`: renders PNGs and icons with sharp and inlines the SVGs into the book.
 
 To regenerate after a change to the geometry or the artwork:
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install numpy pillow potracer
+python3 -m venv .venv && .venv/bin/pip install numpy pillow potracer fonttools uharfbuzz
 .venv/bin/python brand/tools/build-logo.py
 node brand/tools/export-logo.mjs
 ```
