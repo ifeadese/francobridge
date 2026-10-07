@@ -23,13 +23,13 @@ export function Header() {
           <Logo
             variant="lockup"
             on="white"
-            className="h-8 w-auto transition-opacity duration-300 [grid-area:1/1] group-data-[dark]:opacity-0 md:h-11 lg:h-14"
+            className="h-9 w-auto transition-opacity duration-300 [grid-area:1/1] group-data-[dark]:opacity-0 md:h-[50px] lg:h-16"
           />
           <Logo
             variant="lockup"
             on="blue"
             aria-hidden
-            className="h-8 w-auto opacity-0 transition-opacity duration-300 [grid-area:1/1] group-data-[dark]:opacity-100 md:h-11 lg:h-14"
+            className="h-9 w-auto opacity-0 transition-opacity duration-300 [grid-area:1/1] group-data-[dark]:opacity-100 md:h-[50px] lg:h-16"
           />
         </Link>
         <div className="flex items-center gap-2">
