@@ -55,7 +55,7 @@ export function FrenchLine({
           </Link>
         </div>
       </div>
-      <Wave className="h-[var(--wave-h)]" />
+      <Wave className="h-[var(--wave-h)] w-full" />
     </div>
   );
 }

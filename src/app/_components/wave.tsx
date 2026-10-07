@@ -6,11 +6,14 @@ import cn from "classnames";
 // sweep behind and the field in front, offset so the sweep shows as a sliver
 // that is nothing at the left edge and widest past the crest. These are the
 // pamphlet's own curves (its inside spread, the two left panels), in its
-// units. The field fills to the bottom of the box, so a wave set at the foot
-// of a section runs straight into whatever follows in the field's colour.
+// units, with one change: where its two halves meet, the original turns a
+// small corner, invisible in print but plain at a card's size, so the join
+// here has handles along one line and the curve runs through it smoothly.
+// The field fills to the bottom of the box, so a wave set at the foot of a
+// section runs straight into whatever follows in the field's colour.
 //
-// The box stretches to its container (the curve is gentle enough to take
-// it), so set the width and height with className.
+// The box stretches to whatever size className gives it (the curve is
+// gentle enough to take it); set both the width and the height.
 const BLUE = "#283990";
 const GOLD = "#D2AC66";
 const RED = "#C42040";
@@ -24,8 +27,8 @@ export type WaveVariant = keyof typeof VARIANTS;
 
 const BOX = { x: 0, y: 200, width: 561.2, height: 240 };
 const BOTTOM = BOX.y + BOX.height + 1;
-const SWEEP = `M0 321.4C159.8 145 280.6 284.8 280.6 284.8C280.6 284.8 416 470.7 561.2 377V${BOTTOM}H0Z`;
-const FIELD = `M0 321.4C159.8 155.4 280.7 312.2 280.7 312.2C280.6 312.2 410.5 482.6 561.2 400V${BOTTOM}H0Z`;
+const SWEEP = `M0 321.4C159.8 145 252.6 249.6 280.6 284.8C314.8 327.9 416 470.7 561.2 377V${BOTTOM}H0Z`;
+const FIELD = `M0 321.4C159.8 155.4 253.3 276.5 280.7 312.2C314.2 355.9 410.5 482.6 561.2 400V${BOTTOM}H0Z`;
 
 export function Wave({
   variant = "blue",
@@ -42,7 +45,7 @@ export function Wave({
     <svg
       viewBox={`${BOX.x} ${BOX.y} ${BOX.width} ${BOX.height}`}
       preserveAspectRatio="none"
-      className={cn("block w-full", flip && "-scale-x-100", className)}
+      className={cn("block", flip && "-scale-x-100", className)}
       aria-hidden="true"
     >
       <path fill={sweep} d={SWEEP} />

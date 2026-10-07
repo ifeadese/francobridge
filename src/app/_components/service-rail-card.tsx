@@ -23,7 +23,11 @@ export function ServiceRailCard({ service, ink, flip = false }: { service: Servi
         FRAME[ink]
       )}
     >
-      <Wave variant={ink} flip={flip} className="pointer-events-none absolute inset-x-0 bottom-0 h-40 md:h-56" />
+      {/* The wave runs wider than the card, a stretch that eases the curve,
+          and the card clips it at both edges. */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 md:h-56" aria-hidden="true">
+        <Wave variant={ink} flip={flip} className="absolute bottom-0 left-[-15%] h-full w-[130%]" />
+      </div>
       <div className="relative flex flex-1 flex-col justify-between gap-10 p-6 pb-48 md:p-10 md:pb-[264px]">
         <div className="flex flex-col gap-4">
           <p className="regular-s">{service.short}</p>
