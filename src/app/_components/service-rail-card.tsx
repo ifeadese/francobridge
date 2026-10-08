@@ -32,7 +32,7 @@ export function ServiceRailCard({ service, ink, index }: { service: Service; ink
         <div className="flex flex-col gap-4">
           <p className="regular-s">{service.short}</p>
           <h3 className="h4">{service.cardTitle}</h3>
-          <p className="regular-m">{service.cardFor}</p>
+          <p className="text-[16px] leading-[1.5]">{service.cardFor}</p>
         </div>
         <span className="absolute bottom-5 right-6 md:bottom-6 md:right-8">
           <Tertiary as="span" filled onBlue>
