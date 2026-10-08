@@ -65,10 +65,10 @@ export function HeaderSurface({ children }: { children: React.ReactNode }) {
     const root = document.documentElement;
     const overflow = root.style.overflow;
     root.style.overflow = "hidden";
-    // Escape closes it, and so does widening past the tablet layout, where
+    // Escape closes it, and so does widening past the phone layout, where
     // the menu is hidden and would otherwise leave the page locked.
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    const wide = window.matchMedia("(min-width: 1024px)");
+    const wide = window.matchMedia("(min-width: 768px)");
     const onWide = () => wide.matches && setOpen(false);
     window.addEventListener("keydown", onKey);
     wide.addEventListener("change", onWide);
