@@ -21,12 +21,12 @@ const GOLD = "#D2AC66";
 const W = 561.2; // a card's slice, in the units of the pamphlet's wave
 // The curve rides in the top two thirds; below its lowest point the field
 // runs on as solid blue, room for anything set on the wave.
-const H = 320;
+const H = 230;
 const STEPS = 24; // cubic segments per card
 
 // In card units: s runs 0 to 2 over one period.
-const MID = 135;
-const AMPLITUDE = 60;
+const MID = 98;
+const AMPLITUDE = 40;
 const LEAN = 0.22; // share of the second harmonic
 const LEAN_PHASE = 0.9;
 const BAND_MIN = 4;

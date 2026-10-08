@@ -21,18 +21,18 @@ export function ServiceRailCard({ service, ink, index }: { service: Service; ink
     <Link
       href={`/services/${service.slug}`}
       className={cn(
-        "group relative flex min-h-[460px] w-full flex-col overflow-hidden border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue md:min-h-[560px]",
+        "group relative flex w-full flex-col overflow-hidden border focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue",
         "bg-white",
         FRAME[ink]
       )}
     >
       {/* Edge to edge, so the curve meets the next card's exactly. */}
-      <RunningWave index={index} className="pointer-events-none absolute inset-x-0 bottom-0 h-64 w-full md:h-80" />
-      <div className="relative flex flex-1 flex-col gap-10 p-6 pb-64 md:p-10 md:pb-80">
+      <RunningWave index={index} className="pointer-events-none absolute inset-x-0 bottom-0 h-[184px] w-full md:h-[230px]" />
+      <div className="relative flex flex-1 flex-col gap-10 p-6 pb-[184px] md:p-8 md:pb-[230px]">
         <div className="flex flex-col gap-4">
           <p className="regular-s">{service.short}</p>
           <h3 className="h3">{service.cardTitle}</h3>
-          <p className="regular-l">{service.cardFor}</p>
+          <p className="regular-m">{service.cardFor}</p>
         </div>
         <span className="absolute bottom-6 right-6 md:bottom-8 md:right-10">
           <Tertiary as="span" filled onBlue>
