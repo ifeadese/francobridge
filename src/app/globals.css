@@ -166,8 +166,8 @@ body {
   display: flex;
   flex: none;
   align-items: baseline;
-  gap: 40px;
-  padding-right: 40px;
+  gap: 32px;
+  padding-right: 32px;
   animation: marquee 60s linear infinite;
 }
 .marquee:hover .marquee-track { animation-play-state: paused; }

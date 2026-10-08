@@ -9,17 +9,17 @@ import { SERVICES } from "@/lib/services";
 const REPEATS = 3;
 
 function Point() {
-  return <span className="h-2 w-2 shrink-0 self-center rounded-full bg-gold" aria-hidden="true" />;
+  return <span className="h-1.5 w-1.5 shrink-0 self-center rounded-full bg-gold" aria-hidden="true" />;
 }
 
 function Track() {
   return (
     <div className="marquee-track">
       {Array.from({ length: REPEATS }, (_, i) => (
-        <span key={i} className="flex items-center gap-10">
+        <span key={i} className="flex items-center gap-8">
           {SERVICES.map((s) => (
-            <span key={s.slug} className="flex items-center gap-10">
-              <span className="font-heading text-[20px] font-medium md:text-[24px]">{s.short}</span>
+            <span key={s.slug} className="flex items-center gap-8">
+              <span className="font-heading text-[18px] font-medium md:text-[20px]">{s.short}</span>
               <Point />
             </span>
           ))}
@@ -31,7 +31,7 @@ function Track() {
 
 export function Marquee() {
   return (
-    <div className="marquee border-b border-white/20 bg-blue py-4 text-white md:py-5" aria-hidden="true">
+    <div className="marquee border-b border-white/20 bg-blue py-3 text-white md:py-4" aria-hidden="true">
       <Track />
       <Track />
     </div>
