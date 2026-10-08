@@ -15,7 +15,7 @@ export default function Contact() {
   return (
     <main>
       <Hero
-        title="Name the destination. We’ll build the bridge."
+        title="How can we help?"
         text="An exam date, a job, a study program, a move. Write a few lines and we will reply with what we would suggest and what it costs."
         compact
         wide
