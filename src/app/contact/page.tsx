@@ -19,7 +19,7 @@ export default function Contact() {
         compact
         wide
       />
-      <section className="section-tight">
+      <section className="mt-4">
         <div className="container-fb">
           <RequestForm />
         </div>
