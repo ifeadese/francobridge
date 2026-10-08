@@ -151,6 +151,17 @@ body {
   .field {
     @apply w-full border border-blue/25 bg-blue/[0.05] px-4 py-4 text-[20px] leading-[1.5] text-blue outline-none transition-colors placeholder:text-blue/50 focus:border-blue;
   }
+  /* A select drops the browser's own arrow for a blue chevron, set in from
+     the right edge by the field's own padding, with room kept so the text
+     never runs under it. */
+  .field-select {
+    @apply cursor-pointer appearance-none;
+    padding-right: 52px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 14 14' fill='none' stroke='%23283990' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 5l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 16px 16px;
+  }
 }
 
 /* ------------------------------------------------------------
