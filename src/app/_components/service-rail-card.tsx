@@ -27,14 +27,14 @@ export function ServiceRailCard({ service, ink, index }: { service: Service; ink
       )}
     >
       {/* Edge to edge, so the curve meets the next card's exactly. */}
-      <RunningWave index={index} className="pointer-events-none absolute inset-x-0 bottom-0 h-[212px] w-full md:h-[264px]" />
-      <div className="relative flex flex-1 flex-col gap-10 p-6 pb-[212px] md:p-8 md:pb-[264px]">
+      <RunningWave index={index} className="pointer-events-none absolute inset-x-0 bottom-0 h-[172px] w-full md:h-[196px]" />
+      <div className="relative flex flex-1 flex-col gap-10 p-6 pb-[172px] md:p-8 md:pb-[196px]">
         <div className="flex flex-col gap-4">
           <p className="regular-s">{service.short}</p>
-          <h3 className="h3">{service.cardTitle}</h3>
+          <h3 className="h4">{service.cardTitle}</h3>
           <p className="regular-m">{service.cardFor}</p>
         </div>
-        <span className="absolute bottom-6 right-6 md:bottom-8 md:right-10">
+        <span className="absolute bottom-5 right-6 md:bottom-6 md:right-8">
           <Tertiary as="span" filled onBlue>
             Learn more
           </Tertiary>
