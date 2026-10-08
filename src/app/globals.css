@@ -13,11 +13,6 @@
   --gold: #d2ac66;
   --red: #c42040;
   --gutter: 64px;
-  /* The closing wave's height: a share of the viewport width, so the curve
-     keeps its shape as the page widens, held between a floor for phones and
-     a ceiling for wide screens. The footer's marquee sizes its text from it,
-     so the two always grow and shrink together. */
-  --wave-h: clamp(80px, 12vw, 200px);
 }
 @media (max-width: 991px) {
   :root { --gutter: 48px; }
@@ -162,13 +157,14 @@ body {
    Marquee: two identical tracks side by side, each sliding left by its own
    width, so the second takes the first's place at the instant it loops.
    ------------------------------------------------------------ */
-/* Its text is a fifth of the closing wave's height, and its padding, spacing
-   and dots are in em, so the whole strip scales with the wave above it. */
+/* Its text grows with the width of the window, between 16px on phones and
+   40px on wide screens, and its padding, spacing and dots are in em, so the
+   whole strip scales with it. */
 .marquee {
   display: flex;
   overflow: hidden;
   white-space: nowrap;
-  font-size: calc(var(--wave-h) * 0.2);
+  font-size: clamp(16px, 2.4vw, 40px);
   padding-block: 0.8em;
 }
 .marquee-track {

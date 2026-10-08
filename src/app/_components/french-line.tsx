@@ -1,20 +1,16 @@
 import Link from "next/link";
-import { Wave } from "@/app/_components/wave";
 import { RING, RingArrow } from "@/app/_components/ring";
 
 // The French line as a closing banner: the brand's "two lines" with the
-// French in the lead for once, set at banner scale, its English under it,
-// and the pamphlet's wave along the foot, blue with its gold sweep. The
-// row is two halves: the lines in the left, and at the far right, on the
+// French in the lead for once, set at banner scale, its English under it.
+// The row is two halves: the lines in the left, and at the far right, on the
 // text's vertical middle, the page's last link: the ringed arrow alone,
 // large enough to ask to be pressed, its name carried for screen readers,
 // the ring filling with the brand blue on hover like every outlined thing.
 // The row holds on phones too: the French steps down a size and breaks
 // where `lines` says, one short line under another. It paints no
 // background of its own: the section it closes carries the colour, on the home page a
-// gradient from the blue down to white. The wave's blue field fills to its
-// bottom edge, so where the banner closes a page it runs straight into the
-// blue footer, as the pamphlet's waves do. English is the door; French is
+// gradient from the blue down to white. English is the door; French is
 // the room.
 export function FrenchLine({
   line,
@@ -55,7 +51,6 @@ export function FrenchLine({
           </Link>
         </div>
       </div>
-      <Wave className="h-[var(--wave-h)] w-full" />
     </div>
   );
 }

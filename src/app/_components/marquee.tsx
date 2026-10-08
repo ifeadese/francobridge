@@ -1,7 +1,7 @@
 import { SERVICES } from "@/lib/services";
 
-// The marquee: a strip in the blue at the head of the footer, sized from
-// the closing wave above it (see .marquee in globals.css). The
+// The marquee: a strip in the blue at the head of the footer, its text
+// growing with the window (see .marquee in globals.css). The
 // services run across in white, with a gold point between each, the gold of
 // the client's collateral. The track is drawn twice so the loop never shows
 // a seam; it pauses under the pointer and stands still for anyone who

@@ -41,8 +41,8 @@ CAD 100, paid on booking) and one event per program, and swap the links in.
 The layout follows a light, editorial school template: fixed white header with
 a hairline, a 1280px column, 80px between sections, display type in Figtree
 semibold (the closest open face to the Avenir Next of the client's wordmark),
-blue buttons, and white cards and a closing banner that end in the pamphlet's
-blue and gold wave (`src/app/_components/wave.tsx`). The palette is four
+blue buttons, and white service cards along whose feet the pamphlet's blue
+and gold wave runs continuously (`src/app/_components/running-wave.tsx`). The palette is four
 colours and nothing else: blue `#283990`, white, gold `#D2AC66` and red
 `#C42040`. Tailwind's default colours are replaced, not extended, so no other
 colour can slip in; lighter shades are the blue at reduced opacity, and the one
