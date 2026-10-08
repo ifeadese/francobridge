@@ -5,7 +5,7 @@ import { CONTACT, LOCATION } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Tell FrancoBridge where you are heading and we will reply with what we would suggest and what it costs.",
+  description: "Tell FrancoBridge where French needs to take you, and we will reply with what we would suggest and what it costs.",
 };
 
 // The contact page: a title, one line, the ways to reach us, then the form
@@ -15,7 +15,7 @@ export default function Contact() {
   return (
     <main>
       <Hero
-        title="Tell us where you are heading"
+        title="Name the destination. We’ll build the bridge."
         text="An exam date, a job, a study program, a move. Write a few lines and we will reply with what we would suggest and what it costs."
         compact
         wide
