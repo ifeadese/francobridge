@@ -23,13 +23,13 @@ export function Header() {
           <Logo
             variant="lockup"
             on="white"
-            className="h-8 w-auto transition-opacity duration-300 [grid-area:1/1] group-data-[dark]:opacity-0 md:h-11 lg:h-14"
+            className="h-10 w-auto transition-opacity duration-300 [grid-area:1/1] group-data-[dark]:opacity-0 md:h-11 lg:h-14"
           />
           <Logo
             variant="lockup"
             on="blue"
             aria-hidden
-            className="h-8 w-auto opacity-0 transition-opacity duration-300 [grid-area:1/1] group-data-[dark]:opacity-100 md:h-11 lg:h-14"
+            className="h-10 w-auto opacity-0 transition-opacity duration-300 [grid-area:1/1] group-data-[dark]:opacity-100 md:h-11 lg:h-14"
           />
         </Link>
         <div className="flex items-center gap-2">
@@ -46,12 +46,14 @@ export function Header() {
           </nav>
           {/* Presses in when clicked, like the rows of the phone menu. From
               tablets up, where the row has room, an arrow nudges forward on
-              hover; on phones there is no space to spare for it. */}
+              hover; on phones there is no space to spare for it. Narrow
+              phones get the short label, so the lockup can stand larger. */}
           <BookButton
             className="group/book gap-2 whitespace-nowrap transition-[background-color,color,transform] active:scale-[0.97] motion-reduce:active:scale-100 max-md:px-3 max-md:text-[15px] md:ml-4 lg:ml-8 group-data-[dark]:bg-white group-data-[dark]:text-blue group-data-[dark]:hover:bg-gold"
             size="compact"
           >
-            Book a consultation
+            <span className="sm:hidden">Book now</span>
+            <span className="hidden sm:inline">Book a consultation</span>
             <svg
               aria-hidden
               width="16"
