@@ -10,23 +10,23 @@
 }
 
 .markdown h2 {
-  @apply font-heading font-normal text-navy text-[35px] leading-none tracking-tight mt-14 mb-5;
+  @apply font-heading font-semibold text-blue text-[35px] leading-none tracking-tight mt-14 mb-5;
 }
 
 .markdown h3 {
-  @apply font-heading font-normal text-navy text-[30px] leading-none tracking-tight mt-10 mb-4;
+  @apply font-heading font-semibold text-blue text-[30px] leading-none tracking-tight mt-10 mb-4;
 }
 
 .markdown a {
-  @apply underline decoration-navy/40 underline-offset-4 hover:text-blue hover:decoration-blue transition-colors duration-200;
+  @apply underline decoration-blue/40 underline-offset-4 hover:text-blue/70 hover:decoration-blue transition-colors duration-200;
 }
 
 .markdown blockquote {
-  @apply border-l border-navy pl-6 font-heading text-[24px] text-navy/70;
+  @apply border-l border-blue pl-6 font-heading text-[24px] text-blue/70;
 }
 
 .markdown code {
-  @apply bg-grey-3 px-1.5 py-0.5 text-base;
+  @apply bg-blue/[0.05] px-1.5 py-0.5 text-base;
 }
 
 .markdown ul {

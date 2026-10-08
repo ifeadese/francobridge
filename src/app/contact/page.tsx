@@ -4,22 +4,22 @@ import { RequestForm } from "@/app/_components/request-form";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Tell FrancoBridge where you are heading and we will reply with what we would suggest and what it costs.",
+  description: "Get in touch with FrancoBridge. Tell us a little about what you need, and we’ll get back to you.",
 };
 
-// The contact page is the form and nothing else: a title, one line, the
-// fields and the button, on the page column, as wide as the header and
-// footer. Booking lives in the header on every page.
+// The contact page: a title, one line on what to write, then the form, on
+// the page column, as wide as the header and footer. The phone numbers and
+// email are in the footer; booking lives in the header on every page.
 export default function Contact() {
   return (
     <main>
       <Hero
-        title="Tell us where you are heading"
-        text="An exam date, a job, a study program, a move. Write a few lines and we will reply with what we would suggest and what it costs."
+        title="How can we help?"
+        text="Tell us a little about what you need, and we’ll get back to you."
         compact
         wide
       />
-      <section className="mt-0">
+      <section className="mt-4">
         <div className="container-fb">
           <RequestForm />
         </div>

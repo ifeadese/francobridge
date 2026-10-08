@@ -49,7 +49,7 @@ export const FAQS: Faq[] = [
   {
     q: "Where are classes held?",
     a: [
-      "Online. FrancoBridge is based in Ottawa, Ontario, and every program runs online, so it reaches beyond the city as the school grows.",
+      "Online. FrancoBridge is based in Ottawa, Ontario, and every program runs online, so we work with clients across Canada and North America.",
     ],
   },
   {
@@ -57,9 +57,9 @@ export const FAQS: Faq[] = [
     a: ["It depends on why you need French. The usual fit:"],
     groups: [
       { label: "Aspiring immigrants", services: ["tcf-tef-preparation", "general-french", "immigration-pathways"] },
-      { label: "Newcomers", services: ["professional-french", "general-french", "career-pathway-guidance"] },
-      { label: "Students", services: ["tcf-tef-preparation", "general-french", "career-pathway-guidance"] },
-      { label: "Professionals", services: ["professional-french", "career-pathway-guidance", "translation"] },
+      { label: "Newcomers", services: ["general-french", "professional-french", "bilingual-interview-preparation"] },
+      { label: "Students", services: ["tcf-tef-preparation", "general-french", "academic-support"] },
+      { label: "Professionals", services: ["sle-preparation", "professional-french", "bilingual-interview-preparation", "translation"] },
     ],
     end: "Not sure? Your consultation ends with a recommended program.",
     cta: "consultation",
@@ -67,9 +67,9 @@ export const FAQS: Faq[] = [
   {
     q: "What is not included?",
     a: [
-      "Official TCF or TEF examination fees, which you pay directly to the test centre.",
+      "Official examination fees for the TCF, TEF, DELF or DALF, which you pay directly to the test centre.",
       "Regulated immigration advice or representation, which we refer to an appropriately authorized immigration professional.",
-      "Education and career pathway services are offered in French only.",
+      "Academic support and interview preparation are offered in French only.",
     ],
     cta: "contact",
   },

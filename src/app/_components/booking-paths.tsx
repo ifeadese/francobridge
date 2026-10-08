@@ -15,7 +15,7 @@ const PATHS: { id: PathId; who: string; tag: string; title: string; meta?: strin
   {
     id: "consultation",
     who: "New students",
-    tag: "bg-yellow-light",
+    tag: "bg-gold text-blue",
     title: "Book a virtual consultation",
     meta: CONSULTATION.label,
     blurb:
@@ -24,7 +24,7 @@ const PATHS: { id: PathId; who: string; tag: string; title: string; meta?: strin
   {
     id: "lesson",
     who: "Enrolled students",
-    tag: "bg-blue-light",
+    tag: "bg-blue text-white",
     title: "Book a lesson",
     blurb:
       "For students already enrolled in a program. Choose your program and pick a time for your next session, within the hours agreed at your consultation.",
@@ -101,8 +101,8 @@ export function BookingPaths() {
           <article
             key={path.id}
             className={cn(
-              "border border-grey-8 transition-colors duration-300",
-              isOpen ? "bg-grey-3" : "bg-white hover:bg-grey-3 has-[button:focus-visible]:bg-grey-3",
+              "border border-blue/10 transition-colors duration-300",
+              isOpen ? "bg-blue/[0.05]" : "bg-white hover:bg-blue/[0.05] has-[button:focus-visible]:bg-blue/[0.05]",
               // Phones stack the cards, so the slim one moves above the open
               // one rather than wait below a whole calendar.
               isSlim && "max-md:order-first md:sticky md:top-[148px]"
@@ -124,11 +124,11 @@ export function BookingPaths() {
                   the details wrap, so both always show. */}
               <span
                 className={cn(
-                  "regular-s flex text-navy/70",
+                  "regular-s flex text-blue/70",
                   isSlim ? "flex-col items-start gap-2" : "flex-wrap items-center justify-between gap-x-4 gap-y-2"
                 )}
               >
-                <span className={cn("whitespace-nowrap px-2.5 py-0.5 text-navy", path.tag)}>{path.who}</span>
+                <span className={cn("whitespace-nowrap px-2.5 py-0.5", path.tag)}>{path.who}</span>
                 {/* Breaks only between the parts, never inside one. */}
                 {path.meta && (
                   <span>
@@ -153,10 +153,10 @@ export function BookingPaths() {
 
               {!isOpen && (
                 <span className="tertiary mt-6 whitespace-nowrap">
-                  <span className="underline-offset-4 group-hover:text-blue group-hover:underline">
+                  <span className="underline-offset-4 group-hover:text-blue/70 group-hover:underline">
                     {isSlim ? "Switch" : "Choose this"}
                   </span>
-                  <span className="tertiary-icon group-hover:border-blue group-hover:bg-blue group-hover:text-ivory" aria-hidden>
+                  <span className="tertiary-icon group-hover:border-blue group-hover:bg-blue group-hover:text-white" aria-hidden>
                     <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M2 7h10M8 3l4 4-4 4" />
                     </svg>
@@ -202,7 +202,7 @@ function LessonPicker({
   return (
     <div className="flex flex-col gap-6">
       <fieldset>
-        <legend className="regular-s mb-3 text-navy/70">Which program are you enrolled in?</legend>
+        <legend className="regular-s mb-3 text-blue/70">Which program are you enrolled in?</legend>
         <div className="flex flex-wrap gap-2">
           {BOOKABLE.map((s) => (
             <label key={s.slug} className="cursor-pointer">
@@ -214,7 +214,7 @@ function LessonPicker({
                 onChange={() => onSelect(s.slug)}
                 className="peer sr-only"
               />
-              <span className="regular-s inline-flex border border-navy px-4 py-2 transition-colors hover:border-blue hover:text-blue peer-checked:border-navy peer-checked:bg-navy peer-checked:text-ivory peer-checked:hover:border-navy peer-checked:hover:text-ivory peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue">
+              <span className="regular-s inline-flex border border-blue px-4 py-2 transition-colors hover:text-blue/70 peer-checked:border-blue peer-checked:bg-blue peer-checked:text-white peer-checked:hover:border-blue peer-checked:hover:text-white peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue">
                 {s.short}
               </span>
             </label>
@@ -224,11 +224,11 @@ function LessonPicker({
       {selected ? (
         <CalInline key={selected} namespace={`lesson-${selected}`} calLink={CAL.services[selected]} />
       ) : (
-        <p className="regular-m border-l-2 border-navy pl-6">Choose your program to see the times open for it.</p>
+        <p className="regular-m border-l-2 border-blue pl-6">Choose your program to see the times open for it.</p>
       )}
-      <p className="regular-s text-navy/70">
+      <p className="regular-s text-blue/70">
         Not enrolled yet? Lessons follow a consultation.{" "}
-        <button type="button" onClick={onConsult} className="text-navy underline underline-offset-4 transition-colors hover:text-blue">
+        <button type="button" onClick={onConsult} className="text-blue underline underline-offset-4 transition-colors hover:text-blue/70">
           Book a consultation instead
         </button>
       </p>

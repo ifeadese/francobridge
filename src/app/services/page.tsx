@@ -5,15 +5,15 @@ import { ServicesRail } from "@/app/_components/services-rail";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "TCF and TEF Canada preparation, professional French, General French A1 to C1, education and career pathway guidance, French immigration pathway information, and translation.",
+    "Language coaching from A1 to C1, TCF, TEF, DELF and DALF preparation, Government of Canada Second Language Evaluation preparation, professional French, interview preparation for bilingual roles, academic support, French immigration pathway support and translation.",
 };
 
 export default function Services() {
   return (
     <main>
       <Hero
-        title="Our Programs"
-        text="Every program starts with the same conversation: a one-hour consultation that finds your level and ends with a plan."
+        title="Our Services"
+        text="Every service starts with the same conversation: a one-hour consultation that finds your level and ends with a plan."
         wide
       />
 

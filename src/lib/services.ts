@@ -1,7 +1,11 @@
-// The six services, in the order they appear on the site. TCF & TEF first:
-// the brief asks for it to be the most visible. What a service page's About
-// band shows (lessons, method, includes) states only what the brief and the
-// client's answers say; nothing there is inferred.
+// The services, in the order they appear on the site. The names follow the
+// client's pamphlet ("Our Services"); TCF & TEF stays first because the
+// brief asked for it to be the most visible. What a service page's About
+// band shows (lessons, method, includes) states only what the brief, the
+// pamphlet and the client's answers say; nothing there is inferred. The
+// pamphlet's Academic Support and Interview Preparation split the brief's
+// education and career pathway service in two, each keeping its own half of
+// that service's list.
 export type Service = {
   slug: string;
   name: string;
@@ -29,13 +33,13 @@ export type Service = {
 export const SERVICES: Service[] = [
   {
     slug: "tcf-tef-preparation",
-    name: "TCF & TEF Canada Preparation",
-    short: "TCF & TEF",
+    name: "TCF/TEF and DELF/DALF Exam Preparation",
+    short: "TCF/TEF & DELF/DALF",
     headline: "Prepare with purpose. Practice with guidance.",
-    sub: "The TCF and TEF Canada are the French tests recognised for Canadian immigration and citizenship. We start from your target score and test date, then train the four skills the exam measures, with mock exams along the way so the real one holds no surprises.",
+    sub: "The TCF and TEF Canada are the French tests recognised for Canadian immigration and citizenship; the DELF and DALF are the diplomas universities and employers ask for. We start from your target score and test date, then train the four skills the exam measures, with mock exams along the way so the real one holds no surprises.",
     fr: "Préparez-vous avec méthode. Passez l’examen avec confiance.",
     intro: [
-      "The TCF Canada and TEF Canada are the French proficiency tests recognised for Canadian immigration and citizenship. Preparation is not the same as learning French: it is learning the format, the timing and what the examiners reward, then practising until it is familiar.",
+      "The TCF Canada and TEF Canada are the French proficiency tests recognised for Canadian immigration and citizenship; the DELF and DALF are the French diplomas that universities and employers ask for. Preparation is not the same as learning French: it is learning the format, the timing and what the examiners reward, then practising until it is familiar.",
       "We start with your target score and your test date, then work backwards. Every session is built around the four skills the exam measures, with mock examinations along the way so the real one holds no surprises.",
     ],
     lessons: true,
@@ -45,6 +49,7 @@ export const SERVICES: Service[] = [
         items: [
           "TEF Canada orientation",
           "TEF preparation courses",
+          "DELF and DALF preparation",
           "Listening preparation",
           "Reading preparation",
           "Written expression",
@@ -58,58 +63,23 @@ export const SERVICES: Service[] = [
       },
     ],
     notes: [
-      "FrancoBridge preparation fees do not include official TCF or TEF examination fees. You register and pay for the examination directly with the test centre.",
+      "FrancoBridge preparation fees do not include official examination fees. You register and pay for the examination directly with the test centre.",
     ],
     cta: "consultation",
-    cardTitle: "Pass your TCF or TEF Canada with confidence.",
-    cardFor: "For anyone who needs an official French score for immigration or citizenship, and wants to walk into the exam knowing exactly what to expect.",
+    cardTitle: "Pass your TCF, TEF, DELF or DALF with confidence.",
+    cardFor: "For anyone who needs an official French score or diploma for immigration, citizenship, study or work.",
     ctaLabel: "Explore exam preparation",
     related: ["general-french", "immigration-pathways"],
   },
   {
-    slug: "professional-french",
-    name: "Professional French",
-    short: "Professional French",
-    headline: "French for the Workplace",
-    sub: "For people who already have some French and need it for meetings, emails, presentations and interviews. Sessions are built around your job, your real documents and the vocabulary of your field, so what you practise one day you can use the next.",
-    fr: "Le français au travail, avec assurance.",
-    intro: [
-      "Workplace French is its own register: meetings, emails, presentations, interviews and the small talk in between. This program is for people who already have some French and need to use it at work, in business or in the public service.",
-      "Sessions are built around your job. We work with your real documents, your real meetings and the vocabulary of your field, so what you practise on Tuesday you can use on Wednesday.",
-    ],
-    lessons: true,
-    includes: [
-      {
-        title: "What’s included",
-        items: [
-          "French for professionals",
-          "Workplace French",
-          "Business French",
-          "French communication coaching",
-          "French presentation skills",
-          "Professional vocabulary",
-          "French interview preparation",
-          "Workplace conversation",
-          "Government/public-service French preparation",
-          "Second Language Evaluation preparation",
-        ],
-      },
-    ],
-    cta: "consultation",
-    cardTitle: "Speak French with confidence at work.",
-    cardFor: "For professionals with some French already, who need to use it in meetings, emails, interviews and the public service.",
-    ctaLabel: "Explore professional French",
-    related: ["career-pathway-guidance", "general-french"],
-  },
-  {
     slug: "general-french",
-    name: "General French Programs",
-    short: "General French A1–C1",
+    name: "Language Coaching",
+    short: "Language Coaching · A1–C1",
     headline: "French A1 to C1",
     sub: "A clear path from your first words to confident, nuanced French. Each level builds listening, speaking, reading and writing together, and everything you learn is practised in real conversation.",
     fr: "Du niveau A1 au niveau C1, à votre rythme.",
     intro: [
-      "A clear path through the six levels of the Common European Framework, from your first words to confident, nuanced French. Each level builds listening, speaking, reading and writing together, with grammar and vocabulary taught in context rather than in isolation.",
+      "A clear path through the levels of the Common European Framework, from your first words to confident, nuanced French. Each level builds listening, speaking, reading and writing together, with grammar and vocabulary taught in context rather than in isolation.",
       "Our method is simple: Learn, Practice, Communicate, Apply. You learn a structure, practise it with guidance, use it in real conversation, then apply it to your own life, studies or work.",
     ],
     lessons: true,
@@ -143,19 +113,82 @@ export const SERVICES: Service[] = [
     ],
     cta: "consultation",
     cardTitle: "Learn French from A1 to C1, online.",
-    cardFor: "For adults starting from zero or picking French back up, who want a structured path and a level they can measure.",
-    ctaLabel: "Explore French A1 to C1",
+    cardFor: "For adults starting from zero or picking French back up, who want a clear path and a level to measure.",
+    ctaLabel: "Explore language coaching",
     related: ["tcf-tef-preparation", "professional-french"],
   },
   {
-    slug: "career-pathway-guidance",
-    name: "Education Pathway Guidance & Career Development",
-    short: "Education & Career Pathway Guidance",
-    headline: "Turn Language Skills into Career Opportunities.",
-    sub: "A resume and cover letter that read naturally in French, practice for the interview in the language it will be held in, and a clear plan for French-language study in Canada. Everything is delivered in French, so the service is also the practice.",
-    fr: "Faites de vos compétences en français une carrière.",
+    slug: "sle-preparation",
+    name: "Government of Canada Second Language Evaluation Preparation",
+    short: "Second Language Evaluation (SLE)",
+    headline: "Reach the level your position asks for.",
+    sub: "The Second Language Evaluation is the Government of Canada’s test of French for bilingual positions, in three parts: reading, writing and oral proficiency, each rated A, B or C. We prepare you for the part you need, at the level your position asks for.",
+    fr: "Le niveau exigé par votre poste, à votre portée.",
     intro: [
-      "Learning French opens doors. This service helps you walk through them: a resume and cover letter that read naturally in French, interview practice in the language you will be interviewed in, and a clear plan for French-language study in Canada.",
+      "The Second Language Evaluation is the Government of Canada’s test of second-language proficiency for bilingual positions in the federal public service. It has three parts, reading comprehension, written expression and oral proficiency, each rated A, B or C, and a position states the level it requires in each.",
+      "We prepare you for the part you need, at the level your position asks for: the format of each test, the kind of French it rewards, and practice until it is familiar. The evaluation itself is administered by the Public Service Commission of Canada through your department or hiring process; FrancoBridge prepares you for it.",
+    ],
+    lessons: true,
+    includes: [
+      {
+        title: "What’s included",
+        items: [
+          "Government/public-service French preparation",
+          "Second Language Evaluation preparation",
+          "Reading comprehension preparation",
+          "Written expression preparation",
+          "Oral proficiency preparation",
+        ],
+      },
+    ],
+    cta: "consultation",
+    cardTitle: "Prepare for the Second Language Evaluation.",
+    cardFor: "For public servants and candidates for bilingual roles who need a B or C in reading, writing or speaking.",
+    ctaLabel: "Explore SLE preparation",
+    related: ["professional-french", "bilingual-interview-preparation"],
+  },
+  {
+    slug: "professional-french",
+    name: "Professional French",
+    short: "Professional French",
+    headline: "French for the Workplace",
+    sub: "For people who already have some French and need it for meetings, emails, presentations and interviews. Sessions are built around your job, your real documents and the vocabulary of your field, so what you practise one day you can use the next.",
+    fr: "Le français au travail, avec assurance.",
+    intro: [
+      "Workplace French is its own register: meetings, emails, presentations, interviews and the small talk in between. This program is for people who already have some French and need to use it at work, in business or in the public service.",
+      "Sessions are built around your job. We work with your real documents, your real meetings and the vocabulary of your field, so what you practise on Tuesday you can use on Wednesday.",
+    ],
+    lessons: true,
+    includes: [
+      {
+        title: "What’s included",
+        items: [
+          "French for professionals",
+          "Workplace French",
+          "Business French",
+          "French communication coaching",
+          "French presentation skills",
+          "Professional vocabulary",
+          "French interview preparation",
+          "Workplace conversation",
+        ],
+      },
+    ],
+    cta: "consultation",
+    cardTitle: "Speak French with confidence at work.",
+    cardFor: "For professionals with some French already, who need it for meetings, emails, interviews and presentations.",
+    ctaLabel: "Explore professional French",
+    related: ["sle-preparation", "bilingual-interview-preparation"],
+  },
+  {
+    slug: "bilingual-interview-preparation",
+    name: "Interview Preparation for Bilingual Roles",
+    short: "Bilingual Interview Preparation",
+    headline: "Walk into the bilingual interview ready.",
+    sub: "A resume and cover letter that read naturally in French, and practice for the interview in the language it will be held in, with the questions, the vocabulary and the presentation your field expects. Everything is delivered in French, so the service is also the practice.",
+    fr: "Prêt pour l’entrevue, dans les deux langues.",
+    intro: [
+      "A bilingual role is won in the interview. This service gets you there: a resume and cover letter that read naturally in French, interview practice in the language you will be interviewed in, and the presentation and workplace communication your field expects.",
       "Everything here is delivered in French. It is both the service and the practice.",
     ],
     includes: [
@@ -168,6 +201,31 @@ export const SERVICES: Service[] = [
           "French-language interview preparation",
           "Workplace communication",
           "Professional presentation preparation",
+        ],
+      },
+    ],
+    notes: ["These services are offered only in French."],
+    cta: "consultation",
+    cardTitle: "Prepare for the bilingual interview.",
+    cardFor: "For candidates for bilingual roles who need a French resume, interview practice and confidence in French.",
+    ctaLabel: "Explore interview preparation",
+    related: ["professional-french", "sle-preparation"],
+  },
+  {
+    slug: "academic-support",
+    name: "Academic Support",
+    short: "Academic Support",
+    headline: "Study in French, with a plan.",
+    sub: "A clear plan for French-language study in Canada: which programs exist, what each asks for, and how to meet the language requirement. Everything is delivered in French, so the service is also the practice.",
+    fr: "Étudier en français, avec un plan.",
+    intro: [
+      "French-language colleges and universities in Canada open doors that English-only study does not. This service helps you plan the way in: the programs that exist, the one that fits, what admission asks for, and the language level you will need to meet.",
+      "Everything here is delivered in French. It is both the service and the practice.",
+    ],
+    includes: [
+      {
+        title: "What’s included",
+        items: [
           "French-language educational opportunities",
           "Program selection",
           "Admission planning",
@@ -177,21 +235,21 @@ export const SERVICES: Service[] = [
     ],
     notes: ["These services are offered only in French."],
     cta: "consultation",
-    cardTitle: "Plan your studies and career, in French.",
-    cardFor: "For newcomers and students who want a French resume, interview practice and a plan for French-language study in Canada.",
-    ctaLabel: "Explore career guidance",
-    related: ["professional-french", "immigration-pathways"],
+    cardTitle: "Plan your French-language studies in Canada.",
+    cardFor: "For students who want to study in French in Canada and need a program, an admission plan and the level.",
+    ctaLabel: "Explore academic support",
+    related: ["tcf-tef-preparation", "general-french"],
   },
   {
     slug: "immigration-pathways",
-    name: "French Immigration Pathway Information & Guidance",
-    short: "Immigration Pathway Guidance",
+    name: "French Immigration Pathway Support",
+    short: "Immigration Pathway Support",
     headline: "Understand the French-language pathways.",
     sub: "Canada has immigration pathways that reward French, and each sets its own language requirement. We show you which pathways exist, what level each expects, and how to build a preparation plan that gets you there.",
     fr: "Comprendre les voies d’immigration francophones.",
     intro: [
       "Canada has immigration pathways that reward French, and each one sets its own language requirement. FrancoBridge helps you understand what is publicly available: which pathways exist, what level of French each expects, and how to build a preparation plan that gets you there.",
-      "We are a language and preparation centre, not an immigration consultancy. Where regulated immigration advice or representation is required, we refer you to an appropriately authorized immigration professional.",
+      "We are a language and preparation firm, not an immigration consultancy. Where regulated immigration advice or representation is required, we refer you to an appropriately authorized immigration professional.",
     ],
     includes: [
       {
@@ -209,14 +267,14 @@ export const SERVICES: Service[] = [
     ],
     cta: "consultation",
     cardTitle: "Understand the French-language immigration pathways.",
-    cardFor: "For aspiring immigrants who want to know which French-language pathways exist, what level each asks for, and how to prepare.",
-    ctaLabel: "Explore immigration guidance",
-    related: ["tcf-tef-preparation", "career-pathway-guidance"],
+    cardFor: "For aspiring immigrants who want to know which French-language pathways exist and what level each needs.",
+    ctaLabel: "Explore immigration support",
+    related: ["tcf-tef-preparation", "general-french"],
   },
   {
     slug: "translation",
-    name: "Translation & Language Support",
-    short: "Translation & Proofreading",
+    name: "Translation Services",
+    short: "Translation",
     headline: "Translation, editing and revision.",
     sub: "Applications, letters, resumes, certificates and reports that have to read perfectly in the other language. Send the document and your deadline, and you get a quote and a turnaround before any work starts.",
     fr: "Traduction et révision, dans les deux sens.",
@@ -239,9 +297,9 @@ export const SERVICES: Service[] = [
     ],
     cta: "consultation",
     cardTitle: "Translate and proofread English and French",
-    cardFor: "For anyone with an application, letter, certificate or report that has to read perfectly in the other language.",
+    cardFor: "For anyone with an application, letter, certificate or report that must read perfectly in the other language.",
     ctaLabel: "Request a translation quote",
-    related: ["career-pathway-guidance", "professional-french"],
+    related: ["bilingual-interview-preparation", "professional-french"],
   },
 ];
 

@@ -12,7 +12,7 @@ import { NAV } from "@/lib/constants";
 // is tight, a smaller lockup and closer links, so it fits the column; from
 // 1024px it opens out. Over a dark surface
 // the header carries data-dark, and everything here swaps to its light
-// treatment: the inverted lockup, ivory links and an ivory button.
+// treatment: the white lockup, white links and an white button.
 export function Header() {
   return (
     <HeaderSurface>
@@ -21,15 +21,15 @@ export function Header() {
           {/* Both lockups, stacked in one cell, and the one for the surface
               under the header faded in. */}
           <Logo
-            variant="stacked"
-            on="ivory"
-            className="h-14 w-auto transition-opacity duration-300 [grid-area:1/1] group-data-[dark]:opacity-0 md:h-16 lg:h-[84px]"
+            variant="lockup"
+            on="white"
+            className="h-10 w-auto transition-opacity duration-300 [grid-area:1/1] group-data-[dark]:opacity-0 md:h-11 lg:h-14"
           />
           <Logo
-            variant="stacked"
+            variant="lockup"
             on="blue"
             aria-hidden
-            className="h-14 w-auto opacity-0 transition-opacity duration-300 [grid-area:1/1] group-data-[dark]:opacity-100 md:h-16 lg:h-[84px]"
+            className="h-10 w-auto opacity-0 transition-opacity duration-300 [grid-area:1/1] group-data-[dark]:opacity-100 md:h-11 lg:h-14"
           />
         </Link>
         <div className="flex items-center gap-2">
@@ -38,7 +38,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-2 py-1.5 text-[17px] text-navy transition-colors hover:text-blue group-data-[dark]:text-ivory group-data-[dark]:hover:text-yellow lg:px-3"
+                className="px-2 py-1.5 text-[17px] text-blue transition-colors hover:text-blue/70 group-data-[dark]:text-white group-data-[dark]:hover:text-gold lg:px-3"
               >
                 {item.label}
               </Link>
@@ -46,12 +46,14 @@ export function Header() {
           </nav>
           {/* Presses in when clicked, like the rows of the phone menu. From
               tablets up, where the row has room, an arrow nudges forward on
-              hover; on phones there is no space to spare for it. */}
+              hover; on phones there is no space to spare for it. Narrow
+              phones get the short label, so the lockup can stand larger. */}
           <BookButton
-            className="group/book gap-2 whitespace-nowrap transition-[background-color,color,transform] active:scale-[0.97] motion-reduce:active:scale-100 max-md:px-3 max-md:text-[15px] md:ml-4 lg:ml-8 group-data-[dark]:bg-ivory group-data-[dark]:text-navy group-data-[dark]:hover:bg-white"
+            className="group/book gap-2 whitespace-nowrap transition-[background-color,color,transform] active:scale-[0.97] motion-reduce:active:scale-100 max-md:px-3 max-md:text-[15px] md:ml-4 lg:ml-8 group-data-[dark]:bg-white group-data-[dark]:text-blue group-data-[dark]:hover:bg-gold"
             size="compact"
           >
-            Book a consultation
+            <span className="sm:hidden">Book now</span>
+            <span className="hidden sm:inline">Book a consultation</span>
             <svg
               aria-hidden
               width="16"

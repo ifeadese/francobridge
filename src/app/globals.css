@@ -2,24 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-/* v2: an editorial school layout. Warm white ground, near-black type and
-   buttons, light serif display type, a 1280px centred column with 64px
-   gutters, 20px body on a 760px line, 80px between sections, pastel banners
-   with a pattern strip. */
+/* v3: the client's identity on an editorial school layout. Four colours
+   and only four: blue, white, gold and red. Lighter shades are the blue at
+   reduced strength, which is the blue mixed with white. One geometric sans
+   set semibold for display, a 1280px centred column with 64px gutters, 20px
+   body on a 760px line, 80px between sections. */
 :root {
-  --white: #fffbf8;
-  --black: #1d1a17;
-  --navy: #1B2556;
-  --grey-3: #f8f4f1;
-  --grey-8: #ede9e6;
-  --grey-80: #4a4744;
-  --blue: #0e397f;
-  --red: #db2517;
-  --blue-light: #dbe4f3;
-  --red-light: #fbe0dc;
-  --yellow: #ffdf8b;
-  --yellow-light: #f9e7b8;
-  --green-light: #dfe9dc;
+  --blue: #283990;
+  --white: #ffffff;
+  --gold: #d2ac66;
+  --red: #c42040;
   --gutter: 64px;
 }
 @media (max-width: 991px) {
@@ -27,6 +19,12 @@
 }
 @media (max-width: 767px) {
   :root { --gutter: 24px; }
+}
+
+/* Tailwind's base styles give placeholders a grey of their own; use the
+   blue at half strength instead, so no colour outside the four shows. */
+@layer base {
+  input::placeholder, textarea::placeholder { color: rgb(40 57 144 / 0.5); }
 }
 
 html { scroll-padding-top: 112px; }
@@ -37,10 +35,10 @@ html { scroll-padding-top: 112px; }
 main { padding-bottom: 56px; }
 @media (min-width: 768px) { main { padding-bottom: 80px; } }
 
-/* Body text in the logo's navy, like the headings. */
+/* Body text in the blue, like the headings. */
 body {
   background-color: var(--white);
-  color: var(--navy);
+  color: var(--blue);
   font-size: 18px;
   line-height: 1.5;
   letter-spacing: -0.005em;
@@ -58,57 +56,57 @@ body {
     padding-right: var(--gutter);
   }
 
-  /* Type. Marcellus, the face of the logo, in its one weight, set close,
-     in the logo's navy. */
+  /* Type. Figtree, the closest open face to the Avenir Next of the
+     client's wordmark and print, set semibold and close for every heading,
+     in the blue. */
   .h1 {
-    @apply font-heading font-normal leading-[1.04] text-navy;
-    font-size: clamp(48px, 7vw, 100px);
-    letter-spacing: -0.012em;
+    @apply font-heading font-semibold leading-[1.02] text-blue;
+    font-size: clamp(44px, 6.4vw, 92px);
+    letter-spacing: -0.03em;
   }
   .h2 {
-    @apply font-heading font-normal leading-[1.04] text-navy;
-    font-size: clamp(40px, 4.2vw, 60px);
-    letter-spacing: -0.01em;
+    @apply font-heading font-semibold leading-[1.04] text-blue;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: -0.025em;
   }
   .h3 {
-    @apply font-heading font-normal leading-none text-navy;
-    font-size: clamp(30px, 2.7vw, 38px);
-    letter-spacing: -0.012em;
+    @apply font-heading font-semibold leading-none text-blue;
+    font-size: clamp(28px, 2.6vw, 36px);
+    letter-spacing: -0.02em;
   }
   .h4 {
-    @apply font-heading font-normal leading-none text-navy;
-    font-size: clamp(26px, 2.2vw, 32px);
-    letter-spacing: -0.005em;
+    @apply font-heading font-semibold leading-none text-blue;
+    font-size: clamp(24px, 2.1vw, 30px);
+    letter-spacing: -0.015em;
   }
   .banner-heading {
-    @apply font-heading font-normal text-navy;
-    font-size: clamp(46px, 5.3vw, 76px);
+    @apply font-heading font-semibold text-blue;
+    font-size: clamp(42px, 5vw, 72px);
     line-height: 1.02;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.025em;
   }
   .large-number {
-    @apply font-heading font-normal leading-none text-navy;
+    @apply font-heading font-semibold leading-none text-blue;
     font-size: clamp(72px, 9vw, 130px);
-    letter-spacing: -0.012em;
+    letter-spacing: -0.03em;
   }
   .regular-l { @apply text-[20px] leading-[1.5]; }
   .regular-m { @apply text-[18px] leading-[1.5]; }
   .regular-s { @apply text-[15px] leading-[1.5]; }
   .fr-line {
-    @apply font-heading font-normal text-navy/70;
+    @apply font-heading font-medium text-blue/70;
   }
 
-  /* Buttons: square-cornered, both in the logo's navy. The primary is filled
-     and goes black on hover; the secondary is an outline that fills with the
-     brand blue. The same two rules hold for every ring and disc on the site.
-     Red is never a button in this layout; it lives in the mark and the
-     patterns. */
+  /* Buttons: square-cornered, both in the blue. The primary is filled and
+     turns gold on hover; the secondary is an outline that fills with the
+     blue. The same two rules hold for every ring and disc on the site. Red
+     is never a button; it lives in the wordmark and the waves. */
   .button {
     @apply inline-flex items-center justify-center rounded-none text-center text-[18px] leading-[1.5] transition-colors duration-200;
     padding: 22px 36px 24px;
   }
-  .button-primary { @apply button bg-navy text-ivory hover:bg-black; }
-  .button-secondary { @apply button border border-navy bg-transparent text-navy hover:border-blue hover:bg-blue hover:text-ivory; }
+  .button-primary { @apply button bg-blue text-white hover:bg-gold hover:text-blue; }
+  .button-secondary { @apply button border border-blue bg-transparent text-blue hover:bg-blue hover:text-white; }
   .button-small { padding: 16px 24px; @apply text-[16px]; }
   /* Compact: 48px tall whatever the text size, for the header and the home
      hero, so the two read as one family. */
@@ -116,21 +114,25 @@ body {
 
   /* Tertiary: a word and a small ringed arrow. */
   .tertiary {
-    @apply inline-flex items-center gap-2 text-[17px] leading-[1.5] text-navy;
+    @apply inline-flex items-center gap-2 text-[17px] leading-[1.5] text-blue;
   }
   .tertiary-icon {
-    @apply flex h-[26px] w-[26px] items-center justify-center rounded-full border border-navy transition-colors duration-200;
+    @apply flex h-[26px] w-[26px] items-center justify-center rounded-full border border-blue transition-colors duration-200;
   }
   .group:hover .tertiary-icon, .tertiary:hover .tertiary-icon {
-    @apply border-blue bg-blue text-ivory;
+    @apply border-blue bg-blue text-white;
   }
-  /* Filled: the word at medium weight, and the ring a size up, solid navy at
-     rest and black on hover, like the primary button. For links that sit on
-     a pattern. */
-  .tertiary-filled { @apply text-navy; }
+  /* Filled: the word at medium weight, and the ring a size up, solid blue at
+     rest and gold on hover, like the primary button. For links that sit on
+     a tint. */
+  .tertiary-filled { @apply text-blue; }
   .tertiary-filled > span:first-child { @apply font-medium; }
-  .tertiary-filled .tertiary-icon { @apply h-8 w-8 border-navy bg-navy text-ivory; }
-  .group:hover .tertiary-filled .tertiary-icon, .tertiary-filled:hover .tertiary-icon { @apply border-black bg-black; }
+  .tertiary-filled .tertiary-icon { @apply h-8 w-8 border-blue bg-blue text-white; }
+  .group:hover .tertiary-filled .tertiary-icon, .tertiary-filled:hover .tertiary-icon { @apply border-gold bg-gold text-blue; }
+  /* On blue: the word in white and the ring solid white, gold on hover. For
+     links set on the blue of a wave. */
+  .tertiary-on-blue { @apply text-white; }
+  .tertiary-on-blue .tertiary-icon { @apply border-white bg-white text-blue; }
 
   /* Compact section spacing, the same on every page: 80px, 56px on phones. */
   .section { margin-top: 80px; }
@@ -139,15 +141,15 @@ body {
   @media (max-width: 991px) { .section-tight { margin-top: 48px; } }
   @media (max-width: 767px) { .section-tight { margin-top: 24px; } }
 
-  .line { @apply h-px w-full bg-navy; }
+  .line { @apply h-px w-full bg-blue; }
   .line-white { @apply h-px w-full bg-white; }
 
   .panel { @apply flex flex-col; padding: 24px 32px; }
 
-  /* Form fields: a box of the pale blue with a hairline in the brand blue on
-     every side, the blue card's treatment. The hairline darkens on focus. */
+  /* Form fields: a box of the blue at 5% with a hairline of the blue on
+     every side. The hairline goes solid on focus. */
   .field {
-    @apply w-full border border-blue/25 bg-blue-light px-4 py-4 text-[20px] leading-[1.5] text-navy outline-none transition-colors placeholder:text-navy/50 focus:border-blue;
+    @apply w-full border border-blue/25 bg-blue/[0.05] px-4 py-4 text-[20px] leading-[1.5] text-blue outline-none transition-colors placeholder:text-blue/50 focus:border-blue;
   }
 }
 
@@ -164,8 +166,8 @@ body {
   display: flex;
   flex: none;
   align-items: baseline;
-  gap: 40px;
-  padding-right: 40px;
+  gap: 32px;
+  padding-right: 32px;
   animation: marquee 60s linear infinite;
 }
 .marquee:hover .marquee-track { animation-play-state: paused; }
