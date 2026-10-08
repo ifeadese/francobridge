@@ -4,7 +4,7 @@ import { RequestForm } from "@/app/_components/request-form";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Tell FrancoBridge where French needs to take you, and we will reply with what we would suggest and what it costs.",
+  description: "Get in touch with FrancoBridge. Tell us a little about what you need, and we’ll get back to you.",
 };
 
 // The contact page: a title, one line on what to write, then the form, on
@@ -15,7 +15,7 @@ export default function Contact() {
     <main>
       <Hero
         title="How can we help?"
-        text="An exam date, a job, a study program, a move. Write a few lines and we will reply with what we would suggest and what it costs."
+        text="Tell us a little about what you need, and we’ll get back to you."
         compact
         wide
       />

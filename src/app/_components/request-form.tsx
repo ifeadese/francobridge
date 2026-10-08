@@ -39,7 +39,7 @@ export function RequestForm() {
         ))}
         <option value="Not sure yet">Not sure yet</option>
       </select>
-      <textarea name="message" rows={4} required placeholder="Where are you heading?" aria-label="Message" className="field mb-10" />
+      <textarea name="message" rows={4} required placeholder="Your message" aria-label="Message" className="field mb-10" />
       <div className="flex flex-wrap items-center gap-6">
         <button type="submit" className="button-primary">
           Send message
