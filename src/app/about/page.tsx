@@ -92,10 +92,7 @@ export default function About() {
           </div>
           <div>
             <p className="regular-s uppercase tracking-[0.14em] text-blue/70">Meet the founder</p>
-            <h2 className="h3 mt-3">
-              {FOUNDER.name}
-              <span className="block text-[18px] font-normal text-blue/70 md:text-[20px]">{FOUNDER.role}</span>
-            </h2>
+            <h2 className="h3 mt-3">{FOUNDER.name}</h2>
             <div className="mt-6 flex max-w-2xl flex-col gap-5 text-[18px] leading-[1.5] md:text-[20px]">
               <p>
                 I’m {FOUNDER.name}, the founder of FrancoBridge Consulting. Every consultation and, for now, every
