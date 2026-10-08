@@ -25,7 +25,7 @@ export function MobileNav() {
   const { open, setOpen } = useMenu();
   const pathname = usePathname();
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         type="button"
         aria-expanded={open}
@@ -56,7 +56,7 @@ export function MobileNav() {
         id="mobile-menu"
         inert={!open}
         className={cn(
-          "fixed inset-x-0 bottom-0 top-24 overflow-y-auto overscroll-contain px-6 pb-10 pt-4 transition-[visibility] duration-500",
+          "fixed inset-x-0 bottom-0 top-24 overflow-y-auto overscroll-contain px-[var(--gutter)] pb-10 pt-4 transition-[visibility] duration-500 md:top-[124px]",
           open ? "visible" : "invisible"
         )}
       >

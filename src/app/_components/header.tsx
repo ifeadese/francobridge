@@ -7,12 +7,12 @@ import { NAV } from "@/lib/constants";
 
 // Fixed, frosted glass with a faint rule under it, except at the top
 // of the home page, where it is clear and the hero's fade shows through (see
-// HeaderSurface). The lockup at the left, the links at the right, and the
-// one button always in view beside the menu on phones. On tablets the row
-// is tight, a smaller lockup and closer links, so it fits the column; from
-// 1024px it opens out. Over a dark surface
-// the header carries data-dark, and everything here swaps to its light
-// treatment: the white lockup, white links and an white button.
+// HeaderSurface). The lockup at the left; on phones and tablets the one
+// button beside the menu, and from 1024px, where the row has room, the
+// links inline before the button. Tablets show the lockup at its desktop
+// size, which the four links would crowd. Over a dark surface the header
+// carries data-dark, and everything here swaps to its light treatment: the
+// white lockup, white links and a white button.
 export function Header() {
   return (
     <HeaderSurface>
@@ -23,17 +23,17 @@ export function Header() {
           <Logo
             variant="lockup"
             on="white"
-            className="h-8 w-auto transition-opacity duration-300 [grid-area:1/1] group-data-[dark]:opacity-0 md:h-11 lg:h-14"
+            className="h-8 w-auto transition-opacity duration-300 [grid-area:1/1] group-data-[dark]:opacity-0 md:h-14"
           />
           <Logo
             variant="lockup"
             on="blue"
             aria-hidden
-            className="h-8 w-auto opacity-0 transition-opacity duration-300 [grid-area:1/1] group-data-[dark]:opacity-100 md:h-11 lg:h-14"
+            className="h-8 w-auto opacity-0 transition-opacity duration-300 [grid-area:1/1] group-data-[dark]:opacity-100 md:h-14"
           />
         </Link>
         <div className="flex items-center gap-2">
-          <nav className="hidden items-center gap-2 md:flex" aria-label="Main">
+          <nav className="hidden items-center gap-2 lg:flex" aria-label="Main">
             {NAV.map((item) => (
               <Link
                 key={item.href}
