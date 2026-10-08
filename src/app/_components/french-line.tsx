@@ -30,7 +30,7 @@ export function FrenchLine({
 }) {
   return (
     <div className={`overflow-hidden ${className}`}>
-      <div className="container-fb grid grid-cols-[1fr_auto] items-center gap-6 pb-10 pt-14 md:grid-cols-2 md:gap-12 md:pb-12 md:pt-20">
+      <div className="container-fb grid grid-cols-[1fr_auto] items-center gap-6 py-14 md:grid-cols-2 md:gap-12 md:py-20">
         <div className="flex min-w-0 flex-col gap-4">
           <p className="banner-heading max-md:text-[40px]" lang="fr">
             {lines
