@@ -28,7 +28,7 @@ export function RequestForm() {
     <form onSubmit={onSubmit} className="flex w-full flex-col">
       <input name="name" required autoComplete="name" placeholder="Name" aria-label="Name" className="field mb-8" />
       <input name="email" type="email" required autoComplete="email" placeholder="Email" aria-label="Email" className="field mb-8" />
-      <select name="interest" defaultValue="" aria-label="Program" className="field mb-8">
+      <select name="interest" defaultValue="" aria-label="Program" className="field field-select mb-8">
         <option value="" disabled>
           I’m interested in
         </option>

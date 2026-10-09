@@ -76,7 +76,7 @@ export function Footer() {
           </p>
         </div>
         <div className="border-t border-white/20 pt-4 md:pt-6">
-          <p className="regular-s max-w-[760px] text-white/70">
+          <p className="regular-s text-white/70">
             Preparation fees do not include official examination fees. Immigration information only;
             regulated advice is referred to an authorized professional.
           </p>
