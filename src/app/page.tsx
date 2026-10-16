@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { BookButton } from "@/app/_components/book-button";
 import { ServicesRail } from "@/app/_components/services-rail";
@@ -6,6 +7,10 @@ import { Watermark } from "@/app/_components/watermark";
 import { Drift } from "@/app/_components/drift";
 import { RING, RingArrow } from "@/app/_components/ring";
 import { CONSULTATION, PACKAGES, SITE_TAGLINE, SITE_TAGLINE_FR } from "@/lib/constants";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 // The three steps, numbered in their titles, each with its plain numbers:
 // the facts a reader wants before they ask, in a line under the sentence.

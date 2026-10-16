@@ -9,6 +9,7 @@ import DateFormatter from "@/app/_components/date-formatter";
 export const metadata: Metadata = {
   title: "Blog",
   description: "Guides, lessons and updates from FrancoBridge.",
+  alternates: { canonical: "/blog" },
 };
 
 export default function Blog() {

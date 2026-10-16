@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Services",
   description:
     "Language coaching from A1 to C1, TCF, TEF, DELF and DALF preparation, Government of Canada Second Language Evaluation preparation, professional French, interview preparation for bilingual roles, academic support, French immigration pathway support and translation.",
+  alternates: { canonical: "/services" },
 };
 
 export default function Services() {

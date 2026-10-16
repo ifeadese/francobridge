@@ -5,6 +5,7 @@ import { RequestForm } from "@/app/_components/request-form";
 export const metadata: Metadata = {
   title: "Contact",
   description: "Get in touch with FrancoBridge. Tell us a little about what you need, and we’ll get back to you.",
+  alternates: { canonical: "/contact" },
 };
 
 // The contact page: a title, one line on what to write, then the form, on

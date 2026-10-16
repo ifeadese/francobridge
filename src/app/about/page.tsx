@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "FrancoBridge Consulting is a language education and professional development firm in Ottawa, Ontario, helping clients gain the French they need to succeed academically, professionally and through immigration pathways, online across North America.",
+  alternates: { canonical: "/about" },
 };
 
 // Who we are, the mission and vision, the five values, who we help, and the
