@@ -5,7 +5,7 @@ export const SITE_TAGLINE = "Bridging language. Unlocking opportunities.";
 export const SITE_TAGLINE_FR = "Un pont vers la langue. Des portes qui s’ouvrent.";
 export const SITE_DESCRIPTION =
   "French language coaching, TCF, TEF, DELF and DALF preparation, Government of Canada Second Language Evaluation preparation, immigration pathway support, interview preparation and translation. A language education and professional development firm in Ottawa, online across North America.";
-export const SITE_URL = "https://francobridge.vercel.app";
+export const SITE_URL = "https://francobridgeconsulting.com";
 export const REPO_URL = "https://github.com/ifeadese/francobridge";
 
 // The client's own words, from the pamphlet and the banner, kept verbatim.

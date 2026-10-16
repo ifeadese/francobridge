@@ -5,7 +5,7 @@ professional development firm in Ottawa: French language coaching, exam
 preparation, immigration pathway support and translation, online across
 North America. Built with Next.js, deployed on Vercel.
 
-- Live site: https://francobridge.vercel.app
+- Live site: https://francobridgeconsulting.com
 - Brand book: `brand/brand-book.html` (open it in a browser)
 
 ## Pages
