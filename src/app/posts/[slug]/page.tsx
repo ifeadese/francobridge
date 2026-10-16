@@ -41,7 +41,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
   const post = getPostBySlug(params.slug);
   if (!post) return notFound();
   const title = `${post.title} | ${SITE_NAME}`;
-  return { title, openGraph: { title, images: [post.ogImage.url] } };
+  return { title, alternates: { canonical: `/posts/${post.slug}` }, openGraph: { title, images: [post.ogImage.url] } };
 }
 
 export async function generateStaticParams() {

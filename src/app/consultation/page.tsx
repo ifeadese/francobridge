@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Book a consultation",
   description:
     "Book a consultation to find your French level and your program, or, if you already study with FrancoBridge, book your next lesson.",
+  alternates: { canonical: "/consultation" },
 };
 
 // Two ways to book: the consultation for new students, a lesson for current
