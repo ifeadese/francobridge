@@ -1,6 +1,6 @@
 ---
 title: "Welcome to Francobridge"
-excerpt: "Francobridge helps newcomers learn the French they need for immigration. This first post doubles as a test of our publishing pipeline: commit to GitHub, build on Vercel, live at francobridge.vercel.app."
+excerpt: "Francobridge helps newcomers learn the French they need for immigration. This first post doubles as a test of our publishing pipeline: commit to GitHub, build on Vercel, live at francobridgeconsulting.com."
 coverImage: "/assets/blog/welcome/cover.jpg"
 date: "2026-09-29T12:00:00.000Z"
 author:
@@ -22,7 +22,7 @@ Every post is a markdown file in the `_posts` folder of the repository. To publi
 
 1. Add a markdown file to `_posts` with a title, excerpt, date, and author in the front matter.
 2. Commit it and push to the `main` branch on GitHub.
-3. Vercel picks up the push, builds the site, and deploys it to [francobridge.vercel.app](https://francobridge.vercel.app).
+3. Vercel picks up the push, builds the site, and deploys it to [francobridgeconsulting.com](https://francobridgeconsulting.com).
 
 Pushing to any other branch produces a preview deployment with its own URL, so drafts can be reviewed before they go live.
 
