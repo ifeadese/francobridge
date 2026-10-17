@@ -56,10 +56,18 @@ export default function Home() {
       <section className="relative flex flex-col border-b border-blue/10 pt-[104px] md:pt-[124px]">
         {/* The monogram drifts left as the page scrolls, at a fraction of the pace.
             It stands inside the hero, from under the header to just above the
-            hero's foot, so it scales with the hero's height. */}
-        <Drift rate={0.15} className="pointer-events-none absolute bottom-6 right-[4%] z-0 w-[240px] md:bottom-12 md:right-[8%] md:top-[152px] md:w-auto md:aspect-[306/520]">
-          <Watermark kind="mark" className="relative w-full" />
-        </Drift>
+            hero's foot, so it scales with the hero's height. It is laid out in
+            the page's content box, its right edge on the content's, so it
+            never reaches past the text column into the gutter. */}
+        <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+          <div className="container-fb h-full">
+            <div className="relative h-full">
+              <Drift rate={0.15} className="absolute bottom-6 right-0 w-[240px] max-w-full md:bottom-12 md:top-[152px] md:w-auto md:aspect-[306/520]">
+                <Watermark kind="mark" className="relative w-full" />
+              </Drift>
+            </div>
+          </div>
+        </div>
         <div className="container-fb relative z-10 flex flex-col items-start justify-end gap-8 pb-10 pt-14 md:pb-12 md:pt-16">
           <h1 className="h1 w-[60%]">{SITE_TAGLINE}</h1>
           <div className="flex max-w-[560px] flex-col gap-3">
